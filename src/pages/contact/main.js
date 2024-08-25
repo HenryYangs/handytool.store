@@ -1,8 +1,8 @@
 import 'reset-css';
-import App from './components/layout/index.svelte'
+import App from './index.svelte'
 
 // Import our custom CSS
-import './style.scss'
+import "../../style.scss";
 
 // Import all of Bootstrap's JS
 import * as bootstrap from 'bootstrap'
