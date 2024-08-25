@@ -3,7 +3,7 @@
 </script>
 
 <header class='header sticky-top sticky'>
-  <div class='container-fluid header-container'>
+  <div class='container-fluid container-biz'>
     <div class='row align-items-center'>
       <div class='logo col-2'>
         <a href='/' class='d-flex align-items-center'>
@@ -158,16 +158,10 @@
 
 @supports ((position:-webkit-sticky) or (position:sticky)) {
   .sticky-top {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-  }
-}
-
-@media (min-width: 1200px) {
-  .header-container {
-    max-width: 1200px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
 }
 </style>
