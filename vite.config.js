@@ -2,55 +2,45 @@ import {resolve } from 'path'
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import history from 'connect-history-api-fallback';
+import { getPathRewriteRules, getRollupInput } from './script/utils/multi-page';
 
 const isProd = process.env.NODE_ENV === 'production';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  ...(isProd ? {
-    root: 'src/pages',
-  } : {}),
+  ...(isProd
+    ? {
+        root: "src/pages",
+      }
+    : {}),
   plugins: [
     svelte(),
     {
-      name: 'path-rewrite-plugin',
-      configureServer(server) {
+      name: "path-rewrite-plugin",
+      async configureServer(server) {
         server.middlewares.use(
           history({
-            htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+            htmlAcceptHeaders: ["text/html", "application/xhtml+xml"],
             disableDotRule: false,
-            rewrites: [
-              {
-                from: '/contact',
-                to: '/src/pages/contact/index.html'
-              },
-              {
-                from: '/',
-                to: '/src/pages/home/index.html'
-              }
-            ]
+            rewrites: await getPathRewriteRules(),
           })
         );
       },
-    }
+    },
   ],
   resolve: {
     alias: {
-      '~bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
+      "~bootstrap": resolve(__dirname, "node_modules/bootstrap"),
     },
   },
   build: {
-    ...(isProd ? {
-      outDir: '../../dist',
-    } : {}),
+    ...(isProd
+      ? {
+          outDir: "../../dist",
+        }
+      : {}),
     rollupOptions: {
-      input: {
-        main: isProd ? '/home/index.prod.html' : resolve(__dirname, '/src/pages/home/index.html'),
-        contact: isProd ? '/contact/index.prod.html' : resolve(__dirname, '/src/pages/contact/index.html'),
-      },
-      output: {
-        htmlFileName: 'index.html'
-      }
+      input: await getRollupInput(isProd),
     },
   },
 });
