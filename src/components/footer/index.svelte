@@ -33,6 +33,7 @@
 
 <style>
 footer {
+  margin-top: 35px;
   color: #ADBBDA;
 }
 

@@ -1,8 +1,12 @@
 <script>
   import logo from '../../assets/images/logo_100x100.png';
+  import './assets/icon/iconfont.css';
+  
+  let y;
 </script>
 
-<header class='header sticky-top sticky'>
+<svelte:window bind:scrollY={y} />
+<header class={`header sticky-top ${y ? 'sticky' : ''}`}>
   <div class='container-fluid container-biz'>
     <div class='row align-items-center'>
       <div class='logo col-2'>
@@ -15,28 +19,28 @@
         <ul class='d-flex align-items-center justify-content-between entries-list'>
           <li>
             <a href='/' class='entry-link'>
-              <i class='iconfont icon-home entry-item-inner'></i>
+              <i class='iconfont-header icon-header-home entry-item-inner'></i>
               <span class='entry-item-inner'>Home</span>
             </a>
           </li>
 
           <li>
             <a href='/' class='entry-link'>
-              <i class='iconfont icon-heart entry-item-inner'></i>
+              <i class='iconfont-header icon-header-heart entry-item-inner'></i>
               <span class='entry-item-inner'>Favorite</span>
             </a>
           </li>
 
           <li>
             <a href='/' class='entry-link'>
-              <i class='iconfont icon-recent entry-item-inner'></i>
+              <i class='iconfont-header icon-header-recent entry-item-inner'></i>
               <span class='entry-item-inner'>Recent</span>
             </a>
           </li>
 
           <li>
             <a href='/' class='entry-link'>
-              <i class='iconfont icon-message entry-item-inner'></i>
+              <i class='iconfont-header icon-header-message entry-item-inner'></i>
               <span class='entry-item-inner'>Message</span>
             </a>
           </li>
@@ -44,11 +48,11 @@
       </div>
       <div class='extra col-5 d-flex justify-content-end align-items-center'>
         <button class='extra-icon'>
-          <i class='iconfont icon-light'></i>
+          <i class='iconfont-header icon-header-light'></i>
         </button>
 
         <button class='extra-icon'>
-          <i class='iconfont icon-share'></i>
+          <i class='iconfont-header icon-header-share'></i>
         </button>
 
         <div class='vertical-split'></div>
@@ -57,7 +61,7 @@
           <input class='form-control input-search' placeholder="Search" />
 
           <button class='button btn-search' type='submit'>
-            <i class='iconfont icon-search'></i>
+            <i class='iconfont-header icon-header-search'></i>
           </button>
         </form>
 
@@ -70,6 +74,7 @@
 <style>
 .header {
   padding: 16px 0;
+  background-color: #FFF;
 }
 
 .sticky {

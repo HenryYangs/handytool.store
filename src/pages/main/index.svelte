@@ -1,7 +1,9 @@
 <script>
   import Layout from '../../components/layout/index.svelte';
+  import ToolsIntro from './components/tools-intro/index.svelte';
 </script>
 
 <Layout>
-  <div>home</div>
+  <ToolsIntro />
+  <!-- <Support /> -->
 </Layout>
