@@ -1,5 +1,5 @@
 <script>
-  import { stringCaseTransform } from '../../../../utils/string';
+  import { stringCaseTransform } from '../../../utils/string';
   import { TABS } from './config';
 
   let tabIdx = 0;
@@ -32,7 +32,7 @@
       <div class='tools-list'>
         {#each TABS[tabIdx].list as tool}
           <div class='tool-item'>
-            <a href={`/${tool.category}/${tool.id}`}>
+            <a href={`/tool/${tool.category}/${tool.id}`}>
               <div class='tool-item_inner'>
                 <div class='tool-item_body'>
                   <div class='tool-item_icon' style:background-color={tool.iconTheme}>
@@ -56,7 +56,7 @@
       
       <div class='footer-btn'>
         <button class='btn btn-primary redirect-to-full-page' on:click={() => {
-          location.href = `/${TABS[tabIdx].id}`
+          location.href = `/tool/${TABS[tabIdx].id}`
         }}>{allBtnText}</button>
       </div>
     </div>
@@ -66,7 +66,7 @@
 <style>
 @media (min-width: 1200px) {
   .wrapper {
-    padding: 150px 0;
+    padding: 100px 0;
   }
 }
 

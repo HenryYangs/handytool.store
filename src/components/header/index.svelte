@@ -25,21 +25,21 @@
           </li>
 
           <li>
-            <a href='/' class='entry-link'>
+            <a href='/favorite' class='entry-link'>
               <i class='iconfont-header icon-header-heart entry-item-inner'></i>
               <span class='entry-item-inner'>Favorite</span>
             </a>
           </li>
 
           <li>
-            <a href='/' class='entry-link'>
+            <a href='/recent' class='entry-link'>
               <i class='iconfont-header icon-header-recent entry-item-inner'></i>
               <span class='entry-item-inner'>Recent</span>
             </a>
           </li>
 
           <li>
-            <a href='/' class='entry-link'>
+            <a href='/message' class='entry-link'>
               <i class='iconfont-header icon-header-message entry-item-inner'></i>
               <span class='entry-item-inner'>Message</span>
             </a>

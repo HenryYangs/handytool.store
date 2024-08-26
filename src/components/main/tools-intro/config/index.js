@@ -1,4 +1,5 @@
-import { stringCaseTransform } from '../../../../../utils/string';
+import { stringCaseTransform } from '../../../../utils/string';
+
 
 const COLOR = {
   RED: '#E24841',
@@ -96,8 +97,8 @@ export const CONVERTER = [
 
 export const PROGRAMMING = [
   {
-    id: 'js-minifier',
-    text: 'JavaScript Minifier',
+    id: 'js-compression',
+    text: 'JavaScript Compression',
     category: CATEGORY.PROGRAMMING,
     icon: 'js',
     color: COLOR.RED,
@@ -112,8 +113,8 @@ export const PROGRAMMING = [
     iconTheme: THEME.PURPLE
   },
   {
-    id: 'css-minifier',
-    text: 'CSS Minifier',
+    id: 'css-compression',
+    text: 'CSS Compression',
     category: CATEGORY.PROGRAMMING,
     icon: 'css',
     color: COLOR.ORANGE,
