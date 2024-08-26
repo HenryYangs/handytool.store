@@ -32,7 +32,7 @@
       <div class='tools-list'>
         {#each TABS[tabIdx].list as tool}
           <div class='tool-item'>
-            <a href='/'>
+            <a href={`/${tool.category}/${tool.id}`}>
               <div class='tool-item_inner'>
                 <div class='tool-item_body'>
                   <div class='tool-item_icon' style:background-color={tool.iconTheme}>

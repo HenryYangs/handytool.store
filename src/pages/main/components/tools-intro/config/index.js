@@ -1,3 +1,5 @@
+import { stringCaseTransform } from '../../../../../utils/string';
+
 const COLOR = {
   RED: '#E24841',
   YELLOW: '#E2C740',
@@ -17,11 +19,19 @@ const THEME = {
   GREEN: '#ECFAE5',
 };
 
+const CATEGORY = {
+  CONVERTER: 'converter',
+  PROGRAMMING: 'programming',
+  CODEC: 'codec',
+  VALIDATOR: 'validator',
+  TIMER: 'timer'
+};
+
 export const CONVERTER = [
   {
     id: 'hex-decimal',
     text: 'Hex-Decimal',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: '',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
@@ -29,7 +39,7 @@ export const CONVERTER = [
   {
     id: 'binary-decimal',
     text: 'Binary-Decimal',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: '',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE
@@ -37,7 +47,7 @@ export const CONVERTER = [
   {
     id: 'binary-hex',
     text: 'Binary-Hex',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: '',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN
@@ -45,7 +55,7 @@ export const CONVERTER = [
   {
     id: 'text-binary',
     text: 'Text-Binary',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: 'text',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW
@@ -53,7 +63,7 @@ export const CONVERTER = [
   {
     id: 'text-decimal',
     text: 'Text-Decimal',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: 'text',
     color: COLOR.RED,
     iconTheme: THEME.RED
@@ -61,7 +71,7 @@ export const CONVERTER = [
   {
     id: 'text-hex',
     text: 'Text-Hex',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: 'text',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN
@@ -69,7 +79,7 @@ export const CONVERTER = [
   {
     id: 'domain-ip',
     text: 'Domain to IP',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: 'ip-domain',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET
@@ -77,7 +87,7 @@ export const CONVERTER = [
   {
     id: 'unit',
     text: 'Unit Converter',
-    category: 'converter',
+    category: CATEGORY.CONVERTER,
     icon: 'unit',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
@@ -88,7 +98,7 @@ export const PROGRAMMING = [
   {
     id: 'js-minifier',
     text: 'JavaScript Minifier',
-    category: 'programming',
+    category: CATEGORY.PROGRAMMING,
     icon: 'js',
     color: COLOR.RED,
     iconTheme: THEME.RED
@@ -96,7 +106,7 @@ export const PROGRAMMING = [
   {
     id: 'js-formatter',
     text: 'JavaScript Formatter',
-    category: 'programming',
+    category: CATEGORY.PROGRAMMING,
     icon: 'js',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE
@@ -104,7 +114,7 @@ export const PROGRAMMING = [
   {
     id: 'css-minifier',
     text: 'CSS Minifier',
-    category: 'programming',
+    category: CATEGORY.PROGRAMMING,
     icon: 'css',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
@@ -112,7 +122,7 @@ export const PROGRAMMING = [
   {
     id: 'css-formatter',
     text: 'CSS Formatter',
-    category: 'programming',
+    category: CATEGORY.PROGRAMMING,
     icon: 'css',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN
@@ -123,7 +133,7 @@ export const CODEC = [
   {
     id: 'base64',
     text: 'Base64',
-    category: 'codec',
+    category: CATEGORY.CODEC,
     icon: 'base64',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE,
@@ -131,7 +141,7 @@ export const CODEC = [
   {
     id: 'url',
     text: 'URL',
-    category: 'codec',
+    category: CATEGORY.CODEC,
     icon:  'url',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
@@ -142,7 +152,7 @@ export const VALIDATOR = [
   {
     id: 'mysql',
     text: 'MySQL Validator',
-    category: 'validator',
+    category: CATEGORY.VALIDATOR,
     icon: 'mysql',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET
@@ -150,7 +160,7 @@ export const VALIDATOR = [
   {
     id: 'reg-exp',
     text: 'Regular Expression Validator',
-    category: 'validator',
+    category: CATEGORY.VALIDATOR,
     icon: 'regular-expression',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW
@@ -158,7 +168,7 @@ export const VALIDATOR = [
   {
     id: 'email',
     text: 'Email Validator',
-    category: 'validator',
+    category: CATEGORY.VALIDATOR,
     icon: 'email',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE
@@ -166,7 +176,7 @@ export const VALIDATOR = [
   {
     id: 'phone-num',
     text: 'Phone Number Validator',
-    category: 'validator',
+    category: CATEGORY.VALIDATOR,
     icon: 'phone-num',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE
@@ -174,7 +184,7 @@ export const VALIDATOR = [
   {
     id: 'json',
     text: 'JSON Validator',
-    category: 'validator',
+    category: CATEGORY.VALIDATOR,
     icon: 'json',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE
@@ -185,7 +195,7 @@ export const TIMER = [
   {
     id: 'countdown',
     text: 'Countdown',
-    category: 'timer',
+    category: CATEGORY.TIMER,
     icon: 'countdown',
     color: COLOR.RED,
     iconTheme: THEME.RED
@@ -193,7 +203,7 @@ export const TIMER = [
   {
     id: 'count-timer',
     text: 'Count Timer',
-    category: 'timer',
+    category: CATEGORY.TIMER,
     icon: 'count-timer',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
@@ -201,7 +211,7 @@ export const TIMER = [
   {
     id: 'online-clock',
     text: 'Online Clock',
-    category: 'timer',
+    category: CATEGORY.TIMER,
     icon: 'clock',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN
@@ -209,7 +219,7 @@ export const TIMER = [
   {
     id: 'world-clock',
     text: 'World Clock',
-    category: 'timer',
+    category: CATEGORY.TIMER,
     icon: 'world-clock',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW
@@ -217,7 +227,7 @@ export const TIMER = [
   {
     id: 'timestamp',
     text: 'TimeStamp',
-    category: 'timer',
+    category: CATEGORY.TIMER,
     icon: 'timestamp',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET
@@ -225,7 +235,7 @@ export const TIMER = [
   {
     id: 'chronograph',
     text: 'Chronograph',
-    category: 'timer',
+    category: CATEGORY.TIMER,
     icon: 'chronograph',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE
@@ -234,30 +244,30 @@ export const TIMER = [
 
 const TABS_SINGLE = [
   {
-    id: 'converter',
-    text: 'Converter',
+    id: CONVERTER[0].category,
+    text: stringCaseTransform(CONVERTER[0].category),
     list: CONVERTER,
   },
   {
-    id: 'programming',
-    text: 'Programming',
-    list: PROGRAMMING
+    id: PROGRAMMING[0].category,
+    text: stringCaseTransform(PROGRAMMING[0].category),
+    list: PROGRAMMING,
   },
   {
-    id: 'codec',
-    text: 'Codec',
-    list: CODEC
+    id: CODEC[0].category,
+    text: stringCaseTransform(CODEC[0].category),
+    list: CODEC,
   },
   {
-    id:  'validator',
-    text: 'Validator',
+    id: VALIDATOR[0].category,
+    text: stringCaseTransform(VALIDATOR[0].category),
     list: VALIDATOR,
   },
   {
-    id:  'timer',
-    text: 'Timer',
+    id: TIMER[0].category,
+    text: stringCaseTransform(TIMER[0].category),
     list: TIMER,
-  }
+  },
 ];
 
 const getAllTab = () => {
