@@ -1,12 +1,13 @@
 import { readdir, rename } from 'node:fs/promises';
 
 async function updateDistFile() {
-  const directories = await readdir('./src/pages');
+  const directories = await readdir('./dist', { recursive: true });
+  const entries = directories.filter((_path) => _path.match(/index\.prod\.html$/));
 
-  directories.forEach(dir => {
+  entries.forEach(file => {
     rename(
-      `${process.cwd()}/dist/${dir}/index.prod.html`,
-      `${process.cwd()}/dist/${dir}/index.html`
+      `${process.cwd()}/dist/${file}`,
+      `${process.cwd()}/dist/${file.replace(/index\.prod\.html/, 'index.html')}`
     );
   })
 }
