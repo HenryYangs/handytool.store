@@ -1,10 +1,10 @@
 <script>
+  import { FULL_TOOLS } from '../../../constant/tools';
   import Tab from './components/tab/index.svelte';
   import ToolList from './components/tool-list/index.svelte';
-  import { TABS } from './config';
 
   let tabIdx = 0;
-  $: allBtnText = TABS[tabIdx].id === 'all' ? 'All Tools' : `All ${TABS[tabIdx].text} Tools`;
+  $: allBtnText = FULL_TOOLS[tabIdx].id === 'all' ? 'All Tools' : `All ${FULL_TOOLS[tabIdx].text} Tools`;
 
   /**
    * @param {number} index
@@ -28,7 +28,7 @@
       
       <div class='footer-btn'>
         <button class='btn btn-primary redirect-to-list' on:click={() => {
-          location.href = `/tool/${TABS[tabIdx].id}`
+          location.href = `/tool/${FULL_TOOLS[tabIdx].id}`
         }}>{allBtnText}</button>
       </div>
     </div>

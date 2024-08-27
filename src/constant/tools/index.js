@@ -1,4 +1,4 @@
-import { stringCaseTransform } from '../../../../utils/string';
+import { stringCaseTransform } from '../../utils/string';
 
 
 const COLOR = {
@@ -243,49 +243,49 @@ export const TIMER = [
   }
 ]
 
-const TABS_SINGLE = [
+const PURE_TOOLS = [
   {
-    id: CONVERTER[0].category,
-    text: stringCaseTransform(CONVERTER[0].category),
+    id: CATEGORY.CONVERTER,
+    text: stringCaseTransform(CATEGORY.CONVERTER),
     list: CONVERTER,
   },
   {
-    id: PROGRAMMING[0].category,
-    text: stringCaseTransform(PROGRAMMING[0].category),
+    id: CATEGORY.PROGRAMMING,
+    text: stringCaseTransform(CATEGORY.PROGRAMMING),
     list: PROGRAMMING,
   },
   {
-    id: CODEC[0].category,
-    text: stringCaseTransform(CODEC[0].category),
+    id: CATEGORY.CODEC,
+    text: stringCaseTransform(CATEGORY.CODEC),
     list: CODEC,
   },
   {
-    id: VALIDATOR[0].category,
-    text: stringCaseTransform(VALIDATOR[0].category),
+    id: CATEGORY.VALIDATOR,
+    text: stringCaseTransform(CATEGORY.VALIDATOR),
     list: VALIDATOR,
   },
   {
-    id: TIMER[0].category,
-    text: stringCaseTransform(TIMER[0].category),
+    id: CATEGORY.TIMER,
+    text: stringCaseTransform(CATEGORY.TIMER),
     list: TIMER,
   },
 ];
 
 const getAllTab = () => {
   const maxCount = 16;
-  const totalCateCount = TABS_SINGLE.length;
+  const totalCateCount = PURE_TOOLS.length;
   const avgCount = Math.ceil(maxCount / totalCateCount);
 
   return {
     id: 'all',
     text: 'All Tools',
-    list: [].concat(...TABS_SINGLE.map(tab => {
+    list: [].concat(...PURE_TOOLS.map(tab => {
       return tab.list.slice(0, avgCount);
     })).slice(0, maxCount)
   }
 }
 
-export const TABS = [
+export const FULL_TOOLS = [
   getAllTab(),
-  ...TABS_SINGLE,
+  ...PURE_TOOLS,
 ];

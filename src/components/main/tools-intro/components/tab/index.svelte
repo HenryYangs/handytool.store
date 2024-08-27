@@ -1,15 +1,16 @@
 <script>
-  import { TABS } from '../../config';
+  import { FULL_TOOLS } from '../../../../../constant/tools';
 
   export let tabIdx = 0;
   export let onTabClick;
 
+  $: curTabIdx = FULL_TOOLS[tabIdx].id;
 </script>
 <div class='tab-wrapper'>
   <div class='tab-inner-wrapper'>
-    {#each TABS as tab, index}
+    {#each FULL_TOOLS as tab, index}
       <button
-        class={`tab-item ${tab.id === TABS[tabIdx].id ? 'active' : ''}`}
+        class={`tab-item ${tab.id === curTabIdx ? 'active' : ''}`}
         on:click={() => { onTabClick && onTabClick(index) }}
       >{tab.text}</button>
     {/each}
