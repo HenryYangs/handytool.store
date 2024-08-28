@@ -1,7 +1,8 @@
 <script>
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
-  import NumeralSystem from '../../../../components/numeral-system/playground/index.svelte';
+  import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
+  import NumeralSelect from '../../../../components/numeral-system/numeral-select/index.svelte';
   import { CONVERTER } from '../../../../constant/tools';
   import { stringCaseTransform } from '../../../../utils/string';
   import { NUMERAL_SYSTEM } from '../../../../constant/numeral';
@@ -34,6 +35,12 @@
     const { realLeftNumeral, realRightNumeral } = getRealNumeral();
 
     leftValue = Number(parseInt(val, realRightNumeral)).toString(realLeftNumeral);
+  }
+  const onClearLeft = () => {
+    leftValue = '';
+  }
+  const onClearRight = () => {
+    rightValue = '';
   }
   const isNumeralInList = (numeral) => NUMERAL_SYSTEM.find(item => item.value === numeral);
 
@@ -103,34 +110,27 @@
     toolsList={CONVERTER}
     description='Convert Number Between Different Numeral System'
   >
-    <div class='convert-area'>
-      <NumeralSystem
-        style='width: calc(50% - 10px)'
-        btnText='Convert &gt;'
-        bind:textareaValue={leftValue}
-        bind:numeral={leftNumeral}
-        bind:numeralCustom={leftNumeralCustom}
-        onConvert={onConvertLeft}
-        onClear={() => { leftValue = ''; }}
-      />
+    <PlaygroundTransfer
+      bind:leftValue
+      bind:rightValue
+      leftConfig={{
+        btnText: 'Convert &gt;',
+        onConfirm: onConvertLeft,
+        onClear: onClearLeft,
+      }}
+      rightConfig={{
+        btnText: '&lt; Convert',
+        onConfirm: onConvertRight,
+        onClear: onClearRight,
+      }}
+    >
+      <svelte:fragment slot='left-header-extra'>
+        <NumeralSelect bind:numeral={leftNumeral} bind:numeralCustom={leftNumeralCustom} />
+      </svelte:fragment>
 
-      <NumeralSystem
-        style='width: calc(50% - 10px)'
-        btnText='&lt; Convert'
-        bind:textareaValue={rightValue}
-        bind:numeral={rightNumeral}
-        bind:numeralCustom={rightNumeralCustom}
-        onConvert={onConvertRight}
-        onClear={() => { rightValue = ''; }}
-      />
-    </div>
+      <svelte:fragment slot='right-header-extra'>
+        <NumeralSelect bind:numeral={rightNumeral} bind:numeralCustom={rightNumeralCustom} />
+      </svelte:fragment>
+    </PlaygroundTransfer>
   </ToolLayout>
 </Layout>
-
-<style>
-.convert-area {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-}
-</style>

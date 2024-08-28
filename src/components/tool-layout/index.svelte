@@ -22,6 +22,9 @@
     <div class='content'>
       <slot />
     </div>
+
+    <!-- TODO -->
+    <!-- <Share /> -->
     
     {#if otherTools.length}
       <div class='other-tools'>
