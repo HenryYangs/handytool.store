@@ -1,0 +1,3 @@
+export const EVENTS = {
+  NUMERAL_SYSTEM_VALUE: 'NUMERAL_SYSTEM_VALUE',
+};

@@ -30,28 +30,12 @@ const CATEGORY = {
 
 export const CONVERTER = [
   {
-    id: 'hex-decimal',
-    text: 'Hex-Decimal',
+    id: 'numeral-system',
+    text: 'Numeral System',
     category: CATEGORY.CONVERTER,
     icon: '',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
-  },
-  {
-    id: 'binary-decimal',
-    text: 'Binary-Decimal',
-    category: CATEGORY.CONVERTER,
-    icon: '',
-    color: COLOR.BLUE,
-    iconTheme: THEME.BLUE
-  },
-  {
-    id: 'binary-hex',
-    text: 'Binary-Hex',
-    category: CATEGORY.CONVERTER,
-    icon: '',
-    color: COLOR.GREEN,
-    iconTheme: THEME.GREEN
   },
   {
     id: 'text-binary',

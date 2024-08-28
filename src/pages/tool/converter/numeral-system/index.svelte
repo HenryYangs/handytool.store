@@ -1,0 +1,136 @@
+<script>
+  import Layout from '../../../../components/layout/index.svelte';
+  import ToolLayout from '../../../../components/tool-layout/index.svelte';
+  import NumeralSystem from '../../../../components/numeral-system/playground/index.svelte';
+  import { CONVERTER } from '../../../../constant/tools';
+  import { stringCaseTransform } from '../../../../utils/string';
+  import { NUMERAL_SYSTEM } from '../../../../constant/numeral';
+  import { onMount } from 'svelte';
+  import { validateNumeralText } from '../../../../utils/validate';
+
+  const id = 'numeral-system';
+  const tool = CONVERTER.find(item => item.id === id);
+
+  $: leftNumeral = NUMERAL_SYSTEM[0].value;
+  $: rightNumeral = NUMERAL_SYSTEM[0].value;
+  $: leftNumeralCustom = NUMERAL_SYSTEM[NUMERAL_SYSTEM.length - 1].value + 1;
+  $: rightNumeralCustom = NUMERAL_SYSTEM[NUMERAL_SYSTEM.length - 1].value + 1;
+  $: leftValue = '';
+  $: rightValue = '';
+
+  const getRealNumeral = () => {
+    return {
+      realLeftNumeral: leftNumeral === -1 ? leftNumeralCustom : leftNumeral,
+      realRightNumeral: rightNumeral === -1 ? rightNumeralCustom : rightNumeral,
+    };
+  }
+
+  const onConvertLeft = (val) => {
+    const { realLeftNumeral, realRightNumeral } = getRealNumeral();
+
+    rightValue = Number(parseInt(val, realLeftNumeral)).toString(realRightNumeral);
+  }
+  const onConvertRight = (val) => {
+    const { realLeftNumeral, realRightNumeral } = getRealNumeral();
+
+    leftValue = Number(parseInt(val, realRightNumeral)).toString(realLeftNumeral);
+  }
+  const isNumeralInList = (numeral) => NUMERAL_SYSTEM.find(item => item.value === numeral);
+
+  onMount(() => {
+    if (location.search) {
+      const matched = location.search.match(/^\?(.*)/);
+
+      if (!matched) return;
+
+      const search = matched[1].split('&').reduce((prev, cur) => {
+        const [key, value] = cur.split('=');
+
+        return {
+          ...prev,
+          [key]: value
+        }
+      }, {
+        from: '',
+        to: '',
+        before: '',
+      });
+
+      const fromNumeral = Number(search.from);
+      const toNumeral = Number(search.to);
+      const beforeText = search.before;
+
+      if (fromNumeral) {
+        if (isNumeralInList(fromNumeral)) {
+          leftNumeral = fromNumeral;
+        } else {
+          leftNumeral = -1;
+          leftNumeralCustom = fromNumeral;
+        }
+      }
+
+      if (beforeText) {
+        leftValue = beforeText;
+      }
+
+      if (toNumeral) {
+        if (isNumeralInList(toNumeral)) {
+          rightNumeral = toNumeral;
+        } else {
+          rightNumeral = -1;
+          rightNumeralCustom = toNumeral;
+        }
+      }
+
+      if (fromNumeral && beforeText) {
+        if (!validateNumeralText(leftValue, getRealNumeral().realLeftNumeral)) {
+          return;
+        }
+      }
+
+      if  (leftValue) {
+        onConvertLeft(leftValue);
+      }
+    }
+  });
+</script>
+
+<Layout>
+  <ToolLayout
+    id={id}
+    title={tool.text}
+    category={stringCaseTransform(tool.category)}
+    toolsList={CONVERTER}
+    description='Convert Number Between Different Numeral System'
+  >
+    <div class='convert-area'>
+      <NumeralSystem
+        style='width: calc(50% - 10px)'
+        btnText='Convert &gt;'
+        bind:textareaValue={leftValue}
+        bind:numeral={leftNumeral}
+        bind:numeralCustom={leftNumeralCustom}
+        onConvert={onConvertLeft}
+        onClear={() => { leftValue = ''; }}
+      />
+
+      <NumeralSystem
+        style='width: calc(50% - 10px)'
+        btnText='&lt; Convert'
+        bind:textareaValue={rightValue}
+        bind:numeral={rightNumeral}
+        bind:numeralCustom={rightNumeralCustom}
+        onConvert={onConvertRight}
+        onClear={() => { rightValue = ''; }}
+      />
+    </div>
+  </ToolLayout>
+</Layout>
+
+<style>
+.convert-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+</style>
