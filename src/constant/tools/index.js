@@ -76,6 +76,14 @@ export const CONVERTER = [
     icon: 'unit',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
+  },
+  {
+    id: 'case',
+    text: 'Case Converter',
+    category: CATEGORY.CONVERTER,
+    icon: 'case',
+    color: COLOR.BLUE,
+    iconTheme: THEME.BLUE
   }
 ];
 
