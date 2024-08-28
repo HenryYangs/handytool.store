@@ -2,15 +2,15 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
-  import NumeralSelect from '../../../../components/converter/numeral-select/index.svelte';
-  import { CONVERTER } from '../../../../constant/tools';
+  import NumeralSelect from '../../../../components/convertor/numeral-select/index.svelte';
+  import { CONVERTOR } from '../../../../constant/tools';
   import { stringCaseTransform } from '../../../../utils/string';
   import { NUMERAL_SYSTEM } from '../../../../constant/numeral';
   import { onMount } from 'svelte';
   import { validateNumeralText } from '../../../../utils/validate';
 
   const id = 'numeral-system';
-  const tool = CONVERTER.find(item => item.id === id);
+  const tool = CONVERTOR.find(item => item.id === id);
 
   $: leftNumeral = NUMERAL_SYSTEM[0].value;
   $: rightNumeral = NUMERAL_SYSTEM[0].value;
@@ -107,7 +107,7 @@
     id={id}
     title={tool.text}
     category={stringCaseTransform(tool.category)}
-    toolsList={CONVERTER}
+    toolsList={CONVERTOR}
     description='Convert Number Between Different Numeral System'
   >
     <PlaygroundTransfer

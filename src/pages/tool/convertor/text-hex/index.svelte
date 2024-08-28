@@ -1,5 +1,5 @@
 <script>
-  import TextNumeralConvertor from '../../../../components/converter/text-numeral/index.svelte';
+  import TextNumeralConvertor from '../../../../components/convertor/text-numeral/index.svelte';
   import { isHex } from '../../../../utils/validate';
 </script>
 

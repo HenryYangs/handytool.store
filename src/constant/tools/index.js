@@ -21,18 +21,18 @@ const THEME = {
 };
 
 const CATEGORY = {
-  CONVERTER: 'converter',
+  CONVERTOR: 'convertor',
   PROGRAMMING: 'programming',
   CODEC: 'codec',
   VALIDATOR: 'validator',
   TIMER: 'timer'
 };
 
-export const CONVERTER = [
+export const CONVERTOR = [
   {
     id: 'numeral-system',
     text: 'Numeral System',
-    category: CATEGORY.CONVERTER,
+    category: CATEGORY.CONVERTOR,
     icon: '',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
@@ -40,7 +40,7 @@ export const CONVERTER = [
   {
     id: 'text-binary',
     text: 'Text-Binary',
-    category: CATEGORY.CONVERTER,
+    category: CATEGORY.CONVERTOR,
     icon: 'text',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW
@@ -48,7 +48,7 @@ export const CONVERTER = [
   {
     id: 'text-decimal',
     text: 'Text-Decimal',
-    category: CATEGORY.CONVERTER,
+    category: CATEGORY.CONVERTOR,
     icon: 'text',
     color: COLOR.RED,
     iconTheme: THEME.RED
@@ -56,7 +56,7 @@ export const CONVERTER = [
   {
     id: 'text-hex',
     text: 'Text-Hex',
-    category: CATEGORY.CONVERTER,
+    category: CATEGORY.CONVERTOR,
     icon: 'text',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN
@@ -64,23 +64,23 @@ export const CONVERTER = [
   {
     id: 'domain-ip',
     text: 'Domain to IP',
-    category: CATEGORY.CONVERTER,
+    category: CATEGORY.CONVERTOR,
     icon: 'ip-domain',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET
   },
   {
     id: 'unit',
-    text: 'Unit Converter',
-    category: CATEGORY.CONVERTER,
+    text: 'Unit Convertor',
+    category: CATEGORY.CONVERTOR,
     icon: 'unit',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
   },
   {
     id: 'case',
-    text: 'Case Converter',
-    category: CATEGORY.CONVERTER,
+    text: 'Case Convertor',
+    category: CATEGORY.CONVERTOR,
     icon: 'case',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE
@@ -237,9 +237,9 @@ export const TIMER = [
 
 const PURE_TOOLS = [
   {
-    id: CATEGORY.CONVERTER,
-    text: stringCaseTransform(CATEGORY.CONVERTER),
-    list: CONVERTER,
+    id: CATEGORY.CONVERTOR,
+    text: stringCaseTransform(CATEGORY.CONVERTOR),
+    list: CONVERTOR,
   },
   {
     id: CATEGORY.PROGRAMMING,

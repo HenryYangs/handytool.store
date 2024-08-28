@@ -2,7 +2,7 @@
   import Layout from '../../layout/index.svelte';
   import ToolLayout from '../../tool-layout/index.svelte';
   import PlaygroundTransfer from '../../playground-transfer/index.svelte';
-  import { CONVERTER } from '../../../constant/tools';
+  import { CONVERTOR } from '../../../constant/tools';
   import { numeralToText, textToNumeral } from '../../../utils/convert';
   import { stringCaseTransform } from '../../../utils/string';
 
@@ -11,7 +11,7 @@
   export let numeralText;
   export let numberValidator;
 
-  const tool = CONVERTER.find(item => item.id === id);
+  const tool = CONVERTOR.find(item => item.id === id);
   const numeralTextCamelCase = stringCaseTransform(numeralText);
 
   $: leftValue = '';
@@ -43,7 +43,7 @@
     id={id}
     title={tool.text}
     category={stringCaseTransform(tool.category)}
-    toolsList={CONVERTER}
+    toolsList={CONVERTOR}
     description={`Interconvertion between Text and ${numeralTextCamelCase}`}
   >
     <PlaygroundTransfer
