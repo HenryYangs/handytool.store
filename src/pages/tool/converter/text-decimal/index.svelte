@@ -1,7 +1,11 @@
 <script>
-  import Layout from '../../../../components/layout/index.svelte';
+  import TextNumeralConvertor from '../../../../components/converter/text-numeral/index.svelte';
+  import { isDecimal } from '../../../../utils/validate';
 </script>
 
-<Layout>
-  <div>Text-Decimal</div>
-</Layout>
+<TextNumeralConvertor
+  id='text-decimal'
+  numeral={10}
+  numeralText='decimal'
+  numberValidator={isDecimal}
+/>

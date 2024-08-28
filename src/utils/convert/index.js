@@ -1,23 +1,25 @@
-export const textToBinary = (text) => {
-  const binary = [];
+export const textToNumeral = (text, options = {}) => {
+  const { numeral = 2, pad = false } = options || {};
+  const numeralArr = [];
 
   for (let i = 0; i < text.length; i++) {
-    let charCode = text.charCodeAt(i);
-    let binaryChar = charCode.toString(2).padStart(8, '0');
+    const charCode = text.charCodeAt(i);
+    const char = charCode.toString(numeral);
+    const finalChar = pad ? char.padStart(8, '0') : char;
 
-    binary.push(binaryChar);
+    numeralArr.push(finalChar);
   }
 
-  return binary.join(' ');
+  return numeralArr.join(' ');
 };
 
-export const binaryToText = (binary) => {
+export const numeralToText = (digit, numeral = 2) => {
   let text = '';
-  const _binary = binary.replaceAll(' ', '');
+  const _digit = digit.split(' ');
 
-  for (let i = 0; i < _binary.length; i += 8) {
-    const binaryChar = _binary.substr(i, 8);
-    const charCode = parseInt(binaryChar, 2);
+  for (let i = 0; i < _digit.length; i++) {
+    const char = _digit[i];
+    const charCode = parseInt(char, numeral);
 
     text += String.fromCharCode(charCode);
   }

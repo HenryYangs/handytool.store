@@ -13,3 +13,15 @@ export const isBinary = (binary) => {
 
   return regExp.test(binary);
 };
+
+export const isDecimal = (decimal) => {
+  const regExp = /^[0-9]*$/;
+
+  return regExp.test(decimal);
+}
+
+export const isHex = (hex) => {
+  const regExp = /^[0-9a-fA-F]*$/;
+
+  return regExp.test(hex);
+}

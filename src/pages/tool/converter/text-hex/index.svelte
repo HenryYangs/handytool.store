@@ -1,7 +1,11 @@
 <script>
-  import Layout from '../../../../components/layout/index.svelte';
+  import TextNumeralConvertor from '../../../../components/converter/text-numeral/index.svelte';
+  import { isHex } from '../../../../utils/validate';
 </script>
 
-<Layout>
-  <div>Text-Hex</div>
-</Layout>
+<TextNumeralConvertor
+  id='text-hex'
+  numeral={16}
+  numeralText='hex'
+  numberValidator={isHex}
+/>
