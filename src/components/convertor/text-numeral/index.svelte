@@ -4,7 +4,7 @@
   import PlaygroundTransfer from '../../playground-transfer/index.svelte';
   import { CONVERTOR } from '../../../constant/tools';
   import { numeralToText, textToNumeral } from '../../../utils/convert';
-  import { stringCaseTransform } from '../../../utils/string';
+  import { stringCaseTransform } from '../../../utils/string/transform';
 
   export let id;
   export let numeral;

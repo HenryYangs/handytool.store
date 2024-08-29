@@ -11,7 +11,7 @@
   }
 </script>
 
-<section class='base-playground' style={style}>
+<section class='tool-panel' style={style}>
   <div class='header'>
     <slot name='header-main' class='d-flex' />
 
@@ -20,7 +20,7 @@
 
   <div class='input-group textarea-wrapper'>
     <textarea
-      class='form-control textarea'
+      class='form-control common-textarea'
       aria-label='input area'
       bind:value={value}
     ></textarea>
@@ -38,12 +38,6 @@
 </section>
 
 <style>
-.base-playground {
-  padding: 20px;
-  border-radius: 5px;
-  border: 1px solid rgb(173, 187, 218, .3);
-}
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -53,10 +47,6 @@
 
 .textarea-wrapper {
   margin-bottom: 10px;
-}
-
-.textarea {
-  min-height: 200px;
 }
 
 .action-btn {

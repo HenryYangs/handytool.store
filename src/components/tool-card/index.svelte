@@ -1,5 +1,5 @@
 <script>
-  import { stringCaseTransform } from '../../utils/string';
+  import { stringCaseTransform } from '../../utils/string/transform';
 
   export let tool;
   export let innerStyle = '';

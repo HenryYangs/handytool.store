@@ -1,5 +1,4 @@
-import { stringCaseTransform } from '../../utils/string/transform';
-
+import { stringCaseTransform } from '../../../../utils/string/transform';
 
 const COLOR = {
   RED: '#E24841',
@@ -21,26 +20,42 @@ const THEME = {
 };
 
 const CATEGORY = {
-  CONVERTOR: 'convertor',
+  CONVERTER: 'converter',
   PROGRAMMING: 'programming',
   CODEC: 'codec',
   VALIDATOR: 'validator',
   TIMER: 'timer'
 };
 
-export const CONVERTOR = [
+export const CONVERTER = [
   {
-    id: 'numeral-system',
-    text: 'Numeral System',
-    category: CATEGORY.CONVERTOR,
+    id: 'hex-decimal',
+    text: 'Hex-Decimal',
+    category: CATEGORY.CONVERTER,
     icon: '',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
   },
   {
+    id: 'binary-decimal',
+    text: 'Binary-Decimal',
+    category: CATEGORY.CONVERTER,
+    icon: '',
+    color: COLOR.BLUE,
+    iconTheme: THEME.BLUE
+  },
+  {
+    id: 'binary-hex',
+    text: 'Binary-Hex',
+    category: CATEGORY.CONVERTER,
+    icon: '',
+    color: COLOR.GREEN,
+    iconTheme: THEME.GREEN
+  },
+  {
     id: 'text-binary',
     text: 'Text-Binary',
-    category: CATEGORY.CONVERTOR,
+    category: CATEGORY.CONVERTER,
     icon: 'text',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW
@@ -48,7 +63,7 @@ export const CONVERTOR = [
   {
     id: 'text-decimal',
     text: 'Text-Decimal',
-    category: CATEGORY.CONVERTOR,
+    category: CATEGORY.CONVERTER,
     icon: 'text',
     color: COLOR.RED,
     iconTheme: THEME.RED
@@ -56,7 +71,7 @@ export const CONVERTOR = [
   {
     id: 'text-hex',
     text: 'Text-Hex',
-    category: CATEGORY.CONVERTOR,
+    category: CATEGORY.CONVERTER,
     icon: 'text',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN
@@ -64,26 +79,18 @@ export const CONVERTOR = [
   {
     id: 'domain-ip',
     text: 'Domain to IP',
-    category: CATEGORY.CONVERTOR,
+    category: CATEGORY.CONVERTER,
     icon: 'ip-domain',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET
   },
   {
     id: 'unit',
-    text: 'Unit Convertor',
-    category: CATEGORY.CONVERTOR,
+    text: 'Unit Converter',
+    category: CATEGORY.CONVERTER,
     icon: 'unit',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
-  },
-  {
-    id: 'case',
-    text: 'Case Convertor',
-    category: CATEGORY.CONVERTOR,
-    icon: 'case',
-    color: COLOR.BLUE,
-    iconTheme: THEME.BLUE
   }
 ];
 
@@ -235,49 +242,49 @@ export const TIMER = [
   }
 ]
 
-const PURE_TOOLS = [
+const TABS_SINGLE = [
   {
-    id: CATEGORY.CONVERTOR,
-    text: stringCaseTransform(CATEGORY.CONVERTOR),
-    list: CONVERTOR,
+    id: CONVERTER[0].category,
+    text: stringCaseTransform(CONVERTER[0].category),
+    list: CONVERTER,
   },
   {
-    id: CATEGORY.PROGRAMMING,
-    text: stringCaseTransform(CATEGORY.PROGRAMMING),
+    id: PROGRAMMING[0].category,
+    text: stringCaseTransform(PROGRAMMING[0].category),
     list: PROGRAMMING,
   },
   {
-    id: CATEGORY.CODEC,
-    text: stringCaseTransform(CATEGORY.CODEC),
+    id: CODEC[0].category,
+    text: stringCaseTransform(CODEC[0].category),
     list: CODEC,
   },
   {
-    id: CATEGORY.VALIDATOR,
-    text: stringCaseTransform(CATEGORY.VALIDATOR),
+    id: VALIDATOR[0].category,
+    text: stringCaseTransform(VALIDATOR[0].category),
     list: VALIDATOR,
   },
   {
-    id: CATEGORY.TIMER,
-    text: stringCaseTransform(CATEGORY.TIMER),
+    id: TIMER[0].category,
+    text: stringCaseTransform(TIMER[0].category),
     list: TIMER,
   },
 ];
 
 const getAllTab = () => {
   const maxCount = 16;
-  const totalCateCount = PURE_TOOLS.length;
+  const totalCateCount = TABS_SINGLE.length;
   const avgCount = Math.ceil(maxCount / totalCateCount);
 
   return {
     id: 'all',
     text: 'All Tools',
-    list: [].concat(...PURE_TOOLS.map(tab => {
+    list: [].concat(...TABS_SINGLE.map(tab => {
       return tab.list.slice(0, avgCount);
     })).slice(0, maxCount)
   }
 }
 
-export const FULL_TOOLS = [
+export const TABS = [
   getAllTab(),
-  ...PURE_TOOLS,
+  ...TABS_SINGLE,
 ];

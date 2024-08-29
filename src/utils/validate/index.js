@@ -25,3 +25,21 @@ export const isHex = (hex) => {
 
   return regExp.test(hex);
 }
+
+export const isAlphabet = (alphabet) => {
+  const regExp = /^[a-zA-Z]$/;
+
+  return regExp.test(alphabet);
+};
+
+export const isUpperCase = (alphabet) => {
+  const regExp = /[A-Z]/;
+
+  return regExp.test(alphabet);
+};
+
+export const isLowerCase = (alphabet) => {
+  const regExp = /[a-z]/;
+
+  return regExp.test(alphabet);
+};

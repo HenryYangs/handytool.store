@@ -4,7 +4,7 @@
   import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
   import NumeralSelect from '../../../../components/convertor/numeral-select/index.svelte';
   import { CONVERTOR } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string';
+  import { stringCaseTransform } from '../../../../utils/string/transform';
   import { NUMERAL_SYSTEM } from '../../../../constant/numeral';
   import { onMount } from 'svelte';
   import { validateNumeralText } from '../../../../utils/validate';
