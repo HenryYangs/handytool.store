@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "clean-dist && vite build && yarn update-dist",
+    "build": "yarn clean-dist && vite build && yarn update-dist",
     "preview": "vite preview",
     "clean-dist": "rimraf dist",
     "update-dist": "node script/utils/update-dist.js"
