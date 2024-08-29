@@ -1,6 +1,7 @@
 <script>
-  import logo from '../../assets/images/logo_100x100.png';
+  import logo from '../../assets/images/logo.png';
   import './assets/icon/iconfont.css';
+  import { HEADER_ENTRIES } from './config';
   
   let y;
 </script>
@@ -17,35 +18,17 @@
       </div>
       <div class='entries col-5 align-items-center'>
         <ul class='d-flex align-items-center justify-content-between entries-list'>
-          <li>
-            <a href='/' class='entry-link'>
-              <i class='iconfont-header icon-header-home entry-item-inner'></i>
-              <span class='entry-item-inner'>Home</span>
-            </a>
-          </li>
-
-          <li>
-            <a href='/favorite' class='entry-link'>
-              <i class='iconfont-header icon-header-heart entry-item-inner'></i>
-              <span class='entry-item-inner'>Favorite</span>
-            </a>
-          </li>
-
-          <li>
-            <a href='/recent' class='entry-link'>
-              <i class='iconfont-header icon-header-recent entry-item-inner'></i>
-              <span class='entry-item-inner'>Recent</span>
-            </a>
-          </li>
-
-          <li>
-            <a href='/message' class='entry-link'>
-              <i class='iconfont-header icon-header-message entry-item-inner'></i>
-              <span class='entry-item-inner'>Message</span>
-            </a>
-          </li>
+          {#each HEADER_ENTRIES as entry}
+            <li>
+              <a href={entry.redirectUrl} class={`entry-link ${location.pathname === entry.redirectUrl ? 'entry-current' : ''}`}>
+                <i class={`iconfont-header icon-header-${entry.icon} entry-item-inner`}></i>
+                <span class='entry-item-inner'>{entry.text}</span>
+              </a>
+            </li>
+          {/each}
         </ul>
       </div>
+
       <div class='extra col-5 d-flex justify-content-end align-items-center'>
         <button class='extra-icon'>
           <i class='iconfont-header icon-header-light'></i>
@@ -84,6 +67,7 @@
 .logo-icon {
   width: 32px;
   height: 32px;
+  margin-right: 10px;
 }
 
 .logo-text {
@@ -94,12 +78,13 @@
   height: 100%;
 }
 
+.entry-link.entry-current .entry-item-inner,
 .entry-link:hover .entry-item-inner {
-  color: #3D52A0;
+  color: rgb(61, 82, 160, 1);
 }
 
 .entry-item-inner {
-  color: #7091E6;
+  color: rgb(61, 82, 160, .6);
   font-size: 20px;
   font-weight: 500;
   transition: all .3s linear;

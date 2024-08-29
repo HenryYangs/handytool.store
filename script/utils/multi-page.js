@@ -16,10 +16,16 @@ export async function getPathRewriteRules() {
      * avoid match home page rule first
      */
     if (matched === 'main') {
-      rules.push({
-        from: '/',
-        to,
-      });
+      rules.push(
+        {
+          from: '/',
+          to,
+        },
+        {
+          from: '/\*/',
+          to: '/src/pages/404/index.html',
+        }
+      );
     } else {
       rules.unshift({
         from: `/${matched}`,

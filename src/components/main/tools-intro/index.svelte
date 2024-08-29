@@ -14,7 +14,7 @@
   }
 </script>
 
-<div class='wrapper'>
+<div class='wrapper common-background'>
   <div class='container-fluid container-biz'>
     <h1 class='text-center'>Find Tools You Need</h1>
 
@@ -46,10 +46,6 @@
   .wrapper {
     padding: 56px 0;
   }
-}
-
-.wrapper {
-  background-color: rgba(134, 151, 196, .1)
 }
 
 .tools-entry {

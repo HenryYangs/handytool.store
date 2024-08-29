@@ -6,7 +6,7 @@
 </script>
 
 <div class={'tool-item'}>
-  <a href={`/tool/${tool.category}/${tool.id}`} style={innerStyle}>
+  <a href={tool.isWIP ? '/wip' : `/tool/${tool.category}/${tool.id}`} style={innerStyle}>
     <div class='tool-item_inner'>
       <div class='tool-item_body'>
         <div class='tool-item_icon' style:background-color={tool.iconTheme}>

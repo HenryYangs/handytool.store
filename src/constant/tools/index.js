@@ -67,7 +67,8 @@ export const CONVERTOR = [
     category: CATEGORY.CONVERTOR,
     icon: 'ip-domain',
     color: COLOR.WATHET,
-    iconTheme: THEME.WATHET
+    iconTheme: THEME.WATHET,
+    isWIP: true,
   },
   {
     id: 'unit',
@@ -75,7 +76,8 @@ export const CONVERTOR = [
     category: CATEGORY.CONVERTOR,
     icon: 'unit',
     color: COLOR.ORANGE,
-    iconTheme: THEME.ORANGE
+    iconTheme: THEME.ORANGE,
+    isWIP: true,
   },
   {
     id: 'case',
@@ -89,37 +91,41 @@ export const CONVERTOR = [
 
 export const PROGRAMMING = [
   {
-    id: 'js-compression',
-    text: 'JavaScript Compression',
+    id: "js-compression",
+    text: "JavaScript Compression",
     category: CATEGORY.PROGRAMMING,
-    icon: 'js',
+    icon: "js",
     color: COLOR.RED,
-    iconTheme: THEME.RED
+    iconTheme: THEME.RED,
+    isWIP: true,
   },
   {
-    id: 'js-formatter',
-    text: 'JavaScript Formatter',
+    id: "js-formatter",
+    text: "JavaScript Formatter",
     category: CATEGORY.PROGRAMMING,
-    icon: 'js',
+    icon: "js",
     color: COLOR.PURPLE,
-    iconTheme: THEME.PURPLE
+    iconTheme: THEME.PURPLE,
+    isWIP: true,
   },
   {
-    id: 'css-compression',
-    text: 'CSS Compression',
+    id: "css-compression",
+    text: "CSS Compression",
     category: CATEGORY.PROGRAMMING,
-    icon: 'css',
+    icon: "css",
     color: COLOR.ORANGE,
-    iconTheme: THEME.ORANGE
+    iconTheme: THEME.ORANGE,
+    isWIP: true,
   },
   {
-    id: 'css-formatter',
-    text: 'CSS Formatter',
+    id: "css-formatter",
+    text: "CSS Formatter",
     category: CATEGORY.PROGRAMMING,
-    icon: 'css',
-    color: COLOR.GREEN,
-    iconTheme: THEME.GREEN
-  }
+    icon: "css",
+    color: COLOR.RED,
+    iconTheme: THEME.RED,
+    isWIP: true,
+  },
 ];
 
 export const CODEC = [
@@ -130,6 +136,7 @@ export const CODEC = [
     icon: 'base64',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE,
+    isWIP: true,
   },
   {
     id: 'url',
@@ -138,6 +145,7 @@ export const CODEC = [
     icon:  'url',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
+    isWIP: true,
   }
 ]
 
@@ -148,7 +156,8 @@ export const VALIDATOR = [
     category: CATEGORY.VALIDATOR,
     icon: 'mysql',
     color: COLOR.WATHET,
-    iconTheme: THEME.WATHET
+    iconTheme: THEME.WATHET,
+    isWIP: true,
   },
   {
     id: 'reg-exp',
@@ -156,7 +165,8 @@ export const VALIDATOR = [
     category: CATEGORY.VALIDATOR,
     icon: 'regular-expression',
     color: COLOR.YELLOW,
-    iconTheme: THEME.YELLOW
+    iconTheme: THEME.YELLOW,
+    isWIP: true,
   },
   {
     id: 'email',
@@ -164,7 +174,8 @@ export const VALIDATOR = [
     category: CATEGORY.VALIDATOR,
     icon: 'email',
     color: COLOR.PURPLE,
-    iconTheme: THEME.PURPLE
+    iconTheme: THEME.PURPLE,
+    isWIP: true,
   },
   {
     id: 'phone-num',
@@ -172,7 +183,8 @@ export const VALIDATOR = [
     category: CATEGORY.VALIDATOR,
     icon: 'phone-num',
     color: COLOR.BLUE,
-    iconTheme: THEME.BLUE
+    iconTheme: THEME.BLUE,
+    isWIP: true,
   },
   {
     id: 'json',
@@ -180,7 +192,8 @@ export const VALIDATOR = [
     category: CATEGORY.VALIDATOR,
     icon: 'json',
     color: COLOR.PURPLE,
-    iconTheme: THEME.PURPLE
+    iconTheme: THEME.PURPLE,
+    isWIP: true,
   }
 ];
 
@@ -191,7 +204,8 @@ export const TIMER = [
     category: CATEGORY.TIMER,
     icon: 'countdown',
     color: COLOR.RED,
-    iconTheme: THEME.RED
+    iconTheme: THEME.RED,
+    isWIP: true,
   },
   {
     id: 'count-timer',
@@ -199,7 +213,8 @@ export const TIMER = [
     category: CATEGORY.TIMER,
     icon: 'count-timer',
     color: COLOR.ORANGE,
-    iconTheme: THEME.ORANGE
+    iconTheme: THEME.ORANGE,
+    isWIP: true,
   },
   {
     id: 'online-clock',
@@ -207,7 +222,8 @@ export const TIMER = [
     category: CATEGORY.TIMER,
     icon: 'clock',
     color: COLOR.GREEN,
-    iconTheme: THEME.GREEN
+    iconTheme: THEME.GREEN,
+    isWIP: true,
   },
   {
     id: 'world-clock',
@@ -215,7 +231,8 @@ export const TIMER = [
     category: CATEGORY.TIMER,
     icon: 'world-clock',
     color: COLOR.YELLOW,
-    iconTheme: THEME.YELLOW
+    iconTheme: THEME.YELLOW,
+    isWIP: true,
   },
   {
     id: 'timestamp',
@@ -223,7 +240,8 @@ export const TIMER = [
     category: CATEGORY.TIMER,
     icon: 'timestamp',
     color: COLOR.WATHET,
-    iconTheme: THEME.WATHET
+    iconTheme: THEME.WATHET,
+    isWIP: true,
   },
   {
     id: 'chronograph',
@@ -231,7 +249,8 @@ export const TIMER = [
     category: CATEGORY.TIMER,
     icon: 'chronograph',
     color: COLOR.PURPLE,
-    iconTheme: THEME.PURPLE
+    iconTheme: THEME.PURPLE,
+    isWIP: true,
   }
 ]
 

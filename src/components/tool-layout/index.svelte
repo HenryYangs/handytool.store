@@ -11,7 +11,7 @@
   $: otherTools = toolsList.filter(item => item.id !== id).slice(0, maxOtherCount);
 </script>
 
-<main class='tool-layout-wrapper'>
+<main class='tool-layout-wrapper common-background'>
   <div class='container-fluid container-biz'>
     <h2 class='title'>{title}</h2>
     
@@ -44,7 +44,6 @@
 <style>
 .tool-layout-wrapper {
   padding: 50px 0;
-  background-color: rgba(134, 151, 196, .1);
 }
 
 .title {
