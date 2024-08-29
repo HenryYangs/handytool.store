@@ -254,7 +254,7 @@ export const TIMER = [
   }
 ]
 
-const PURE_TOOLS = [
+export const PURE_TOOLS = [
   {
     id: CATEGORY.CONVERTOR,
     text: stringCaseTransform(CATEGORY.CONVERTOR),

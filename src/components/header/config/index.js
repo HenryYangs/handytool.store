@@ -1,22 +1,27 @@
+import { ROUTER } from '../../../constant/router';
+
 export const HEADER_ENTRIES = [
   {
     text: 'Home',
-    redirectUrl: '/',
+    redirectUrl: ROUTER.HOME,
     icon: 'home',
   },
   {
     text: 'Favorite',
-    redirectUrl: '/favorite',
+    redirectUrl: ROUTER.FAVORITE,
     icon: 'heart',
+    isWIP: true,
   },
   {
     text: 'Recent',
-    redirectUrl: '/recent',
+    redirectUrl: ROUTER.RECENT,
     icon: 'recent',
+    isWIP: true,
   },
   {
     text: 'Message',
-    redirectUrl: '/message',
+    redirectUrl: ROUTER.MESSAGE,
     icon: 'message',
+    isWIP: true,
   },
 ];

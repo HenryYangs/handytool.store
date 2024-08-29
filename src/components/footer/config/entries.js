@@ -1,13 +1,15 @@
+import { ROUTER } from '../../../constant/router';
+import { PURE_TOOLS } from '../../../constant/tools';
+
 export const CONF_NAVIGATE = [
   {
-    url: '/',
-    text: 'Home'
+    url: ROUTER.HOME,
+    text: 'Home',
   },
   {
-    url: '/contact',
-    text: 'Contact'
-  }
+    url: ROUTER.CONTACT,
+    text: 'Contact',
+  },
 ];
 
-// TODO 
-export const CONF_TOOLS = [];
+export const CONF_TOOLS = PURE_TOOLS.reduce((prev, next) => prev.concat(next.list), []);

@@ -1,5 +1,6 @@
 <script>
   import logo from '../../assets/images/logo.png';
+  import { ROUTER } from '../../constant/router';
   import './assets/icon/iconfont.css';
   import { HEADER_ENTRIES } from './config';
   
@@ -11,16 +12,19 @@
   <div class='container-fluid container-biz'>
     <div class='row align-items-center'>
       <div class='logo col-2'>
-        <a href='/' class='d-flex align-items-center'>
+        <a href={ROUTER.HOME} class='d-flex align-items-center'>
           <img src={logo} alt='logo' class='logo-icon' />
-          <span class='logo-text'>HandyTool</span>
+          <h5 class='logo-text'>HandyTool</h5>
         </a>
       </div>
       <div class='entries col-5 align-items-center'>
         <ul class='d-flex align-items-center justify-content-between entries-list'>
           {#each HEADER_ENTRIES as entry}
             <li>
-              <a href={entry.redirectUrl} class={`entry-link ${location.pathname === entry.redirectUrl ? 'entry-current' : ''}`}>
+              <a
+                href={entry.isWIP ? ROUTER.WIP : entry.redirectUrl}
+                class={`entry-link ${location.pathname === entry.redirectUrl ? 'entry-current' : ''}`}
+              >
                 <i class={`iconfont-header icon-header-${entry.icon} entry-item-inner`}></i>
                 <span class='entry-item-inner'>{entry.text}</span>
               </a>
@@ -72,6 +76,9 @@
 
 .logo-text {
   color: #333;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-style: italic;
 }
 
 .entries-list {

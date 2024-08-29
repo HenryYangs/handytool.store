@@ -1,4 +1,6 @@
 <script>
+  import { ROUTER } from '../../constant/router';
+
   export let title;
   export let description;
   export let image;
@@ -10,7 +12,7 @@
     <div class='not-found-main'>
       <h1>{title}</h1>
       <p class='description'>{description}</p>
-      <a href='/' class='btn btn-outline-dark back-to-home'>BACK TO HOMEPAGE</a>
+      <a href={ROUTER.HOME} class='btn btn-outline-dark back-to-home'>BACK TO HOMEPAGE</a>
     </div>
 
     <div class='image-wrapper d-flex justify-content-center align-items-center'>
