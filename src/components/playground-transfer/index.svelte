@@ -22,6 +22,7 @@
       slot='header-main'
       onClear={leftConfig.onClear}
       onCopy={leftConfig.onCopy}
+      bind:copyValue={leftValue}
     />
 
     <div slot='header-extra'>
@@ -35,7 +36,12 @@
     style={basePlaygroundStyle}
     onConfirm={rightConfig.onConfirm}
   >
-    <BaseActions slot='header-main' onClear={rightConfig.onClear} onCopy={rightConfig.onCopy} />
+    <BaseActions
+      slot='header-main'
+      onClear={rightConfig.onClear}
+      onCopy={rightConfig.onCopy}
+      bind:copyValue={rightValue}
+    />
 
     <svelte:fragment slot='header-extra'>
       <slot name='right-header-extra' />

@@ -1,6 +1,7 @@
 <script>
   import Header from '../header/index.svelte';
   import Footer from '../footer/index.svelte';
+  import LayerManager from '../layer-manager/index.svelte';
 </script>
 
 <div class='wrapper'>
@@ -12,6 +13,8 @@
   </div>
 
   <Footer></Footer>
+
+  <LayerManager />
 </div>
 
 <style>
