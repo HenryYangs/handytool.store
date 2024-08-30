@@ -36,7 +36,4 @@
 </Layout>
 
 <style>
-.header {
-  margin-bottom: 20px;
-}
 </style>
