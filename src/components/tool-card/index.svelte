@@ -1,13 +1,13 @@
 <script>
-  import { ROUTER } from '../../constant/router';
   import { stringCaseTransform } from '../../utils/string/transform';
+  import { processToolUrl } from '../../utils/url';
 
   export let tool;
   export let innerStyle = '';
 </script>
 
 <div class={'tool-item'}>
-  <a href={tool.isWIP ? ROUTER.WIP : `/tool/${tool.category}/${tool.id}`} style={innerStyle}>
+  <a href={processToolUrl(tool)} style={innerStyle}>
     <div class='tool-item_inner'>
       <div class='tool-item_body'>
         <div class='tool-item_icon' style:background-color={tool.iconTheme}>

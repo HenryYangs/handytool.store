@@ -1,5 +1,5 @@
 <script>
-  import { ROUTER } from '../../../constant/router';
+  import { processUrl } from '../../../utils/url';
 
   export let title;
   export let className = '';
@@ -21,7 +21,7 @@
       <ul class='col'>
         {#each colList as item}
           <li>
-            <a href={item.isWIP ? ROUTER.WIP : item.url} class='redirect'>{item.text}</a>
+            <a href={processUrl(item.isWIP, item.url)} class='redirect'>{item.text}</a>
           </li>
         {/each}
       </ul>

@@ -1,6 +1,7 @@
 <script>
   import logo from '../../assets/images/logo.png';
   import { ROUTER } from '../../constant/router';
+  import { processUrl } from '../../utils/url';
   import './assets/icon/iconfont.css';
   import { HEADER_ENTRIES } from './config';
   
@@ -22,7 +23,7 @@
           {#each HEADER_ENTRIES as entry}
             <li>
               <a
-                href={entry.isWIP ? ROUTER.WIP : entry.redirectUrl}
+                href={processUrl(entry.isWIP, entry.redirectUrl)}
                 class={`entry-link ${location.pathname === entry.redirectUrl ? 'entry-current' : ''}`}
               >
                 <i class={`iconfont-header icon-header-${entry.icon} entry-item-inner`}></i>
