@@ -91,37 +91,37 @@ export const CONVERTOR = [
 
 export const PROGRAMMING = [
   {
-    id: "js-compression",
-    text: "JavaScript Compression",
+    id: 'js-compression',
+    text: 'JavaScript Compression',
     category: CATEGORY.PROGRAMMING,
-    icon: "js",
+    icon: 'js',
     color: COLOR.RED,
     iconTheme: THEME.RED,
     isWIP: true,
   },
   {
-    id: "js-formatter",
-    text: "JavaScript Formatter",
+    id: 'js-formatter',
+    text: 'JavaScript Formatter',
     category: CATEGORY.PROGRAMMING,
-    icon: "js",
+    icon: 'js',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
     isWIP: true,
   },
   {
-    id: "css-compression",
-    text: "CSS Compression",
+    id: 'css-compression',
+    text: 'CSS Compression',
     category: CATEGORY.PROGRAMMING,
-    icon: "css",
+    icon: 'css',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
     isWIP: true,
   },
   {
-    id: "css-formatter",
-    text: "CSS Formatter",
+    id: 'css-formatter',
+    text: 'CSS Formatter',
     category: CATEGORY.PROGRAMMING,
-    icon: "css",
+    icon: 'css',
     color: COLOR.RED,
     iconTheme: THEME.RED,
     isWIP: true,
@@ -259,26 +259,31 @@ export const PURE_TOOLS = [
     id: CATEGORY.CONVERTOR,
     text: stringCaseTransform(CATEGORY.CONVERTOR),
     list: CONVERTOR,
+    isWIP: true,
   },
   {
     id: CATEGORY.PROGRAMMING,
     text: stringCaseTransform(CATEGORY.PROGRAMMING),
     list: PROGRAMMING,
+    isWIP: true,
   },
   {
     id: CATEGORY.CODEC,
     text: stringCaseTransform(CATEGORY.CODEC),
     list: CODEC,
+    isWIP: true,
   },
   {
     id: CATEGORY.VALIDATOR,
     text: stringCaseTransform(CATEGORY.VALIDATOR),
     list: VALIDATOR,
+    isWIP: true,
   },
   {
     id: CATEGORY.TIMER,
     text: stringCaseTransform(CATEGORY.TIMER),
     list: TIMER,
+    isWIP: true,
   },
 ];
 
@@ -292,7 +297,8 @@ const getAllTab = () => {
     text: 'All Tools',
     list: [].concat(...PURE_TOOLS.map(tab => {
       return tab.list.slice(0, avgCount);
-    })).slice(0, maxCount)
+    })).slice(0, maxCount),
+    isWIP: true
   }
 }
 

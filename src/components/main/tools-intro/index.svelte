@@ -1,10 +1,12 @@
 <script>
   import { FULL_TOOLS } from '../../../constant/tools';
+  import { processUrl } from '../../../utils/url';
   import Tab from './components/tab/index.svelte';
   import ToolList from './components/tool-list/index.svelte';
 
   let tabIdx = 0;
-  $: allBtnText = FULL_TOOLS[tabIdx].id === 'all' ? 'All Tools' : `All ${FULL_TOOLS[tabIdx].text} Tools`;
+  $: curTabItem = FULL_TOOLS[tabIdx];
+  $: allBtnText = curTabItem.id === 'all' ? 'All Tools' : `All ${curTabItem.text} Tools`;
 
   /**
    * @param {number} index
@@ -27,9 +29,7 @@
       <ToolList tabIdx={tabIdx} />
       
       <div class='footer-btn'>
-        <button class='btn btn-primary redirect-to-list' on:click={() => {
-          location.href = `/tool/${FULL_TOOLS[tabIdx].id}`
-        }}>{allBtnText}</button>
+        <a class='btn btn-primary redirect-to-list' href={processUrl(curTabItem.isWIP, `/tool/${curTabItem.id}`)}>{allBtnText}</a>
       </div>
     </div>
   </div>
