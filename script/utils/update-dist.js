@@ -10,7 +10,7 @@ async function updateDistFile() {
     const content = await readFile(oldFilePath, { encoding: 'utf-8' });
     const $ = cheerio.load(content);
 
-    $('head').prepend(
+    $("head").prepend(
       `
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -19,6 +19,16 @@ async function updateDistFile() {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-TSD8N6WJ');</script>
         <!-- End Google Tag Manager -->
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KS4E4ST92M"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-KS4E4ST92M');
+        </script>
       `
     );
     $('body').prepend(
