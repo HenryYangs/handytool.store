@@ -136,7 +136,6 @@ export const CODEC = [
     icon: 'base64',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE,
-    isWIP: true,
   },
   {
     id: 'url',
