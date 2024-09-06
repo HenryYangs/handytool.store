@@ -173,7 +173,6 @@ export const VALIDATOR = [
     icon: 'email',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
-    isWIP: true,
   },
   {
     id: 'phone-num',

@@ -1,6 +1,5 @@
 <script>
-  import BasePlayground from '../base-playground/index.svelte';
-  import BaseActions from '../base-actions/index.svelte';
+  import PlaygroundArea from '../playground-area/index.svelte';
 
   export let leftValue;
   export let rightValue;
@@ -12,41 +11,31 @@
 </script>
 
 <section class='wrapper' style={style}>
-  <BasePlayground
+  <PlaygroundArea
     bind:value={leftValue}
     btnText={leftConfig.btnText}
     style={basePlaygroundStyle}
     onConfirm={leftConfig.onConfirm}
+    onClear={leftConfig.onClear}
+    onCopy={leftConfig.onCopy}
   >
-    <BaseActions
-      slot='header-main'
-      onClear={leftConfig.onClear}
-      onCopy={leftConfig.onCopy}
-      bind:copyValue={leftValue}
-    />
-
     <div slot='header-extra'>
       <slot name='left-header-extra' />
     </div>
-  </BasePlayground>
+  </PlaygroundArea>
 
-  <BasePlayground
+  <PlaygroundArea
     bind:value={rightValue}
     btnText={rightConfig.btnText}
     style={basePlaygroundStyle}
     onConfirm={rightConfig.onConfirm}
+    onClear={rightConfig.onClear}
+    onCopy={rightConfig.onCopy}
   >
-    <BaseActions
-      slot='header-main'
-      onClear={rightConfig.onClear}
-      onCopy={rightConfig.onCopy}
-      bind:copyValue={rightValue}
-    />
-
-    <svelte:fragment slot='header-extra'>
+    <div slot='header-extra'>
       <slot name='right-header-extra' />
-    </svelte:fragment>
-  </BasePlayground>
+    </div>
+  </PlaygroundArea>
 </section>
 
 <style>
