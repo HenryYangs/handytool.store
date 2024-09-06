@@ -145,7 +145,6 @@ export const CODEC = [
     icon:  'url',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
-    isWIP: true,
   }
 ]
 

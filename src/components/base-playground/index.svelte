@@ -1,5 +1,5 @@
 <script>
-  export let btnText;
+  export let btnText = 'Transfer';
   export let value;
   export let style = '';
   export let onConfirm = (value) => {};
