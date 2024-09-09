@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { FULL_TOOLS } from '../../../constant/tools';
   import { processUrl } from '../../../utils/url';
   import Tab from './components/tab/index.svelte';
@@ -7,13 +8,27 @@
   let tabIdx = 0;
   $: curTabItem = FULL_TOOLS[tabIdx];
   $: allBtnText = curTabItem.id === 'all' ? 'All Tools' : `All ${curTabItem.text} Tools`;
+  const TAB_KEY = 'handyTool_home_tab';
 
   /**
    * @param {number} index
    */
   function onTabClick(index) {
     tabIdx = index;
+    localStorage.setItem(TAB_KEY, String(index));
   }
+
+  onMount(() => {
+    const cache = Number(localStorage.getItem(TAB_KEY));
+
+    if (!cache && cache !== 0) return;
+
+    onTabClick(cache);
+
+    return () => {
+      localStorage.removeItem(TAB_KEY);
+    }
+  })
 </script>
 
 <div class='wrapper common-background'>
