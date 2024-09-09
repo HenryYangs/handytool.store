@@ -10,6 +10,7 @@ export const CONF_NAVIGATE = [
   {
     url: ROUTER.CONTACT,
     text: 'Contact',
+    isWIP: true,
   },
 ];
 
