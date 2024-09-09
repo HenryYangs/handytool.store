@@ -32,6 +32,10 @@
       validateMsg = '';
     }
   };
+
+  const onClear = () => {
+    value = '';
+  }
 </script>
 
 <Layout>
@@ -46,6 +50,7 @@
       bind:value
       btnText='Validate'
       onConfirm={onConfirm}
+      actionConfig={{ onClear }}
     />
 
     {#if validateResult !== null}

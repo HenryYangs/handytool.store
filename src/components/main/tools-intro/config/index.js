@@ -104,7 +104,7 @@ export const PROGRAMMING = [
     iconTheme: THEME.RED
   },
   {
-    id: 'js-formatter',
+    id: 'js-format',
     text: 'JavaScript Formatter',
     category: CATEGORY.PROGRAMMING,
     icon: 'js',
@@ -120,7 +120,7 @@ export const PROGRAMMING = [
     iconTheme: THEME.ORANGE
   },
   {
-    id: 'css-formatter',
+    id: 'css-format',
     text: 'CSS Formatter',
     category: CATEGORY.PROGRAMMING,
     icon: 'css',

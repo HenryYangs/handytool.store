@@ -16,8 +16,10 @@
     btnText={leftConfig.btnText}
     style={basePlaygroundStyle}
     onConfirm={leftConfig.onConfirm}
-    onClear={leftConfig.onClear}
-    onCopy={leftConfig.onCopy}
+    actionConfig={{
+      onClear: leftConfig.onClear,
+      onCopy: leftConfig.onCopy
+    }}
   >
     <div slot='header-extra'>
       <slot name='left-header-extra' />
@@ -29,8 +31,10 @@
     btnText={rightConfig.btnText}
     style={basePlaygroundStyle}
     onConfirm={rightConfig.onConfirm}
-    onClear={rightConfig.onClear}
-    onCopy={rightConfig.onCopy}
+    actionConfig={{
+      onClear: rightConfig.onClear,
+      onCopy: rightConfig.onCopy
+    }}
   >
     <div slot='header-extra'>
       <slot name='right-header-extra' />

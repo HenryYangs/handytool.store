@@ -4,16 +4,21 @@
   import event from '../../utils/event';
   import { EVENTS } from '../../constant/events';
 
-  export let onClear = null;
-  export let onCopy = null;
+  export let noClear = false;
+  export let onClear = () => {};
+  export let noCopy = false;
+  export let onCopy = () => {};
   export let copyValue = '';
+  // TODO
+  // export let noDownload = true;
+  // export let onDownload = () => {};
 
   // use current timestamp to prevent component is imported multiple times
   // because copy button should have unique id
   const idAddon = String((Date.now() * Math.random()).toFixed(0));
 
   onMount(() => {
-    if (!onCopy) return;
+    if (noCopy) return;
 
     const clipboard = new Clipboard(`#copy-${idAddon}`, {
       text: () => {
@@ -38,13 +43,15 @@
 </script>
 
 <div>
-  {#if onClear}
+  {#if noClear === false}
     <button class='btn btn-outline-dark btn-sm' on:click={onClear}>Clear</button>
   {/if}
   
-  {#if onCopy}
+  {#if noCopy === false}
     <button id={`copy-${idAddon}`} class='btn btn-outline-dark btn-sm' on:click={onCopy}>Copy</button>
   {/if}
+
+  <slot name='extra-action'></slot>
 </div>
 
 <style></style>

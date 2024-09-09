@@ -33,7 +33,7 @@ export const CONVERTOR = [
     id: 'numeral-system',
     text: 'Numeral System',
     category: CATEGORY.CONVERTOR,
-    icon: '',
+    icon: 'convertor',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE
   },
@@ -91,40 +91,52 @@ export const CONVERTOR = [
 
 export const PROGRAMMING = [
   {
-    id: 'js-compression',
-    text: 'JavaScript Compression',
-    category: CATEGORY.PROGRAMMING,
-    icon: 'js',
-    color: COLOR.RED,
-    iconTheme: THEME.RED,
-    isWIP: true,
-  },
-  {
-    id: 'js-formatter',
-    text: 'JavaScript Formatter',
-    category: CATEGORY.PROGRAMMING,
-    icon: 'js',
-    color: COLOR.PURPLE,
-    iconTheme: THEME.PURPLE,
-    isWIP: true,
-  },
-  {
     id: 'css-compression',
     text: 'CSS Compression',
     category: CATEGORY.PROGRAMMING,
     icon: 'css',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
-    isWIP: true,
   },
   {
-    id: 'css-formatter',
+    id: 'css-format',
     text: 'CSS Formatter',
     category: CATEGORY.PROGRAMMING,
     icon: 'css',
     color: COLOR.RED,
     iconTheme: THEME.RED,
-    isWIP: true,
+  },
+  {
+    id: 'json-compression',
+    text: 'JSON Compression',
+    category: CATEGORY.PROGRAMMING,
+    icon: 'json',
+    color: COLOR.PURPLE,
+    iconTheme: THEME.PURPLE,
+  },
+  {
+    id: 'json-format',
+    text: 'JSON Formatter',
+    category: CATEGORY.PROGRAMMING,
+    icon: 'json',
+    color: COLOR.GREEN,
+    iconTheme: THEME.GREEN,
+  },
+  {
+    id: 'sql-compression',
+    text: 'SQL Compression',
+    category: CATEGORY.PROGRAMMING,
+    icon: 'sql',
+    color: COLOR.WATHET,
+    iconTheme: THEME.WATHET,
+  },
+  {
+    id: 'sql-format',
+    text: 'SQL Formatter',
+    category: CATEGORY.PROGRAMMING,
+    icon: 'sql',
+    color: COLOR.YELLOW,
+    iconTheme: THEME.YELLOW,
   },
 ];
 
@@ -178,7 +190,7 @@ export const VALIDATOR = [
     id: 'phone-num',
     text: 'Phone Number Validator',
     category: CATEGORY.VALIDATOR,
-    icon: 'phone-num',
+    icon: 'phone',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE,
     isWIP: true,
@@ -190,7 +202,6 @@ export const VALIDATOR = [
     icon: 'json',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
-    isWIP: true,
   }
 ];
 

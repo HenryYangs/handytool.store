@@ -6,7 +6,7 @@
   import { stringCaseTransform } from '../../../../utils/string/transform';
   import vkBeautify from 'vkbeautify';
 
-  const id = 'css-compression';
+  const id = 'sql-compression';
   const tool = PROGRAMMING.find(item => item.id === id);
 
   $: input = '';
@@ -14,7 +14,7 @@
 
   const onConfirm = () => {
     try {
-      output = vkBeautify.cssmin(input);
+      output = vkBeautify.sqlmin(input);
     } catch {
       alert('Your code is invalid');
     }

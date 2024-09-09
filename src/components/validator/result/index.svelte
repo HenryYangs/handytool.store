@@ -7,9 +7,6 @@
 
   $: result = isCorrect ? 'correct' : 'wrong';
   $: resultMsg = message || (isCorrect ? 'Validate Success' : 'Validate Error');
-
-  console.log('message=======', message)
-  console.log('resultMsg=======', resultMsg)
 </script>
 
 <div class={`tool-panel wrapper validate-${result}`} style={style}>

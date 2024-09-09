@@ -12,7 +12,7 @@
       <div class='tool-item_body'>
         <div class='tool-item_icon' style:background-color={tool.iconTheme}>
           <i
-            class={`iconfont-tools icon-tools-${tool.category}${tool.icon ? `-${tool.icon}` : ''}`}
+            class={`iconfont-tools icon-tools-${tool.icon}`}
             style:color={tool.color}
           ></i>
         </div>

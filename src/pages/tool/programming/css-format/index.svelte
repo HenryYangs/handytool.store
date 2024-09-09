@@ -6,7 +6,7 @@
   import { stringCaseTransform } from '../../../../utils/string/transform';
   import vkBeautify from 'vkbeautify';
 
-  const id = 'css-compression';
+  const id = 'css-format';
   const tool = PROGRAMMING.find(item => item.id === id);
 
   $: input = '';
@@ -14,7 +14,7 @@
 
   const onConfirm = () => {
     try {
-      output = vkBeautify.cssmin(input);
+      output = vkBeautify.css(input);
     } catch {
       alert('Your code is invalid');
     }
@@ -35,7 +35,7 @@
   >
     <PlaygroundArea
       bind:value={input}
-      btnText='Compress'
+      btnText='Format'
       onConfirm={onConfirm}
       actionConfig={{ onClear }}
     />

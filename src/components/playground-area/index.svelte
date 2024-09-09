@@ -6,8 +6,8 @@
   export let btnText = '';
   export let style = '';
   export let onConfirm = null;
-  export let onClear = null;
-  export let onCopy = null;
+  export let noConfirmBtn = false;
+  export let actionConfig = {};
 </script>
 
 <BasePlayground
@@ -15,13 +15,15 @@
   btnText={btnText}
   style={style}
   onConfirm={onConfirm}
+  noBtn={noConfirmBtn}
 >
   <BaseActions
     slot='header-main'
-    onClear={onClear}
-    onCopy={onCopy}
     bind:copyValue={value}
-  />
+    {...actionConfig}
+  >
+    <svelte:fragment slot='extra-action'></svelte:fragment>
+  </BaseActions>
 
   <svelte:fragment slot='header-extra'>
     <slot name='header-extra' />

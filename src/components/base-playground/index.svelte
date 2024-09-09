@@ -2,6 +2,7 @@
   export let btnText = 'Transfer';
   export let value;
   export let style = '';
+  export let noBtn = false;
   export let onConfirm = (value) => {};
 
   const onConfirmHandler = () => {
@@ -26,15 +27,17 @@
     ></textarea>
   </div>
 
-  <div class='d-grid'>
-    <button
-      class='btn btn-primary action-btn'
-      type='button'
-      on:click={onConfirmHandler}
-    >
-      {@html btnText}
-    </button>
-  </div>
+  {#if noBtn === false}
+    <div class='d-grid'>
+      <button
+        class='btn btn-primary action-btn'
+        type='button'
+        on:click={onConfirmHandler}
+      >
+        {@html btnText}
+      </button>
+    </div>
+  {/if}
 </section>
 
 <style>

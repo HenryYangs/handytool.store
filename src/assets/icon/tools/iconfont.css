@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont-tools"; /* Project id 4664868 */
-  src: url('iconfont.woff2?t=1724848984695') format('woff2'),
-       url('iconfont.woff?t=1724848984695') format('woff'),
-       url('iconfont.ttf?t=1724848984695') format('truetype');
+  src: url('iconfont.woff2?t=1725868617433') format('woff2'),
+       url('iconfont.woff?t=1725868617433') format('woff'),
+       url('iconfont.ttf?t=1725868617433') format('truetype');
 }
 
 .iconfont-tools {
@@ -13,79 +13,83 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-tools-convertor-case:before {
+.icon-tools-sql:before {
+  content: "\e60f";
+}
+
+.icon-tools-case:before {
   content: "\e637";
 }
 
-.icon-tools-validator-json:before {
+.icon-tools-json:before {
   content: "\ea42";
 }
 
-.icon-tools-timer-countdown:before {
+.icon-tools-countdown:before {
   content: "\e708";
 }
 
-.icon-tools-timer-world-clock:before {
+.icon-tools-world-clock:before {
   content: "\e601";
 }
 
-.icon-tools-timer-clock:before {
+.icon-tools-clock:before {
   content: "\e631";
 }
 
-.icon-tools-timer-count-timer:before {
+.icon-tools-count-timer:before {
   content: "\e6c5";
 }
 
-.icon-tools-timer-chronograph:before {
+.icon-tools-chronograph:before {
   content: "\e642";
 }
 
-.icon-tools-timer-timestamp:before {
+.icon-tools-timestamp:before {
   content: "\e6cb";
 }
 
-.icon-tools-validator-mysql:before {
+.icon-tools-mysql:before {
   content: "\ec29";
 }
 
-.icon-tools-validator-email:before {
+.icon-tools-email:before {
   content: "\e856";
 }
 
-.icon-tools-validator-phone-num:before {
+.icon-tools-phone:before {
   content: "\e860";
 }
 
-.icon-tools-validator-regular-expression:before {
+.icon-tools-regular-expression:before {
   content: "\e600";
 }
 
-.icon-tools-codec-url:before {
+.icon-tools-url:before {
   content: "\e64c";
 }
 
-.icon-tools-codec-base64:before {
+.icon-tools-base64:before {
   content: "\e6c3";
 }
 
-.icon-tools-programming-js:before {
+.icon-tools-js:before {
   content: "\e636";
 }
 
-.icon-tools-programming-css:before {
+.icon-tools-css:before {
   content: "\e605";
 }
 
-.icon-tools-convertor-text:before {
+.icon-tools-text:before {
   content: "\e959";
 }
 
-.icon-tools-convertor-unit:before {
+.icon-tools-unit:before {
   content: "\ec52";
 }
 
-.icon-tools-convertor-ip-domain:before {
+.icon-tools-ip-domain:before {
   content: "\e6ca";
 }
 

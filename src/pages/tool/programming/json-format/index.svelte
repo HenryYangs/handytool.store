@@ -4,19 +4,23 @@
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import { PROGRAMMING } from '../../../../constant/tools';
   import { stringCaseTransform } from '../../../../utils/string/transform';
-  import vkBeautify from 'vkbeautify';
+  import { INDENT } from '../../../../constant/format/indent';
 
-  const id = 'css-compression';
+  const id = 'json-format';
   const tool = PROGRAMMING.find(item => item.id === id);
 
   $: input = '';
   $: output = '';
+  $: indent = INDENT[0].value;
 
   const onConfirm = () => {
     try {
-      output = vkBeautify.cssmin(input);
-    } catch {
-      alert('Your code is invalid');
+      const myObject = JSON.parse(input);
+      const res = JSON.stringify( myObject, null, indent );
+
+      output = res;
+    } catch( error ) {
+      alert('Invalid JSON');
     }
   };
 
@@ -38,7 +42,20 @@
       btnText='Compress'
       onConfirm={onConfirm}
       actionConfig={{ onClear }}
-    />
+    >
+      <div slot='header-extra'>
+        <select
+          class='form-select form-select-sm'
+          aria-label='Select Indent'
+          placeholder='Select Indent'
+          bind:value={indent}
+        >
+          {#each INDENT as indent}
+            <option value={indent.value}>{indent.label}</option>
+          {/each}
+        </select>
+      </div>
+    </PlaygroundArea>
 
     <PlaygroundArea
       noConfirmBtn
