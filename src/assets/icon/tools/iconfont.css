@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont-tools"; /* Project id 4664868 */
-  src: url('iconfont.woff2?t=1725868617433') format('woff2'),
-       url('iconfont.woff?t=1725868617433') format('woff'),
-       url('iconfont.ttf?t=1725868617433') format('truetype');
+  src: url('iconfont.woff2?t=1725877907100') format('woff2'),
+       url('iconfont.woff?t=1725877907100') format('woff'),
+       url('iconfont.ttf?t=1725877907100') format('truetype');
 }
 
 .iconfont-tools {
@@ -85,7 +85,7 @@
   content: "\e959";
 }
 
-.icon-tools-unit:before {
+.icon-tools-length-unit:before {
   content: "\ec52";
 }
 

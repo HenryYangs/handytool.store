@@ -71,13 +71,12 @@ export const CONVERTOR = [
     isWIP: true,
   },
   {
-    id: 'unit',
-    text: 'Unit Convertor',
+    id: 'length-unit',
+    text: 'Length Unit Converter',
     category: CATEGORY.CONVERTOR,
-    icon: 'unit',
+    icon: 'length-unit',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
-    isWIP: true,
   },
   {
     id: 'case',
