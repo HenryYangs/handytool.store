@@ -20,7 +20,7 @@
     title={tool.text}
     category={stringCaseTransform(tool.category)}
     toolsList={CONVERTOR}
-    description=''
+    description='Converting Units of Length and Distance'
   >
     <UnitPanel unitList={unitList} />
   </ToolLayout>

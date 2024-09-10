@@ -5,14 +5,10 @@
 
   $: inputValue = '';
   $: curIdx = 0;
-  $: ratioList = unitList.map(item => item.ratio || 1);
+  $: curBaseRatio = unitList[curIdx].ratio;
 
   const onFromUnitClick = (idx) => {
     curIdx = idx;
-
-    ratioList = unitList.map((item) => {
-      return item.ratio / unitList[idx].ratio;
-    });
   };
 </script>
 
@@ -40,9 +36,10 @@
     {#each unitList as unit, index}
       <div class='unit-row'>
         <span>{unit.text}</span>
+
         {#if inputValue !== ''}
-          <span>{ratioList[index] * Number(inputValue)}</span>
-          <IconCopy id={`unit-panel-copy-${index}`} copyValue={ratioList[index] * Number(inputValue)} />
+          <span>{(unit.ratio / curBaseRatio) * Number(inputValue)}</span>
+          <IconCopy id={`unit-panel-copy-${index}`} copyValue={(unit.ratio / curBaseRatio) * Number(inputValue)} />
         {/if}
       </div>
     {/each}
