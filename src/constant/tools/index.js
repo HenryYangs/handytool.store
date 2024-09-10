@@ -160,15 +160,16 @@ export const CODEC = [
 ]
 
 export const VALIDATOR = [
-  {
-    id: 'mysql',
-    text: 'MySQL Validator',
-    category: CATEGORY.VALIDATOR,
-    icon: 'mysql',
-    color: COLOR.WATHET,
-    iconTheme: THEME.WATHET,
-    isWIP: true,
-  },
+  // TODO
+  // {
+  //   id: 'mysql',
+  //   text: 'MySQL Validator',
+  //   category: CATEGORY.VALIDATOR,
+  //   icon: 'mysql',
+  //   color: COLOR.WATHET,
+  //   iconTheme: THEME.WATHET,
+  //   isWIP: true,
+  // },
   {
     id: 'reg-exp',
     text: 'Regular Expression Validator',
@@ -176,7 +177,6 @@ export const VALIDATOR = [
     icon: 'regular-expression',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW,
-    isWIP: true,
   },
   {
     id: 'email',

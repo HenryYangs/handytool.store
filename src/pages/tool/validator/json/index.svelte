@@ -44,6 +44,8 @@
       actionConfig={{ onClear }}
     />
 
+    <!-- TODO support upload json file -->
+
     {#if validateResult !== null}
       <ValidateResult
         style='margin-top: 20px;'

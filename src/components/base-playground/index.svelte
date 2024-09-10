@@ -1,4 +1,6 @@
 <script>
+  import ExecuteBtn from '../execute-btn/index.svelte';
+
   export let btnText = 'Transfer';
   export let value;
   export let style = '';
@@ -28,15 +30,7 @@
   </div>
 
   {#if noBtn === false}
-    <div class='d-grid'>
-      <button
-        class='btn btn-primary action-btn'
-        type='button'
-        on:click={onConfirmHandler}
-      >
-        {@html btnText}
-      </button>
-    </div>
+    <ExecuteBtn text={btnText} onConfirm={onConfirmHandler} />
   {/if}
 </section>
 
@@ -51,14 +45,4 @@
 .textarea-wrapper {
   margin-bottom: 10px;
 }
-
-.action-btn {
-  background-color: rgba(61, 82, 160, .9);
-  border-color: rgba(61, 82, 160, .9);
-}
-
-.action-btn:hover {
-  background-color: #3D52A0;
-  border-color: #3D52A0;
-}  
 </style>
