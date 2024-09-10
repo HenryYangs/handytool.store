@@ -61,15 +61,16 @@ export const CONVERTOR = [
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN
   },
-  {
-    id: 'domain-ip',
-    text: 'Domain to IP',
-    category: CATEGORY.CONVERTOR,
-    icon: 'ip-domain',
-    color: COLOR.WATHET,
-    iconTheme: THEME.WATHET,
-    isWIP: true,
-  },
+  // TODO
+  // {
+  //   id: 'domain-ip',
+  //   text: 'Domain to IP',
+  //   category: CATEGORY.CONVERTOR,
+  //   icon: 'ip-domain',
+  //   color: COLOR.WATHET,
+  //   iconTheme: THEME.WATHET,
+  //   isWIP: true,
+  // },
   {
     id: 'length-unit',
     text: 'Length Unit Converter',
