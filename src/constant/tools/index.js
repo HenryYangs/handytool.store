@@ -187,15 +187,6 @@ export const VALIDATOR = [
     iconTheme: THEME.PURPLE,
   },
   {
-    id: 'phone-num',
-    text: 'Phone Number Validator',
-    category: CATEGORY.VALIDATOR,
-    icon: 'phone',
-    color: COLOR.BLUE,
-    iconTheme: THEME.BLUE,
-    isWIP: true,
-  },
-  {
     id: 'json',
     text: 'JSON Validator',
     category: CATEGORY.VALIDATOR,
@@ -249,7 +240,6 @@ export const TIMER = [
     icon: 'timestamp',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET,
-    isWIP: true,
   },
   {
     id: 'chronograph',
