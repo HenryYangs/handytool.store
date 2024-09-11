@@ -3,11 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import ValidateResult from '../../../../components/validator/result/index.svelte';
-  import { VALIDATOR } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
-
-  const id = 'json';
-  const tool = VALIDATOR.find(item => item.id === id);
+  import { TOOL_VALIDATOR_ID, VALIDATOR } from '../../../../constant/tools';
 
   $: value = '';
   $: validateResult = null;
@@ -31,11 +27,8 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_VALIDATOR_ID.JSON}
     toolsList={VALIDATOR}
-    description=''
   >
     <PlaygroundArea
       bind:value

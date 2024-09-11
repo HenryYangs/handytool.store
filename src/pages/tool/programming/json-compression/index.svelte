@@ -25,7 +25,6 @@
   <ToolLayout
     id={TOOL_PROGRAMMING_ID.JSON_COMPRESSION}
     toolsList={PROGRAMMING}
-    description=''
   >
     <PlaygroundArea
       bind:value={input}

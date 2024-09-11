@@ -25,7 +25,6 @@
   <ToolLayout
     id={TOOL_PROGRAMMING_ID.CSS_FORMAT}
     toolsList={PROGRAMMING}
-    description=''
   >
     <PlaygroundArea
       bind:value={input}

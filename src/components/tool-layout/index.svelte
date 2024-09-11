@@ -2,9 +2,8 @@
   import { getCurrentTool } from '../../utils/tool';
   import ToolCard from '../tool-card/index.svelte';
 
-  export let id = '';
+  export let id;
   export let toolsList = [];
-  export let description = '';
   export let maxOtherCount = 8;
 
   const tool = getCurrentTool(toolsList, id);
@@ -16,8 +15,8 @@
   <div class='container-fluid container-biz'>
     <h2 class='title'>{tool.text}</h2>
     
-    {#if description}
-      <p class='description'>{description}</p>
+    {#if tool.description}
+      <p class='description'>{tool.description}</p>
     {/if}
 
     <div class='content'>

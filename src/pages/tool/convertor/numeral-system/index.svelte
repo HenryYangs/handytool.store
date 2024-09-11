@@ -102,7 +102,6 @@
   <ToolLayout
     id={TOOL_CONVERTOR_ID.NUMERAL_SYSTEM}
     toolsList={CONVERTOR}
-    description='Convert Number Between Different Numeral System'
   >
     <PlaygroundTransfer
       bind:leftValue

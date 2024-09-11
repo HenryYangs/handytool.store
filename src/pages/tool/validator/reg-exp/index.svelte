@@ -3,11 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
   import Result from '../../../../components/validator/result/index.svelte';
-  import { VALIDATOR } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
-
-  const id = 'reg-exp';
-  const tool = VALIDATOR.find(item => item.id === id);
+  import { TOOL_VALIDATOR_ID, VALIDATOR } from '../../../../constant/tools';
 
   $: regExp = '';
   $: flags = '';
@@ -34,11 +30,8 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_VALIDATOR_ID.REG_EXP}
     toolsList={VALIDATOR}
-    description='Validate Regular Expression'
   >
     <div class='reg-exp_header'>
       <div class='reg-exp_header__main'>

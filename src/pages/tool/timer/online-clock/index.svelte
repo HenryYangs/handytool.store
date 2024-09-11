@@ -37,7 +37,6 @@
   <ToolLayout
     id={TOOL_TIMER_ID.ONLINE_CLOCK}
     toolsList={TIMER}
-    description='Show the current time'
   >
     <section class='tool-panel'>
       <div class='wrapper'>

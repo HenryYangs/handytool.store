@@ -15,7 +15,6 @@
   <ToolLayout
     id={TOOL_CONVERTOR_ID.LENGTH_UNIT}
     toolsList={CONVERTOR}
-    description='Converting Units of Length and Distance'
   >
     <UnitPanel unitList={unitList} />
   </ToolLayout>

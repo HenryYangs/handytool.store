@@ -2,11 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
-  import { CODEC } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
-
-  const id = 'url';
-  const tool = CODEC.find(item => item.id === id);
+  import { CODEC, TOOL_CODEC_ID } from '../../../../constant/tools';
 
   $: leftValue = '';
   $: rightValue = '';
@@ -28,11 +24,8 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_CODEC_ID.URL}
     toolsList={CODEC}
-    description='Encode & Decode URL'
   >
     <PlaygroundTransfer
       bind:leftValue

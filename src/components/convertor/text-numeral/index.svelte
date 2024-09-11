@@ -41,7 +41,6 @@
   <ToolLayout
     id={id}
     toolsList={CONVERTOR}
-    description={`Interconvertion between Text and ${numeralTextCamelCase}`}
   >
     <PlaygroundTransfer
       bind:leftValue

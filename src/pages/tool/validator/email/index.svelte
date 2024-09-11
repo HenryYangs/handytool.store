@@ -3,11 +3,8 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import ValidateResult from '../../../../components/validator/result/index.svelte';
-  import { VALIDATOR } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
+  import { TOOL_VALIDATOR_ID, VALIDATOR } from '../../../../constant/tools';
 
-  const id = 'email';
-  const tool = VALIDATOR.find(item => item.id === id);
   const regExp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
   $: value = '';
@@ -40,11 +37,8 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_VALIDATOR_ID.EMAIL}
     toolsList={VALIDATOR}
-    description=''
   >
     <PlaygroundArea
       bind:value

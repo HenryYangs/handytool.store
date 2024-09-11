@@ -25,7 +25,6 @@
   <ToolLayout
     id={TOOL_PROGRAMMING_ID.SQL_FORMAT}
     toolsList={PROGRAMMING}
-    description=''
   >
     <PlaygroundArea
       bind:value={input}

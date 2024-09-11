@@ -68,7 +68,6 @@
   <ToolLayout
     id={TOOL_TIMER_ID.TIMESTAMP}
     toolsList={TIMER}
-    description='Convert dates to timestamps and vice-versa'
   >
     <section class='tool-panel'>
       <div class='tool-container timestamp'>

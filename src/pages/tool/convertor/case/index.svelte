@@ -16,7 +16,6 @@
   <ToolLayout
     id={TOOL_CONVERTOR_ID.CASE}
     toolsList={CONVERTOR}
-    description='Tons of Case Convertor of Text'
   >
     <PlaygroundPanel
       actions={CONVERTOR_CASE}

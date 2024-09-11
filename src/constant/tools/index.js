@@ -40,35 +40,39 @@ export const TOOL_CONVERTOR_ID = {
 export const CONVERTOR = [
   {
     id: TOOL_CONVERTOR_ID.NUMERAL_SYSTEM,
-    text: 'Numeral System',
+    text: "Numeral System",
     category: CATEGORY.CONVERTOR,
-    icon: 'convertor',
+    icon: "convertor",
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
+    description: "Convert Number Between Different Numeral System",
   },
   {
     id: TOOL_CONVERTOR_ID.TEXT_BINARY,
-    text: 'Text-Binary',
+    text: "Text-Binary",
     category: CATEGORY.CONVERTOR,
-    icon: 'text',
+    icon: "text",
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW,
+    description: "Convert Text to Binary and vice-versa",
   },
   {
     id: TOOL_CONVERTOR_ID.TEXT_DECIMAL,
-    text: 'Text-Decimal',
+    text: "Text-Decimal",
     category: CATEGORY.CONVERTOR,
-    icon: 'text',
+    icon: "text",
     color: COLOR.RED,
     iconTheme: THEME.RED,
+    description: "Convert Text to Decimal and vice-versa",
   },
   {
     id: TOOL_CONVERTOR_ID.TEXT_HEX,
-    text: 'Text-Hex',
+    text: "Text-Hex",
     category: CATEGORY.CONVERTOR,
-    icon: 'text',
+    icon: "text",
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN,
+    description: 'Convert Text to Hex and vice-versa',
   },
   // TODO
   // {
@@ -82,19 +86,21 @@ export const CONVERTOR = [
   // },
   {
     id: TOOL_CONVERTOR_ID.LENGTH_UNIT,
-    text: 'Length Unit Converter',
+    text: "Length Unit Converter",
     category: CATEGORY.CONVERTOR,
-    icon: 'length-unit',
+    icon: "length-unit",
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
+    description: 'Converting Units of Length and Distance',
   },
   {
     id: TOOL_CONVERTOR_ID.CASE,
-    text: 'Case Convertor',
+    text: "Case Convertor",
     category: CATEGORY.CONVERTOR,
-    icon: 'case',
+    icon: "case",
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE,
+    description: 'Convert text to naming conventions such as lower case, upper case, camel case, pascal case, etc.',
   },
 ];
 
@@ -115,6 +121,7 @@ export const PROGRAMMING = [
     icon: 'css',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
+    description: 'Minify CSS Source Code',
   },
   {
     id: TOOL_PROGRAMMING_ID.CSS_FORMAT,
@@ -123,6 +130,7 @@ export const PROGRAMMING = [
     icon: 'css',
     color: COLOR.RED,
     iconTheme: THEME.RED,
+    description: 'Format CSS Source Code',
   },
   {
     id: TOOL_PROGRAMMING_ID.JSON_COMPRESSION,
@@ -131,6 +139,7 @@ export const PROGRAMMING = [
     icon: 'json',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
+    description: 'Minify JSON Structure',
   },
   {
     id: TOOL_PROGRAMMING_ID.JSON_FORMAT,
@@ -139,6 +148,7 @@ export const PROGRAMMING = [
     icon: 'json',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN,
+    description: 'Format JSON Structure',
   },
   {
     id: TOOL_PROGRAMMING_ID.SQL_COMPRESSION,
@@ -147,6 +157,7 @@ export const PROGRAMMING = [
     icon: 'sql',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET,
+    description: 'Minify SQL Statement',
   },
   {
     id: TOOL_PROGRAMMING_ID.SQL_FORMAT,
@@ -155,6 +166,7 @@ export const PROGRAMMING = [
     icon: 'sql',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW,
+    description: 'Format SQL Statement',
   },
 ];
 
@@ -171,6 +183,7 @@ export const CODEC = [
     icon: 'base64',
     color: COLOR.BLUE,
     iconTheme: THEME.BLUE,
+    description: 'Encode and Decode of Base64',
   },
   {
     id: TOOL_CODEC_ID.URL,
@@ -179,6 +192,7 @@ export const CODEC = [
     icon: 'url',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
+    description: 'Encode and Decode of URL'
   },
 ];
 
@@ -206,6 +220,7 @@ export const VALIDATOR = [
     icon: 'regular-expression',
     color: COLOR.YELLOW,
     iconTheme: THEME.YELLOW,
+    description: 'Validate Your Regular Expression',
   },
   {
     id: TOOL_VALIDATOR_ID.EMAIL,
@@ -214,6 +229,7 @@ export const VALIDATOR = [
     icon: 'email',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
+    description: 'Validate Your Email Address',
   },
   {
     id: TOOL_VALIDATOR_ID.JSON,
@@ -222,6 +238,7 @@ export const VALIDATOR = [
     icon: 'json',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
+    description: 'Validate Your JSON Structure',
   },
 ];
 
@@ -242,7 +259,7 @@ export const TIMER = [
     icon: 'countdown',
     color: COLOR.RED,
     iconTheme: THEME.RED,
-    isWIP: true,
+    description: 'Create your countdown timer',
   },
   {
     id: TOOL_TIMER_ID.COUNT_TIMER,
@@ -260,6 +277,7 @@ export const TIMER = [
     icon: 'clock',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN,
+    description: 'Show the Current Time'
   },
   {
     id: TOOL_TIMER_ID.WORLD_CLOCK,
@@ -277,6 +295,7 @@ export const TIMER = [
     icon: 'timestamp',
     color: COLOR.WATHET,
     iconTheme: THEME.WATHET,
+    description: 'Convert dates to timestamps and vice-versa',
   },
   {
     id: TOOL_TIMER_ID.CHRONOGRAPH,

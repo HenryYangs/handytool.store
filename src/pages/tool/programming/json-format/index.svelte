@@ -32,7 +32,6 @@
   <ToolLayout
     id={TOOL_PROGRAMMING_ID.JSON_FORMAT}
     toolsList={PROGRAMMING}
-    description=''
   >
     <PlaygroundArea
       bind:value={input}
