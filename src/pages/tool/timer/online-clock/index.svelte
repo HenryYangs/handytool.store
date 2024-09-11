@@ -3,14 +3,10 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import { TIMER, TOOL_TIMER_ID } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
-  import { getCurrentTool } from '../../../../utils/tool';
   import { MONTH_NAME_MAP } from '../../../../utils/timer/month';
   import { DAY_NAME_MAP } from '../../../../utils/timer/day';
   import { prezero } from '../../../../utils/number';
   import { loop } from '../../../../utils/browser';
-
-  const tool = getCurrentTool(TIMER, TOOL_TIMER_ID.ONLINE_CLOCK);
 
   $: year = '';
   $: monthDate = '';
@@ -40,8 +36,6 @@
 <Layout>
   <ToolLayout
     id={TOOL_TIMER_ID.ONLINE_CLOCK}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
     toolsList={TIMER}
     description='Show the current time'
   >

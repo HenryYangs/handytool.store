@@ -2,12 +2,9 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import UnitPanel from '../../../../components/convertor/unit-panel/index.svelte';
-  import { CONVERTOR } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
+  import { CONVERTOR, TOOL_CONVERTOR_ID } from '../../../../constant/tools';
   import { LENGTH_UNIT_LIST } from '../../../../constant/unit';
 
-  const id = 'length-unit';
-  const tool = CONVERTOR.find(item => item.id === id);
   const unitList = LENGTH_UNIT_LIST.map(item => ({
     ...item,
     text: item.value
@@ -16,9 +13,7 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_CONVERTOR_ID.LENGTH_UNIT}
     toolsList={CONVERTOR}
     description='Converting Units of Length and Distance'
   >

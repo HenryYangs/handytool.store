@@ -2,12 +2,9 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
-  import { TIMER } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
+  import { TIMER, TOOL_TIMER_ID } from '../../../../constant/tools';
   import { prezero } from '../../../../utils/number';
 
-  const id = 'timestamp';
-  const tool = TIMER.find(item => item.id === id);
   let result = [];
 
   $: timestamp = '';
@@ -69,9 +66,7 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_TIMER_ID.TIMESTAMP}
     toolsList={TIMER}
     description='Convert dates to timestamps and vice-versa'
   >

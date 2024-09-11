@@ -1,19 +1,20 @@
 <script>
+  import { getCurrentTool } from '../../utils/tool';
   import ToolCard from '../tool-card/index.svelte';
 
-  export let title;
-  export let category;
   export let id = '';
   export let toolsList = [];
   export let description = '';
   export let maxOtherCount = 8;
+
+  const tool = getCurrentTool(toolsList, id);
 
   $: otherTools = toolsList.filter(item => item.id !== id).slice(0, maxOtherCount);
 </script>
 
 <main class='tool-layout-wrapper common-background'>
   <div class='container-fluid container-biz'>
-    <h2 class='title'>{title}</h2>
+    <h2 class='title'>{tool.text}</h2>
     
     {#if description}
       <p class='description'>{description}</p>
@@ -28,8 +29,8 @@
     
     {#if otherTools.length}
       <div class='other-tools'>
-        <h2 class='other-tools-title'>Other {category} Tools</h2>
-        <p class='other-tools-subtitle'>Checkout some other popular {category} tools</p>
+        <h2 class='other-tools-title'>Other {tool.category} Tools</h2>
+        <p class='other-tools-subtitle'>Checkout some other popular {tool.category} tools</p>
 
         <div class='other-tools-list'>
           {#each otherTools as tool}

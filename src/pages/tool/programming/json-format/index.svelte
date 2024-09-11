@@ -2,8 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
-  import { PROGRAMMING } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
+  import { PROGRAMMING, TOOL_PROGRAMMING_ID } from '../../../../constant/tools';
   import { INDENT } from '../../../../constant/format/indent';
 
   const id = 'json-format';
@@ -31,9 +30,7 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_PROGRAMMING_ID.JSON_FORMAT}
     toolsList={PROGRAMMING}
     description=''
   >

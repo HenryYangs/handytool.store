@@ -2,12 +2,8 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundPanel from '../../../../components/playground-panel/index.svelte';
-  import { CONVERTOR } from '../../../../constant/tools';
-  import { stringCaseTransform } from '../../../../utils/string/transform';
+  import { CONVERTOR, TOOL_CONVERTOR_ID } from '../../../../constant/tools';
   import { CONVERTOR_CASE } from './config';
-
-  const id = 'case';
-  const tool = CONVERTOR.find(item => item.id === id);
 
   $: value = '';
 
@@ -18,9 +14,7 @@
 
 <Layout>
   <ToolLayout
-    id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
+    id={TOOL_CONVERTOR_ID.CASE}
     toolsList={CONVERTOR}
     description='Tons of Case Convertor of Text'
   >

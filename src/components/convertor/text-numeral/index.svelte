@@ -11,7 +11,6 @@
   export let numeralText;
   export let numberValidator;
 
-  const tool = CONVERTOR.find(item => item.id === id);
   const numeralTextCamelCase = stringCaseTransform(numeralText);
 
   $: leftValue = '';
@@ -41,8 +40,6 @@
 <Layout>
   <ToolLayout
     id={id}
-    title={tool.text}
-    category={stringCaseTransform(tool.category)}
     toolsList={CONVERTOR}
     description={`Interconvertion between Text and ${numeralTextCamelCase}`}
   >
