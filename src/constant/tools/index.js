@@ -28,38 +28,47 @@ const CATEGORY = {
   TIMER: 'timer'
 };
 
+export const TOOL_CONVERTOR_ID = {
+  NUMERAL_SYSTEM: 'numeral-system',
+  TEXT_BINARY: 'text-binary',
+  TEXT_DECIMAL: 'text-decimal',
+  TEXT_HEX: 'text-hex',
+  LENGTH_UNIT: 'length-unit',
+  CASE: 'case',
+}
+
 export const CONVERTOR = [
   {
-    id: 'numeral-system',
+    id: TOOL_CONVERTOR_ID.NUMERAL_SYSTEM,
     text: 'Numeral System',
     category: CATEGORY.CONVERTOR,
     icon: 'convertor',
     color: COLOR.ORANGE,
-    iconTheme: THEME.ORANGE
+    iconTheme: THEME.ORANGE,
   },
   {
-    id: 'text-binary',
+    id: TOOL_CONVERTOR_ID.TEXT_BINARY,
     text: 'Text-Binary',
     category: CATEGORY.CONVERTOR,
     icon: 'text',
     color: COLOR.YELLOW,
-    iconTheme: THEME.YELLOW
+    iconTheme: THEME.YELLOW,
   },
   {
-    id: 'text-decimal',
+    id: TOOL_CONVERTOR_ID.TEXT_DECIMAL,
     text: 'Text-Decimal',
     category: CATEGORY.CONVERTOR,
     icon: 'text',
     color: COLOR.RED,
-    iconTheme: THEME.RED
+    iconTheme: THEME.RED,
   },
   {
-    id: 'text-hex',
+    id: TOOL_CONVERTOR_ID.TEXT_HEX,
     text: 'Text-Hex',
     category: CATEGORY.CONVERTOR,
     icon: 'text',
     color: COLOR.GREEN,
-    iconTheme: THEME.GREEN
+    iconTheme: THEME.GREEN,
   },
   // TODO
   // {
@@ -72,7 +81,7 @@ export const CONVERTOR = [
   //   isWIP: true,
   // },
   {
-    id: 'length-unit',
+    id: TOOL_CONVERTOR_ID.LENGTH_UNIT,
     text: 'Length Unit Converter',
     category: CATEGORY.CONVERTOR,
     icon: 'length-unit',
@@ -80,18 +89,27 @@ export const CONVERTOR = [
     iconTheme: THEME.ORANGE,
   },
   {
-    id: 'case',
+    id: TOOL_CONVERTOR_ID.CASE,
     text: 'Case Convertor',
     category: CATEGORY.CONVERTOR,
     icon: 'case',
     color: COLOR.BLUE,
-    iconTheme: THEME.BLUE
-  }
+    iconTheme: THEME.BLUE,
+  },
 ];
+
+export const TOOL_PROGRAMMING_ID = {
+  CSS_COMPRESSION: 'css-compression',
+  CSS_FORMAT: 'css-format',
+  JSON_COMPRESSION: 'json-compression',
+  JSON_FORMAT: 'json-format',
+  SQL_COMPRESSION: 'sql-compression',
+  SQL_FORMAT: 'sql-format',
+}
 
 export const PROGRAMMING = [
   {
-    id: 'css-compression',
+    id: TOOL_PROGRAMMING_ID.CSS_COMPRESSION,
     text: 'CSS Compression',
     category: CATEGORY.PROGRAMMING,
     icon: 'css',
@@ -99,7 +117,7 @@ export const PROGRAMMING = [
     iconTheme: THEME.ORANGE,
   },
   {
-    id: 'css-format',
+    id: TOOL_PROGRAMMING_ID.CSS_FORMAT,
     text: 'CSS Formatter',
     category: CATEGORY.PROGRAMMING,
     icon: 'css',
@@ -107,7 +125,7 @@ export const PROGRAMMING = [
     iconTheme: THEME.RED,
   },
   {
-    id: 'json-compression',
+    id: TOOL_PROGRAMMING_ID.JSON_COMPRESSION,
     text: 'JSON Compression',
     category: CATEGORY.PROGRAMMING,
     icon: 'json',
@@ -115,7 +133,7 @@ export const PROGRAMMING = [
     iconTheme: THEME.PURPLE,
   },
   {
-    id: 'json-format',
+    id: TOOL_PROGRAMMING_ID.JSON_FORMAT,
     text: 'JSON Formatter',
     category: CATEGORY.PROGRAMMING,
     icon: 'json',
@@ -123,7 +141,7 @@ export const PROGRAMMING = [
     iconTheme: THEME.GREEN,
   },
   {
-    id: 'sql-compression',
+    id: TOOL_PROGRAMMING_ID.SQL_COMPRESSION,
     text: 'SQL Compression',
     category: CATEGORY.PROGRAMMING,
     icon: 'sql',
@@ -131,7 +149,7 @@ export const PROGRAMMING = [
     iconTheme: THEME.WATHET,
   },
   {
-    id: 'sql-format',
+    id: TOOL_PROGRAMMING_ID.SQL_FORMAT,
     text: 'SQL Formatter',
     category: CATEGORY.PROGRAMMING,
     icon: 'sql',
@@ -140,9 +158,14 @@ export const PROGRAMMING = [
   },
 ];
 
+export const TOOL_CODEC_ID = {
+  BASE64: 'base64',
+  URL: 'url',
+};
+
 export const CODEC = [
   {
-    id: 'base64',
+    id: TOOL_CODEC_ID.BASE64,
     text: 'Base64',
     category: CATEGORY.CODEC,
     icon: 'base64',
@@ -150,14 +173,20 @@ export const CODEC = [
     iconTheme: THEME.BLUE,
   },
   {
-    id: 'url',
+    id: TOOL_CODEC_ID.URL,
     text: 'URL',
     category: CATEGORY.CODEC,
-    icon:  'url',
+    icon: 'url',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
-  }
-]
+  },
+];
+
+export const TOOL_VALIDATOR_ID = {
+  REG_EXP: 'reg-exp',
+  EMAIL: 'email',
+  JSON: 'json',
+};
 
 export const VALIDATOR = [
   // TODO
@@ -171,7 +200,7 @@ export const VALIDATOR = [
   //   isWIP: true,
   // },
   {
-    id: 'reg-exp',
+    id: TOOL_VALIDATOR_ID.REG_EXP,
     text: 'Regular Expression Validator',
     category: CATEGORY.VALIDATOR,
     icon: 'regular-expression',
@@ -179,7 +208,7 @@ export const VALIDATOR = [
     iconTheme: THEME.YELLOW,
   },
   {
-    id: 'email',
+    id: TOOL_VALIDATOR_ID.EMAIL,
     text: 'Email Validator',
     category: CATEGORY.VALIDATOR,
     icon: 'email',
@@ -187,18 +216,27 @@ export const VALIDATOR = [
     iconTheme: THEME.PURPLE,
   },
   {
-    id: 'json',
+    id: TOOL_VALIDATOR_ID.JSON,
     text: 'JSON Validator',
     category: CATEGORY.VALIDATOR,
     icon: 'json',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
-  }
+  },
 ];
+
+export const TOOL_TIMER_ID = {
+  COUNTDOWN: 'countdown',
+  COUNT_TIMER: 'count-timer',
+  ONLINE_CLOCK: 'online-clock',
+  WORLD_CLOCK: 'world-clock',
+  TIMESTAMP: 'timestamp',
+  CHRONOGRAPH: 'chronograph',
+}
 
 export const TIMER = [
   {
-    id: 'countdown',
+    id: TOOL_TIMER_ID.COUNTDOWN,
     text: 'Countdown',
     category: CATEGORY.TIMER,
     icon: 'countdown',
@@ -207,7 +245,7 @@ export const TIMER = [
     isWIP: true,
   },
   {
-    id: 'count-timer',
+    id: TOOL_TIMER_ID.COUNT_TIMER,
     text: 'Count Timer',
     category: CATEGORY.TIMER,
     icon: 'count-timer',
@@ -216,16 +254,15 @@ export const TIMER = [
     isWIP: true,
   },
   {
-    id: 'online-clock',
+    id: TOOL_TIMER_ID.ONLINE_CLOCK,
     text: 'Online Clock',
     category: CATEGORY.TIMER,
     icon: 'clock',
     color: COLOR.GREEN,
     iconTheme: THEME.GREEN,
-    isWIP: true,
   },
   {
-    id: 'world-clock',
+    id: TOOL_TIMER_ID.WORLD_CLOCK,
     text: 'World Clock',
     category: CATEGORY.TIMER,
     icon: 'world-clock',
@@ -234,7 +271,7 @@ export const TIMER = [
     isWIP: true,
   },
   {
-    id: 'timestamp',
+    id: TOOL_TIMER_ID.TIMESTAMP,
     text: 'TimeStamp',
     category: CATEGORY.TIMER,
     icon: 'timestamp',
@@ -242,15 +279,15 @@ export const TIMER = [
     iconTheme: THEME.WATHET,
   },
   {
-    id: 'chronograph',
+    id: TOOL_TIMER_ID.CHRONOGRAPH,
     text: 'Chronograph',
     category: CATEGORY.TIMER,
     icon: 'chronograph',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
     isWIP: true,
-  }
-]
+  },
+];
 
 export const PURE_TOOLS = [
   {
