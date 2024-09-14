@@ -3,8 +3,8 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import { TIMER, TOOL_TIMER_ID } from '../../../../constant/tools';
-  import { MONTH_NAME_MAP } from '../../../../utils/timer/month';
-  import { DAY_NAME_MAP } from '../../../../utils/timer/day';
+  import { MONTH_NAME_MAP } from '../../../../constant/timer/month';
+  import { DAY_NAME_MAP } from '../../../../constant/timer/day';
   import { prezero } from '../../../../utils/number';
   import { loop } from '../../../../utils/browser';
 
