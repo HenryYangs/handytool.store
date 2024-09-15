@@ -39,6 +39,10 @@
         value: 0
       };
     });
+
+    if (selectorDate) {
+      onDateTimeChange();
+    }
   })();
 
   const updateClockFields = (key, duration) => {
