@@ -4,12 +4,29 @@
 export const loop = (fn, options = {}) => {
   if (!fn) return;
 
+  let id;
+
   if (requestAnimationFrame) {
-    requestAnimationFrame(fn);
+    id = requestAnimationFrame(fn);
+    return id;
+  }
+
+  if (setTimeout) {
+    id = setTimeout(fn, options.timeout || 0);
+    return id;
+  }
+};
+
+export const cancelLoop = (id) => {
+  if (!id) return;
+
+  if (requestAnimationFrame) {
+    cancelAnimationFrame(id);
     return;
   }
 
   if (setTimeout) {
-    setTimeout(fn, options.timeout || 0);
+    clearTimeout(id);
+    return;
   }
 }
