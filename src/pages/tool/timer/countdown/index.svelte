@@ -7,15 +7,10 @@
   import { prezero } from '../../../../utils/number';
   import { calcDiffTime } from '../../../../utils/timer';
   import { HOUR_LIST, MINUTE_SECOND_LIST, TIMER_UNIT_LIST, TIMER_UNIT_MAP } from '../../../../constant/timer';
+  import StaticDigitalClock from '../../../../components/timer/static-digital-version/index.svelte';
+  import ColorPalette from '../../../../components/color-palette/index.svelte';
 
   $: name = 'Countdown Timer';
-  $: year = '';
-  $: month = '';
-  $: week = '';
-  $: day = '';
-  $: hour = '';
-  $: minute = '';
-  $: second = '';
 
   $: selectorDate = '2124-09-12';
   $: selectorHour = HOUR_LIST[0];
@@ -33,6 +28,7 @@
     units.forEach((unit, index) => {
       unitsMap[unit] = {
         isLast: index === unitsLength - 1,
+        value: 0
       };
     });
   })()
@@ -46,22 +42,28 @@
   $: lastUnitColor = '#ff0000'
   $: borderColor =  '#adbbda';
 
+  const updateClockFields = (key, duration) => {
+    if (unitsMap[key]) {
+      unitsMap[key].value = key === TIMER_UNIT_MAP.YEAR ? String(duration[key]) : prezero(duration[key]);
+    }
+  }
+
   const updateClock = (targetTimestamp) => {
     const now = Date.now();
     const duration = calcDiffTime(targetTimestamp - now, ...units);
 
-    year = String(duration.year);
-    month = prezero(duration.month);
-    week = prezero(duration.week);
-    day = prezero(duration.day);
-    hour = prezero(duration.hour);
-    minute = prezero(duration.minute);
-    second = prezero(duration.second);
+    updateClockFields(TIMER_UNIT_MAP.YEAR, duration);
+    updateClockFields(TIMER_UNIT_MAP.MONTH, duration);
+    updateClockFields(TIMER_UNIT_MAP.WEEK, duration);
+    updateClockFields(TIMER_UNIT_MAP.DAY, duration);
+    updateClockFields(TIMER_UNIT_MAP.HOUR, duration);
+    updateClockFields(TIMER_UNIT_MAP.MINUTE, duration);
+    updateClockFields(TIMER_UNIT_MAP.SECOND, duration);
 
     loop(() => updateClock(targetTimestamp));
   }
 
-  const onValueChange = (props = {}) => {
+  const onDateTimeChange = (props = {}) => {
     const date = props.date || selectorDate;
 
     if (!date) {
@@ -79,32 +81,40 @@
   }
 
   const onDateChange = (e) => {
-    onValueChange({ date: e.target.value });
+    onDateTimeChange({ date: e.target.value });
   }
   const onHourChange = (e) => {
-    onValueChange({ hour: e.target.value });
+    onDateTimeChange({ hour: e.target.value });
   };
   const onMinuteChange = (e) => {
-    onValueChange({ minute: e.target.value });
+    onDateTimeChange({ minute: e.target.value });
   };
   const onSecondChange = (e) => {
-    onValueChange({ second: e.target.value });
+    onDateTimeChange({ second: e.target.value });
   };
   const onNameChange = (value) => {
     name = value;
   }
 
   onMount(() => {
-    onValueChange();
+    onDateTimeChange();
   });
 
-  const onColorPanelFocus = (targetId) => {
-    document.getElementById(targetId).click();
-  }
-
-  const onColorPanelChange = (e) => {
-    console.log('e=====', e.target.value)
-  }
+  const onBgColorChange = (e) => {
+    bgColor = e.target.value;
+  };
+  const onNameColorChange = (e) => {
+    nameColor = e.target.value;
+  };
+  const onTextColorChange = (e) => {
+    textColor = e.target.value;
+  };
+  const onLastUnitColorChange = (e) => {
+    lastUnitColor = e.target.value;
+  };
+  const onBorderColorChange = (e) => {
+    borderColor = e.target.value;
+  };
 </script>
 
 <Layout>
@@ -115,85 +125,12 @@
     <div class='tool-panel wrapper'>
       <section class='timer-area' style={`border-width: ${borderWidth}px; background-color: ${bgColor}; border-color: ${borderColor}`}>
         {#if showUnitName}
-          <header>
+          <header class='header'>
             <h2 style={`color: ${nameColor}`}>{name}</h2>
           </header>
         {/if}
 
-        <div class='timer-render-area'>
-          {#if unitsMap[TIMER_UNIT_MAP.YEAR]}
-            <div class='year-wrapper'>
-              <p class='timer_main-text year-number' style={`color: ${unitsMap[TIMER_UNIT_MAP.YEAR].isLast ? lastUnitColor : textColor}`}>{year}</p>
-              <p class='timer_sub-text year-text' style={`color: ${textColor}`}>year</p>
-            </div>
-
-            {#if !unitsMap[TIMER_UNIT_MAP.YEAR].isLast}
-              <span class='separator timer_main-text' style={`color: ${textColor}`}>:</span>
-            {/if}
-          {/if}
-
-          {#if unitsMap[TIMER_UNIT_MAP.MONTH]}
-            <div class='month-wrapper' style={`color: ${unitsMap[TIMER_UNIT_MAP.MONTH].isLast ? lastUnitColor : textColor}`}>
-              <p class='timer_main-text month-number'>{month}</p>
-              <p class='timer_sub-text month-text' style={`color: ${textColor}`}>month</p>
-            </div>
-
-            {#if !unitsMap[TIMER_UNIT_MAP.MONTH].isLast}
-              <span class='separator timer_main-text' style={`color: ${textColor}`}>:</span>
-            {/if}
-          {/if}
-
-          {#if unitsMap[TIMER_UNIT_MAP.WEEK]}
-            <div class='week-wrapper' style={`color: ${unitsMap[TIMER_UNIT_MAP.WEEK].isLast ? lastUnitColor : textColor}`}>
-              <p class='timer_main-text week-number'>{week}</p>
-              <p class='timer_sub-text week-text' style={`color: ${textColor}`}>week</p>
-            </div>
-
-            {#if !unitsMap[TIMER_UNIT_MAP.WEEK].isLast}
-              <span class='separator timer_main-text' style={`color: ${textColor}`}>:</span>
-            {/if}
-          {/if}
-
-          {#if unitsMap[TIMER_UNIT_MAP.DAY]}
-            <div class='day-wrapper' style={`color: ${unitsMap[TIMER_UNIT_MAP.DAY].isLast ? lastUnitColor : textColor}`}>
-              <p class='timer_main-text day-number'>{day}</p>
-              <p class='timer_sub-text day-text' style={`color: ${textColor}`}>day</p>
-            </div>
-
-            {#if !unitsMap[TIMER_UNIT_MAP.DAY].isLast}
-              <span class='separator timer_main-text' style={`color: ${textColor}`}>:</span>
-            {/if}
-          {/if}
-
-          {#if unitsMap[TIMER_UNIT_MAP.HOUR]}
-            <div class='hour-wrapper' style={`color: ${unitsMap[TIMER_UNIT_MAP.HOUR].isLast ? lastUnitColor : textColor}`}>
-              <p class='timer_main-text hour-number'>{hour}</p>
-              <p class='timer_sub-text hour-text' style={`color: ${textColor}`}>hour</p>
-            </div>
-
-            {#if !unitsMap[TIMER_UNIT_MAP.HOUR].isLast}
-              <span class='separator timer_main-text' style={`color: ${textColor}`}>:</span>
-            {/if}
-          {/if}
-
-          {#if unitsMap[TIMER_UNIT_MAP.MINUTE]}
-            <div class='minute-wrapper' style={`color: ${unitsMap[TIMER_UNIT_MAP.MINUTE].isLast ? lastUnitColor : textColor}`}>
-              <p class='timer_main-text minute-number'>{minute}</p>
-              <p class='timer_sub-text minute-text' style={`color: ${textColor}`}>minute</p>
-            </div>
-
-            {#if !unitsMap[TIMER_UNIT_MAP.MINUTE].isLast}
-              <span class='separator timer_main-text' style={`color: ${textColor}`}>:</span>
-            {/if}
-          {/if}
-
-          {#if unitsMap[TIMER_UNIT_MAP.SECOND]}
-            <div class='second-wrapper'>
-              <p class='timer_main-text second-number' style={`color: ${lastUnitColor}`}>{second}</p>
-              <p class='timer_sub-text second-text' style={`color: ${textColor}`}>second</p>
-            </div>
-          {/if}
-        </div>
+        <StaticDigitalClock config={unitsMap} lastUnitColor={lastUnitColor} />
       </section>
 
       <section class='timer-controller'>
@@ -236,31 +173,26 @@
             <label for='name' class='form-label'>Name:</label>
             <input type='text' class='form-control' id='name' bind:value={name} on:change={onNameChange} disabled={!showUnitName}>
           </div>
-
-          <div class='timer-settings-row action-wrapper'>
-            <p class='form-label'>On finish:</p>
-
-            <input class='form-check-input' type='radio' name='onFinish' id='stop' checked>
-            <label class='form-check-label' for='stop'>Stop Counting</label>
-
-            <input class='form-check-input' type='radio' name='onFinish' id='start'>
-            <label class='form-check-label' for='start'>Start Counting</label>
-          </div>
         </div>
 
         <div class='timer-settings-col timer-settings-center'>
           <div class='timer-settings-row unit-wrapper'>
             <label for='units' class='form-label'>Units:</label>
 
-            <select multiple name='unit' id='units' class='form-control units-selector' size='7' bind:value={units}>
+            <div class='unit-list-wrapper'>
               {#each TIMER_UNIT_LIST as unit}
-                <option value={unit}>{unit}</option>
+                <div class='form-check'>
+                  <input class='form-check-input' type='checkbox' id={`unit_${unit}`} bind:group={units} value={unit}>
+                  <label class='form-check-label' for={`unit_${unit}`}>
+                    {unit}
+                  </label>
+                </div>
               {/each}
-            </select>
+            </div>
           </div>
 
           <div class='timer-settings-row'>
-            <input class='form-check-input' type='checkbox' value='' id='showUnitName' bind:checked={showUnitName}>
+            <input class='form-check-input' type='checkbox' id='showUnitName' bind:checked={showUnitName}>
             <label class='form-check-label' for='showUnitName'>
               Show Unit Names
             </label>
@@ -273,46 +205,47 @@
         </div>
 
         <div class='timer-settings-col timer-settings-right'>
-          <div class='timer-settings-row input-group-sm color-panel-wrapper'>
-            <label for='bgColor' class='form-label'>Background Color:</label>
-            <input type='text' class='form-control' style={`background-color: ${bgColor}`} bind:value={bgColor} on:focus={() => onColorPanelFocus('bgColor')} />
-            <input type='color' class='form-control color-panel' id='bgColor' on:change={e => { bgColor = e.target.value }}>
-          </div>
+          <ColorPalette
+            id='bgColor'
+            label='Background Color'
+            bgColor={bgColor}
+            onChange={onBgColorChange}
+          />
 
-          <div class='timer-settings-row input-group-sm color-panel-wrapper'>
-            <label for='nameColor' class='form-label'>Name Color:</label>
-            <input type='text' class='form-control' style={`background-color: ${nameColor}`} bind:value={nameColor} on:focus={() => onColorPanelFocus('nameColor')} />
-            <input type='color' class='form-control color-panel' id='nameColor' on:change={e => { nameColor = e.target.value }}>
-          </div>
+          <ColorPalette
+            id='nameColor'
+            label='Name Color'
+            bgColor={nameColor}
+            onChange={onNameColorChange}
+          />
 
-          <div class='timer-settings-row input-group-sm color-panel-wrapper'>
-            <label for='textColor' class='form-label'>Text Color:</label>
-            <input type='text' class='form-control' style={`background-color: ${textColor}`} bind:value={textColor} on:focus={() => onColorPanelFocus('textColor')} />
-            <input type='color' class='form-control color-panel' id='textColor' on:change={e => { textColor = e.target.value }}>
-          </div>
+          <ColorPalette
+            id='textColor'
+            label='Text Color'
+            bgColor={textColor}
+            onChange={onTextColorChange}
+          />
 
-          <div class='timer-settings-row input-group-sm color-panel-wrapper'>
-            <label for='lastUnitColor' class='form-label'>Last Unit Color:</label>
-            <input type='text' class='form-control' style={`background-color: ${lastUnitColor}`} bind:value={lastUnitColor} on:focus={() => onColorPanelFocus('lastUnitColor')} />
-            <input type='color' class='form-control color-panel' id='lastUnitColor' on:change={e => { lastUnitColor = e.target.value }}>
-          </div>
+          <ColorPalette
+            id='lastUnitColor'
+            label='Last Unit Color'
+            bgColor={lastUnitColor}
+            onChange={onLastUnitColorChange}
+          />
 
-          <div class='timer-settings-row input-group-sm color-panel-wrapper'>
-            <label for='borderColor' class='form-label'>Border Color:</label>
-            <input type='text' class='form-control' bind:value={borderColor} on:focus={() => onColorPanelFocus('borderColor')} />
-            <input type='color' class='form-control color-panel' id='borderColor' on:change={e => { borderColor = e.target.value }}>
-          </div>
-      </div>
+          <ColorPalette
+            id='borderColor'
+            label='Border Color'
+            bgColor={borderColor}
+            onChange={onBorderColorChange}
+          />
+        </div>
       </section>
     </div>
   </ToolLayout>
 </Layout>
 
 <style>
-.wrapper input[type='color'] {
-  width: 150px;
-}
-
 .timer-area {
   padding: 15px;
   border: 1px solid rgba(173, 187, 218, 0.3);
@@ -324,27 +257,8 @@
   font-size: 40px;
 }
 
-.timer-render-area {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-top: 30px;
-}
-
-.timer_main-text {
-  font-size: 100px;
-  font-weight: 500;
-}
-
-.separator {
-  margin: 0 10px;
-}
-
-.timer_sub-text {
-  text-align: center;
-  font-size: 25px;
-  font-weight: 400;
+.header {
+  margin-bottom: 30px;
 }
 
 .timer-controller {
@@ -379,18 +293,12 @@
   margin-left: 30px;
 }
 
-.units-selector {
-  width: 100%;
+.unit-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.color-panel-wrapper {
-  position: relative;
-}
-
-.color-panel {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  opacity: 0;
+.unit-list-wrapper > * {
+  width: 25%;
 }
 </style>

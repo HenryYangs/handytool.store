@@ -1,4 +1,4 @@
-import { MS_OF_ONE_DAY, MS_OF_ONE_HOUR, MS_OF_ONE_MINUTE, MS_OF_ONE_MONTH, MS_OF_ONE_SECOND, MS_OF_ONE_WEEK, MS_OF_ONE_YEAR } from '../../constant/timer';
+import { MS_OF_ONE_DAY, MS_OF_ONE_HOUR, MS_OF_ONE_MINUTE, MS_OF_ONE_MONTH, MS_OF_ONE_SECOND, MS_OF_ONE_WEEK, MS_OF_ONE_YEAR, TIMER_UNIT_MAP } from '../../constant/timer';
 
 export const calcDiffTime = (diff, ...units) => {
   let year = 0;
@@ -54,12 +54,12 @@ export const calcDiffTime = (diff, ...units) => {
   }
 
   return {
-    year,
-    month,
-    week,
-    day,
-    hour,
-    minute,
-    second,
+    [TIMER_UNIT_MAP.YEAR]: year,
+    [TIMER_UNIT_MAP.MONTH]: month,
+    [TIMER_UNIT_MAP.WEEK]: week,
+    [TIMER_UNIT_MAP.DAY]: day,
+    [TIMER_UNIT_MAP.HOUR]: hour,
+    [TIMER_UNIT_MAP.MINUTE]: minute,
+    [TIMER_UNIT_MAP.SECOND]: second,
   };
 };
