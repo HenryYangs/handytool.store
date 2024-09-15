@@ -268,7 +268,6 @@ export const TIMER = [
     icon: 'count-timer',
     color: COLOR.ORANGE,
     iconTheme: THEME.ORANGE,
-    isWIP: true,
   },
   {
     id: TOOL_TIMER_ID.ONLINE_CLOCK,

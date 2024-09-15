@@ -1,4 +1,5 @@
 import { MS_OF_ONE_DAY, MS_OF_ONE_HOUR, MS_OF_ONE_MINUTE, MS_OF_ONE_MONTH, MS_OF_ONE_SECOND, MS_OF_ONE_WEEK, MS_OF_ONE_YEAR, TIMER_UNIT_MAP } from '../../constant/timer';
+import { loop } from '../browser';
 
 export const calcDiffTime = (diff, ...units) => {
   let year = 0;
@@ -62,4 +63,25 @@ export const calcDiffTime = (diff, ...units) => {
     [TIMER_UNIT_MAP.MINUTE]: minute,
     [TIMER_UNIT_MAP.SECOND]: second,
   };
+};
+
+export const onUpdateClock = ({ targetTimestamp, units, callback, timeType }) => {
+  const now = Date.now();
+  const duration = calcDiffTime(timeType === 'past' ? (now - targetTimestamp) : (targetTimestamp - now), ...units);
+
+  if (Object.values(duration).filter((val) => val < 0).length) {
+    callback({
+      [TIMER_UNIT_MAP.YEAR]: 0,
+      [TIMER_UNIT_MAP.MONTH]: 0,
+      [TIMER_UNIT_MAP.WEEK]: 0,
+      [TIMER_UNIT_MAP.DAY]: 0,
+      [TIMER_UNIT_MAP.HOUR]: 0,
+      [TIMER_UNIT_MAP.MINUTE]: 0,
+      [TIMER_UNIT_MAP.SECOND]: 0,
+    });
+  } else {
+    callback(duration);
+  }
+
+  loop(() => onUpdateClock({ targetTimestamp, units, callback, timeType }));
 };

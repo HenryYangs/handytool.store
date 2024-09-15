@@ -1,5 +1,4 @@
 <script>
-  export let show = true;
   export let color = '';
   export let value = '';
   export let showSeparator = false;
@@ -7,21 +6,19 @@
   export let subTextColor = '';
 </script>
 
-{#if show}
-  <div class='wrapper'>
-    <p
-      class='timer_main-text'
-      style={`color: ${color}`}
-    >{value}</p>
+<div class='wrapper'>
+  <p
+    class='timer_main-text'
+    style={`color: ${color}`}
+  >{value}</p>
 
-    {#if subText}
-      <p class='timer_sub-text' style={`color: ${subTextColor}`}>{subText}</p>
-    {/if}
-  </div>
-
-  {#if showSeparator}
-    <span class='separator timer_main-text' style={`color: ${color}`}>:</span>
+  {#if subText}
+    <p class='timer_sub-text' style={`color: ${subTextColor}`}>{subText}</p>
   {/if}
+</div>
+
+{#if showSeparator}
+  <span class='separator timer_main-text' style={`color: ${color}`}>:</span>
 {/if}
 
 <style>

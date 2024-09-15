@@ -24,11 +24,6 @@
 
     return target ? target.color : '';
   };
-  $: getValue = (key) => {
-    const target = config[key];
-
-    return target ? target.value : '';
-  };
   $: getShowSeparator = (key) => {
     const target = config[key];
 
@@ -37,67 +32,74 @@
 </script>
 
 <section class='wrapper' style={style}>
-  <DigitalItem
-    show={config[TIMER_UNIT_MAP.YEAR]}
-    color={getColor(TIMER_UNIT_MAP.YEAR)}
-    value={getValue(TIMER_UNIT_MAP.YEAR)}
-    showSeparator={getShowSeparator(TIMER_UNIT_MAP.YEAR)}
-    subText={showSubText ? TIMER_UNIT_MAP.YEAR : ''}
-    subTextColor={getSubTextColor(TIMER_UNIT_MAP.YEAR)}
-  />
+  {#if config[TIMER_UNIT_MAP.YEAR]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.YEAR)}
+      value={config[TIMER_UNIT_MAP.YEAR].value}
+      showSeparator={getShowSeparator(TIMER_UNIT_MAP.YEAR)}
+      subText={showSubText ? TIMER_UNIT_MAP.YEAR : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.YEAR)}
+    />
+  {/if}
 
-  <DigitalItem
-    show={config[TIMER_UNIT_MAP.MONTH]}
-    color={getColor(TIMER_UNIT_MAP.MONTH)}
-    value={getValue(TIMER_UNIT_MAP.MONTH)}
-    showSeparator={getShowSeparator(TIMER_UNIT_MAP.MONTH)}
-    subText={showSubText ? TIMER_UNIT_MAP.MONTH : ''}
-    subTextColor={getSubTextColor(TIMER_UNIT_MAP.MONTH)}
-  />
+  {#if config[TIMER_UNIT_MAP.MONTH]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.MONTH)}
+      value={config[TIMER_UNIT_MAP.MONTH].value}
+      showSeparator={getShowSeparator(TIMER_UNIT_MAP.MONTH)}
+      subText={showSubText ? TIMER_UNIT_MAP.MONTH : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.MONTH)}
+    />
+  {/if}
 
-  <DigitalItem
-    show={config[TIMER_UNIT_MAP.WEEK]}
-    color={getColor(TIMER_UNIT_MAP.WEEK)}
-    value={getValue(TIMER_UNIT_MAP.WEEK)}
-    showSeparator={getShowSeparator(TIMER_UNIT_MAP.WEEK)}
-    subText={showSubText ? TIMER_UNIT_MAP.WEEK : ''}
-    subTextColor={getSubTextColor(TIMER_UNIT_MAP.WEEK)}
-  />
+  {#if config[TIMER_UNIT_MAP.WEEK]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.WEEK)}
+      value={config[TIMER_UNIT_MAP.WEEK].value}
+      showSeparator={getShowSeparator(TIMER_UNIT_MAP.WEEK)}
+      subText={showSubText ? TIMER_UNIT_MAP.WEEK : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.WEEK)}
+    />
+  {/if}
 
-  <DigitalItem
-    show={config[TIMER_UNIT_MAP.DAY]}
-    color={getColor(TIMER_UNIT_MAP.DAY)}
-    value={getValue(TIMER_UNIT_MAP.DAY)}
-    showSeparator={getShowSeparator(TIMER_UNIT_MAP.DAY)}
-    subText={showSubText ? TIMER_UNIT_MAP.DAY : ''}
-    subTextColor={getSubTextColor(TIMER_UNIT_MAP.DAY)}
-  />
+  {#if config[TIMER_UNIT_MAP.DAY]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.DAY)}
+      value={config[TIMER_UNIT_MAP.DAY].value}
+      showSeparator={getShowSeparator(TIMER_UNIT_MAP.DAY)}
+      subText={showSubText ? TIMER_UNIT_MAP.DAY : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.DAY)}
+    />
+  {/if}
 
-  <DigitalItem
-    show={config[TIMER_UNIT_MAP.HOUR]}
-    color={getColor(TIMER_UNIT_MAP.HOUR)}
-    value={getValue(TIMER_UNIT_MAP.HOUR)}
-    showSeparator={getShowSeparator(TIMER_UNIT_MAP.HOUR)}
-    subText={showSubText ? TIMER_UNIT_MAP.HOUR : ''}
-    subTextColor={getSubTextColor(TIMER_UNIT_MAP.HOUR)}
-  />
+  {#if config[TIMER_UNIT_MAP.HOUR]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.HOUR)}
+      value={config[TIMER_UNIT_MAP.HOUR].value}
+      showSeparator={getShowSeparator(TIMER_UNIT_MAP.HOUR)}
+      subText={showSubText ? TIMER_UNIT_MAP.HOUR : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.HOUR)}
+    />
+  {/if}
 
-  <DigitalItem
-    show={config[TIMER_UNIT_MAP.MINUTE]}
-    color={getColor(TIMER_UNIT_MAP.MINUTE)}
-    value={getValue(TIMER_UNIT_MAP.MINUTE)}
-    showSeparator={getShowSeparator(TIMER_UNIT_MAP.MINUTE)}
-    subText={showSubText ? TIMER_UNIT_MAP.MINUTE : ''}
-    subTextColor={getSubTextColor(TIMER_UNIT_MAP.MINUTE)}
-  />
+  {#if config[TIMER_UNIT_MAP.MINUTE]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.MINUTE)}
+      value={config[TIMER_UNIT_MAP.MINUTE].value}
+      showSeparator={getShowSeparator(TIMER_UNIT_MAP.MINUTE)}
+      subText={showSubText ? TIMER_UNIT_MAP.MINUTE : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.MINUTE)}
+    />
+  {/if}
 
-  <DigitalItem
-    show={config[TIMER_UNIT_MAP.SECOND]}
-    color={getColor(TIMER_UNIT_MAP.SECOND)}
-    value={getValue(TIMER_UNIT_MAP.SECOND)}
-    subText={showSubText ? TIMER_UNIT_MAP.SECOND : ''}
-    subTextColor={getSubTextColor(TIMER_UNIT_MAP.SECOND)}
-  />
+  {#if config[TIMER_UNIT_MAP.SECOND]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.SECOND)}
+      value={config[TIMER_UNIT_MAP.SECOND].value}
+      subText={showSubText ? TIMER_UNIT_MAP.SECOND : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.SECOND)}
+    />
+  {/if}
 </section>
 
 <style>
