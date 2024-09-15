@@ -93,10 +93,6 @@
   margin: 20px 0;
 }
 
-.reg-exp_body textarea {
-  min-height: 300px;
-}
-
 .reg-exp_area__title {
   margin-bottom: 10px;
 }

@@ -13,7 +13,10 @@
       class='timer_main-text'
       style={`color: ${color}`}
     >{value}</p>
-    <p class='timer_sub-text' style={`color: ${subTextColor}`}>{subText}</p>
+
+    {#if subText}
+      <p class='timer_sub-text' style={`color: ${subTextColor}`}>{subText}</p>
+    {/if}
   </div>
 
   {#if showSeparator}

@@ -2,29 +2,33 @@
   import { onMount } from 'svelte';
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
+  import StaticDigitalClock from '../../../../components/timer/static-digital-version/index.svelte';
   import { TIMER, TOOL_TIMER_ID } from '../../../../constant/tools';
   import { MONTH_NAME_MAP } from '../../../../constant/timer/month';
   import { DAY_NAME_MAP } from '../../../../constant/timer/day';
   import { prezero } from '../../../../utils/number';
   import { loop } from '../../../../utils/browser';
+  import { TIMER_UNIT_MAP } from '../../../../constant/timer';
 
   $: year = '';
   $: monthDate = '';
   $: day = '';
-  $: hour = '';
-  $: minute = '';
-  $: second = '';
+
+  $: clockConfig = {};
 
   onMount(() => {
     const updateClock = () => {
       const d = new Date();
 
       year = String(d.getFullYear());
-      monthDate = MONTH_NAME_MAP[d.getMonth()],
+      monthDate = `${MONTH_NAME_MAP[d.getMonth()]} ${prezero(d.getDate())}`,
       day = DAY_NAME_MAP[d.getDay()],
-      hour = prezero(d.getHours());
-      minute = prezero(d.getMinutes());
-      second = prezero(d.getSeconds());
+
+      clockConfig = {
+        [TIMER_UNIT_MAP.HOUR]: { value: prezero(d.getHours()) },
+        [TIMER_UNIT_MAP.MINUTE]: { value: prezero(d.getMinutes()) },
+        [TIMER_UNIT_MAP.SECOND]: { value: prezero(d.getSeconds()) },
+      };
 
       loop(updateClock);
     }
@@ -39,13 +43,12 @@
     toolsList={TIMER}
   >
     <section class='tool-panel'>
-      <div class='wrapper'>
+      <div>
         <div class='part-wrapper time-wrapper'>
-          <h1 class='hour'>{hour}</h1>
-          <h1 class='separator'>:</h1>
-          <h1 class='minute'>{minute}</h1>
-          <h1 class='separator'>:</h1>
-          <h1 class='second'>{second}</h1>
+          <StaticDigitalClock
+            config={clockConfig}
+            showSubText={false}
+          />
         </div>
 
         <div class='part-wrapper date-wrapper'>
@@ -61,18 +64,10 @@
 </Layout>
 
 <style>
-.wrapper {
-  padding: 40px 20px 20px;
-}
-
 .part-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.part-wrapper h1 {
-  font-size: 150px;
 }
 
 .part-wrapper h3 {
