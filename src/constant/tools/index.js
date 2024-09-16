@@ -329,25 +329,21 @@ export const PURE_TOOLS = [
     id: CATEGORY.PROGRAMMING,
     text: stringCaseTransform(CATEGORY.PROGRAMMING),
     list: PROGRAMMING,
-    isWIP: true,
   },
   {
     id: CATEGORY.CODEC,
     text: stringCaseTransform(CATEGORY.CODEC),
     list: CODEC,
-    isWIP: true,
   },
   {
     id: CATEGORY.VALIDATOR,
     text: stringCaseTransform(CATEGORY.VALIDATOR),
     list: VALIDATOR,
-    isWIP: true,
   },
   {
     id: CATEGORY.TIMER,
     text: stringCaseTransform(CATEGORY.TIMER),
     list: TIMER,
-    isWIP: true,
   },
 ];
 
@@ -362,7 +358,6 @@ const getAllTab = () => {
     list: [].concat(...PURE_TOOLS.map(tab => {
       return tab.list.slice(0, avgCount);
     })).slice(0, maxCount),
-    isWIP: true
   }
 }
 
