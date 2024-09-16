@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont-header"; /* Project id 4663346 */
-  src: url('iconfont.woff2?t=1724659463835') format('woff2'),
-       url('iconfont.woff?t=1724659463835') format('woff'),
-       url('iconfont.ttf?t=1724659463835') format('truetype');
+  src: url('iconfont.woff2?t=1726477287818') format('woff2'),
+       url('iconfont.woff?t=1726477287818') format('woff'),
+       url('iconfont.ttf?t=1726477287818') format('truetype');
 }
 
 .iconfont-header {
@@ -15,10 +15,6 @@
 
 .icon-header-share:before {
   content: "\e6f3";
-}
-
-.icon-header-search:before {
-  content: "\e612";
 }
 
 .icon-header-person:before {

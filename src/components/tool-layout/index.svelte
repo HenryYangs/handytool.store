@@ -1,6 +1,7 @@
 <script>
   import { getCurrentTool } from '../../utils/tool';
   import ToolCard from '../tool-card/index.svelte';
+  import TitleDesc from '../title-desc/index.svelte';
 
   export let id;
   export let toolsList = [];
@@ -13,11 +14,7 @@
 
 <main class='tool-layout-wrapper common-background'>
   <div class='container-fluid container-biz'>
-    <h2 class='title'>{tool.text}</h2>
-    
-    {#if tool.description}
-      <p class='description'>{tool.description}</p>
-    {/if}
+    <TitleDesc title={tool.text} description={tool.description} />
 
     <div class='content'>
       <slot />
@@ -44,17 +41,6 @@
 <style>
 .tool-layout-wrapper {
   padding: 50px 0;
-}
-
-.title {
-  text-align: center;
-  font-weight: bold;
-}
-
-.description {
-  margin: 15px 0 0;
-  color: #ADBBDA;
-  text-align: center;
 }
 
 .content {

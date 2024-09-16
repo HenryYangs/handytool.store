@@ -18,6 +18,10 @@
     id={TOOL_TIMER_ID.COUNT_TIMER}
     toolsList={TIMER}
   >
-    <Counter onTimeUpdate={updateClock} initDate={`${now.getFullYear() - 10}-${prezero(now.getMonth())}-${prezero(now.getDate())}`} />
+    <Counter
+      initName='Count Timer'
+      onTimeUpdate={updateClock}
+      initDate={`${now.getFullYear() - 10}-${prezero(now.getMonth())}-${prezero(now.getDate())}`}
+    />
   </ToolLayout>
 </Layout>

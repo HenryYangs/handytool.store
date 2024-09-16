@@ -3,7 +3,7 @@
   import { FULL_TOOLS } from '../../../constant/tools';
   import { processUrl } from '../../../utils/url';
   import Tab from './components/tab/index.svelte';
-  import ToolList from './components/tool-list/index.svelte';
+  import ToolCardList from '../../tool-card-list/index.svelte';
 
   let tabIdx = 0;
   $: curTabItem = FULL_TOOLS[tabIdx];
@@ -41,7 +41,8 @@
         onTabClick={onTabClick}
       />
 
-      <ToolList tabIdx={tabIdx} />
+      <!-- TODO get random tools -->
+       <ToolCardList list={FULL_TOOLS[tabIdx].list.slice(0, 12)} style='margin-top: 30px;' />
       
       <div class='footer-btn'>
         <a class='btn btn-primary redirect-to-list' href={processUrl(curTabItem.isWIP, `/tool/${curTabItem.id}`)}>{allBtnText}</a>

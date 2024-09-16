@@ -31,7 +31,7 @@
   })
 </script>
 
-<i class='iconfont icon-action-copy action-copy' id={id}></i>
+<i class='iconfont-action icon-action-copy action-copy' id={id}></i>
 
 <style>
 .action-copy {

@@ -6,9 +6,10 @@
   import { prezero } from '../../../utils/number';
 
   export let initDate = '';
+  export let initName = '';
   export let onTimeUpdate = (timestamp, units, callback) => {};
 
-  $: name = 'Countdown Timer';
+  $: name = '';
   
   $: selectorDate = '';
 
@@ -113,6 +114,7 @@
   };
 
   onMount(() => {
+    name = initName;
     selectorDate = initDate;
     onDateTimeChange();
   });

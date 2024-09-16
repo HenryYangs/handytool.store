@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4679184 */
-  src: url('iconfont.woff2?t=1725900488809') format('woff2'),
-       url('iconfont.woff?t=1725900488809') format('woff'),
-       url('iconfont.ttf?t=1725900488809') format('truetype');
+  font-family: "iconfont-action"; /* Project id 4679184 */
+  src: url('iconfont.woff2?t=1726477503132') format('woff2'),
+       url('iconfont.woff?t=1726477503132') format('woff'),
+       url('iconfont.ttf?t=1726477503132') format('truetype');
 }
 
-.iconfont {
-  font-family: "iconfont" !important;
+.iconfont-action {
+  font-family: "iconfont-action" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;

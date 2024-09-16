@@ -49,7 +49,7 @@
           <input class='form-control input-search' placeholder="Search" />
 
           <button class='button btn-search' type='submit'>
-            <i class='iconfont-header icon-header-search'></i>
+            <i class='iconfont-common icon-common-search'></i>
           </button>
         </form>
 

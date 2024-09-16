@@ -324,7 +324,6 @@ export const PURE_TOOLS = [
     id: CATEGORY.CONVERTOR,
     text: stringCaseTransform(CATEGORY.CONVERTOR),
     list: CONVERTOR,
-    isWIP: true,
   },
   {
     id: CATEGORY.PROGRAMMING,
