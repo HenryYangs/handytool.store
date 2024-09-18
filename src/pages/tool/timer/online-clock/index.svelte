@@ -14,7 +14,11 @@
   $: monthDate = '';
   $: day = '';
 
-  $: clockConfig = {};
+  $: clockConfig = {
+    [TIMER_UNIT_MAP.HOUR]: { value: prezero(0) },
+    [TIMER_UNIT_MAP.MINUTE]: { value: prezero(0) },
+    [TIMER_UNIT_MAP.SECOND]: { value: prezero(0), isLast: true },
+  };
 
   onMount(() => {
     const updateClock = () => {
@@ -24,11 +28,9 @@
       monthDate = `${MONTH_NAME_MAP[d.getMonth()]} ${prezero(d.getDate())}`,
       day = DAY_NAME_MAP[d.getDay()],
 
-      clockConfig = {
-        [TIMER_UNIT_MAP.HOUR]: { value: prezero(d.getHours()) },
-        [TIMER_UNIT_MAP.MINUTE]: { value: prezero(d.getMinutes()) },
-        [TIMER_UNIT_MAP.SECOND]: { value: prezero(d.getSeconds()) },
-      };
+      clockConfig[TIMER_UNIT_MAP.HOUR].value = prezero(d.getHours());
+      clockConfig[TIMER_UNIT_MAP.MINUTE].value = prezero(d.getMinutes());
+      clockConfig[TIMER_UNIT_MAP.SECOND].value = prezero(d.getSeconds());
 
       loop(updateClock);
     }
