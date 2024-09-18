@@ -15,7 +15,8 @@ export const TIMER_UNIT_MAP = {
   DAY: 'day',
   HOUR: 'hour',
   MINUTE: 'minute',
-  SECOND: 'second'
+  SECOND: 'second',
+  MILLISECOND: 'ms',
 };
 
 export const TIMER_UNIT_LIST = Object.values(TIMER_UNIT_MAP);

@@ -9,6 +9,7 @@ export const calcDiffTime = (diff, ...units) => {
   let hour = 0;
   let minute = 0;
   let second = 0;
+  let millisecond = 0;
 
   if (!diff) {
     return {
@@ -19,6 +20,7 @@ export const calcDiffTime = (diff, ...units) => {
       [TIMER_UNIT_MAP.HOUR]: hour,
       [TIMER_UNIT_MAP.MINUTE]: minute,
       [TIMER_UNIT_MAP.SECOND]: second,
+      [TIMER_UNIT_MAP.MILLISECOND]: millisecond,
     };
   }
 
@@ -62,6 +64,11 @@ export const calcDiffTime = (diff, ...units) => {
   
   if (unitsMap[TIMER_UNIT_MAP.SECOND]) {
     second = Math.floor(rest / MS_OF_ONE_SECOND);
+    rest %= MS_OF_ONE_SECOND;
+  }
+
+  if (unitsMap[TIMER_UNIT_MAP.MILLISECOND]) {
+    millisecond = Number((rest / MS_OF_ONE_SECOND).toFixed(2).match(/\.(\d{2})$/)[1]);
   }
 
   return {
@@ -72,6 +79,7 @@ export const calcDiffTime = (diff, ...units) => {
     [TIMER_UNIT_MAP.HOUR]: hour,
     [TIMER_UNIT_MAP.MINUTE]: minute,
     [TIMER_UNIT_MAP.SECOND]: second,
+    [TIMER_UNIT_MAP.MILLISECOND]: millisecond,
   };
 };
 
@@ -93,6 +101,7 @@ export const onUpdateClock = ({ targetTimestamp, units, callback, timeType }) =>
       [TIMER_UNIT_MAP.HOUR]: 0,
       [TIMER_UNIT_MAP.MINUTE]: 0,
       [TIMER_UNIT_MAP.SECOND]: 0,
+      [TIMER_UNIT_MAP.MILLISECOND]: 0,
     }, { isEnd: true });
   } else {
     isContinue = callback && callback(duration, { isEnd: false });

@@ -96,8 +96,18 @@
     <DigitalItem
       color={getColor(TIMER_UNIT_MAP.SECOND)}
       value={config[TIMER_UNIT_MAP.SECOND].value}
+      showSeparator={getShowSeparator(TIMER_UNIT_MAP.SECOND)}
       subText={showSubText ? TIMER_UNIT_MAP.SECOND : ''}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.SECOND)}
+    />
+  {/if}
+
+  {#if config[TIMER_UNIT_MAP.MILLISECOND]}
+    <DigitalItem
+      color={getColor(TIMER_UNIT_MAP.MILLISECOND)}
+      value={config[TIMER_UNIT_MAP.MILLISECOND].value}
+      subText={showSubText ? TIMER_UNIT_MAP.MILLISECOND : ''}
+      subTextColor={getSubTextColor(TIMER_UNIT_MAP.MILLISECOND)}
     />
   {/if}
 </section>

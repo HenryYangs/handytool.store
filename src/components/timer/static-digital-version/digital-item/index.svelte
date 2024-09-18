@@ -25,6 +25,7 @@
 .timer_main-text {
   font-size: 120px;
   font-weight: 500;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .timer_sub-text {

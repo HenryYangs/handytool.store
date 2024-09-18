@@ -306,7 +306,7 @@ export const TIMER = [
     icon: 'chronograph',
     color: COLOR.PURPLE,
     iconTheme: THEME.PURPLE,
-    isWIP: true,
+    description: 'Count elapsed time in milliseconds',
   },
   {
     id: TOOL_TIMER_ID.ALARM,

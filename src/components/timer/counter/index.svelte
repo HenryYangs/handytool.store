@@ -176,7 +176,7 @@
         <label for='units' class='form-label'>Units:</label>
 
         <div class='unit-list-wrapper'>
-          {#each TIMER_UNIT_LIST as unit}
+          {#each TIMER_UNIT_LIST.filter(unit => unit !== TIMER_UNIT_MAP.MILLISECOND) as unit}
             <div class='form-check'>
               <input class='form-check-input' type='checkbox' id={`unit_${unit}`} bind:group={units} value={unit}>
               <label class='form-check-label' for={`unit_${unit}`}>

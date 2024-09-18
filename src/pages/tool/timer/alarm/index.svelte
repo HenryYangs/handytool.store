@@ -17,7 +17,7 @@
   $: config = {
     [TIMER_UNIT_MAP.HOUR]: { value: prezero(0) },
     [TIMER_UNIT_MAP.MINUTE]: { value: prezero(3) },
-    [TIMER_UNIT_MAP.SECOND]: { value: prezero(0) },
+    [TIMER_UNIT_MAP.SECOND]: { value: prezero(0), isLast: true },
   };
   $: hour = 0;
   $: minute = 3;
@@ -29,11 +29,9 @@
     hour = alarm[TIMER_UNIT_MAP.HOUR] || 0;
     minute = alarm[TIMER_UNIT_MAP.MINUTE] || 0;
     second = alarm[TIMER_UNIT_MAP.SECOND] || 0;
-    config = {
-      [TIMER_UNIT_MAP.HOUR]: { value: prezero(hour) },
-      [TIMER_UNIT_MAP.MINUTE]: { value: prezero(minute) },
-      [TIMER_UNIT_MAP.SECOND]: { value: prezero(second) },
-    };
+    config[TIMER_UNIT_MAP.HOUR].value = prezero(hour);
+    config[TIMER_UNIT_MAP.MINUTE].value = prezero(minute);
+    config[TIMER_UNIT_MAP.SECOND].value = prezero(second);
   };
 
   const onStart = () => {
@@ -52,9 +50,9 @@
         targetTimestamp,
         units: [TIMER_UNIT_MAP.HOUR, TIMER_UNIT_MAP.MINUTE, TIMER_UNIT_MAP.SECOND],
         callback: (duration, { isEnd }) => {
-          config[TIMER_UNIT_MAP.HOUR].value = prezero(duration.hour);
-          config[TIMER_UNIT_MAP.MINUTE].value = prezero(duration.minute);
-          config[TIMER_UNIT_MAP.SECOND].value = prezero(duration.second);
+          config[TIMER_UNIT_MAP.HOUR].value = prezero(duration[TIMER_UNIT_MAP.HOUR]);
+          config[TIMER_UNIT_MAP.MINUTE].value = prezero(duration[TIMER_UNIT_MAP.MINUTE]);
+          config[TIMER_UNIT_MAP.SECOND].value = prezero(duration[TIMER_UNIT_MAP.SECOND]);
 
           if (isEnd) {
             alert('time up');
@@ -73,7 +71,7 @@
     config = {
       [TIMER_UNIT_MAP.HOUR]: { value: prezero(0) },
       [TIMER_UNIT_MAP.MINUTE]: { value: prezero(3) },
-      [TIMER_UNIT_MAP.SECOND]: { value: prezero(0) },
+      [TIMER_UNIT_MAP.SECOND]: { value: prezero(0), isLast: true },
     };
     hour = 0;
     minute = 3;
@@ -83,11 +81,9 @@
   };
 
   const onSetAlarm = () => {
-    config = {
-      [TIMER_UNIT_MAP.HOUR]: { value: prezero(hour) },
-      [TIMER_UNIT_MAP.MINUTE]: { value: prezero(minute) },
-      [TIMER_UNIT_MAP.SECOND]: { value: prezero(second) },
-    };
+    config[TIMER_UNIT_MAP.HOUR].value = prezero(hour);
+    config[TIMER_UNIT_MAP.MINUTE].value = prezero(minute);
+    config[TIMER_UNIT_MAP.SECOND].value = prezero(second);
     isDuration = false;
     isPause = false;
   };
