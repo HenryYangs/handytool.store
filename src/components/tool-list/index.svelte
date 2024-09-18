@@ -7,19 +7,34 @@
   export let list = [];
 
   $: renderList = list;
+  $: searchValue = '';
+
+  const onSearch = (event) => {
+    const lowerCase = searchValue.toLowerCase();
+
+    renderList = list.filter(item => {
+      return item.text.toLowerCase().includes(lowerCase) || item.category.toLowerCase().includes(lowerCase);
+    });
+  };
+  const onSearchKeypress = (event) => {
+    if(event.keyCode == 13) { // enter
+      onSearch();
+      event.preventDefault();
+    }
+  };
 </script>
 
 <main class='wrapper common-background'>
   <div class='container-fluid container-biz inner-wrapper'>
     <TitleDesc title={title} description={description} />
 
-    <div class='search-wrapper'>
+    <form class='search-wrapper'>
       <i class='iconfont-common icon-common-search icon-search'></i>
       
-      <input class='search-input' placeholder='Search' type='text' />
+      <input class='search-input' placeholder='Search' type='text' bind:value={searchValue} on:keypress={onSearchKeypress} />
       
-      <button class='btn-search'>Search</button>
-    </div>
+      <button class='btn-search' type='button' on:click={onSearch}>Search</button>
+    </form>
 
     <ToolCardList list={renderList} style='margin-top: 50px;' />
   </div>
