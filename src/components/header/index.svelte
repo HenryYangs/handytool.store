@@ -6,6 +6,19 @@
   import { HEADER_ENTRIES } from './config';
   
   let y;
+
+  $: searchValue = '';
+
+  const onSearch = () => {
+    location.href = `${location.protocol}//${location.host}/tool/all?q=${searchValue}`;
+  }
+
+  const onSearchKeyPress = (event) => {
+    if(event.keyCode == 13) { // enter
+      onSearch();
+      event.preventDefault();
+    }
+  };
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -46,9 +59,9 @@
         <div class='vertical-split'></div>
 
         <form class='search-form'>
-          <input class='form-control input-search' placeholder="Search" />
+          <input class='form-control input-search' placeholder="Search" bind:value={searchValue} on:keypress={onSearchKeyPress} />
 
-          <button class='button btn-search' type='submit'>
+          <button class='button btn-search' type='button' on:click={onSearch}>
             <i class='iconfont-common icon-common-search'></i>
           </button>
         </form>

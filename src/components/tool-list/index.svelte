@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import TitleDesc from '../title-desc/index.svelte';
   import ToolCardList from '../tool-card-list/index.svelte';
 
@@ -9,19 +10,30 @@
   $: renderList = list;
   $: searchValue = '';
 
-  const onSearch = (event) => {
+  const onSearch = () => {
     const lowerCase = searchValue.toLowerCase();
 
     renderList = list.filter(item => {
       return item.text.toLowerCase().includes(lowerCase) || item.category.toLowerCase().includes(lowerCase);
     });
   };
-  const onSearchKeypress = (event) => {
+  const onSearchKeyPress = (event) => {
     if(event.keyCode == 13) { // enter
       onSearch();
       event.preventDefault();
     }
   };
+
+  onMount(() => {
+    const query = location.search.replace('?', '').split('&').find(item => item.startsWith('q='));
+
+    if (query) {
+      const [, value] = query.split('=');
+
+      searchValue = value;
+      onSearch();
+    }
+  });
 </script>
 
 <main class='wrapper common-background'>
@@ -31,7 +43,7 @@
     <form class='search-wrapper'>
       <i class='iconfont-common icon-common-search icon-search'></i>
       
-      <input class='search-input' placeholder='Search' type='text' bind:value={searchValue} on:keypress={onSearchKeypress} />
+      <input class='search-input' placeholder='Search' type='text' bind:value={searchValue} on:keypress={onSearchKeyPress} />
       
       <button class='btn-search' type='button' on:click={onSearch}>Search</button>
     </form>
