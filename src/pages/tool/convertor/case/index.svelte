@@ -3,7 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundPanel from '../../../../components/playground-panel/index.svelte';
   import { CONVERTOR, TOOL_CONVERTOR_ID } from '../../../../constant/tools';
-  import { CONVERTOR_CASE } from './config';
+  import { CONVERTOR_CASE } from './config/index.js';
 
   $: value = '';
 

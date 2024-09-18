@@ -1,0 +1,17 @@
+{
+  "title": "JSON Validator | Handytool.store",
+  "meta": [
+    {
+      "name": "keywords",
+      "content": "json validator"
+    },
+    {
+      "name": "description",
+      "content": "validate you json"
+    },
+    {
+      "property": "og:url",
+      "content": "http://www.handytool.store/tool/validator/json"
+    }
+  ]
+}

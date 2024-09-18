@@ -1,0 +1,17 @@
+{
+  "title": "Email Validator | Handytool.store",
+  "meta": [
+    {
+      "name": "keywords",
+      "content": "email validator"
+    },
+    {
+      "name": "description",
+      "content": "validator your email address"
+    },
+    {
+      "property": "og:url",
+      "content": "http://www.handytool.store/tool/validator/email"
+    }
+  ]
+}
