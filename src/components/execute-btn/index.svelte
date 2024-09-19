@@ -25,7 +25,7 @@
 }
 
 .action-btn:hover {
-  background-color: #3D52A0;
-  border-color: #3D52A0;
+  background-color: var(--theme-main-color);
+  border-color: var(--theme-main-color);
 }  
 </style>

@@ -59,7 +59,7 @@
   margin-top: 15px;
   font-size: 18px;
   font-weight: 400;
-  color: #ADBBDA;
+  color: var(--theme-secondary-dark-color);
 }
 
 .other-tools-list {

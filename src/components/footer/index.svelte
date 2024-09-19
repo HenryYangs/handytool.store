@@ -34,7 +34,7 @@
 <style>
 footer {
   margin-top: 35px;
-  color: #ADBBDA;
+  color: var(--theme-secondary-dark-color);
 }
 
 .footer {

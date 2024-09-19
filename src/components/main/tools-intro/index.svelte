@@ -76,8 +76,8 @@
 .redirect-to-list {
   padding: 17px 48px;
   background-color: transparent;
-  border-color: #3D52A0;
-  color: #3D52A0;
+  border-color: var(--theme-main-color);
+  color: var(--theme-main-color);
   box-shadow: 0 5px 10px rgba(61, 82, 160, 0.1);
   font-size: 14px;
   font-weight: 600;
@@ -85,7 +85,7 @@
 }
 
 .redirect-to-list:hover {
-  background-color: #3D52A0;
-  color: #FFF;
+  background-color: var(--theme-main-color);
+  color: var(--white);
 }
 </style>

@@ -45,6 +45,6 @@
 }
 
 .redirect:hover {
-  color: #3D52A0;
+  color: var(--theme-main-color);
 }
 </style>

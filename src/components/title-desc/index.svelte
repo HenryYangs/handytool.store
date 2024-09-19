@@ -17,7 +17,7 @@ export let description = '';
 
 .description {
   margin: 15px 0 0;
-  color: #ADBBDA;
+  color: var(--theme-secondary-dark-color);
   text-align: center;
 }
 </style>

@@ -89,16 +89,16 @@
   height: 40px;
   border: none;
   border-radius: 20px;
-  color: #FFF;
-  background-color: #3D52A0;
+  color: var(--white);
+  background-color: var(--theme-main-color);
 }
 
 .btn-send:hover {
-  background-color: #7091E6;
+  background-color: var(--theme-secondary-color);
 }
 
 .mini-title {
-  color: #3D52A0;
+  color: var(--theme-main-color);
 }
 
 .contact-img {

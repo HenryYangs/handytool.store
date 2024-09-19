@@ -27,7 +27,7 @@
   text-align: center;
   padding: 12px 6px;
   border-radius: 99px;
-  background-color: #FFF;
+  background-color: var(--white);
   box-shadow: 3px 10px 40px rgba(24, 29, 32, 0.05);
 }
 
@@ -42,7 +42,7 @@
 
 .tab-item.active {
   border-radius: 99px;
-  background-color: #3D52A0;
-  color: #FFF;
+  background-color: var(--theme-main-color);
+  color: var(--white);
 }
 </style>

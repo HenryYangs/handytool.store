@@ -37,6 +37,16 @@
 @import './icon/common/iconfont.css';
 @import './icon/tools/iconfont.css';
 
+:root {
+  --white: #FFFFFF;
+  --title-color: #333333;
+  --theme-main-color: #3D52A0;
+  --theme-secondary-color: #7091E6;
+  --theme-main-dark-color: #8697C4;
+  --theme-secondary-dark-color: #ADBBDA;
+  --theme-main-light-color: #EDE8F5;
+}
+
 * {
   font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans','Liberation Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji'
 }

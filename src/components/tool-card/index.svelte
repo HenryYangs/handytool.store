@@ -37,8 +37,8 @@
 .tool-item_inner {
   padding: 16px 44px 16px 16px;
   border-radius: 12px;
-  background-color: #FFF;
-  color: #ADBBDA;
+  background-color: var(--white);
+  color: var(--theme-secondary-dark-color);
 }
 
 .tool-item_body {
@@ -69,7 +69,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #333;
+  color: var(--title-color);
   font-weight: 700;
 }
 

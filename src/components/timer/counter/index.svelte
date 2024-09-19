@@ -243,7 +243,7 @@
 .timer-area {
   padding: 15px;
   border: 1px solid rgba(173, 187, 218, 0.3);
-  background-color: #FFF;
+  background-color: var(--white);
 }
 
 .timer-area header h2 {

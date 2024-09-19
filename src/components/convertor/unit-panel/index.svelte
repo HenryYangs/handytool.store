@@ -65,7 +65,7 @@
 .from-unit-select {
   width: 100%;
   margin-top: 10px;
-  background-color: #FFF;
+  background-color: var(--white);
   max-height: 300px;
   overflow-y: scroll;
   padding: 10px 15px;
@@ -85,8 +85,8 @@
 }
 
 .from-unit-btn.active {
-  background-color: #3D52A0;
-  color: #FFF;
+  background-color: var(--theme-main-color);
+  color: var(--white);
 }
 
 .unit-row {

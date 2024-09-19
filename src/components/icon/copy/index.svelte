@@ -39,6 +39,6 @@
 }
 
 .action-copy:hover {
-  color: #7091E6;
+  color: var(--theme-secondary-color);
 }
 </style>

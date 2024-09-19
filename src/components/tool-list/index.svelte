@@ -74,7 +74,7 @@
 .search-input {
   width: 100%;
   height: 64px;
-  background: #FFFFFF;
+  background: var(--white);
   box-shadow: 3px 10px 40px rgba(24, 29, 32, 0.05);
   border-radius: 99px;
   border: none;
@@ -91,7 +91,7 @@
   top: 14px;
   left: 18px;
   font-size: 24px;
-  color: #7091E6;
+  color: var(--theme-secondary-color);
 }
 
 .btn-search {
@@ -103,14 +103,14 @@
   box-shadow: 0 5px 10px rgba(26, 143, 227, 0.1);
   border-radius: 99px;
   padding: 12px 26.5px;
-  color: #FFF;
+  color: var(--white);
   border: none;
   transition: all .3s ease;
 }
 
 .btn-search:hover,
 .btn-search:active {
-  background-color: #3D52A0;
-  color: #FFF;
+  background-color: var(--theme-main-color);
+  color: var(--white);
 }
 </style>

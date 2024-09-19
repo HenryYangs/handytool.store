@@ -75,7 +75,7 @@
 <style>
 .header {
   padding: 16px 0;
-  background-color: #FFF;
+  background-color: var(--white);
 }
 
 .sticky {
@@ -117,7 +117,7 @@
 
 .vertical-split {
   height: 40px;
-  border-right: 1px solid #ADBBDA;
+  border-right: 1px solid var(--theme-secondary-dark-color);
 }
 
 .extra-icon {
@@ -127,22 +127,22 @@
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  border: 1px solid #ADBBDA;
+  border: 1px solid var(--theme-secondary-dark-color);
   background-color: transparent;
   transition: all .3s linear;
 }
 
 .extra-icon:hover {
-  background-color: #ADBBDA;
+  background-color: var(--theme-secondary-dark-color);
 }
 
 .extra-icon:hover i {
-  color: #FFF;
+  color: var(--white);
 }
 
 .extra-icon i {
   font-size: 20px;
-  color: #ADBBDA;
+  color: var(--theme-secondary-dark-color);
 }
 
 .search-form {
@@ -152,7 +152,7 @@
 .input-search {
   height: 40px;
   padding-left: 40px;
-  background-color: #EDE8F5;
+  background-color: var(--theme-main-light-color);
   border: none;
   font-size: 10px;
 }
