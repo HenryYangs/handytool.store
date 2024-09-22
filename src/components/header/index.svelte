@@ -2,16 +2,29 @@
   import logo from '../../assets/images/logo.png';
   import { ROUTER } from '../../constant/router';
   import { processUrl } from '../../utils/url';
-  import './assets/icon/iconfont.css';
   import { HEADER_ENTRIES } from './config';
+  import ExecuteBtn from '../execute-btn/index.svelte';
+  import Auth from '../auth/index.svelte';
+  import '../../assets/icon/header/iconfont.css';
+  import Dropdown from '../dropdown/index.svelte';
+  import http from '../../utils/http';
+  import { STORAGE_LOGIN_INFO } from '../../constant/storage';
+  import { parseJSON } from '../../utils/object';
+  import { onMount } from 'svelte';
   
   let y;
 
   $: searchValue = '';
+  $: showAuth = false;
+  $: isLogin = false;
+  $: userInfo = (() => {
+    return parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO));
+  })();
+  $: username = '';
 
   const onSearch = () => {
     location.href = `${location.protocol}//${location.host}/tool/all?q=${searchValue}`;
-  }
+  };
 
   const onSearchKeyPress = (event) => {
     if(event.keyCode == 13) { // enter
@@ -19,6 +32,52 @@
       event.preventDefault();
     }
   };
+
+  const onAuthBtnClick = () => {
+    showAuth = true;
+  };
+
+  const onCloseAuth = () => {
+    showAuth = false;
+  };
+
+  const onLoginSuccess = (response) => {
+    onCloseAuth();
+    username = response.username;
+    isLogin = true;
+  };
+
+  const onLogout = () => {
+    http({
+      url: '/logout',
+      method: 'POST',
+      data: {
+        id: parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO)).id,
+      },
+    }).then(() => {
+      isLogin = false;
+      localStorage.removeItem(STORAGE_LOGIN_INFO);
+    });
+  };
+
+  onMount(() => {
+    if (userInfo && userInfo.token) {
+      http({
+        url: '/validate-token',
+        method: 'GET'
+      }, {
+        showErrorToast: false
+      })
+        .then(() => {
+          username = userInfo.username;
+          isLogin = true;
+        })
+        .catch(() => {
+          isLogin = false;
+          localStorage.removeItem(STORAGE_LOGIN_INFO);
+        });
+    }
+  })
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -48,7 +107,7 @@
       </div>
 
       <div class='extra col-5 d-flex justify-content-end align-items-center'>
-        <button class='extra-icon'>
+        <!-- <button class='extra-icon'>
           <i class='iconfont-header icon-header-light'></i>
         </button>
 
@@ -56,21 +115,39 @@
           <i class='iconfont-header icon-header-share'></i>
         </button>
 
-        <div class='vertical-split'></div>
+        <div class='vertical-split'></div> -->
 
         <form class='search-form'>
-          <input class='form-control input-search' placeholder="Search" bind:value={searchValue} on:keypress={onSearchKeyPress} />
+          <input class='form-control input-search' placeholder='Search' bind:value={searchValue} on:keypress={onSearchKeyPress} />
 
           <button class='button btn-search' type='button' on:click={onSearch}>
             <i class='iconfont-common icon-common-search'></i>
           </button>
         </form>
 
-        <button class='btn btn-primary'>Sign In</button>
+        {#if isLogin}
+          <Dropdown
+            id='dropdown'
+            triggerText={username.slice(0, 1).toUpperCase()}
+            triggerStyle=''
+            dropdownList={[
+              {
+                text: 'Logout',
+                onClick: onLogout,
+              }
+            ]}
+          />
+        {:else}
+          <ExecuteBtn text='Sign In' onConfirm={onAuthBtnClick} />
+        {/if}
       </div>
     </div>
   </div>
 </header>
+
+{#if showAuth}
+  <Auth onClose={onCloseAuth} onLoginSuccess={onLoginSuccess} />
+{/if}
 
 <style>
 .header {
@@ -172,7 +249,7 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: var(--sticky-layer);
   }
 }
 </style>

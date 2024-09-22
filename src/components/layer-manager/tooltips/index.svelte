@@ -22,7 +22,10 @@
 
     isShow = show;
 
-    if (show === false) return;
+    if (show === false) {
+      close();
+      return;
+    }
 
     msg = message;
 

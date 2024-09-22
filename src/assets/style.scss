@@ -31,6 +31,8 @@
 @import '../node_modules/bootstrap/scss/_forms';
 @import '../node_modules/bootstrap/scss/_toasts';
 @import '../node_modules/bootstrap/scss/_close';
+@import '../node_modules/bootstrap/scss/_alert';
+@import '../node_modules/bootstrap/scss/_dropdown';
 // TODO
 @import '../node_modules/bootstrap/scss/_tables';
 
@@ -45,6 +47,11 @@
   --theme-main-dark-color: #8697C4;
   --theme-secondary-dark-color: #ADBBDA;
   --theme-main-light-color: #EDE8F5;
+  
+  --alert-layer: 1000000;
+  --mask-layer: 100000;
+  --sticky-layer: 10000;
+  --layer: 1;
 }
 
 * {

@@ -9,3 +9,13 @@ export const parseJSON = (raw) => {
 
   return result;
 };
+
+export const queryStringify = (obj) => {
+  const arr = [];
+
+  Object.keys(obj).forEach((key) => {
+    arr.push(`${key}=${obj[key]}`);
+  });
+
+  return arr.join('&');
+};

@@ -1,0 +1,29 @@
+export const CODE = {
+  REQUEST_STATUS: {
+    SUCCESS: 200,
+    CLIENT_ERROR: 400,
+    SERVER_ERROR: 500,
+  },
+  LOGIC_STATUS: {
+    SUCCESS: 0,
+    SERVER_ERROR: {
+      UNKNOWN: 50000,
+    },
+    CLIENT_ERROR: {
+      PARAMS_ERROR: 40000,
+      DUPLICATE_FIELD: 40005,
+    },
+    BIZ_ERROR: {
+      AUTH_FAIL: 49999,
+      LOGOUT_FAIL: 49998,
+    },
+  },
+};
+
+export const MESSAGE = {
+  [CODE.LOGIC_STATUS.SERVER_ERROR.UNKNOWN]: "Unknown Server Error",
+  [CODE.LOGIC_STATUS.CLIENT_ERROR.PARAMS_ERROR]: "Api Params Error",
+  [CODE.LOGIC_STATUS.CLIENT_ERROR.DUPLICATE_FIELD]: "Duplicate Field",
+  [CODE.LOGIC_STATUS.BIZ_ERROR.AUTH_FAIL]: "Login Expired",
+  [CODE.LOGIC_STATUS.BIZ_ERROR.LOGOUT_FAIL]: "Logout Fail",
+};
