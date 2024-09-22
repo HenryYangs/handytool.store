@@ -102,9 +102,10 @@
     }
   };
 
-  const goForgetPassword = () => {
-    toggleFormType(FORM_TYPE.FORGET_PASSWORD);
-  };
+  // TODO
+  // const goForgetPassword = () => {
+  //   toggleFormType(FORM_TYPE.FORGET_PASSWORD);
+  // };
 </script>
 
 <Mask onClose={onClose}>
@@ -161,7 +162,8 @@
         </div>
       {/if}
 
-      {#if formType === FORM_TYPE.SIGN_IN}
+      <!-- TODO -->
+      <!-- {#if formType === FORM_TYPE.SIGN_IN}
         <div class='form-row form-action'>
           <div class='remember-me'>
             <input class='' type='checkbox' value='' id='rememberMe'>
@@ -172,7 +174,7 @@
 
           <button class='btn btn-link tips-btn' type='button' on:click={goForgetPassword}>Forget Password?</button>
         </div>
-      {/if}
+      {/if} -->
 
       <div class='form-row'>
         <ExecuteBtn

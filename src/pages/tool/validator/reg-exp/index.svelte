@@ -33,54 +33,56 @@
     id={TOOL_VALIDATOR_ID.REG_EXP}
     toolsList={VALIDATOR}
   >
-    <div class='reg-exp_header'>
-      <div class='reg-exp_header__main'>
-        <h6 class='reg-exp_area__title'>Regular Expression</h6>
+    <div class='tool-panel'>
+      <div class='reg-exp_header'>
+        <div class='reg-exp_header__main'>
+          <h6 class='reg-exp_area__title'>Regular Expression</h6>
 
-        <div class='reg-exp_input__wrapper input-group-sm'>
-          /
-          <input
-            type='text'
-            class='form-control reg-exp_input'
-            bind:value={regExp}
-            on:input={onInput}
-          >
-          /
+          <div class='reg-exp_input__wrapper input-group-sm'>
+            /
+            <input
+              type='text'
+              class='form-control reg-exp_input'
+              bind:value={regExp}
+              on:input={onInput}
+            >
+            /
+          </div>
+        </div>
+
+        <div class='reg-exp_flags'>
+          <h6 class='reg-exp_area__title'>Flags</h6>
+
+          <div class='reg-exp_input__wrapper input-group-sm'>
+            <input
+              type='text'
+              class='form-control'
+              placeholder='ig'
+              bind:value={flags}
+              on:input={onInput}
+            >
+          </div>
         </div>
       </div>
 
-      <div class='reg-exp_flags'>
-        <h6 class='reg-exp_area__title'>Flags</h6>
+      <div class='reg-exp_body'>
+        <h6 class='reg-exp_area__title'>Test With</h6>
 
-        <div class='reg-exp_input__wrapper input-group-sm'>
+        <div class='input-group'>
           <input
-            type='text'
             class='form-control'
-            placeholder='ig'
-            bind:value={flags}
+            bind:value={targetStr}
             on:input={onInput}
-          >
+          />
         </div>
       </div>
+
+      <ExecuteBtn text='Validate' onConfirm={onConfirm} />
+
+      {#if isValid !== null}
+        <Result isCorrect={isValid} style='margin-top: 20px;' />
+      {/if}
     </div>
-
-    <div class='reg-exp_body'>
-      <h6 class='reg-exp_area__title'>Test With</h6>
-
-      <div class='input-group'>
-        <input
-          class='form-control'
-          bind:value={targetStr}
-          on:input={onInput}
-        />
-      </div>
-    </div>
-
-    <ExecuteBtn text='Validate' onConfirm={onConfirm} />
-
-    {#if isValid !== null}
-      <Result isCorrect={isValid} style='margin-top: 20px;' />
-    {/if}
   </ToolLayout>
 </Layout>
 
