@@ -1,13 +1,15 @@
 <script>
   import { onMount } from 'svelte';
-  import { FULL_TOOLS } from '../../../constant/tools';
   import { processUrl } from '../../../utils/url';
   import Tab from './components/tab/index.svelte';
   import ToolCardList from '../../tool-card-list/index.svelte';
+  import http from '../../../utils/http';
 
   let tabIdx = 0;
-  $: curTabItem = FULL_TOOLS[tabIdx];
+  $: tabList = [];
+  $: curTabItem = tabList[tabIdx] || { id: '' };
   $: allBtnText = curTabItem.id === 'all' ? 'All Tools' : `All ${curTabItem.text} Tools`;
+
   const TAB_KEY = 'handyTool_home_tab';
 
   /**
@@ -18,12 +20,26 @@
     localStorage.setItem(TAB_KEY, String(index));
   }
 
+  const onFavorite = (id) => {
+    tabList[tabIdx].list = tabList[tabIdx].list.map(item => ({
+      ...item,
+      favorite: item.id === id ? !item.favorite : item.favorite,
+    }))
+  };
+
   onMount(() => {
-    const cache = Number(localStorage.getItem(TAB_KEY));
+    http({
+      url: '/tool-list',
+      method: 'GET'
+    }).then(response => {
+      tabList = response;
 
-    if (!cache && cache !== 0) return;
+      const cache = Number(localStorage.getItem(TAB_KEY));
 
-    onTabClick(cache);
+      if (!cache && cache !== 0) return;
+
+      onTabClick(cache);
+    });
 
     return () => {
       localStorage.removeItem(TAB_KEY);
@@ -37,12 +53,18 @@
 
     <div class='tools-entry'>
       <Tab
+        list={tabList}
         tabIdx={tabIdx}
         onTabClick={onTabClick}
       />
 
-      <!-- TODO get random tools -->
-       <ToolCardList list={FULL_TOOLS[tabIdx].list.slice(0, 12)} style='margin-top: 30px;' />
+      {#if tabList.length}
+        <ToolCardList
+          style='margin-top: 30px;'
+          list={tabList[tabIdx].list}
+          onFavorite={onFavorite}
+        />
+      {/if}
       
       <div class='footer-btn'>
         <a class='btn btn-primary redirect-to-list' href={processUrl(curTabItem.isWIP, `/tool/${curTabItem.id}`)}>{allBtnText}</a>
@@ -86,6 +108,6 @@
 
 .redirect-to-list:hover {
   background-color: var(--theme-main-color);
-  color: var(--white);
+  color: #FFF;
 }
 </style>

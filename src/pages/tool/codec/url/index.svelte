@@ -2,7 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
-  import { CODEC, TOOL_CODEC_ID } from '../../../../constant/tools';
+  import { CATEGORY, CODEC, TOOL_CODEC_ID } from '../../../../constant/tools';
 
   $: leftValue = '';
   $: rightValue = '';
@@ -25,7 +25,7 @@
 <Layout>
   <ToolLayout
     id={TOOL_CODEC_ID.URL}
-    toolsList={CODEC}
+    category={CATEGORY.CODEC}
   >
     <PlaygroundTransfer
       bind:leftValue

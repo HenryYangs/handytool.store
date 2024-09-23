@@ -2,12 +2,14 @@
   import { onMount } from 'svelte';
   import TitleDesc from '../title-desc/index.svelte';
   import ToolCardList from '../tool-card-list/index.svelte';
+  import http from '../../utils/http';
 
+  export let id = '';
   export let title = '';
   export let description = '';
-  export let list = [];
 
-  $: renderList = list;
+  let list = [];
+  $: renderList = [];
   $: searchValue = '';
 
   const onSearch = () => {
@@ -24,21 +26,41 @@
     }
   };
 
+  const onFavorite = (id) => {
+    renderList = renderList.map(item => ({
+      ...item,
+      favorite: item.id === id ? !item.favorite : item.favorite,
+    }));
+    list = list.map(item => ({
+      ...item,
+      favorite: item.id === id ? !item.favorite : item.favorite,
+    }));
+  }
+
   onMount(() => {
-    const query = location.search.replace('?', '').split('&').find(item => item.startsWith('q='));
+    http({
+      url: `/tool-list?scene=list&id=${id}`,
+      method: 'GET',
+    }).then(response => {
+      renderList = response;
+      list = response;
 
-    if (query) {
-      const [, value] = query.split('=');
-
-      searchValue = value;
-      onSearch();
-    }
+      // process search in url after api request response
+      const query = location.search.replace('?', '').split('&').find(item => item.startsWith('q='));
+  
+      if (query) {
+        const [, value] = query.split('=');
+  
+        searchValue = value;
+        onSearch();
+      }
+    });
   });
 </script>
 
 <main class='wrapper common-background'>
   <div class='container-fluid container-biz inner-wrapper'>
-    <TitleDesc title={title} description={description} />
+    <TitleDesc title={title} description={description} showStar={false} />
 
     <form class='search-wrapper'>
       <i class='iconfont-common icon-common-search icon-search'></i>
@@ -48,7 +70,11 @@
       <button class='btn-search' type='button' on:click={onSearch}>Search</button>
     </form>
 
-    <ToolCardList list={renderList} style='margin-top: 50px;' />
+    <ToolCardList
+      style='margin-top: 50px;'
+      list={renderList}
+      onFavorite={onFavorite}
+    />
   </div>
 </main>
 

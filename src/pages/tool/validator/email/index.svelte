@@ -3,7 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import ValidateResult from '../../../../components/validator/result/index.svelte';
-  import { TOOL_VALIDATOR_ID, VALIDATOR } from '../../../../constant/tools';
+  import { CATEGORY, TOOL_VALIDATOR_ID } from '../../../../constant/tools';
 
   const regExp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
@@ -38,7 +38,7 @@
 <Layout>
   <ToolLayout
     id={TOOL_VALIDATOR_ID.EMAIL}
-    toolsList={VALIDATOR}
+    category={CATEGORY.VALIDATOR}
   >
     <PlaygroundArea
       bind:value

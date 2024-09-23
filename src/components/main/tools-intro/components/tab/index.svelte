@@ -1,21 +1,23 @@
 <script>
-  import { FULL_TOOLS } from '../../../../../constant/tools';
-
+  export let list;
   export let tabIdx = 0;
   export let onTabClick;
 
-  $: curTabIdx = FULL_TOOLS[tabIdx].id;
+  $: curTabIdx = (list && list.length) ? list[tabIdx].id : '';
 </script>
-<div class='tab-wrapper'>
-  <div class='tab-inner-wrapper'>
-    {#each FULL_TOOLS as tab, index}
-      <button
-        class={`tab-item ${tab.id === curTabIdx ? 'active' : ''}`}
-        on:click={() => { onTabClick && onTabClick(index) }}
-      >{tab.text}</button>
-    {/each}
+
+{#if list.length}
+  <div class='tab-wrapper'>
+    <div class='tab-inner-wrapper'>
+      {#each list as tab, index}
+        <button
+          class={`tab-item ${tab.id === curTabIdx ? 'active' : ''}`}
+          on:click={() => { onTabClick && onTabClick(index) }}
+        >{tab.text}</button>
+      {/each}
+    </div>
   </div>
-</div>
+{/if}
 
 <style>
 .tab-wrapper {

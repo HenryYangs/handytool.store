@@ -2,7 +2,7 @@
   import Layout from '../../layout/index.svelte';
   import ToolLayout from '../../tool-layout/index.svelte';
   import PlaygroundTransfer from '../../playground-transfer/index.svelte';
-  import { CONVERTOR } from '../../../constant/tools';
+  import { CATEGORY } from '../../../constant/tools';
   import { numeralToText, textToNumeral } from '../../../utils/convert';
   import { stringCaseTransform } from '../../../utils/string/transform';
 
@@ -40,7 +40,7 @@
 <Layout>
   <ToolLayout
     id={id}
-    toolsList={CONVERTOR}
+    category={CATEGORY.CONVERTOR}
   >
     <PlaygroundTransfer
       bind:leftValue

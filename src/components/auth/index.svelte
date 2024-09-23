@@ -6,9 +6,9 @@
   import event from '../../utils/event';
   import { EVENTS } from '../../constant/events';
   import { ALERT_STATUS } from '../../constant/status';
+  import { onMount } from 'svelte';
 
-  export let onClose = () => {};
-  export let onLoginSuccess = (response) => {};
+  $: show = false;
 
   const FORM_TYPE = {
     SIGN_IN: 'signIn',
@@ -93,103 +93,124 @@
           status: ALERT_STATUS.SUCCESS,
           message: 'Login Success',
         });
-        onLoginSuccess(response);
+
+        setTimeout(() => {
+          location.href = '/';
+        }, 1000);
       }).catch((error) => {
-        console.error('catch error',error)
+        console.error('catch error', error);
       }).finally(() => {
         apiLoading = false;
       });
     }
   };
 
+  const onShow = () => {
+    show = true;
+  }
+
+  const onClose = () => {
+    show = false;
+  }
+
   // TODO
   // const goForgetPassword = () => {
   //   toggleFormType(FORM_TYPE.FORGET_PASSWORD);
   // };
+
+  onMount(() => {
+    event.on(EVENTS.AUTH_SHOW, onShow);
+    
+    return () => {
+      event.off(EVENTS.AUTH_SHOW, onShow);
+    };
+  });
 </script>
 
-<Mask onClose={onClose}>
-  <div class='wrapper'>
-    <header class='auth-header'>
-      <img alt='logo' src='http://images.handytool.store/96x96.png' class='auth-logo' />
+{#if show}
+  <Mask onClose={onClose}>
+    <div class='wrapper'>
+      <header class='auth-header'>
+        <img alt='logo' src='http://images.handytool.store/96x96.png' class='auth-logo' />
 
-      <h3 class='auth-title'>{config.title}</h3>
-    </header>
+        <h3 class='auth-title'>{config.title}</h3>
+      </header>
 
-    <form id='auth' class={`auth-form ${formClsName}`} novalidate>
-      <div class='form-row'>
-        <label for='username' class='form-label form-label-text'>Username</label>
-        <input
-          required
-          type='text'
-          class='form-control form-control-input'
-          id='username'
-          placeholder='Your Username'
-          bind:value={username}
-          on:input={() => { formClsName = '' }}
-        />
-        <p class='invalid-feedback'>Username is required.</p>
-      </div>
-
-      {#if formType !== FORM_TYPE.FORGET_PASSWORD}
+      <form id='auth' class={`auth-form ${formClsName}`} novalidate>
         <div class='form-row'>
-          <label for='password' class='form-label form-label-text'>Password</label>
-          <div class='form-password-group'>
-            {#if pwType === PASSWORD_TYPE.PASSWORD}
-              <input
-                type='password'
-                  required
-                  class='form-control form-control-input'
-                  id='password'
-                  placeholder='Your Password'
-                  bind:value={password}
-                  on:input={() => { formClsName = '' }}
-                />
-            {:else if pwType === PASSWORD_TYPE.TEXT}
-              <input
-                type='text'
-                  required
-                  class='form-control form-control-input'
-                  id='password'
-                  placeholder='Your Password'
-                  bind:value={password}
-                  on:input={() => { formClsName = '' }}
-                />
-            {/if}
-            <p class='invalid-feedback'>Password is required.</p>
-            <i class={`iconfont-header icon-header-eye${pwType === 'password' ? '-close' : ''} icon-eye`} on:click={togglePasswordType}></i>
-          </div>
+          <label for='username' class='form-label form-label-text'>Username</label>
+          <input
+            required
+            type='text'
+            class='form-control form-control-input'
+            id='username'
+            placeholder='Your Username'
+            bind:value={username}
+            on:input={() => { formClsName = '' }}
+          />
+          <p class='invalid-feedback'>Username is required.</p>
         </div>
-      {/if}
 
-      <!-- TODO -->
-      <!-- {#if formType === FORM_TYPE.SIGN_IN}
-        <div class='form-row form-action'>
-          <div class='remember-me'>
-            <input class='' type='checkbox' value='' id='rememberMe'>
-            <label class='' for='rememberMe'>
-              Remember Me
-            </label>
+        {#if formType !== FORM_TYPE.FORGET_PASSWORD}
+          <div class='form-row'>
+            <label for='password' class='form-label form-label-text'>Password</label>
+            <div class='form-password-group'>
+              {#if pwType === PASSWORD_TYPE.PASSWORD}
+                <input
+                  type='password'
+                    required
+                    class='form-control form-control-input'
+                    id='password'
+                    placeholder='Your Password'
+                    bind:value={password}
+                    on:input={() => { formClsName = '' }}
+                  />
+              {:else if pwType === PASSWORD_TYPE.TEXT}
+                <input
+                  type='text'
+                    required
+                    class='form-control form-control-input'
+                    id='password'
+                    placeholder='Your Password'
+                    bind:value={password}
+                    on:input={() => { formClsName = '' }}
+                  />
+              {/if}
+              <p class='invalid-feedback'>Password is required.</p>
+              <i class={`iconfont-header icon-header-eye${pwType === 'password' ? '-close' : ''} icon-eye`} on:click={togglePasswordType}></i>
+            </div>
           </div>
+        {/if}
 
-          <button class='btn btn-link tips-btn' type='button' on:click={goForgetPassword}>Forget Password?</button>
+        <!-- TODO -->
+        <!-- {#if formType === FORM_TYPE.SIGN_IN}
+          <div class='form-row form-action'>
+            <div class='remember-me'>
+              <input class='' type='checkbox' value='' id='rememberMe'>
+              <label class='' for='rememberMe'>
+                Remember Me
+              </label>
+            </div>
+
+            <button class='btn btn-link tips-btn' type='button' on:click={goForgetPassword}>Forget Password?</button>
+          </div>
+        {/if} -->
+
+        <div class='form-row'>
+          <ExecuteBtn
+            style='box-shadow: 0 20px 20px rgb(61 82 160 / 20%)'
+            text={config.btnText}
+            onConfirm={onBtnConfirm}
+            disabled={apiLoading}
+            loading={apiLoading}
+          />
         </div>
-      {/if} -->
+      </form>
 
-      <div class='form-row'>
-        <ExecuteBtn
-          style='box-shadow: 0 20px 20px rgb(61 82 160 / 20%)'
-          text={config.btnText}
-          onConfirm={onBtnConfirm}
-          disabled={apiLoading}
-          loading={apiLoading}
-        />
-      </div>
-    </form>
-
-    <p class='tips'>{config.tips} <button class='btn btn-link tips-btn' type='button' on:click={() => toggleFormType(formType === FORM_TYPE.SIGN_IN ? FORM_TYPE.SIGN_UP : FORM_TYPE.SIGN_IN)}>{config.tipsBtn}</button></p>
-  </div>
-</Mask>
+      <p class='tips'>{config.tips} <button class='btn btn-link tips-btn' type='button' on:click={() => toggleFormType(formType === FORM_TYPE.SIGN_IN ? FORM_TYPE.SIGN_UP : FORM_TYPE.SIGN_IN)}>{config.tipsBtn}</button></p>
+    </div>
+  </Mask>
+{/if}
 
 <style>
 .wrapper {

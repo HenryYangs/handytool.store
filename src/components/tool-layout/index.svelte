@@ -2,19 +2,46 @@
   import { getCurrentTool } from '../../utils/tool';
   import ToolCard from '../tool-card/index.svelte';
   import TitleDesc from '../title-desc/index.svelte';
+  import { onMount } from 'svelte';
+  import http from '../../utils/http';
 
   export let id;
-  export let toolsList = [];
+  export let category;
   export let maxOtherCount = 8;
 
-  const tool = getCurrentTool(toolsList, id);
-
+  let toolsList = [];
   $: otherTools = toolsList.filter(item => item.id !== id).slice(0, maxOtherCount);
+
+  $: tool = getCurrentTool(toolsList, id);
+
+  onMount(() => {
+    http({
+      url: `/tool-list?scene=tool&id=${category}`,
+      method: 'GET',
+    }).then(response => {
+      toolsList = response;
+    });
+  });
+
+  const onFavorite = (toolId) => {
+    toolsList = toolsList.map(tool => {
+      return {
+        ...tool,
+        favorite: tool.id === toolId ? !tool.favorite : tool.favorite,
+      };
+    });
+  };
 </script>
 
 <main class='tool-layout-wrapper common-background'>
   <div class='container-fluid container-biz'>
-    <TitleDesc title={tool.text} description={tool.description} />
+    <TitleDesc
+      title={tool.text}
+      description={tool.description}
+      isFavorite={tool.favorite}
+      id={id}
+      onFavorite={() => onFavorite(id)}
+    />
 
     <div class='content'>
       <slot />
@@ -30,7 +57,11 @@
 
         <div class='other-tools-list'>
           {#each otherTools as tool}
-            <ToolCard tool={tool} innerStyle='box-shadow: 3px 10px 40px rgba(24, 29, 32, 0.05)' />
+            <ToolCard
+              tool={tool}
+              innerStyle='box-shadow: 3px 10px 40px rgba(24, 29, 32, 0.05)'
+              onFavorite={() => onFavorite(tool.id)}
+            />
           {/each}
         </div>
       </div>

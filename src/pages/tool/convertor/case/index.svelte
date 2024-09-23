@@ -2,7 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundPanel from '../../../../components/playground-panel/index.svelte';
-  import { CONVERTOR, TOOL_CONVERTOR_ID } from '../../../../constant/tools';
+  import { CATEGORY, TOOL_CONVERTOR_ID } from '../../../../constant/tools';
   import { CONVERTOR_CASE } from './config/index.js';
 
   $: value = '';
@@ -15,7 +15,7 @@
 <Layout>
   <ToolLayout
     id={TOOL_CONVERTOR_ID.CASE}
-    toolsList={CONVERTOR}
+    category={CATEGORY.CONVERTOR}
   >
     <PlaygroundPanel
       actions={CONVERTOR_CASE}

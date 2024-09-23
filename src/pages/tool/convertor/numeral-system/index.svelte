@@ -3,7 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
   import NumeralSelect from '../../../../components/convertor/numeral-select/index.svelte';
-  import { CONVERTOR, TOOL_CONVERTOR_ID } from '../../../../constant/tools';
+  import { CATEGORY, TOOL_CONVERTOR_ID } from '../../../../constant/tools';
   import { NUMERAL_SYSTEM } from '../../../../constant/numeral';
   import { onMount } from 'svelte';
   import { validateNumeralText } from '../../../../utils/validate';
@@ -101,7 +101,7 @@
 <Layout>
   <ToolLayout
     id={TOOL_CONVERTOR_ID.NUMERAL_SYSTEM}
-    toolsList={CONVERTOR}
+    category={CATEGORY.CONVERTOR}
   >
     <PlaygroundTransfer
       bind:leftValue

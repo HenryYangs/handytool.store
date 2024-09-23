@@ -2,11 +2,8 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
-  import { PROGRAMMING, TOOL_PROGRAMMING_ID } from '../../../../constant/tools';
+  import { CATEGORY, TOOL_PROGRAMMING_ID } from '../../../../constant/tools';
   import { INDENT } from '../../../../constant/format/indent';
-
-  const id = 'json-format';
-  const tool = PROGRAMMING.find(item => item.id === id);
 
   $: input = '';
   $: output = '';
@@ -31,7 +28,7 @@
 <Layout>
   <ToolLayout
     id={TOOL_PROGRAMMING_ID.JSON_FORMAT}
-    toolsList={PROGRAMMING}
+    category={CATEGORY.PROGRAMMING}
   >
     <PlaygroundArea
       bind:value={input}

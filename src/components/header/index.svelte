@@ -4,18 +4,18 @@
   import { processUrl } from '../../utils/url';
   import { HEADER_ENTRIES } from './config';
   import ExecuteBtn from '../execute-btn/index.svelte';
-  import Auth from '../auth/index.svelte';
   import '../../assets/icon/header/iconfont.css';
   import Dropdown from '../dropdown/index.svelte';
   import http from '../../utils/http';
   import { STORAGE_LOGIN_INFO } from '../../constant/storage';
   import { parseJSON } from '../../utils/object';
   import { onMount } from 'svelte';
+  import event from '../../utils/event';
+  import { EVENTS } from '../../constant/events';
   
   let y;
 
   $: searchValue = '';
-  $: showAuth = false;
   $: isLogin = false;
   $: userInfo = (() => {
     return parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO));
@@ -34,29 +34,16 @@
   };
 
   const onAuthBtnClick = () => {
-    showAuth = true;
-  };
-
-  const onCloseAuth = () => {
-    showAuth = false;
-  };
-
-  const onLoginSuccess = (response) => {
-    onCloseAuth();
-    username = response.username;
-    isLogin = true;
+    event.emit(EVENTS.AUTH_SHOW);
   };
 
   const onLogout = () => {
     http({
       url: '/logout',
       method: 'POST',
-      data: {
-        id: parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO)).id,
-      },
     }).then(() => {
-      isLogin = false;
       localStorage.removeItem(STORAGE_LOGIN_INFO);
+      location.href = '/';
     });
   };
 
@@ -144,10 +131,6 @@
     </div>
   </div>
 </header>
-
-{#if showAuth}
-  <Auth onClose={onCloseAuth} onLoginSuccess={onLoginSuccess} />
-{/if}
 
 <style>
 .header {

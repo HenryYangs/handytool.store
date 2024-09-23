@@ -20,7 +20,7 @@ const THEME = {
   GREEN: '#ECFAE5',
 };
 
-const CATEGORY = {
+export const CATEGORY = {
   CONVERTOR: 'convertor',
   PROGRAMMING: 'programming',
   CODEC: 'codec',
@@ -347,21 +347,3 @@ export const PURE_TOOLS = [
   },
 ];
 
-const getAllTab = () => {
-  const maxCount = 16;
-  const totalCateCount = PURE_TOOLS.length;
-  const avgCount = Math.ceil(maxCount / totalCateCount);
-
-  return {
-    id: 'all',
-    text: 'All Tools',
-    list: [].concat(...PURE_TOOLS.map(tab => {
-      return tab.list.slice(0, avgCount);
-    })).slice(0, maxCount),
-  }
-}
-
-export const FULL_TOOLS = [
-  getAllTab(),
-  ...PURE_TOOLS,
-];

@@ -3,7 +3,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import StaticDigitalClock from '../../../../components/timer/static-digital-version/index.svelte';
-  import { TIMER, TOOL_TIMER_ID } from '../../../../constant/tools';
+  import { CATEGORY, TOOL_TIMER_ID } from '../../../../constant/tools';
   import { MONTH_NAME_MAP } from '../../../../constant/timer/month';
   import { DAY_NAME_MAP } from '../../../../constant/timer/day';
   import { prezero } from '../../../../utils/number';
@@ -42,7 +42,7 @@
 <Layout>
   <ToolLayout
     id={TOOL_TIMER_ID.ONLINE_CLOCK}
-    toolsList={TIMER}
+    category={CATEGORY.TIMER}
   >
     <section class='tool-panel'>
       <div>

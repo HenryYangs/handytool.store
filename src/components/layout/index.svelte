@@ -2,6 +2,7 @@
   import Header from '../header/index.svelte';
   import Footer from '../footer/index.svelte';
   import LayerManager from '../layer-manager/index.svelte';
+  import Auth from '../auth/index.svelte';
 </script>
 
 <div class='wrapper'>
@@ -15,6 +16,8 @@
   <Footer></Footer>
 
   <LayerManager />
+
+  <Auth />
 </div>
 
 <style>

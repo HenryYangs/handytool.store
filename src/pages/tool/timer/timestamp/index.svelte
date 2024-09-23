@@ -2,7 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
-  import { TIMER, TOOL_TIMER_ID } from '../../../../constant/tools';
+  import { CATEGORY, TOOL_TIMER_ID } from '../../../../constant/tools';
   import { prezero } from '../../../../utils/number';
 
   let result = [];
@@ -67,7 +67,7 @@
 <Layout>
   <ToolLayout
     id={TOOL_TIMER_ID.TIMESTAMP}
-    toolsList={TIMER}
+    category={CATEGORY.TIMER}
   >
     <section class='tool-panel'>
       <div class='tool-container timestamp'>
