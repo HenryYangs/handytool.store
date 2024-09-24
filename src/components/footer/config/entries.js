@@ -5,9 +5,10 @@ export const CONF_NAVIGATE = [
     url: ROUTER.HOME,
     text: 'Home',
   },
-  {
-    url: ROUTER.CONTACT,
-    text: 'Contact',
-    isWIP: true,
-  },
+  // TODO
+  // {
+  //   url: ROUTER.CONTACT,
+  //   text: 'Contact',
+  //   isWIP: true,
+  // },
 ];

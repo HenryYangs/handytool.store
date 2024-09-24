@@ -78,7 +78,7 @@
         </a>
       </div>
       <div class='entries col-5 align-items-center'>
-        <ul class='d-flex align-items-center justify-content-between entries-list'>
+        <ul class='d-flex align-items-center justify-content-start entries-list'>
           {#each HEADER_ENTRIES as entry}
             <li>
               <a
@@ -157,6 +157,10 @@
 
 .entries-list {
   height: 100%;
+}
+
+.entries-list li + li {
+  margin-left: 20px;
 }
 
 .entry-link.entry-current .entry-item-inner,
