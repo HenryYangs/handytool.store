@@ -62,6 +62,10 @@
     {
       "name": "twitter:creator",
       "content": "@handytool_store"
+    },
+    {
+      "name": "google-adsense-account",
+      "content": "ca-pub-7586609252833770"
     }
   ]
 }

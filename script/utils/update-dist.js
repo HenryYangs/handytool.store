@@ -51,9 +51,6 @@ async function updateDistFile() {
 
           gtag('config', 'G-KS4E4ST92M');
         </script>
-
-        <!-- Google Ads -->
-        <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7586609252833770' crossorigin='anonymous'></script>
       `
     );
 
