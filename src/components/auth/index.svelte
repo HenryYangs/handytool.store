@@ -11,8 +11,8 @@
   $: show = false;
 
   const FORM_TYPE = {
-    SIGN_IN: 'signIn',
-    SIGN_UP: 'signUp',
+    LOGIN: 'login',
+    REGISTER: 'register',
     FORGET_PASSWORD: 'forgetPassword',
   };
 
@@ -25,30 +25,30 @@
   $: password = '';
 
   $: formClsName = '';
-  $: formType = FORM_TYPE.SIGN_IN; // signIn, signUp, or forget password
+  $: formType = FORM_TYPE.LOGIN; // login, register, or forget password
   $: pwType = PASSWORD_TYPE.PASSWORD; // password or text
 
   $: config = (() => {
     const result = {};
 
     switch (formType) {
-      case FORM_TYPE.SIGN_IN:
-        result.title = 'Sign In';
-        result.btnText = 'Sign In';
+      case FORM_TYPE.LOGIN:
+        result.title = 'Login';
+        result.btnText = 'Login';
         result.tips = 'Don’t have an account yet?';
-        result.tipsBtn = 'Sign Up';
+        result.tipsBtn = 'Register';
         break;
-      case FORM_TYPE.SIGN_UP:
-        result.title = 'Sign Up';
-        result.btnText = 'Sign Up';
+      case FORM_TYPE.REGISTER:
+        result.title = 'Register';
+        result.btnText = 'Register';
         result.tips = 'Already have an account?';
-        result.tipsBtn = 'Sign In';
+        result.tipsBtn = 'Login';
         break;
       case FORM_TYPE.FORGET_PASSWORD:
         result.title = 'Forget Password';
         result.btnText = 'Send';
         result.tips = 'Already have an account?';
-        result.tipsBtn = 'Sign In';
+        result.tipsBtn = 'Login';
         break;
       default:
         break;
@@ -75,10 +75,30 @@
 
     if (!username || !password) return;
 
-    if (formType === FORM_TYPE.SIGN_UP) {
+    apiLoading = true;
 
-    } else if (formType === FORM_TYPE.SIGN_IN) {
-      apiLoading = true;
+    if (formType === FORM_TYPE.REGISTER) {
+      http({
+        url: '/register',
+        method: 'POST',
+        data: {
+          username,
+          password,
+        },
+      }).then(() => {
+        event.emit(EVENTS.ALERT, {
+          show: true,
+          status: ALERT_STATUS.SUCCESS,
+          message: 'Register success, please login',
+        });
+        formType = FORM_TYPE.LOGIN;
+        pwType = PASSWORD_TYPE.PASSWORD;
+      }).catch((error) => {
+        console.error('register error', error);
+      }).finally(() => {
+        apiLoading = false;
+      });
+    } else if (formType === FORM_TYPE.LOGIN) {
       http({
         url: '/login',
         method: 'POST',
@@ -91,14 +111,14 @@
         event.emit(EVENTS.ALERT, {
           show: true,
           status: ALERT_STATUS.SUCCESS,
-          message: 'Login Success',
+          message: 'Login success',
         });
 
         setTimeout(() => {
           location.href = '/';
         }, 1000);
       }).catch((error) => {
-        console.error('catch error', error);
+        console.error('login error', error);
       }).finally(() => {
         apiLoading = false;
       });
@@ -145,6 +165,7 @@
             class='form-control form-control-input'
             id='username'
             placeholder='Your Username'
+            disabled={apiLoading}
             bind:value={username}
             on:input={() => { formClsName = '' }}
           />
@@ -162,6 +183,7 @@
                     class='form-control form-control-input'
                     id='password'
                     placeholder='Your Password'
+                    disabled={apiLoading}
                     bind:value={password}
                     on:input={() => { formClsName = '' }}
                   />
@@ -172,6 +194,7 @@
                     class='form-control form-control-input'
                     id='password'
                     placeholder='Your Password'
+                    disabled={apiLoading}
                     bind:value={password}
                     on:input={() => { formClsName = '' }}
                   />
@@ -183,7 +206,7 @@
         {/if}
 
         <!-- TODO -->
-        <!-- {#if formType === FORM_TYPE.SIGN_IN}
+        <!-- {#if formType === FORM_TYPE.LOGIN}
           <div class='form-row form-action'>
             <div class='remember-me'>
               <input class='' type='checkbox' value='' id='rememberMe'>
@@ -207,7 +230,7 @@
         </div>
       </form>
 
-      <p class='tips'>{config.tips} <button class='btn btn-link tips-btn' type='button' on:click={() => toggleFormType(formType === FORM_TYPE.SIGN_IN ? FORM_TYPE.SIGN_UP : FORM_TYPE.SIGN_IN)}>{config.tipsBtn}</button></p>
+      <p class='tips'>{config.tips} <button class='btn btn-link tips-btn' type='button' on:click={() => toggleFormType(formType === FORM_TYPE.LOGIN ? FORM_TYPE.REGISTER : FORM_TYPE.LOGIN)}>{config.tipsBtn}</button></p>
     </div>
   </Mask>
 {/if}

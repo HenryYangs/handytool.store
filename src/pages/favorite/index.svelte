@@ -32,7 +32,7 @@
           onFavorite={onFavorite}
         />
       {:else}
-        <p class='text-center'>You don't have favorite tool.</p>
+        <p class='text-center'>You don't have any favorite tool yet.</p>
       {/if}
     </div>
   </div>

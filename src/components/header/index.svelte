@@ -115,7 +115,7 @@
         {#if isLogin}
           <Dropdown
             id='dropdown'
-            triggerText={username.slice(0, 1).toUpperCase()}
+            triggerText={username}
             triggerStyle=''
             dropdownList={[
               {
@@ -125,7 +125,7 @@
             ]}
           />
         {:else}
-          <ExecuteBtn text='Sign In' onConfirm={onAuthBtnClick} />
+          <ExecuteBtn text='Login' onConfirm={onAuthBtnClick} />
         {/if}
       </div>
     </div>
