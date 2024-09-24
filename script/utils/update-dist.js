@@ -51,6 +51,9 @@ async function updateDistFile() {
 
           gtag('config', 'G-KS4E4ST92M');
         </script>
+
+        <!-- Google Ads -->
+        <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7586609252833770' crossorigin='anonymous'></script>
       `
     );
 
@@ -60,7 +63,7 @@ async function updateDistFile() {
           let props = [];
 
           for (const [key, value] of Object.entries(m)) {
-            props.push(`${key}="${value}"`);
+            props.push(`${key}='${value}'`);
           }
 
           return `<meta ${props.join(' ')} />`;
