@@ -71,6 +71,17 @@ instance.interceptors.response.use(
       return Promise.resolve(response.data.data);
     }
 
+    if (response.data.code === CODE.LOGIC_STATUS.BIZ_ERROR.AUTH_FAIL) {
+      event.emit(EVENTS.AUTH_SHOW);
+      event.emit(EVENTS.ALERT, {
+        show: true,
+        status: ALERT_STATUS.ERROR,
+        message: 'Please login',
+      });
+
+      return Promise.reject();
+    }
+
     return Promise.reject(response.data);
   },
   function (error) {
@@ -85,7 +96,8 @@ const http = (options, extra = {}) => {
         resolve(response);
       })
       .catch((error) => {
-        if (extra.showErrorToast !== false) {
+        // error is empty, means no need to display alert
+        if (error && extra.showErrorToast !== false) {
           event.emit(EVENTS.ALERT, {
             show: true,
             status: ALERT_STATUS.ERROR,

@@ -23,7 +23,7 @@
       show,
       message,
       status,
-      showCloseBtn = true,
+      showCloseBtn = false,
       duration = 3000
     } = options;
 
@@ -53,7 +53,7 @@
 </script>
 
 {#if isShow}
-  <div class='alert alert-{type} alert-dismissible fade wrapper' role='alert'>
+  <div class={`alert alert-${type} ${hasCloseBtn ? 'alert-dismissible' : ''} fade wrapper`} role='alert'>
     <div>{msg}</div>
 
     {#if hasCloseBtn}

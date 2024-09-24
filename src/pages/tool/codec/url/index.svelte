@@ -24,7 +24,7 @@
 
 <Layout>
   <ToolLayout
-    id='URL'
+    id='url'
     category={CATEGORY.CODEC}
   >
     <PlaygroundTransfer
