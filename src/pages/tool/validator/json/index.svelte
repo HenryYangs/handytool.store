@@ -3,7 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import ValidateResult from '../../../../components/validator/result/index.svelte';
-  import { CATEGORY, TOOL_VALIDATOR_ID } from '../../../../constant/tools';
+  import { CATEGORY } from '../../../../constant/tools';
 
   $: value = '';
   $: validateResult = null;
@@ -27,7 +27,7 @@
 
 <Layout>
   <ToolLayout
-    id={TOOL_VALIDATOR_ID.JSON}
+    id='json'
     category={CATEGORY.VALIDATOR}
   >
     <PlaygroundArea

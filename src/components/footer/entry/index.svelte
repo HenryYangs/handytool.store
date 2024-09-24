@@ -8,8 +8,8 @@
   export let itemCount = 4;
 
   // how many columns will have
-  let colCount = Math.ceil(list.length /  itemCount);
-  let renderList = new Array(colCount).fill(1).map((_, idx) => {
+  $: colCount = Math.ceil(list.length /  itemCount);
+  $: renderList = new Array(colCount).fill(1).map((_, idx) => {
     return list.slice(idx * (colCount - 1), idx * (colCount - 1) +  itemCount);
   });
 </script>

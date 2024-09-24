@@ -1,6 +1,24 @@
 <script>
   import Entry from './entry/index.svelte';
-  import { CONF_NAVIGATE, CONF_TOOLS } from './config/entries';
+  import { CONF_NAVIGATE } from './config/entries';
+  import { onMount } from 'svelte';
+  import http from '../../utils/http';
+  import { processToolUrl } from '../../utils/url';
+
+  $: toolList = [];
+
+  onMount(() => {
+    http({
+      url: '/footer',
+      method: 'GET',
+    })
+    .then(response => {
+      toolList = response.map((item) => ({
+        text: item.text,
+        url: processToolUrl(item),
+      }));
+    })
+  });
 </script>
 
 <footer>
@@ -15,7 +33,7 @@
       <Entry
         title='Tools'
         className='col-10'
-        list={CONF_TOOLS}
+        list={toolList}
       />
     </div>
   </div>

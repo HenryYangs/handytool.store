@@ -2,7 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
-  import { CATEGORY, TOOL_PROGRAMMING_ID } from '../../../../constant/tools';
+  import { CATEGORY } from '../../../../constant/tools';
   import { INDENT } from '../../../../constant/format/indent';
 
   $: input = '';
@@ -27,7 +27,7 @@
 
 <Layout>
   <ToolLayout
-    id={TOOL_PROGRAMMING_ID.JSON_FORMAT}
+    id='json-format'
     category={CATEGORY.PROGRAMMING}
   >
     <PlaygroundArea

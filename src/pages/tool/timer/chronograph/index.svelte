@@ -3,7 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import StaticDigitalClock from '../../../../components/timer/static-digital-version/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
-  import { CATEGORY, TOOL_TIMER_ID } from '../../../../constant/tools';
+  import { CATEGORY } from '../../../../constant/tools';
   import { MS_OF_ONE_MINUTE, MS_OF_ONE_SECOND, TIMER_UNIT_MAP } from '../../../../constant/timer';
   import { prezero } from '../../../../utils/number';
   import { calcDiffTime, onUpdateClock } from '../../../../utils/timer';
@@ -121,7 +121,7 @@
 
 <Layout>
   <ToolLayout
-    id={TOOL_TIMER_ID.CHRONOGRAPH}
+    id='chronograph'
     category={CATEGORY.TIMER}
   >
     <div class='tool-panel wrapper'>

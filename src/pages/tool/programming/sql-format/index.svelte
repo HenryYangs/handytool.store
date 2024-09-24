@@ -2,7 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
-  import { CATEGORY, TOOL_PROGRAMMING_ID } from '../../../../constant/tools';
+  import { CATEGORY } from '../../../../constant/tools';
   import vkBeautify from 'vkbeautify';
 
   $: input = '';
@@ -23,7 +23,7 @@
 
 <Layout>
   <ToolLayout
-    id={TOOL_PROGRAMMING_ID.SQL_FORMAT}
+    id='sql-format'
     category={CATEGORY.PROGRAMMING}
   >
     <PlaygroundArea

@@ -3,7 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
   import Result from '../../../../components/validator/result/index.svelte';
-  import { CATEGORY, TOOL_VALIDATOR_ID } from '../../../../constant/tools';
+  import { CATEGORY } from '../../../../constant/tools';
 
   $: regExp = '';
   $: flags = '';
@@ -30,7 +30,7 @@
 
 <Layout>
   <ToolLayout
-    id={TOOL_VALIDATOR_ID.REG_EXP}
+    id='reg-exp'
     category={CATEGORY.VALIDATOR}
   >
     <div class='tool-panel'>

@@ -2,7 +2,7 @@
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import Counter from '../../../../components/timer/counter/index.svelte';
-  import { CATEGORY, TOOL_TIMER_ID } from '../../../../constant/tools';
+  import { CATEGORY } from '../../../../constant/tools';
   import { onUpdateClock } from '../../../../utils/timer';
   import { prezero } from '../../../../utils/number';
 
@@ -15,7 +15,7 @@
 
 <Layout>
   <ToolLayout
-    id={TOOL_TIMER_ID.COUNTDOWN}
+    id='countdown'
     category={CATEGORY.TIMER}
   >
     <Counter
