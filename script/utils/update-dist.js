@@ -31,9 +31,9 @@ async function updateDistFile() {
     const content = await readFile(oldFilePath, { encoding: 'utf-8' });
     const $ = cheerio.load(content);
 
-    $('head').prepend(
+    $("head").prepend(
       `
-        <title>${config.title || 'handytool.store'}</title>
+        <title>${config.title || "handytool.store"}</title>
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -51,6 +51,9 @@ async function updateDistFile() {
 
           gtag('config', 'G-KS4E4ST92M');
         </script>
+
+        <!-- Google Ads -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7586609252833770" crossorigin="anonymous"></script>
       `
     );
 
