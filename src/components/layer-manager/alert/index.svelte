@@ -3,6 +3,7 @@
   import event from '../../../utils/event';
   import { EVENTS } from '../../../constant/events';
   import { ALERT_STATUS } from '../../../constant/status';
+  import { t } from 'svelte-i18n';
 
   $: isShow = false;
   $: msg = '';
@@ -54,7 +55,7 @@
 
 {#if isShow}
   <div class={`alert alert-${type} ${hasCloseBtn ? 'alert-dismissible' : ''} fade wrapper`} role='alert'>
-    <div>{msg}</div>
+    <div>{$t(msg)}</div>
 
     {#if hasCloseBtn}
       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' on:click={close}></button>

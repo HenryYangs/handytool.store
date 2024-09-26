@@ -1,5 +1,6 @@
 export default {
   Login: '登录',
+  'Please Login': '请登录',
   Logout: '退出登录',
   loginTips: '没有账号？',
   Register: '注册',
