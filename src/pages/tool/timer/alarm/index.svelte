@@ -8,6 +8,7 @@
   import { prezero } from '../../../../utils/number';
   import { ALARM_PRO_PROGRAMMED_LIST } from '../../../../constant/timer/alarm';
   import { onUpdateClock } from '../../../../utils/timer';
+  import { t } from 'svelte-i18n';
   
   /**
    * mark the timestamp when start button is clicked
@@ -119,37 +120,37 @@
 
       <div class='action-wrapper'>
         <ExecuteBtn
-          text={isDuration ? 'Stop' : 'Start'}
+          text={$t(isDuration ? 'Stop' : 'Start')}
           style='width: calc(50% - 5px);'
           btnStyle={isDuration ? 'background-color: red; color: #FFF' : ''}
           onConfirm={onStart}
         />
-        <ExecuteBtn text='Reset' style='width: calc(50% - 5px);' onConfirm={onReset} disabled={isDuration} />
+        <ExecuteBtn text={$t('Reset')} style='width: calc(50% - 5px);' onConfirm={onReset} disabled={isDuration} />
       </div>
 
       <div class='setting-wrapper'>
         <div class='setting-inner-wrapper'>
           <div class='setting-hour input-group-sm'>
-            <label class='form-label' for='hour'>Hour</label>
+            <label class='form-label' for='hour'>{$t('Hour')}</label>
             <input class='form-control' type='number' id='hour' min='0' bind:value={hour} on:change={onHourChange} />
           </div>
   
           <div class='setting-minute input-group-sm'>
-            <label class='form-label' for='minute'>Minute</label>
+            <label class='form-label' for='minute'>{$t('Minute')}</label>
             <input class='form-control' type='number' id='minute' min='0' bind:value={minute} on:change={onMinuteChange} />
           </div>
   
           <div class='setting-second input-group-sm'>
-            <label class='form-label' for='second'>Second</label>
+            <label class='form-label' for='second'>{$t('Second')}</label>
             <input class='form-control' type='number' id='second' min='0' bind:value={second} on:change={onSecondChange} />
           </div>
         </div>
 
-        <ExecuteBtn text='Set Alarm' style='margin-top: 15px; width: 500px;' onConfirm={onSetAlarm} disabled={isDuration} />
+        <ExecuteBtn text={$t('setAlarm')} style='margin-top: 15px; width: 500px;' onConfirm={onSetAlarm} disabled={isDuration} />
       </div>
 
       <div class='pre-programmed'>
-        <h6>Pre-programmed Alarm</h6>
+        <h6>{$t('preProgramAlarm')}</h6>
 
         <div class='pre-programmed-list'>
           {#each ALARM_PRO_PROGRAMMED_LIST as alarm}

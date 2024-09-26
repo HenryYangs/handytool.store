@@ -4,6 +4,7 @@
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
   import vkBeautify from 'vkbeautify';
+  import { t } from 'svelte-i18n';
 
   $: input = '';
   $: output = '';
@@ -28,7 +29,7 @@
   >
     <PlaygroundArea
       bind:value={input}
-      btnText='Format'
+      btnText={$t('Format')}
       onConfirm={onConfirm}
       actionConfig={{ onClear }}
     />

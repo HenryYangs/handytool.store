@@ -1,4 +1,5 @@
 <script>
+  import { t } from 'svelte-i18n';
   import IconCopy from '../../../components/icon/copy/index.svelte';
 
   export let unitList = [];
@@ -14,7 +15,7 @@
 
 <div class='wrapper'>
   <section class='tool-panel unit-container'>
-    <h6>From: {unitList[curIdx].text}</h6>
+    <h6>{$t('fromUnitLabel')}: {$t(unitList[curIdx].text)}</h6>
 
     <div class='input-group-sm input-wrapper'>
       <input class='form-control' type='number' bind:value={inputValue} />
@@ -27,7 +28,7 @@
           on:click={() => {
             onFromUnitClick(index);
           }}
-        >{unit.text}</button>
+        >{$t(unit.text)}</button>
       {/each}
     </div>
   </section>
@@ -35,7 +36,7 @@
   <section class='tool-panel unit-container'>
     {#each unitList as unit, index}
       <div class='unit-row'>
-        <span>{unit.text}</span>
+        <span>{$t(unit.text)}</span>
 
         {#if inputValue !== ''}
           <span>{(unit.ratio / curBaseRatio) * Number(inputValue)}</span>

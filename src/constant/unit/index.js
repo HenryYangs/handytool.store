@@ -76,10 +76,6 @@ export const LENGTH_UNIT_LIST = [
     ratio: 0.1,
   },
   {
-    value: 'micron [µ]',
-    ratio: 1000000,
-  },
-  {
     value: 'picometer [pm]',
     ratio: 1000000000000,
   },
@@ -158,10 +154,6 @@ export const LENGTH_UNIT_LIST = [
   {
     value: 'chain (US survey) [ch]',
     ratio: 0.049709596,
-  },
-  {
-    value: 'rope',
-    ratio: 0.1640419948,
   },
   {
     value: 'rod [rd]',
@@ -244,10 +236,6 @@ export const LENGTH_UNIT_LIST = [
     ratio: 10000000000,
   },
   {
-    value: 'a.u. of length [a.u., b]',
-    ratio: 18897259886,
-  },
-  {
     value: 'X-unit [X]',
     ratio: 9979243174198,
   },
@@ -272,24 +260,8 @@ export const LENGTH_UNIT_LIST = [
     ratio: 56692.913386,
   },
   {
-    value: 'aln',
-    ratio: 1.6841317365,
-  },
-  {
     value: 'famn',
     ratio: 0.5613772455,
-  },
-  {
-    value: 'caliber [cl]',
-    ratio: 3937.007874,
-  },
-  {
-    value: 'centiinch [cin]',
-    ratio: 3937.007874,
-  },
-  {
-    value: 'ken',
-    ratio: 0.4720632942,
   },
   {
     value: 'Russian archin',

@@ -3,6 +3,7 @@
   import Layout from '../../components/layout/index.svelte';
   import ToolCardList from '../../components/tool-card-list/index.svelte';
   import http from '../../utils/http';
+  import { t } from 'svelte-i18n';
 
   $: toolList = [];
 
@@ -23,7 +24,7 @@
 <Layout>
   <div class='wrapper common-background'>
     <div class='container-fluid container-biz'>
-      <h1 class='title text-center'>Favorite Tools</h1>
+      <h1 class='title text-center'>{$t('favoriteTitle')}</h1>
 
       {#if toolList.length}
         <ToolCardList
@@ -32,7 +33,7 @@
           onFavorite={onFavorite}
         />
       {:else}
-        <p class='text-center'>You don't have any favorite tool yet.</p>
+        <p class='text-center'>{$t('emptyFavoriteTips')}</p>
       {/if}
     </div>
   </div>

@@ -4,6 +4,7 @@
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
   import { INDENT } from '../../../../constant/format/indent';
+  import { t } from 'svelte-i18n';
 
   $: input = '';
   $: output = '';
@@ -32,7 +33,7 @@
   >
     <PlaygroundArea
       bind:value={input}
-      btnText='Compress'
+      btnText={$t('Compress')}
       onConfirm={onConfirm}
       actionConfig={{ onClear }}
     >

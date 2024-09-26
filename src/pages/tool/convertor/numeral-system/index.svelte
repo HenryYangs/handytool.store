@@ -7,6 +7,7 @@
   import { NUMERAL_SYSTEM } from '../../../../constant/numeral';
   import { onMount } from 'svelte';
   import { validateNumeralText } from '../../../../utils/validate';
+  import { t } from 'svelte-i18n';
 
   $: leftNumeral = NUMERAL_SYSTEM[0].value;
   $: rightNumeral = NUMERAL_SYSTEM[0].value;
@@ -107,12 +108,12 @@
       bind:leftValue
       bind:rightValue
       leftConfig={{
-        btnText: 'Convert &gt;',
+        btnText: `${$t('Convert')} &gt;`,
         onConfirm: onConvertLeft,
         onClear: onClearLeft,
       }}
       rightConfig={{
-        btnText: '&lt; Convert',
+        btnText: `&lt; ${$t('Convert')}`,
         onConfirm: onConvertRight,
         onClear: onClearRight,
       }}

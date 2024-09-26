@@ -4,6 +4,7 @@
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
   import { prezero } from '../../../../utils/number';
+  import { t } from 'svelte-i18n';
 
   let result = [];
 
@@ -32,7 +33,7 @@
 
   const onConfirm = () => {
     if (!timestamp && (!year || !month || !date)) {
-      alert('Please Input Timestamp or DateTime');
+      alert($t('timestampErrorTips'));
       return;
     }
 
@@ -72,8 +73,8 @@
     <section class='tool-panel'>
       <div class='tool-container timestamp'>
         <div class='tool-header'>
-          <h6>Timestamp:</h6>
-          <button class='btn btn-outline-dark btn-sm' on:click={getCurTimestamp}>Current Timestamp</button>
+          <h6>{$t('Timestamp')}:</h6>
+          <button class='btn btn-outline-dark btn-sm' on:click={getCurTimestamp}>{$t('currentTimestamp')}</button>
         </div>
 
         <input class='form-control input-timestamp' type='number' bind:value={timestamp} />
@@ -81,8 +82,8 @@
 
       <div class='tool-container datetime'>
         <div class='tool-header'>
-          <h6>Date & Time:</h6>
-          <button class='btn btn-outline-dark btn-sm' on:click={getCurDateTime}>Current Time</button>
+          <h6>{$t('Date')} & {$t('Time')}:</h6>
+          <button class='btn btn-outline-dark btn-sm' on:click={getCurDateTime}>{$t('currentTime')}</button>
         </div>
 
          <div class='date-time-wrapper'>
@@ -100,18 +101,18 @@
          </div>
       </div>
       
-      <ExecuteBtn text='Convert' onConfirm={onConfirm} />
+      <ExecuteBtn text={$t('Convert')} onConfirm={onConfirm} />
     </section>
 
     {#if result.length}
       <section class='tool-panel result-panel'>
-        <h6>Results:</h6>
+        <h6>{$t('Results')}:</h6>
 
         <table class='table table-bordered result-table'>
           <thead class='table-light'>
             <tr>
-              <th>before</th>
-              <th>after</th>
+              <th>{$t('covertBefore')}</th>
+              <th>{$t('convertAfter')}</th>
             </tr>
           </thead>
           <tbody>

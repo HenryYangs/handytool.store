@@ -3,6 +3,7 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
+  import { t } from 'svelte-i18n';
 
   $: leftValue = '';
   $: rightValue = '';
@@ -31,12 +32,12 @@
       bind:leftValue
       bind:rightValue
       leftConfig={{
-        btnText: 'Encode &gt;',
+        btnText: `${$t('Encode')} &gt;`,
         onConfirm: onConvertLeft,
         onClear: onClearLeft,
       }}
       rightConfig={{
-        btnText: '&lt; Decode',
+        btnText: `&lt; ${$t('Decode')}`,
         onConfirm: onConvertRight,
         onClear: onClearRight,
       }}

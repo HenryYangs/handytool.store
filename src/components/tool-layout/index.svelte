@@ -4,6 +4,7 @@
   import TitleDesc from '../title-desc/index.svelte';
   import { onMount } from 'svelte';
   import http from '../../utils/http';
+  import { t } from 'svelte-i18n';
 
   export let id;
   export let category;
@@ -52,8 +53,8 @@
     
     {#if otherTools.length}
       <div class='other-tools'>
-        <h2 class='other-tools-title'>Other {tool.category} Tools</h2>
-        <p class='other-tools-subtitle'>Checkout some other popular {tool.category} tools</p>
+        <h2 class='other-tools-title'>{$t('otherToolsTitle', { values: { toolName: $t(tool.category) } })}</h2>
+        <p class='other-tools-subtitle'>{$t('otherToolsDesc', { values: { toolCategory: $t(tool.category) } })}</p>
 
         <div class='other-tools-list'>
           {#each otherTools as tool}

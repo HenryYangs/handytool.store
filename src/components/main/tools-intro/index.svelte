@@ -4,11 +4,12 @@
   import Tab from './components/tab/index.svelte';
   import ToolCardList from '../../tool-card-list/index.svelte';
   import http from '../../../utils/http';
+  import { t } from 'svelte-i18n';
 
   let tabIdx = 0;
   $: tabList = [];
   $: curTabItem = tabList[tabIdx] || { id: '' };
-  $: allBtnText = curTabItem.id === 'all' ? 'All Tools' : `All ${curTabItem.text} Tools`;
+  $: allBtnText = curTabItem.id === 'all' ? $t('All Tools') : $t('allSingleTool', { values: { tool: curTabItem.text } });
 
   const TAB_KEY = 'handyTool_home_tab';
 
@@ -49,7 +50,7 @@
 
 <div class='wrapper common-background'>
   <div class='container-fluid container-biz'>
-    <h1 class='text-center'>Find Tools You Need</h1>
+    <h1 class='text-center'>{$t('homeTitle')}</h1>
 
     <div class='tools-entry'>
       <Tab

@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import event from '../../utils/event';
   import { EVENTS } from '../../constant/events';
+  import { t } from 'svelte-i18n';
 
   export let noClear = false;
   export let onClear = () => {};
@@ -44,11 +45,11 @@
 
 <div>
   {#if noClear === false}
-    <button class='btn btn-outline-dark btn-sm' on:click={onClear}>Clear</button>
+    <button class='btn btn-outline-dark btn-sm' on:click={onClear}>{$t('Clear')}</button>
   {/if}
   
   {#if noCopy === false}
-    <button id={`copy-${idAddon}`} class='btn btn-outline-dark btn-sm' on:click={onCopy}>Copy</button>
+    <button id={`copy-${idAddon}`} class='btn btn-outline-dark btn-sm' on:click={onCopy}>{$t('Copy')}</button>
   {/if}
 
   <slot name='extra-action'></slot>

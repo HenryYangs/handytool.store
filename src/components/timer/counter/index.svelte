@@ -4,6 +4,7 @@
   import { HOUR_LIST, MINUTE_SECOND_LIST, TIMER_UNIT_LIST, TIMER_UNIT_MAP } from '../../../constant/timer';
   import { onMount } from 'svelte';
   import { prezero } from '../../../utils/number';
+  import { t } from 'svelte-i18n';
 
   export let initDate = '';
   export let initName = '';
@@ -132,13 +133,13 @@
   <section class='timer-controller'>
     <div class='timer-settings-col timer-settings-left'>
       <div class='timer-settings-row date-wrapper'>
-        <label for='date' class='form-label'>Date:</label>
+        <label for='date' class='form-label'>{$t('Date')}:</label>
         <input type='date' class='form-control' id='date' bind:value={selectorDate} on:change={onDateChange}>
       </div>
 
       <div class='timer-settings-row time-wrapper'>
         <div class='time-item-wrapper hour-wrapper'>
-          <label for='hour' class='form-label'>Hour:</label>
+          <label for='hour' class='form-label'>{$t('Hour')}:</label>
           <select class='form-control' id='hour' bind:value={selectorHour} on:change={onHourChange}>
             {#each HOUR_LIST as hour}
               <option>{hour}</option>
@@ -147,7 +148,7 @@
         </div>
 
         <div class='time-item-wrapper minute-wrapper'>
-          <label for='minute' class='form-label'>Minute:</label>
+          <label for='minute' class='form-label'>{$t('Minute')}:</label>
           <select class='form-control' id='minute' bind:value={selectorMinute} on:change={onMinuteChange}>
             {#each MINUTE_SECOND_LIST as minute}
               <option>{minute}</option>
@@ -156,7 +157,7 @@
         </div>
 
         <div class='time-item-wrapper second-wrapper'>
-          <label for='second' class='form-label'>Second:</label>
+          <label for='second' class='form-label'>{$t('Second')}:</label>
           <select class='form-control' id='second' bind:value={selectorSecond} on:change={onSecondChange}>
             {#each MINUTE_SECOND_LIST as second}
               <option>{second}</option>
@@ -166,21 +167,21 @@
       </div>
 
       <div class='timer-settings-row name-wrapper'>
-        <label for='name' class='form-label'>Name:</label>
+        <label for='name' class='form-label'>{$t('timerName')}:</label>
         <input type='text' class='form-control' id='name' bind:value={name} on:change={onNameChange}>
       </div>
     </div>
 
     <div class='timer-settings-col timer-settings-center'>
       <div class='timer-settings-row unit-wrapper'>
-        <label for='units' class='form-label'>Units:</label>
+        <label for='units' class='form-label'>{$t('Units')}:</label>
 
         <div class='unit-list-wrapper'>
           {#each TIMER_UNIT_LIST.filter(unit => unit !== TIMER_UNIT_MAP.MILLISECOND) as unit}
             <div class='form-check'>
               <input class='form-check-input' type='checkbox' id={`unit_${unit}`} bind:group={units} value={unit}>
               <label class='form-check-label' for={`unit_${unit}`}>
-                {unit}
+                {$t(unit)}
               </label>
             </div>
           {/each}
@@ -190,12 +191,12 @@
       <div class='timer-settings-row'>
         <input class='form-check-input' type='checkbox' id='showUnitName' bind:checked={showUnitName}>
         <label class='form-check-label' for='showUnitName'>
-          Show Unit Names
+          {$t('showUnitNames')}
         </label>
       </div>
 
       <div class='timer-settings-row'>
-        <label for='borderWidth' class='form-label'>Border Width:</label>
+        <label for='borderWidth' class='form-label'>{$t('borderWidth')}:</label>
         <input type='number' class='form-control' id='borderWidth' min='0' bind:value={borderWidth}>
       </div>
     </div>
@@ -203,35 +204,35 @@
     <div class='timer-settings-col timer-settings-right'>
       <ColorPalette
         id='bgColor'
-        label='Background Color'
+        label={$t('backgroundColor')}
         bgColor={bgColor}
         onChange={onBgColorChange}
       />
 
       <ColorPalette
         id='nameColor'
-        label='Name Color'
+        label={$t('nameColor')}
         bgColor={nameColor}
         onChange={onNameColorChange}
       />
 
       <ColorPalette
         id='textColor'
-        label='Text Color'
+        label={$t('textColor')}
         bgColor={textColor}
         onChange={onTextColorChange}
       />
 
       <ColorPalette
         id='lastUnitColor'
-        label='Last Unit Color'
+        label={$t('lastUnitColor')}
         bgColor={lastUnitColor}
         onChange={onLastUnitColorChange}
       />
 
       <ColorPalette
         id='borderColor'
-        label='Border Color'
+        label={$t('borderColor')}
         bgColor={borderColor}
         onChange={onBorderColorChange}
       />

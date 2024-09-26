@@ -7,6 +7,7 @@
   import { EVENTS } from '../../constant/events';
   import { ALERT_STATUS } from '../../constant/status';
   import { onMount } from 'svelte';
+  import { t } from 'svelte-i18n';
 
   $: show = false;
 
@@ -33,22 +34,22 @@
 
     switch (formType) {
       case FORM_TYPE.LOGIN:
-        result.title = 'Login';
-        result.btnText = 'Login';
-        result.tips = 'Don’t have an account yet?';
-        result.tipsBtn = 'Register';
+        result.title = $t('Login');
+        result.btnText = $t('Login');
+        result.tips = $t('loginTips');
+        result.tipsBtn = $t('Register');
         break;
       case FORM_TYPE.REGISTER:
-        result.title = 'Register';
-        result.btnText = 'Register';
-        result.tips = 'Already have an account?';
-        result.tipsBtn = 'Login';
+        result.title = $t('Register');
+        result.btnText = $t('Register');
+        result.tips = $t('haveAccount');
+        result.tipsBtn = $t('Login');
         break;
       case FORM_TYPE.FORGET_PASSWORD:
-        result.title = 'Forget Password';
-        result.btnText = 'Send';
-        result.tips = 'Already have an account?';
-        result.tipsBtn = 'Login';
+        result.title = $t('forgetPassword');
+        result.btnText = $t('Send');
+        result.tips = $t('haveAccount');
+        result.tipsBtn = $t('Login');
         break;
       default:
         break;
@@ -89,7 +90,7 @@
         event.emit(EVENTS.ALERT, {
           show: true,
           status: ALERT_STATUS.SUCCESS,
-          message: 'Register success, please login',
+          message: $t('registerSuccessTips'),
         });
         formType = FORM_TYPE.LOGIN;
         pwType = PASSWORD_TYPE.PASSWORD;
@@ -111,7 +112,7 @@
         event.emit(EVENTS.ALERT, {
           show: true,
           status: ALERT_STATUS.SUCCESS,
-          message: 'Login success',
+          message: $t('loginSuccessTips'),
         });
 
         setTimeout(() => {
@@ -158,23 +159,23 @@
 
       <form id='auth' class={`auth-form ${formClsName}`} novalidate>
         <div class='form-row'>
-          <label for='username' class='form-label form-label-text'>Username</label>
+          <label for='username' class='form-label form-label-text'>{$t('Username')}</label>
           <input
             required
             type='text'
             class='form-control form-control-input'
             id='username'
-            placeholder='Your Username'
+            placeholder={$t('usernamePlaceholder')}
             disabled={apiLoading}
             bind:value={username}
             on:input={() => { formClsName = '' }}
           />
-          <p class='invalid-feedback'>Username is required.</p>
+          <p class='invalid-feedback'>{$t('usernameInputErrorTips')}</p>
         </div>
 
         {#if formType !== FORM_TYPE.FORGET_PASSWORD}
           <div class='form-row'>
-            <label for='password' class='form-label form-label-text'>Password</label>
+            <label for='password' class='form-label form-label-text'>{$t('Password')}</label>
             <div class='form-password-group'>
               {#if pwType === PASSWORD_TYPE.PASSWORD}
                 <input
@@ -182,7 +183,7 @@
                     required
                     class='form-control form-control-input'
                     id='password'
-                    placeholder='Your Password'
+                    placeholder={$t('passwordPlaceholder')}
                     disabled={apiLoading}
                     bind:value={password}
                     on:input={() => { formClsName = '' }}
@@ -193,13 +194,13 @@
                     required
                     class='form-control form-control-input'
                     id='password'
-                    placeholder='Your Password'
+                    placeholder={$t('passwordPlaceholder')}
                     disabled={apiLoading}
                     bind:value={password}
                     on:input={() => { formClsName = '' }}
                   />
               {/if}
-              <p class='invalid-feedback'>Password is required.</p>
+              <p class='invalid-feedback'>{$t('passwordInputErrorTips')}</p>
               <i class={`iconfont-header icon-header-eye${pwType === 'password' ? '-close' : ''} icon-eye`} on:click={togglePasswordType}></i>
             </div>
           </div>

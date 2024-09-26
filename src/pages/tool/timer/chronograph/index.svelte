@@ -7,6 +7,7 @@
   import { MS_OF_ONE_MINUTE, MS_OF_ONE_SECOND, TIMER_UNIT_MAP } from '../../../../constant/timer';
   import { prezero } from '../../../../utils/number';
   import { calcDiffTime, onUpdateClock } from '../../../../utils/timer';
+  import { t } from 'svelte-i18n';
 
   const units = [TIMER_UNIT_MAP.MINUTE, TIMER_UNIT_MAP.SECOND, TIMER_UNIT_MAP.MILLISECOND];
 
@@ -128,17 +129,17 @@
       <StaticDigitalClock config={chronograph} lastUnitColor='red' />
 
       <div class='action-wrapper'>
-        <ExecuteBtn text={isRunning ? 'Stop' : 'Start'} style='width: calc(50% - 10px);' onConfirm={onLeftBtnClick} />
-        <ExecuteBtn text={isRunning ? 'Lap' : 'Reset'} style='width: calc(50% - 10px);' onConfirm={onRightBtnClick} />
+        <ExecuteBtn text={$t(isRunning ? 'Stop' : 'Start')} style='width: calc(50% - 10px);' onConfirm={onLeftBtnClick} />
+        <ExecuteBtn text={$t(isRunning ? 'Lap' : 'Reset')} style='width: calc(50% - 10px);' onConfirm={onRightBtnClick} />
       </div>
 
       {#if result.length}
         <table class='table table-bordered result-table'>
           <thead class='table-light'>
             <tr>
-              <th>No.</th>
-              <th>Lap</th>
-              <th>Total</th>
+              <th>{$t('No')}.</th>
+              <th>{$t('Lap')}</th>
+              <th>{$t('totalTime')}</th>
             </tr>
           </thead>
           <tbody>

@@ -1,4 +1,6 @@
 <script>
+  import Loading from '../loading/index.svelte';
+
   export let text = '';
   export let onConfirm = () => {};
   export let disabled = false;
@@ -16,7 +18,7 @@
     on:click={onConfirm}
   >
     {#if loading}
-      <i class='iconfont-common icon-common-loading icon-loading'></i>
+      <Loading />
     {/if}
 
     {@html text}
@@ -32,22 +34,5 @@
 .action-btn:hover {
   background-color: var(--theme-main-color);
   border-color: var(--theme-main-color);
-}
-
-.icon-loading {
-  display: inline-block;
-  animation: loading 1.5s ease-in-out infinite;
-}
-
-@keyframes loading {
-  0% {
-    transform: rotate(0);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 </style>

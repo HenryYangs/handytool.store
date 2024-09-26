@@ -9,10 +9,13 @@
   import { prezero } from '../../../../utils/number';
   import { loop } from '../../../../utils/browser';
   import { TIMER_UNIT_MAP } from '../../../../constant/timer';
+  import { date, locale, t } from 'svelte-i18n';
 
   $: year = '';
   $: monthDate = '';
   $: day = '';
+
+  $: subText = '';
 
   $: clockConfig = {
     [TIMER_UNIT_MAP.HOUR]: { value: prezero(0) },
@@ -26,7 +29,11 @@
 
       year = String(d.getFullYear());
       monthDate = `${MONTH_NAME_MAP[d.getMonth()]} ${prezero(d.getDate())}`,
-      day = DAY_NAME_MAP[d.getDay()],
+      day = DAY_NAME_MAP[d.getDay()];
+
+      if ($locale) {
+        subText = $date(new Date(), { locale: $locale, format: 'full' });
+      }
 
       clockConfig[TIMER_UNIT_MAP.HOUR].value = prezero(d.getHours());
       clockConfig[TIMER_UNIT_MAP.MINUTE].value = prezero(d.getMinutes());
@@ -54,11 +61,7 @@
         </div>
 
         <div class='part-wrapper date-wrapper'>
-          <h3 class='day'>{day}</h3>
-          <h3 class='separator'>.</h3>
-          <h3 class='month-date'>{monthDate}</h3>
-          <h3 class='separator'>.</h3>
-          <h3 class='year'>{year}</h3>
+          <p>{subText}</p>
         </div>
       </div>
     </section>
@@ -72,7 +75,7 @@
   align-items: center;
 }
 
-.part-wrapper h3 {
+.part-wrapper p {
   font-size: 50px;
 }
 
@@ -83,9 +86,5 @@
 
 .date-wrapper {
   margin-top: 20px;
-}
-
-.date-wrapper .separator {
-  margin: 0 10px;
 }
 </style>

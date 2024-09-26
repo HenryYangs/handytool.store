@@ -4,6 +4,7 @@
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import ValidateResult from '../../../../components/validator/result/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
+  import { t } from 'svelte-i18n';
 
   $: value = '';
   $: validateResult = null;
@@ -13,10 +14,10 @@
     try {
       JSON.parse(value);
       validateResult = true;
-      validateMsg = 'Valid JSON';
+      validateMsg = $t('validJsonTips');
     } catch {
       validateResult = false;
-      validateMsg = 'Invalid JSON';
+      validateMsg = $t('invalidJsonTips');
     }
   };
 
@@ -32,7 +33,7 @@
   >
     <PlaygroundArea
       bind:value
-      btnText='Validate'
+      btnText={$t('Validate')}
       onConfirm={onConfirm}
       actionConfig={{ onClear }}
     />

@@ -12,6 +12,7 @@
   import { onMount } from 'svelte';
   import event from '../../utils/event';
   import { EVENTS } from '../../constant/events';
+  import { t } from 'svelte-i18n';
   
   let y;
 
@@ -86,7 +87,7 @@
                 class={`entry-link ${location.pathname === entry.redirectUrl ? 'entry-current' : ''}`}
               >
                 <i class={`iconfont-header icon-header-${entry.icon} entry-item-inner`}></i>
-                <span class='entry-item-inner'>{entry.text}</span>
+                <span class='entry-item-inner'>{$t(entry.text)}</span>
               </a>
             </li>
           {/each}
@@ -105,7 +106,7 @@
         <div class='vertical-split'></div> -->
 
         <form class='search-form'>
-          <input class='form-control input-search' placeholder='Search' bind:value={searchValue} on:keypress={onSearchKeyPress} />
+          <input class='form-control input-search' placeholder={$t('Search')} bind:value={searchValue} on:keypress={onSearchKeyPress} />
 
           <button class='button btn-search' type='button' on:click={onSearch}>
             <i class='iconfont-common icon-common-search'></i>
@@ -119,13 +120,13 @@
             triggerStyle=''
             dropdownList={[
               {
-                text: 'Logout',
+                text: $t('Logout'),
                 onClick: onLogout,
               }
             ]}
           />
         {:else}
-          <ExecuteBtn text='Login' onConfirm={onAuthBtnClick} />
+          <ExecuteBtn text={$t('Login')} onConfirm={onAuthBtnClick} />
         {/if}
       </div>
     </div>

@@ -5,7 +5,7 @@ export const processUrl = (isWIP, url) => {
 }
 
 export const processToolUrl = (item) => {
-  return processUrl(item.isWIP, `/tool/${item.category}/${item.id}`);
+  return processUrl(item.isWIP, `/tool/${item.categoryId}/${item.id}`);
 };
 
 export const parseSearch = (rawSearch) => {

@@ -4,6 +4,7 @@
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
   import ValidateResult from '../../../../components/validator/result/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
+  import { t } from 'svelte-i18n';
 
   const regExp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
@@ -23,10 +24,10 @@
     
     if (errorArr.length) {
       validateResult = false;
-      validateMsg = `${errorArr.join(';')} ${errorArr.length > 1 ? 'are' : 'is'} not valid`;
+      validateMsg = `${errorArr.join('; ')} ${$t('invalidEmailTips', { values: { n: errorArr.length } })}`;
     } else {
       validateResult = true;
-      validateMsg = '';
+      validateMsg = $t('validEmailTips');
     }
   };
 
@@ -42,7 +43,7 @@
   >
     <PlaygroundArea
       bind:value
-      btnText='Validate'
+      btnText={$t('Validate')}
       onConfirm={onConfirm}
       actionConfig={{ onClear }}
     />

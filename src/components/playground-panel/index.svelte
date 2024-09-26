@@ -1,4 +1,6 @@
 <script>
+  import { t } from 'svelte-i18n';
+
   export let value;
   export let actions = [];
   export let onValueChange = (result) => {};
@@ -38,7 +40,7 @@
             class={`btn ${activeId === action.text ? 'btn-dark' : 'btn-outline-dark'} action-item`}
             on:click={() => onAction(action)}
           >
-            {action.text}
+            {$t(action.text)}
           </button>
         {/each}
       </div>

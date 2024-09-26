@@ -1,4 +1,5 @@
 <script>
+  import { t } from 'svelte-i18n';
   import Layout from '../../../components/layout/index.svelte';
   import ToolList from '../../../components/tool-list/index.svelte';
   import { CATEGORY } from '../../../constant/tools';
@@ -7,7 +8,7 @@
 <Layout>
   <ToolList
     id={CATEGORY.TIMER}
-    title='Timer Tools'
-    description='Free Timer Tools'
+    title={$t('Timer Tools')}
+    description={$t('Free Timer Tools')}
   />
 </Layout>

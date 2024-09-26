@@ -3,6 +3,7 @@
   import TitleDesc from '../title-desc/index.svelte';
   import ToolCardList from '../tool-card-list/index.svelte';
   import http from '../../utils/http';
+  import { t } from 'svelte-i18n';
 
   export let id = '';
   export let title = '';
@@ -65,9 +66,9 @@
     <form class='search-wrapper'>
       <i class='iconfont-common icon-common-search icon-search'></i>
       
-      <input class='search-input' placeholder='Search' type='text' bind:value={searchValue} on:keypress={onSearchKeyPress} />
+      <input class='search-input' placeholder={$t('Search')} type='text' bind:value={searchValue} on:keypress={onSearchKeyPress} />
       
-      <button class='btn-search' type='button' on:click={onSearch}>Search</button>
+      <button class='btn-search' type='button' on:click={onSearch}>{$t('Search')}</button>
     </form>
 
     <ToolCardList

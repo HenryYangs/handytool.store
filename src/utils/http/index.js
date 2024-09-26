@@ -7,6 +7,7 @@ import { URL_AUTH_WHITE_LIST } from './config';
 import event from '../event';
 import { EVENTS } from '../../constant/events';
 import { ALERT_STATUS } from '../../constant/status';
+import { getLang } from '../i18n';
 
 const instance = axios.create({
   timeout: 30000,
@@ -44,6 +45,9 @@ instance.interceptors.request.use(
         config.url = `${url}?${queryStringify(result)}`;
       }
     }
+
+    // locale setting purpose
+    config.url = [config.url, `locale=${getLang()}`].join(config.url.match(/\?/) ? '&' : '?');
 
     if (URL_AUTH_WHITE_LIST.find(url => config.url?.startsWith(url))) {
       return config;

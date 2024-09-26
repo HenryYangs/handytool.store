@@ -1,4 +1,5 @@
 <script>
+  import { t } from 'svelte-i18n';
   import { processUrl } from '../../../utils/url';
 
   export let title;
@@ -21,7 +22,7 @@
       <ul class='col'>
         {#each colList as item}
           <li>
-            <a href={processUrl(item.isWIP, item.url)} class='redirect'>{item.text}</a>
+            <a href={processUrl(item.isWIP, item.url)} class='redirect'>{$t(item.text)}</a>
           </li>
         {/each}
       </ul>

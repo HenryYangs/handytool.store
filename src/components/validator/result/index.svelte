@@ -1,4 +1,5 @@
 <script>
+  import { t } from 'svelte-i18n';
   import './assets/iconfont.css';
 
   export let isCorrect;
@@ -6,7 +7,7 @@
   export let message = '';
 
   $: result = isCorrect ? 'correct' : 'wrong';
-  $: resultMsg = message || (isCorrect ? 'Validate Success' : 'Validate Error');
+  $: resultMsg = message || (isCorrect ? $t('validateSuccessTips') : $t('validateErrorTips'));
 </script>
 
 <div class={`tool-panel wrapper validate-${result}`} style={style}>

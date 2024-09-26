@@ -5,6 +5,7 @@
   import { CATEGORY } from '../../../../constant/tools';
   import { onUpdateClock } from '../../../../utils/timer';
   import { prezero } from '../../../../utils/number';
+  import { t } from 'svelte-i18n';
 
   const now = new Date();
 
@@ -19,7 +20,7 @@
     category={CATEGORY.TIMER}
   >
     <Counter
-      initName='Count Timer'
+      initName={$t('CountTimer')}
       onTimeUpdate={updateClock}
       initDate={`${now.getFullYear() - 10}-${prezero(now.getMonth())}-${prezero(now.getDate())}`}
     />

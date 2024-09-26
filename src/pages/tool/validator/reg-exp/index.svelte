@@ -4,6 +4,7 @@
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
   import Result from '../../../../components/validator/result/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
+  import { t } from 'svelte-i18n';
 
   $: regExp = '';
   $: flags = '';
@@ -12,7 +13,7 @@
 
   const onConfirm = () => {
     if (!regExp || !targetStr) {
-      alert('Regular Expression or String is empty');
+      alert($t('regExpErrorTips'));
       return;
     }
 
@@ -36,7 +37,7 @@
     <div class='tool-panel'>
       <div class='reg-exp_header'>
         <div class='reg-exp_header__main'>
-          <h6 class='reg-exp_area__title'>Regular Expression</h6>
+          <h6 class='reg-exp_area__title'>{$t('RegularExpression')}</h6>
 
           <div class='reg-exp_input__wrapper input-group-sm'>
             /
@@ -51,7 +52,7 @@
         </div>
 
         <div class='reg-exp_flags'>
-          <h6 class='reg-exp_area__title'>Flags</h6>
+          <h6 class='reg-exp_area__title'>{$t('Flags')}</h6>
 
           <div class='reg-exp_input__wrapper input-group-sm'>
             <input
@@ -66,7 +67,7 @@
       </div>
 
       <div class='reg-exp_body'>
-        <h6 class='reg-exp_area__title'>Test With</h6>
+        <h6 class='reg-exp_area__title'>{$t('TestLabel')}</h6>
 
         <div class='input-group'>
           <input
@@ -77,7 +78,7 @@
         </div>
       </div>
 
-      <ExecuteBtn text='Validate' onConfirm={onConfirm} />
+      <ExecuteBtn text={$t('Validate')} onConfirm={onConfirm} />
 
       {#if isValid !== null}
         <Result isCorrect={isValid} style='margin-top: 20px;' />

@@ -1,4 +1,5 @@
 <script>
+  import { t } from 'svelte-i18n';
   import { NUMERAL_SYSTEM } from '../../../constant/numeral';
 
   export let numeral;
@@ -13,7 +14,7 @@
     bind:value={numeral}
   >
     {#each NUMERAL_SYSTEM as numeralItem}
-      <option value={numeralItem.value}>{numeralItem.label}</option>
+      <option value={numeralItem.value}>{$t(numeralItem.label)}</option>
     {/each}
   </select>
 

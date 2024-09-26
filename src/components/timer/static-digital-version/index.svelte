@@ -1,6 +1,7 @@
 <script>
   import DigitalItem from './digital-item/index.svelte';
   import { TIMER_UNIT_MAP } from '../../../constant/timer';
+  import { t } from 'svelte-i18n';
 
   /**
    * fields:
@@ -37,7 +38,7 @@
       color={getColor(TIMER_UNIT_MAP.YEAR)}
       value={config[TIMER_UNIT_MAP.YEAR].value}
       showSeparator={getShowSeparator(TIMER_UNIT_MAP.YEAR)}
-      subText={showSubText ? TIMER_UNIT_MAP.YEAR : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.YEAR : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.YEAR)}
     />
   {/if}
@@ -47,7 +48,7 @@
       color={getColor(TIMER_UNIT_MAP.MONTH)}
       value={config[TIMER_UNIT_MAP.MONTH].value}
       showSeparator={getShowSeparator(TIMER_UNIT_MAP.MONTH)}
-      subText={showSubText ? TIMER_UNIT_MAP.MONTH : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.MONTH : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.MONTH)}
     />
   {/if}
@@ -57,7 +58,7 @@
       color={getColor(TIMER_UNIT_MAP.WEEK)}
       value={config[TIMER_UNIT_MAP.WEEK].value}
       showSeparator={getShowSeparator(TIMER_UNIT_MAP.WEEK)}
-      subText={showSubText ? TIMER_UNIT_MAP.WEEK : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.WEEK : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.WEEK)}
     />
   {/if}
@@ -67,7 +68,7 @@
       color={getColor(TIMER_UNIT_MAP.DAY)}
       value={config[TIMER_UNIT_MAP.DAY].value}
       showSeparator={getShowSeparator(TIMER_UNIT_MAP.DAY)}
-      subText={showSubText ? TIMER_UNIT_MAP.DAY : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.DAY : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.DAY)}
     />
   {/if}
@@ -77,7 +78,7 @@
       color={getColor(TIMER_UNIT_MAP.HOUR)}
       value={config[TIMER_UNIT_MAP.HOUR].value}
       showSeparator={getShowSeparator(TIMER_UNIT_MAP.HOUR)}
-      subText={showSubText ? TIMER_UNIT_MAP.HOUR : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.HOUR : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.HOUR)}
     />
   {/if}
@@ -87,7 +88,7 @@
       color={getColor(TIMER_UNIT_MAP.MINUTE)}
       value={config[TIMER_UNIT_MAP.MINUTE].value}
       showSeparator={getShowSeparator(TIMER_UNIT_MAP.MINUTE)}
-      subText={showSubText ? TIMER_UNIT_MAP.MINUTE : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.MINUTE : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.MINUTE)}
     />
   {/if}
@@ -97,7 +98,7 @@
       color={getColor(TIMER_UNIT_MAP.SECOND)}
       value={config[TIMER_UNIT_MAP.SECOND].value}
       showSeparator={getShowSeparator(TIMER_UNIT_MAP.SECOND)}
-      subText={showSubText ? TIMER_UNIT_MAP.SECOND : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.SECOND : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.SECOND)}
     />
   {/if}
@@ -106,7 +107,7 @@
     <DigitalItem
       color={getColor(TIMER_UNIT_MAP.MILLISECOND)}
       value={config[TIMER_UNIT_MAP.MILLISECOND].value}
-      subText={showSubText ? TIMER_UNIT_MAP.MILLISECOND : ''}
+      subText={$t(showSubText ? TIMER_UNIT_MAP.MILLISECOND : '')}
       subTextColor={getSubTextColor(TIMER_UNIT_MAP.MILLISECOND)}
     />
   {/if}

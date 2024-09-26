@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import http from '../../utils/http';
   import { processToolUrl } from '../../utils/url';
+  import { t } from 'svelte-i18n';
 
   $: toolList = [];
 
@@ -25,13 +26,13 @@
   <div class='container-fluid container-biz'>
     <div class='row align-items-start'>
       <Entry
-        title='Navigate'
+        title={$t('Navigate')}
         className='col-2'
         list={CONF_NAVIGATE}
       />
 
       <Entry
-        title='Tools'
+        title={$t('Tools')}
         className='col-10'
         list={toolList}
       />

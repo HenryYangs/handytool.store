@@ -5,6 +5,7 @@
   import { CATEGORY } from '../../../constant/tools';
   import { numeralToText, textToNumeral } from '../../../utils/convert';
   import { stringCaseTransform } from '../../../utils/string/transform';
+  import { t } from 'svelte-i18n';
 
   export let id;
   export let numeral;
@@ -46,22 +47,23 @@
       bind:leftValue
       bind:rightValue
       leftConfig={{
-        btnText: `Convert Text to ${numeralTextCamelCase}`,
+        // btnText: `Convert Text to ${numeralTextCamelCase}`,
+        btnText: $t('convertTextToNumber', { values: { target: $t(numeralTextCamelCase) } }),
         onConfirm: onConvertLeft,
         onClear: onClearLeft,
       }}
       rightConfig={{
-        btnText: `Convert ${numeralTextCamelCase} to Text`,
+        btnText: $t('convertNumberToText', { values: { target: $t(numeralTextCamelCase) } }),
         onConfirm: onConvertRight,
         onClear: onClearRight,
       }}
     >
       <svelte:fragment slot='left-header-extra'>
-        <h6>Text</h6>
+        <h6>{$t('Text')}</h6>
       </svelte:fragment>
 
       <svelte:fragment slot='right-header-extra'>
-        <h6>{numeralTextCamelCase}</h6>
+        <h6>{$t(numeralTextCamelCase)}</h6>
       </svelte:fragment>
     </PlaygroundTransfer>
   </ToolLayout>
