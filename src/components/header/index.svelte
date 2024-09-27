@@ -7,12 +7,14 @@
   import '../../assets/icon/header/iconfont.css';
   import Dropdown from '../dropdown/index.svelte';
   import http from '../../utils/http';
-  import { STORAGE_LOGIN_INFO } from '../../constant/storage';
+  import { STORAGE_I18N_KEY, STORAGE_LOGIN_INFO } from '../../constant/storage';
   import { parseJSON } from '../../utils/object';
   import { onMount } from 'svelte';
   import event from '../../utils/event';
   import { EVENTS } from '../../constant/events';
   import { t } from 'svelte-i18n';
+  import { getLang } from '../../utils/i18n';
+  import { LOCALE_CN, LOCALE_EN } from '../../constant/i18n';
   
   let y;
 
@@ -22,6 +24,7 @@
     return parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO));
   })();
   $: username = '';
+  $: locale = getLang();
 
   const onSearch = () => {
     location.href = `${location.protocol}//${location.host}/tool/all?q=${searchValue}`;
@@ -65,7 +68,21 @@
           localStorage.removeItem(STORAGE_LOGIN_INFO);
         });
     }
-  })
+  });
+
+  const onEnglish = () => {
+    localStorage.setItem(STORAGE_I18N_KEY, LOCALE_EN);
+    location.reload();
+  };
+
+  const onChinese = () =>{
+    localStorage.setItem(STORAGE_I18N_KEY, LOCALE_CN);
+    location.reload();
+  };
+
+  const getLocaleEntryStyle = (target) => {
+    return locale === target ? 'color: #3D52A0; font-weight: bold' : '';
+  }
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -101,9 +118,30 @@
 
         <button class='extra-icon'>
           <i class='iconfont-header icon-header-share'></i>
-        </button>
+        </button> -->
 
-        <div class='vertical-split'></div> -->
+        <Dropdown
+          btnTrigger={false}
+          iconTrigger
+          id='translate'
+          iconCategory='header'
+          iconName='translate'
+          triggerStyle='margin-right: 10px; margin: 10px;'
+          dropdownList={[
+            {
+              text: 'English',
+              onClick: onEnglish,
+              style: getLocaleEntryStyle(LOCALE_EN),
+            },
+            {
+              text: '中文',
+              onClick: onChinese,
+              style: getLocaleEntryStyle(LOCALE_CN),
+            }
+          ]}
+        />
+
+        <div class='vertical-split'></div>
 
         <form class='search-form'>
           <input class='form-control input-search' placeholder={$t('Search')} bind:value={searchValue} on:keypress={onSearchKeyPress} />
@@ -115,7 +153,7 @@
 
         {#if isLogin}
           <Dropdown
-            id='dropdown'
+            id='userInfo'
             triggerText={username}
             triggerStyle=''
             dropdownList={[
@@ -181,7 +219,7 @@
 }
 
 .vertical-split {
-  height: 40px;
+  height: 20px;
   border-right: 1px solid var(--theme-secondary-dark-color);
 }
 

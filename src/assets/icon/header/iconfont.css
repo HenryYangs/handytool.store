@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont-header"; /* Project id 4663346 */
-  src: url('iconfont.woff2?t=1726729804461') format('woff2'),
-       url('iconfont.woff?t=1726729804461') format('woff'),
-       url('iconfont.ttf?t=1726729804461') format('truetype');
+  src: url('iconfont.woff2?t=1727346306297') format('woff2'),
+       url('iconfont.woff?t=1727346306297') format('woff'),
+       url('iconfont.ttf?t=1727346306297') format('truetype');
 }
 
 .iconfont-header {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-header-translate:before {
+  content: "\eaae";
 }
 
 .icon-header-eye:before {

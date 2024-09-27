@@ -3,7 +3,7 @@ import { parseJSON, queryStringify } from '../object';
 import { parseSearch } from '../url';
 import { STORAGE_LOGIN_INFO } from '../../constant/storage';
 import { CODE } from '../../constant/response';
-import { URL_AUTH_WHITE_LIST } from './config';
+import { URL_AUTH_WHITE_LIST, URL_LOCALE_LIST } from './config';
 import event from '../event';
 import { EVENTS } from '../../constant/events';
 import { ALERT_STATUS } from '../../constant/status';
@@ -29,8 +29,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
-    config.url = `${import.meta.env.VITE_SERVER_AUTH}${config.url}`;
-
     if (config.method === 'get') {
       const [, url, search] = config.url?.match(/(.*)(\?.*)/) || [];
       const result = {};
@@ -47,7 +45,11 @@ instance.interceptors.request.use(
     }
 
     // locale setting purpose
-    config.url = [config.url, `locale=${getLang()}`].join(config.url.match(/\?/) ? '&' : '?');
+    if (URL_LOCALE_LIST.filter(url => config.url.startsWith(url)).length) {
+      config.url = [config.url, `locale=${getLang()}`].join(config.url.match(/\?/) ? '&' : '?');
+    }
+
+    config.url = `${import.meta.env.VITE_SERVER_AUTH}${config.url}`;
 
     if (URL_AUTH_WHITE_LIST.find(url => config.url?.startsWith(url))) {
       return config;
