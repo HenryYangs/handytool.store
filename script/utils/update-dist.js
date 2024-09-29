@@ -53,7 +53,8 @@ async function updateDistFile() {
         </script>
 
         <!-- Google Ads -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7586609252833770" crossorigin="anonymous"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5995522298673773"
+     crossorigin="anonymous"></script>
       `
     );
 
