@@ -4,6 +4,7 @@
   import Clipboard from 'clipboard';
   import { EVENTS } from '../../constant/events';
   import event from '../../utils/event';
+  import '../../assets/icon/actions/iconfont.css';
 
   export let name = '';
   export let style = '';
