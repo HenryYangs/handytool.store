@@ -3,9 +3,9 @@
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import UnitPanel from '../../../../components/convertor/unit-panel/index.svelte';
   import { CATEGORY } from '../../../../constant/tools';
-  import { LENGTH_UNIT_LIST } from '../../../../constant/unit/length';
+  import { TIME_UNIT_LIST } from '../../../../constant/unit/time';
 
-  const unitList = LENGTH_UNIT_LIST.map(item => ({
+  const unitList = TIME_UNIT_LIST.map(item => ({
     ...item,
     text: item.value
   }));
@@ -13,7 +13,7 @@
 
 <Layout>
   <ToolLayout
-    id='length-unit'
+    id='time-unit'
     category={CATEGORY.CONVERTOR}
   >
     <UnitPanel unitList={unitList} />

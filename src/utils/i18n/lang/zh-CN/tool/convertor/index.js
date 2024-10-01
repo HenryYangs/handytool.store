@@ -1,4 +1,5 @@
 import lengthUnit from './length-unit';
+import timeUnit from './time-unit';
 
 export default {
   'Convertor Tools': '转换工具',
@@ -17,4 +18,5 @@ export default {
   fromUnitLabel: '锚定单位',
   
   ...lengthUnit,
+  ...timeUnit,
 }
