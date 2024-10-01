@@ -5,6 +5,7 @@
   import { onMount } from 'svelte';
   import http from '../../utils/http';
   import { t } from 'svelte-i18n';
+  import Share from '../share/index.svelte';
 
   export let id;
   export let category;
@@ -48,8 +49,7 @@
       <slot />
     </div>
 
-    <!-- TODO -->
-    <!-- <Share /> -->
+    <Share name={tool.text} style='margin-top: 30px;' />
     
     {#if otherTools.length}
       <div class='other-tools'>
