@@ -11,6 +11,9 @@ export default {
   convertBefore: 'Before',
   convertAfter: 'After',
 
+  colorHexToRgb: 'Hex to RGB',
+  colorRgbToHex: 'RGB to Hex',
+
   ...convertor,
   ...validator,
   ...timer,

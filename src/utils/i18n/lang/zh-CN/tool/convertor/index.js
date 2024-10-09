@@ -16,6 +16,10 @@ export default {
   convertNumberToText: '转换成文本',
 
   fromUnitLabel: '锚定单位',
+  colorHexToRgb: '16 进制转 RGB',
+  colorRgbToHex: 'RGB 转 16 进制',
+  'Show Hash Tag': '添加#前缀',
+  'Add RGB Prefix': '添加 RGB 前缀',
   
   ...lengthUnit,
   ...timeUnit,

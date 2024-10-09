@@ -26,3 +26,7 @@ export const numeralToText = (digit, numeral = 2) => {
 
   return text;
 };
+
+export const numeralConvertor = (value, from, to) => {
+  return Number(parseInt(value, from)).toString(to);
+}

@@ -5,6 +5,7 @@
   export let value;
   export let style = '';
   export let noBtn = false;
+  export let input = false;
   export let onConfirm = (value) => {};
 
   const onConfirmHandler = () => {
@@ -22,11 +23,19 @@
   </div>
 
   <div class='input-group textarea-wrapper'>
-    <textarea
-      class='form-control common-textarea'
-      aria-label='input area'
-      bind:value={value}
-    ></textarea>
+    {#if input}
+      <input
+        class='form-control'
+        aria-label='input area'
+        bind:value={value}
+      />
+    {:else}
+      <textarea
+        class='form-control common-textarea'
+        aria-label='input area'
+        bind:value={value}
+      ></textarea>
+    {/if}
   </div>
 
   {#if noBtn === false}

@@ -8,6 +8,7 @@
   export let onConfirm = null;
   export let noConfirmBtn = false;
   export let actionConfig = {};
+  export let useInput = false;
 </script>
 
 <BasePlayground
@@ -16,6 +17,7 @@
   style={style}
   onConfirm={onConfirm}
   noBtn={noConfirmBtn}
+  input={useInput}
 >
   <BaseActions
     slot='header-main'

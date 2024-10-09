@@ -1,0 +1,17 @@
+{
+  "title": "Color Convertor | Handytool.store",
+  "meta": [
+    {
+      "name": "keywords",
+      "content": "color, hex color, rgb, red green blue"
+    },
+    {
+      "name": "description",
+      "content": "convert color between rgb and hex"
+    },
+    {
+      "property": "og:url",
+      "content": "http://www.handytool.store/tool/convertor/color"
+    }
+  ]
+}

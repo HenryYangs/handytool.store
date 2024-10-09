@@ -20,6 +20,7 @@
       onClear: leftConfig.onClear,
       onCopy: leftConfig.onCopy
     }}
+    useInput={leftConfig.useInput}
   >
     <div slot='header-extra'>
       <slot name='left-header-extra' />
@@ -35,6 +36,7 @@
       onClear: rightConfig.onClear,
       onCopy: rightConfig.onCopy
     }}
+    useInput={rightConfig.useInput}
   >
     <div slot='header-extra'>
       <slot name='right-header-extra' />
