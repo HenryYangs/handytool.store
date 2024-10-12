@@ -1,4 +1,6 @@
 <script>
+  import { BeForm, BeFormItem } from '@brewer/beerui/be-form';
+  import BeInput from '@brewer/beerui/be-input';
   import Mask from '../mask/index.svelte';
   import ExecuteBtn from '../execute-btn/index.svelte';
   import http from '../../utils/http';
@@ -8,8 +10,6 @@
   import { ALERT_STATUS } from '../../constant/status';
   import { onMount } from 'svelte';
   import { t } from 'svelte-i18n';
-
-  $: show = false;
 
   const FORM_TYPE = {
     LOGIN: 'login',
@@ -22,10 +22,33 @@
     TEXT: 'text',
   };
 
-  $: username = '';
-  $: password = '';
+  const initFormData = {
+    username: '',
+    password: '',
+  };
+  const errorMsg = {
+    username: $t('usernameInputErrorTips'),
+    password: $t('passwordInputErrorTips')
+  };
+  const apiUrl = {
+    [FORM_TYPE.REGISTER]: '/register',
+    [FORM_TYPE.LOGIN]: '/login',
+  }
 
-  $: formClsName = '';
+  $: show = false;
+
+  let formData = { ...initFormData };
+  let formRules = {
+    username: [
+      { required: true, message: $t('usernameInputErrorTips'), trigger: 'change' },
+    ],
+    password: [
+      { required: true, message: $t('passwordInputErrorTips'), trigger: 'change' },
+    ]
+  };
+
+  let formRef = null;
+
   $: formType = FORM_TYPE.LOGIN; // login, register, or forget password
   $: pwType = PASSWORD_TYPE.PASSWORD; // password or text
 
@@ -67,63 +90,63 @@
   const toggleFormType = (target) => {
     formType = target;
     pwType = PASSWORD_TYPE.PASSWORD;
-    username = '';
-    password = '';
+    formData = { ...initFormData };
   };
 
   const onBtnConfirm = () => {
-    formClsName = 'was-validated';
+    if (!formData.username || !formData.password) {
+      let msg = '';
 
-    if (!username || !password) return;
+      if (!formData.username) {
+        msg = errorMsg.username;
+      } else if (!formData.password) {
+        msg = errorMsg.password;
+      }
+
+      event.emit(EVENTS.ALERT, {
+        show: true,
+        message: msg,
+        status: ALERT_STATUS.ERROR,
+      });
+      return;
+    }
 
     apiLoading = true;
 
-    if (formType === FORM_TYPE.REGISTER) {
-      http({
-        url: '/register',
-        method: 'POST',
-        data: {
-          username,
-          password,
-        },
-      }).then(() => {
-        event.emit(EVENTS.ALERT, {
-          show: true,
-          status: ALERT_STATUS.SUCCESS,
-          message: $t('registerSuccessTips'),
-        });
-        formType = FORM_TYPE.LOGIN;
-        pwType = PASSWORD_TYPE.PASSWORD;
-      }).catch((error) => {
-        console.error('register error', error);
-      }).finally(() => {
-        apiLoading = false;
-      });
-    } else if (formType === FORM_TYPE.LOGIN) {
-      http({
-        url: '/login',
-        method: 'POST',
-        data: {
-          username,
-          password,
-        },
-      }).then((response) => {
-        localStorage.setItem(STORAGE_LOGIN_INFO, JSON.stringify(response));
-        event.emit(EVENTS.ALERT, {
-          show: true,
-          status: ALERT_STATUS.SUCCESS,
-          message: $t('loginSuccessTips'),
-        });
+    formRef.validate(valid => {
+      if (!valid) return false;
 
-        setTimeout(() => {
-          location.href = '/';
-        }, 1000);
+      http({
+        url: apiUrl[formType],
+        method: 'POST',
+        data: formData,
+      }).then(response => {
+        if (formType === FORM_TYPE.REGISTER) {
+          event.emit(EVENTS.ALERT, {
+            show: true,
+            status: ALERT_STATUS.SUCCESS,
+            message: $t('registerSuccessTips'),
+          });
+          formType = FORM_TYPE.LOGIN;
+          pwType = PASSWORD_TYPE.PASSWORD;
+        } else if (formType === FORM_TYPE.LOGIN) {
+          localStorage.setItem(STORAGE_LOGIN_INFO, JSON.stringify(response));
+          event.emit(EVENTS.ALERT, {
+            show: true,
+            status: ALERT_STATUS.SUCCESS,
+            message: $t('loginSuccessTips'),
+          });
+  
+          setTimeout(() => {
+            location.href = '/';
+          }, 1000);
+        }
       }).catch((error) => {
         console.error('login error', error);
       }).finally(() => {
         apiLoading = false;
       });
-    }
+    });
   };
 
   const onShow = () => {
@@ -146,189 +169,162 @@
       event.off(EVENTS.AUTH_SHOW, onShow);
     };
   });
+
+  const labelPosition = 'top'
 </script>
 
 {#if show}
   <Mask onClose={onClose}>
-    <div class='wrapper'>
+    <div class='auth-wrapper'>
       <header class='auth-header'>
         <img alt='logo' src='http://images.handytool.store/96x96.png' class='auth-logo' />
 
         <h3 class='auth-title'>{config.title}</h3>
       </header>
 
-      <form id='auth' class={`auth-form ${formClsName}`} novalidate>
-        <div class='form-row'>
-          <label for='username' class='form-label form-label-text'>{$t('Username')}</label>
-          <input
-            required
-            type='text'
-            class='form-control form-control-input'
-            id='username'
-            placeholder={$t('usernamePlaceholder')}
-            disabled={apiLoading}
-            bind:value={username}
-            on:input={() => { formClsName = '' }}
-          />
-          <p class='invalid-feedback'>{$t('usernameInputErrorTips')}</p>
-        </div>
+      <div class='auth-form'>
+        <BeForm
+          bind:model={formData}
+          bind:rules={formRules}
+          bind:this={formRef}
+          {labelPosition}
+        >
+          <BeFormItem label={$t('Username')}>
+            <BeInput
+              placeholder={$t('usernamePlaceholder')}
+              disabled={apiLoading}
+              bind:value={formData.username}
+            />
+          </BeFormItem>
 
-        {#if formType !== FORM_TYPE.FORGET_PASSWORD}
-          <div class='form-row'>
-            <label for='password' class='form-label form-label-text'>{$t('Password')}</label>
-            <div class='form-password-group'>
+          {#if formType !== FORM_TYPE.FORGET_PASSWORD}
+            <BeFormItem label={$t('Password')}>
               {#if pwType === PASSWORD_TYPE.PASSWORD}
-                <input
+                <BeInput
+                  placeholder={$t('passwordPlaceholder')}
+                  disabled={apiLoading}
                   type='password'
-                    required
-                    class='form-control form-control-input'
-                    id='password'
-                    placeholder={$t('passwordPlaceholder')}
-                    disabled={apiLoading}
-                    bind:value={password}
-                    on:input={() => { formClsName = '' }}
-                  />
+                  bind:value={formData.password}
+                />
               {:else if pwType === PASSWORD_TYPE.TEXT}
-                <input
+                <BeInput
+                  placeholder={$t('passwordPlaceholder')}
+                  disabled={apiLoading}
                   type='text'
-                    required
-                    class='form-control form-control-input'
-                    id='password'
-                    placeholder={$t('passwordPlaceholder')}
-                    disabled={apiLoading}
-                    bind:value={password}
-                    on:input={() => { formClsName = '' }}
-                  />
+                  bind:value={formData.password}
+                />
               {/if}
-              <p class='invalid-feedback'>{$t('passwordInputErrorTips')}</p>
               <i class={`iconfont-header icon-header-eye${pwType === 'password' ? '-close' : ''} icon-eye`} on:click={togglePasswordType}></i>
-            </div>
+            </BeFormItem>
+          {/if}
+
+          <BeFormItem>
+            <ExecuteBtn
+              style='box-shadow: 0 20px 20px rgb(61 82 160 / 20%)'
+              text={config.btnText}
+              onConfirm={onBtnConfirm}
+              disabled={apiLoading}
+              loading={apiLoading}
+            />
+          </BeFormItem>
+        </BeForm>
+      </div>
+
+      <!-- TODO -->
+      <!-- {#if formType === FORM_TYPE.LOGIN}
+        <div class='form-row form-action'>
+          <div class='remember-me'>
+            <input class='' type='checkbox' value='' id='rememberMe'>
+            <label class='' for='rememberMe'>
+              Remember Me
+            </label>
           </div>
-        {/if}
 
-        <!-- TODO -->
-        <!-- {#if formType === FORM_TYPE.LOGIN}
-          <div class='form-row form-action'>
-            <div class='remember-me'>
-              <input class='' type='checkbox' value='' id='rememberMe'>
-              <label class='' for='rememberMe'>
-                Remember Me
-              </label>
-            </div>
-
-            <button class='btn btn-link tips-btn' type='button' on:click={goForgetPassword}>Forget Password?</button>
-          </div>
-        {/if} -->
-
-        <div class='form-row'>
-          <ExecuteBtn
-            style='box-shadow: 0 20px 20px rgb(61 82 160 / 20%)'
-            text={config.btnText}
-            onConfirm={onBtnConfirm}
-            disabled={apiLoading}
-            loading={apiLoading}
-          />
+          <button class='btn btn-link tips-btn' type='button' on:click={goForgetPassword}>Forget Password?</button>
         </div>
-      </form>
+      {/if} -->
 
-      <p class='tips'>{config.tips} <button class='btn btn-link tips-btn' type='button' on:click={() => toggleFormType(formType === FORM_TYPE.LOGIN ? FORM_TYPE.REGISTER : FORM_TYPE.LOGIN)}>{config.tipsBtn}</button></p>
+      <p class='tips'>{config.tips} <a href='javascript:;' class='tips-btn' type='button' on:click={() => toggleFormType(formType === FORM_TYPE.LOGIN ? FORM_TYPE.REGISTER : FORM_TYPE.LOGIN)}>{config.tipsBtn}</a></p>
     </div>
   </Mask>
 {/if}
 
-<style>
-.wrapper {
+<style lang='scss' global>
+.auth-wrapper {
   width: 460px;
   padding: 24px;
   border-radius: 14px;
   background-color: var(--white);
-}
 
-.auth-header {
-  text-align: center;
-}
+  .be-form-item__label {
+    line-height: 1;
+    font-size: 12px;
+    font-weight: 700;
+  }
 
-.auth-logo {
-  width: 48px;
-  height: 48px;
-}
+  .be-form {
+    width: 100%;
+  }
 
-.auth-title {
-  margin-top: 15px;
-  font-weight: bold;
-}
+  .auth-header {
+    text-align: center;
+  }
 
-.auth-form {
-  margin-top: 30px;
-}
+  .auth-logo {
+    width: 48px;
+    height: 48px;
+  }
 
-.form-row + .form-row {
-  margin-top: 20px;
-}
+  .auth-title {
+    margin-top: 15px;
+    font-weight: bold;
+  }
 
-.form-label-text {
-  font-size: 12px;
-  font-weight: bold;
-}
+  .auth-form {
+    margin-top: 30px;
+  }
 
-.form-control-input {
-  font-size: 14px;
-}
+  .icon-eye {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 16px;
+    line-height: 1;
+    transform: translateY(-50%);
+  }
 
-.form-password-group {
-  position: relative;
-}
+  .icon-eye:hover {
+    opacity: 1;
+  }
 
-.icon-eye {
-  position: absolute;
-  right: 0;
-  top: 0;
-  opacity: 0.6;
-  transition: all .3s ease;
-  cursor: pointer;
-  transform: translate(-50%, -20%);
-  margin-top: 11px;
-}
+  // .remember-me {
+  //   display: flex;
+  //   justify-content: flex-start;
+  //   align-items: center;
+  //   margin: 0;
+  // }
 
-.icon-eye:hover {
-  opacity: 1;
-}
+  // .remember-me label {
+  //   margin-left: 5px;
+  // }
 
-.was-validated .icon-eye {
-  margin-right: 20px;
-}
+  .tips-btn {
+    font-size: 12px;
+    text-decoration: none;
+    padding: 0;
+    border: none;
+    vertical-align: baseline;
+    line-height: 1;
+  }
 
-.form-action {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-}
-
-.remember-me {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 0;
-}
-
-.remember-me label {
-  margin-left: 5px;
-}
-
-.tips-btn {
-  font-size: 12px;
-  text-decoration: none;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
-  line-height: 1;
-}
-
-.tips {
-  opacity: .8;
-  font-size: 12px;
-  margin-top: 30px;
-  text-align: center;
+  .tips {
+    opacity: .8;
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+  }
 }
 </style>

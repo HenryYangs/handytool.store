@@ -1,0 +1,73 @@
+@import '../icon/common/iconfont.css';
+@import '../icon/tools/iconfont.css';
+
+@import './layout.scss';
+
+:root {
+  --white: #FFFFFF;
+  --title-color: #333333; // rgb(51,51,51)
+  --theme-main-color: #3D52A0; // rgb(61, 82, 160)
+  --theme-secondary-color: #7091E6; // rgb(112,145,230)
+  --theme-main-dark-color: #8697C4; // rgb(134,151,196)
+  --theme-secondary-dark-color: #ADBBDA; // rgb(173,187,218)
+  --theme-main-light-color: #EDE8F5; // rgb(237,232,245)
+  
+  --alert-layer: 1000000;
+  --mask-layer: 100000;
+  --sticky-layer: 10000;
+  --layer: 1;
+}
+
+* {
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans','Liberation Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji'
+}
+
+html, body, #app {
+  min-width: 1200px;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.container-biz {
+  flex: 1;
+}
+
+@media (min-width: 1200px) {
+  .container-biz {
+    max-width: 1200px;
+  }
+}
+
+.tool-panel {
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid rgb(173, 187, 218, .3);
+}
+
+textarea.common-textarea {
+  min-height: 200px;
+}
+
+.common-background {
+  background-color: rgba(134, 151, 196, .1);
+}
+
+.modal-wrapper {
+  z-index: var(--mask-layer) !important;
+}

@@ -1,0 +1,17 @@
+.layout-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.layout-start-center {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.layout-end-center {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

@@ -1,8 +1,8 @@
-import {resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import history from 'connect-history-api-fallback';
 import { getPathRewriteRules, getRollupInput } from './script/utils/multi-page';
+import { sveltePreprocess } from 'svelte-preprocess';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -17,7 +17,9 @@ export default async ({ mode }) => {
         }
       : {}),
     plugins: [
-      svelte(),
+      svelte({
+        preprocess: sveltePreprocess(),
+      }),
       {
         name: 'path-rewrite-plugin',
         async configureServer(server) {
@@ -31,11 +33,6 @@ export default async ({ mode }) => {
         },
       },
     ],
-    resolve: {
-      alias: {
-        '~bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
-      },
-    },
     build: {
       ...(isProd
         ? {
