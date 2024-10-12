@@ -7,6 +7,7 @@ export default {
   borderWidth: 'Border Width',
   backgroundColor: 'Background Color',
   textColor: 'Text Color',
+  unitTextColor: 'Unit Text Color',
   borderColor: 'Border Color',
   nameColor: 'Name Color',
   lastUnitColor: 'Last Unit Color',

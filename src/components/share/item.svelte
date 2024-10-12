@@ -50,5 +50,6 @@
   border-radius: 5px;
   transition: all .3s ease;
   background-color: transparent;
+  cursor: pointer;
 }
 </style>

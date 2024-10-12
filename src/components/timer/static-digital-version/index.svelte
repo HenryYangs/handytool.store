@@ -23,7 +23,7 @@
   $: getSubTextColor = (key) => {
     const target = config[key];
 
-    return target ? target.color : '';
+    return target ? target.subTextColor : '';
   };
   $: getShowSeparator = (key) => {
     const target = config[key];

@@ -1,4 +1,6 @@
 <script>
+  import { BeFormItem } from '@brewer/beerui/be-form';
+  import BeInput from '@brewer/beerui/be-input';
   import { getOppositeColor } from '../../utils/color';
 
   export let id = '';
@@ -11,17 +13,15 @@
   };
 </script>
 
-<div class='input-group-sm color-palette-wrapper'>
-  <label for='bgColor' class='form-label'>{label}:</label>
-  <input
+<BeFormItem class='color-palette-wrapper' label={`${label}:`}>
+  <BeInput
     type='text'
-    class='form-control'
     style={`background-color: ${bgColor}; color: ${getOppositeColor(bgColor)}`}
     bind:value={bgColor}
     on:focus={onColorPaletteFocus}
   />
   <input type='color' class='form-control color-palette' id={id} on:change={onChange}>
-</div>
+</BeFormItem>
 
 <style global lang='scss'>
 .color-palette-wrapper {

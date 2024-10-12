@@ -33,11 +33,11 @@
       font-size: 30px;
     }
     
-    .validate-correct {
+    &.validate-correct {
       color: green;
     }
     
-    .validate-wrong {
+    &.validate-wrong {
       color: red;
     }
   }

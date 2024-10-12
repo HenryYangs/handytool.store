@@ -1,4 +1,5 @@
 <script>
+  import BeInput from '@brewer/beerui/be-input';
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
@@ -41,12 +42,12 @@
 
           <div class='reg-exp_input__wrapper input-group-sm'>
             /
-            <input
+            <BeInput
               type='text'
-              class='form-control reg-exp_input'
+              class='reg-exp_input'
               bind:value={regExp}
               on:input={onInput}
-            >
+            />
             /
           </div>
         </div>
@@ -55,13 +56,12 @@
           <h6 class='reg-exp_area__title'>{$t('Flags')}</h6>
 
           <div class='reg-exp_input__wrapper input-group-sm'>
-            <input
+            <BeInput
               type='text'
-              class='form-control'
               placeholder='ig'
               bind:value={flags}
               on:input={onInput}
-            >
+            />
           </div>
         </div>
       </div>
@@ -70,8 +70,7 @@
         <h6 class='reg-exp_area__title'>{$t('TestLabel')}</h6>
 
         <div class='input-group'>
-          <input
-            class='form-control'
+          <BeInput
             bind:value={targetStr}
             on:input={onInput}
           />

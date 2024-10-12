@@ -5,6 +5,7 @@
   import { EVENTS } from '../../constant/events';
   import event from '../../utils/event';
   import '../../assets/icon/actions/iconfont.css';
+  import { ALERT_STATUS } from '../../constant/status';
 
   export let name = '';
   export let style = '';
@@ -64,15 +65,17 @@
     });
 
     clipboard.on('success', () => {
-      event.emit(EVENTS.TOOLTIP, {
+      event.emit(EVENTS.ALERT, {
         show: true,
+        status: ALERT_STATUS.SUCCESS,
         message: 'Copy Success!'
       });
     });
 
     clipboard.on('error', () => {
-      event.emit(EVENTS.TOOLTIP, {
+      event.emit(EVENTS.ALERT, {
         show: true,
+        status: ALERT_STATUS.ERROR,
         message: 'Copy Error!'
       });
     });

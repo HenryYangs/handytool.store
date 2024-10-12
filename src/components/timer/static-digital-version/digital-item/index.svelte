@@ -6,24 +6,29 @@
   export let subTextColor = '';
 </script>
 
-<div class='digital-item-wrapper'>
-  <p
-    class='timer_main-text'
-    style={`color: ${color}`}
-  >{value}</p>
+<div class='digital-item-wrapper layout-center-start'>
+  <div class='main-text-wrapper'>
+    <p
+      class='timer_main-text'
+      style={`color: ${color}`}
+    >{value}</p>
 
-  {#if subText}
-    <p class='timer_sub-text' style={`color: ${subTextColor}`}>{subText}</p>
+    {#if subText}
+      <p class='timer_sub-text' style={`color: ${subTextColor}`}>{subText}</p>
+    {/if}
+  </div>
+
+  {#if showSeparator}
+    <span class='separator timer_main-text' style={`color: ${color}`}>:</span>
   {/if}
 </div>
 
-{#if showSeparator}
-  <span class='separator timer_main-text' style={`color: ${color}`}>:</span>
-{/if}
 
 <style global lang='scss'>
   .digital-item-wrapper {
     .timer_main-text {
+      height: 180px;
+      line-height: 180px;
       font-size: 120px;
       font-weight: 500;
       font-family: Helvetica, Arial, sans-serif;
@@ -34,7 +39,7 @@
       font-size: 25px;
       font-weight: 400;
     }
-    
+
     .separator {
       margin: 0 10px;
     }

@@ -1,4 +1,5 @@
 <script>
+  import BeInput from '@brewer/beerui/be-input';
   import BeTextarea from '@brewer/beerui/be-textarea';
   import ExecuteBtn from '../execute-btn/index.svelte';
 
@@ -25,13 +26,9 @@
 
   <div class='input-group textarea-wrapper'>
     {#if input}
-      <input
-        class='form-control'
-        aria-label='input area'
-        bind:value={value}
-      />
+      <BeInput bind:value />
     {:else}
-      <BeTextarea bind:value={value}></BeTextarea>
+      <BeTextarea bind:value></BeTextarea>
     {/if}
   </div>
 

@@ -1,6 +1,7 @@
 <script>
   import { t } from 'svelte-i18n';
   import IconCopy from '../../../components/icon/copy/index.svelte';
+  import BeInput from '@brewer/beerui/be-input';
 
   export let unitList = [];
 
@@ -17,18 +18,18 @@
   <section class='tool-panel unit-container'>
     <h6>{$t('fromUnitLabel')}: {$t(unitList[curIdx].text)}</h6>
 
-    <div class='input-group-sm input-wrapper'>
-      <input class='form-control' type='number' bind:value={inputValue} />
+    <div class='input-wrapper'>
+      <BeInput type='number' bind:value={inputValue} size='small' />
     </div>
 
     <div class='tool-panel from-unit-select'>
       {#each unitList as unit, index}
-        <button
+        <div
           class={`from-unit-btn ${curIdx === index ? 'active' : ''}`}
           on:click={() => {
             onFromUnitClick(index);
           }}
-        >{$t(unit.text)}</button>
+        >{$t(unit.text)}</div>
       {/each}
     </div>
   </section>
@@ -78,6 +79,8 @@
     background-color: transparent;
     border: none;
     text-align: start;
+    padding: 6px 4px;
+    cursor: pointer;
   }
 
   .from-unit-btn:hover {
@@ -97,6 +100,7 @@
 
   .unit-row span {
     flex: 1;
+    line-height: 1.5;
   }
 }
 </style>
