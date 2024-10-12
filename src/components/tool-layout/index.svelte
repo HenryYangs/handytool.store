@@ -35,7 +35,7 @@
   };
 </script>
 
-<main class='tool-layout-wrapper common-background'>
+<main class='tool-layout-wrapper layout-center common-background'>
   <div class='container-biz'>
     <TitleDesc
       title={tool.text}

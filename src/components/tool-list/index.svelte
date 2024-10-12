@@ -59,7 +59,7 @@
   });
 </script>
 
-<main class='tool-list-wrapper common-background'>
+<main class='tool-list-wrapper common-background layout-center'>
   <div class='container-biz inner-wrapper'>
     <TitleDesc title={title} description={description} showStar={false} />
 
@@ -114,8 +114,9 @@
     
     .icon-search {
       position: absolute;
-      top: 14px;
+      top: 50%;
       left: 18px;
+      transform: translateY(-50%);
       font-size: 24px;
       color: var(--theme-secondary-color);
     }

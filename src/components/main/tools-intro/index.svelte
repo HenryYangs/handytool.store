@@ -71,7 +71,7 @@
       <div class='footer-btn layout-center'>
         <ExecuteBtn
           btnClassName='redirect-to-list'
-          onConfirm={() => processUrl(curTabItem.isWIP, `/tool/${curTabItem.id}`)}
+          onConfirm={() => window.open(processUrl(curTabItem.isWIP, `/tool/${curTabItem.id}`), '_self')}
           text={allBtnText}
           buttonProps={{
             size: 'medium'
@@ -114,17 +114,13 @@
       font-weight: 600;
       transition: all .3s linear;
 
-      &.be-button span {
+      span {
         color: var(--theme-main-color);
       }
     }
 
     .redirect-to-list:hover {
       background-color: var(--theme-main-color);
-
-      &.be-button span {
-        color: var(--white);
-      }
     }
   }
 </style>

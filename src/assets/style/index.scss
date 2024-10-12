@@ -3,6 +3,7 @@
 
 @import './layout.scss';
 @import './typography.scss';
+@import './ui-reset.scss';
 
 :root {
   --white: #FFFFFF;
@@ -12,6 +13,8 @@
   --theme-main-dark-color: #8697C4; // rgb(134,151,196)
   --theme-secondary-dark-color: #ADBBDA; // rgb(173,187,218)
   --theme-main-light-color: #EDE8F5; // rgb(237,232,245)
+
+  --outline-dark: #212529;
   
   --alert-layer: 1000000;
   --mask-layer: 100000;
@@ -59,10 +62,6 @@ p {
   padding: 20px;
   border-radius: 5px;
   border: 1px solid rgb(173, 187, 218, .3);
-}
-
-textarea.common-textarea {
-  min-height: 200px;
 }
 
 .common-background {

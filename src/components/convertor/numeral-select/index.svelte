@@ -1,4 +1,6 @@
 <script>
+  import { BeSelect, BeOption } from '@brewer/beerui/be-select';
+  import BeInput from '@brewer/beerui/be-input';
   import { t } from 'svelte-i18n';
   import { NUMERAL_SYSTEM } from '../../../constant/numeral';
 
@@ -6,29 +8,32 @@
   export let numeralCustom;
 </script>
 
-<div class='d-flex numeral-select-wrapper'>
-  <select
-    class='form-select form-select-sm'
-    aria-label='Select Numeral System'
+<div class='numeral-select-wrapper layout-start-center'>
+  <BeSelect
+    size='mini'
     placeholder='Select Numeral System'
     bind:value={numeral}
   >
     {#each NUMERAL_SYSTEM as numeralItem}
-      <option value={numeralItem.value}>{$t(numeralItem.label)}</option>
+      <BeOption value={numeralItem.value} label={$t(numeralItem.label)} />
     {/each}
-  </select>
+  </BeSelect>
 
   {#if numeral === -1}
-    <div class='input-group-sm custom-numeral'>
-      <input type='number' class='form-control' min={NUMERAL_SYSTEM.length + 1} bind:value={numeralCustom} />
+    <div class='custom-numeral'>
+      <BeInput type='number' size='mini' min={2} bind:value={numeralCustom} />
     </div>
   {/if}
 </div>
 
 <style global lang='scss'>
   .numeral-select-wrapper {
+    .be-select {
+      width: 120px;
+    }
     .custom-numeral {
       margin-left: 10px;
+      width: 100px;
     }
   }
 </style>

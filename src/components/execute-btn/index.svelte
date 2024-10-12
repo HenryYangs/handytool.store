@@ -38,9 +38,15 @@
       border-color: rgba(61, 82, 160, .9);
     }
     
-    .action-btn:hover {
+    .action-btn:hover,
+    .action-btn:active,
+    .action-btn:focus {
       background-color: var(--theme-main-color);
       border-color: var(--theme-main-color);
+
+      span {
+        color: var(--white);
+      }
     }
   }
 </style>

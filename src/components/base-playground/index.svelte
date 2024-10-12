@@ -1,4 +1,5 @@
 <script>
+  import BeTextarea from '@brewer/beerui/be-textarea';
   import ExecuteBtn from '../execute-btn/index.svelte';
 
   export let btnText = 'Transfer';
@@ -30,11 +31,7 @@
         bind:value={value}
       />
     {:else}
-      <textarea
-        class='form-control common-textarea'
-        aria-label='input area'
-        bind:value={value}
-      ></textarea>
+      <BeTextarea bind:value={value}></BeTextarea>
     {/if}
   </div>
 
