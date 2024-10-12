@@ -15,7 +15,7 @@
   });
 </script>
 
-<div class={`wrapper ${className}`}>
+<div class={`footer-entry-wrapper ${className}`}>
   <h4>{title}</h4>
   <div class='row'>
     {#each renderList as colList}
@@ -30,22 +30,24 @@
   </div>
 </div>
 
-<style>
-.wrapper h4 {
-  margin: 0;
-  color: #333;
-}
+<style global lang='scss'>
+  .footer-entry-wrapper {
+    h4 {
+      margin: 0;
+      color: #333;
+    }
 
-.wrapper ul li {
-  margin-top: 14px;
-}
+    ul li {
+      margin-top: 14px;
+    }
 
-.redirect {
-  color: inherit;
-  transition: all .3s linear;
-}
+    .redirect {
+      color: inherit;
+      transition: all .3s linear;
+    }
 
-.redirect:hover {
-  color: var(--theme-main-color);
-}
+    .redirect:hover {
+      color: var(--theme-main-color);
+    }
+  }
 </style>

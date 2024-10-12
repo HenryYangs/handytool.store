@@ -8,15 +8,19 @@
   export let loading = false;
   export let style = '';
   export let btnStyle = '';
+  export let className = '';
+  export let btnClassName = '';
+  export let buttonProps = {};
 </script>
 
-<div class='execute-btn-wrapper' style={style}>
+<div class={['execute-btn-wrapper', className].join(' ')} style={style}>
   <BeButton
-    class='action-btn'
+    class={['action-btn', btnClassName].join(' ')}
     type='button'
     disabled={disabled}
     style={btnStyle}
     on:click={onConfirm}
+    {...buttonProps}
   >
     {#if loading}
       <Loading />

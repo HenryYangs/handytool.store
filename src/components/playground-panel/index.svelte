@@ -21,7 +21,7 @@
   }
 </script>
 
-<div class='tool-panel'>
+<div class='tool-panel playground-panel-wrapper'>
   <slot name='header' />
 
   <div class='input-group'>
@@ -48,27 +48,29 @@
   </div>
 </div>
 
-<style>
-.actions {
-  margin-top: 20px;
-}
-
-.action-row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.action-row + .action-row {
-  margin-top: 10px;
-}
-
-.action-item {
-  width: calc((100% - 60px) / 7);
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.action-item + .action-item {
-  margin-left: 10px;
-}
+<style global lang='scss'>
+  .playground-panel-wrapper {
+    .actions {
+      margin-top: 20px;
+    }
+    
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .action-row + .action-row {
+      margin-top: 10px;
+    }
+    
+    .action-item {
+      width: calc((100% - 60px) / 7);
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    
+    .action-item + .action-item {
+      margin-left: 10px;
+    }
+  }
 </style>

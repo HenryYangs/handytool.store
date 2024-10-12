@@ -8,12 +8,12 @@
   };
 </script>
 
-<div class='wrapper' on:click={onCloseHandler} id='mask'>
+<div class='mask-wrapper' on:click={onCloseHandler} id='mask'>
   <slot />
 </div>
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.mask-wrapper {
   position: fixed;
   top: 0;
   right: 0;
@@ -25,9 +25,4 @@
   justify-content: center;
   align-items: center;
 }
-
-/* .mask-container {
-  width: 100%;
-  height: 100%;
-} */
 </style>

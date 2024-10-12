@@ -166,7 +166,7 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .action-wrapper {
   display: flex;
   justify-content: space-between;

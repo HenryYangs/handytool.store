@@ -10,7 +10,7 @@
   $: resultMsg = message || (isCorrect ? $t('validateSuccessTips') : $t('validateErrorTips'));
 </script>
 
-<div class={`tool-panel wrapper validate-${result}`} style={style}>
+<div class={`tool-panel validator-result-wrapper validate-${result}`} style={style}>
   <i class={
     `
       iconfont-status
@@ -22,23 +22,23 @@
   <span>{resultMsg}</span>
 </div>
 
-<style>
-.wrapper {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
+<style global lang='scss'>
+  .validator-result-wrapper {
+    display: flex;
+    justify-content: start;
+    align-items: center;
 
-.validate-icon {
-  margin-right: 10px;
-  font-size: 30px;
-}
-
-.validate-correct {
-  color: green;
-}
-
-.validate-wrong {
-  color: red;
-}
+    .validate-icon {
+      margin-right: 10px;
+      font-size: 30px;
+    }
+    
+    .validate-correct {
+      color: green;
+    }
+    
+    .validate-wrong {
+      color: red;
+    }
+  }
 </style>

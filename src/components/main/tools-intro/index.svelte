@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import ExecuteBtn from '../../../components/execute-btn/index.svelte';
   import { processUrl } from '../../../utils/url';
   import Tab from './components/tab/index.svelte';
   import ToolCardList from '../../tool-card-list/index.svelte';
@@ -48,8 +49,8 @@
   })
 </script>
 
-<div class='wrapper common-background'>
-  <div class='container-fluid container-biz'>
+<div class='tools-intro-wrapper common-background layout-center'>
+  <div class='container-biz'>
     <h1 class='text-center'>{$t('homeTitle')}</h1>
 
     <div class='tools-entry'>
@@ -67,48 +68,63 @@
         />
       {/if}
       
-      <div class='footer-btn'>
-        <a class='btn btn-primary redirect-to-list' href={processUrl(curTabItem.isWIP, `/tool/${curTabItem.id}`)}>{allBtnText}</a>
+      <div class='footer-btn layout-center'>
+        <ExecuteBtn
+          btnClassName='redirect-to-list'
+          onConfirm={() => processUrl(curTabItem.isWIP, `/tool/${curTabItem.id}`)}
+          text={allBtnText}
+          buttonProps={{
+            size: 'medium'
+          }}
+        />
       </div>
     </div>
   </div>
 </div>
 
-<style>
+<style global lang='scss'>
 @media (min-width: 1200px) {
-  .wrapper {
+  .tools-intro-wrapper {
     padding: 100px 0;
   }
 }
 
 @media (max-width: 1199px) {
-  .wrapper {
+  .tools-intro-wrapper {
     padding: 56px 0;
   }
 }
 
-.tools-entry {
-  margin-top: 40px;
-}
+  .tools-intro-wrapper {
+    .tools-entry {
+      margin-top: 40px;
+    }
 
-.footer-btn {
-  margin-top: 30px;
-  text-align: center;
-}
+    .footer-btn {
+      margin-top: 30px;
+      text-align: center;
+    }
 
-.redirect-to-list {
-  padding: 17px 48px;
-  background-color: transparent;
-  border-color: var(--theme-main-color);
-  color: var(--theme-main-color);
-  box-shadow: 0 5px 10px rgba(61, 82, 160, 0.1);
-  font-size: 14px;
-  font-weight: 600;
-  transition: all .3s linear;
-}
+    .redirect-to-list {
+      padding: 17px 48px;
+      background-color: transparent;
+      border-color: var(--theme-main-color);
+      box-shadow: 0 5px 10px rgba(61, 82, 160, 0.1);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all .3s linear;
 
-.redirect-to-list:hover {
-  background-color: var(--theme-main-color);
-  color: #FFF;
-}
+      &.be-button span {
+        color: var(--theme-main-color);
+      }
+    }
+
+    .redirect-to-list:hover {
+      background-color: var(--theme-main-color);
+
+      &.be-button span {
+        color: var(--white);
+      }
+    }
+  }
 </style>

@@ -87,7 +87,7 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .reg-exp_header {
   display: flex;
 }

@@ -5,10 +5,6 @@
 </script>
 
 <div
-  class='wrapper'
+  class='color-rect-wrapper'
   style={`background-color: ${color}; width: ${width}px; height: ${height}px`}
 ></div>
-
-<style>
-
-</style>

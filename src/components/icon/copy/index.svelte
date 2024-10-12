@@ -33,7 +33,7 @@
 
 <i class='iconfont-action icon-action-copy action-copy' id={id}></i>
 
-<style>
+<style global lang='scss'>
 .action-copy {
   cursor: pointer;
 }

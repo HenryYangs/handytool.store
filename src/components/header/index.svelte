@@ -153,8 +153,7 @@
           ]}
         />
       {:else}
-          <!-- <BeButton size='mini' on:click={onAuthBtnClick}>{$t('Login')}</BeButton> -->
-           <ExecuteBtn text={$t('Login')} onConfirm={onAuthBtnClick} />
+        <ExecuteBtn text={$t('Login')} onConfirm={onAuthBtnClick} />
       {/if}
     </div>
   </div>

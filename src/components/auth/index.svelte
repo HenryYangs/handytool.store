@@ -249,7 +249,7 @@
   </Mask>
 {/if}
 
-<style lang='scss' global>
+<style global lang='scss'>
 .auth-wrapper {
   width: 460px;
   padding: 24px;

@@ -6,7 +6,7 @@
   export let numeralCustom;
 </script>
 
-<div class='d-flex'>
+<div class='d-flex numeral-select-wrapper'>
   <select
     class='form-select form-select-sm'
     aria-label='Select Numeral System'
@@ -25,8 +25,10 @@
   {/if}
 </div>
 
-<style>
-.custom-numeral {
-  margin-left: 10px;
-}
+<style global lang='scss'>
+  .numeral-select-wrapper {
+    .custom-numeral {
+      margin-left: 10px;
+    }
+  }
 </style>

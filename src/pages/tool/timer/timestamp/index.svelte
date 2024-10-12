@@ -129,7 +129,7 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .tool-container {
   margin-bottom: 10px;
 }

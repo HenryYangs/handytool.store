@@ -5,7 +5,3 @@
 
 <Tooltips />
 <Alert />
-
-<style>
-
-</style>

@@ -58,14 +58,14 @@
   </div>
 </div>
 
-<style>
-.tooltip-wrapper {
-  position: fixed;
-  padding: 10px;
-}
+<style global lang='scss'>
+  .tooltip-wrapper {
+    position: fixed;
+    padding: 10px;
 
-.logo {
-  width: 20px;
-  height: 20px;
-}
+    .logo {
+      width: 20px;
+      height: 20px;
+    }
+  }
 </style>

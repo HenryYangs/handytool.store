@@ -11,7 +11,7 @@
   };
 </script>
 
-<div class='input-group-sm wrapper'>
+<div class='input-group-sm color-palette-wrapper'>
   <label for='bgColor' class='form-label'>{label}:</label>
   <input
     type='text'
@@ -20,18 +20,18 @@
     bind:value={bgColor}
     on:focus={onColorPaletteFocus}
   />
-  <input type='color' class='form-control color-platte' id={id} on:change={onChange}>
+  <input type='color' class='form-control color-palette' id={id} on:change={onChange}>
 </div>
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.color-palette-wrapper {
   position: relative;
-}
 
-.color-platte {
-  position: absolute;
-  top: 30px;
-  left: 0;
-  opacity: 0;
+  .color-palette {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    opacity: 0;
+  }
 }
 </style>

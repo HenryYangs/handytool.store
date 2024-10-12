@@ -60,7 +60,7 @@
   </ul>
 </div>
 
-<style lang='scss' global>
+<style global lang='scss'>
   .dropdown-wrapper {
     position: relative;
 

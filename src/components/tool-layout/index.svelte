@@ -36,7 +36,7 @@
 </script>
 
 <main class='tool-layout-wrapper common-background'>
-  <div class='container-fluid container-biz'>
+  <div class='container-biz'>
     <TitleDesc
       title={tool.text}
       description={tool.description}
@@ -70,33 +70,33 @@
   </div>
 </main>
 
-<style>
-.tool-layout-wrapper {
-  padding: 50px 0;
-}
+<style global lang='scss'>
+  .tool-layout-wrapper {
+    padding: 50px 0;
 
-.content {
-  margin-top: 20px;
-}
-
-.other-tools {
-  margin-top: 50px;
-}
-
-.other-tools-title {
-  font-weight: bold;
-}
-
-.other-tools-subtitle {
-  margin-top: 15px;
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--theme-secondary-dark-color);
-}
-
-.other-tools-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
+    .content {
+      margin-top: 20px;
+    }
+    
+    .other-tools {
+      margin-top: 50px;
+    }
+    
+    .other-tools-title {
+      font-weight: bold;
+    }
+    
+    .other-tools-subtitle {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--theme-secondary-dark-color);
+    }
+    
+    .other-tools-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+  }
 </style>

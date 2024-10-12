@@ -94,7 +94,7 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .slot-wrapper {
   display: flex;
   justify-content: flex-end;

@@ -22,8 +22,8 @@
   });
 </script>
 
-<footer>
-  <div class='container-fluid container-biz'>
+<footer class='footer-wrapper'>
+  <div class='container-biz'>
     <div class='row align-items-start'>
       <Entry
         title={$t('Navigate')}
@@ -40,7 +40,7 @@
   </div>
 
   <div class='footer'>
-    <div class='container-fluid container-biz'>
+    <div class='container-biz'>
       <div class='row justify-content-between align-items-center'>
         <div class='col'></div>
 
@@ -50,20 +50,22 @@
   </div>
 </footer>
 
-<style>
-footer {
-  margin-top: 35px;
-  color: var(--theme-secondary-dark-color);
-}
-
-.footer {
-  padding: 20px 0;
-  margin-top: 80px;
-  background-color: rgb(112, 145, 230, .3);
-  color: #333;
-}
-
-.copyright {
-  text-align: end;
-}
+<style global lang='scss'>
+  .footer-wrapper {
+    footer {
+      margin-top: 35px;
+      color: var(--theme-secondary-dark-color);
+    }
+    
+    .footer {
+      padding: 20px 0;
+      margin-top: 80px;
+      background-color: rgb(112, 145, 230, .3);
+      color: #333;
+    }
+    
+    .copyright {
+      text-align: end;
+    }
+  }
 </style>

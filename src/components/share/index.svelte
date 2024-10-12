@@ -79,7 +79,7 @@
   });
 </script>
 
-<div class='wrapper' style={style}>
+<div class='share-wrapper' style={style}>
   <ShareItem
     url={`http://twitter.com/share?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(name)}+${encodeURIComponent('|')}+Handytool${encodeURIComponent('🔧')}+${encodeURIComponent('@handytool_store')}&hashtags=${encodeURIComponent('handytool')}`}
     color='#000'
@@ -217,8 +217,8 @@
   </ShareItem>
 </div>
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.share-wrapper {
   display: flex;
   justify-content: flex-start;
   align-items: center;

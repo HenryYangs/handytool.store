@@ -121,7 +121,7 @@
   });
 </script>
 
-<div class='tool-panel wrapper'>
+<div class='tool-panel timer-wrapper'>
   <section class='timer-area' style={`border-width: ${borderWidth}px; background-color: ${bgColor}; border-color: ${borderColor}`}>
     <header class='header'>
       <h2 style={`color: ${nameColor}`}>{name}</h2>
@@ -240,60 +240,62 @@
   </section>
 </div>
 
-<style>
-.timer-area {
-  padding: 15px;
-  border: 1px solid rgba(173, 187, 218, 0.3);
-  background-color: var(--white);
-}
-
-.timer-area header h2 {
-  text-align: center;
-  font-size: 40px;
-}
-
-.header {
-  margin-bottom: 30px;
-}
-
-.timer-controller {
-  display: flex;
-  align-items: flex-start;
-  padding-top: 30px;
-  margin-top: 30px;
-  border-top: 1px solid rgba(173, 187, 218, 0.3);
-}
-
-.time-wrapper {
-  display: flex;
-}
-
-.timer-settings-row {
-  margin-top: 15px;
-}
-
-.time-item-wrapper {
-  flex: 1;
-}
-
-.time-item-wrapper + .time-item-wrapper {
-  margin-left: 10px;
-}
-
-.timer-settings-col {
-  flex: 1;
-}
-
-.timer-settings-col + .timer-settings-col {
-  margin-left: 30px;
-}
-
-.unit-list-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.unit-list-wrapper > * {
-  width: 25%;
-}
+<style global lang='scss'>
+  .timer-wrapper {
+    .timer-area {
+      padding: 15px;
+      border: 1px solid rgba(173, 187, 218, 0.3);
+      background-color: var(--white);
+    }
+    
+    .timer-area header h2 {
+      text-align: center;
+      font-size: 40px;
+    }
+    
+    .header {
+      margin-bottom: 30px;
+    }
+    
+    .timer-controller {
+      display: flex;
+      align-items: flex-start;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid rgba(173, 187, 218, 0.3);
+    }
+    
+    .time-wrapper {
+      display: flex;
+    }
+    
+    .timer-settings-row {
+      margin-top: 15px;
+    }
+    
+    .time-item-wrapper {
+      flex: 1;
+    }
+    
+    .time-item-wrapper + .time-item-wrapper {
+      margin-left: 10px;
+    }
+    
+    .timer-settings-col {
+      flex: 1;
+    }
+    
+    .timer-settings-col + .timer-settings-col {
+      margin-left: 30px;
+    }
+    
+    .unit-list-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .unit-list-wrapper > * {
+      width: 25%;
+    }
+  }
 </style>

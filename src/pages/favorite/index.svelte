@@ -23,7 +23,7 @@
 
 <Layout>
   <div class='wrapper common-background'>
-    <div class='container-fluid container-biz'>
+    <div class='container-biz'>
       <h1 class='title text-center'>{$t('favoriteTitle')}</h1>
 
       {#if toolList.length}
@@ -39,7 +39,7 @@
   </div>
 </Layout>
 
-<style>
+<style global lang='scss'>
 @media (min-width: 1200px) {
   .wrapper {
     padding: 100px 0;

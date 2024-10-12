@@ -5,7 +5,7 @@
 
 <Layout>
   <main class='wrapper common-background'>
-    <div class='container-fluid container-biz inner-wrapper'>
+    <div class='container-biz inner-wrapper'>
       <div class='contact-item'>
         <form id='contact'>
           <div class='contact-row'>
@@ -41,7 +41,7 @@
   </main>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .wrapper {
   height: 100%;
 }

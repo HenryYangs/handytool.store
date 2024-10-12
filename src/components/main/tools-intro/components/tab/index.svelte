@@ -19,32 +19,32 @@
   </div>
 {/if}
 
-<style>
+<style global lang='scss'>
 .tab-wrapper {
   text-align: center;
-}
 
-.tab-inner-wrapper {
-  display: inline-block;
-  text-align: center;
-  padding: 12px 6px;
-  border-radius: 99px;
-  background-color: var(--white);
-  box-shadow: 3px 10px 40px rgba(24, 29, 32, 0.05);
-}
-
-.tab-item {
-  display: inline-block;
-  padding: 12px;
-  margin: 0 6px;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-}
-
-.tab-item.active {
-  border-radius: 99px;
-  background-color: var(--theme-main-color);
-  color: var(--white);
+  .tab-inner-wrapper {
+    display: inline-block;
+    text-align: center;
+    padding: 12px 6px;
+    border-radius: 99px;
+    background-color: var(--white);
+    box-shadow: 3px 10px 40px rgba(24, 29, 32, 0.05);
+  }
+  
+  .tab-item {
+    display: inline-block;
+    padding: 12px;
+    margin: 0 6px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .tab-item.active {
+    border-radius: 99px;
+    background-color: var(--theme-main-color);
+    color: var(--white);
+  }
 }
 </style>

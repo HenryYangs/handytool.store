@@ -6,7 +6,7 @@
   export let subTextColor = '';
 </script>
 
-<div class='wrapper'>
+<div class='digital-item-wrapper'>
   <p
     class='timer_main-text'
     style={`color: ${color}`}
@@ -21,20 +21,22 @@
   <span class='separator timer_main-text' style={`color: ${color}`}>:</span>
 {/if}
 
-<style>
-.timer_main-text {
-  font-size: 120px;
-  font-weight: 500;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.timer_sub-text {
-  text-align: center;
-  font-size: 25px;
-  font-weight: 400;
-}
-
-.separator {
-  margin: 0 10px;
-}
+<style global lang='scss'>
+  .digital-item-wrapper {
+    .timer_main-text {
+      font-size: 120px;
+      font-weight: 500;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    
+    .timer_sub-text {
+      text-align: center;
+      font-size: 25px;
+      font-weight: 400;
+    }
+    
+    .separator {
+      margin: 0 10px;
+    }
+  }
 </style>

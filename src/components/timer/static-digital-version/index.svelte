@@ -32,7 +32,7 @@
   }
 </script>
 
-<section class='wrapper' style={style}>
+<section class='static-digital-version-wrapper' style={style}>
   {#if config[TIMER_UNIT_MAP.YEAR]}
     <DigitalItem
       color={getColor(TIMER_UNIT_MAP.YEAR)}
@@ -113,8 +113,8 @@
   {/if}
 </section>
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.static-digital-version-wrapper {
   display: flex;
   justify-content: center;
   align-items: flex-start;

@@ -54,5 +54,3 @@
 
   <slot name='extra-action'></slot>
 </div>
-
-<style></style>

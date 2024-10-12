@@ -157,7 +157,7 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .wrapper {
   display: flex;
   flex-direction: column;
