@@ -4,6 +4,7 @@
 
   export let title;
   export let className = '';
+  export let style = '';
   export let list = [];
   // item count in each column
   export let itemCount = 4;
@@ -15,11 +16,11 @@
   });
 </script>
 
-<div class={`footer-entry-wrapper ${className}`}>
+<div class={`footer-entry-wrapper ${className}`} style={style}>
   <h4>{title}</h4>
-  <div class='row'>
+  <div class='layout-start'>
     {#each renderList as colList}
-      <ul class='col'>
+      <ul class='entry-col'>
         {#each colList as item}
           <li>
             <a href={processUrl(item.isWIP, item.url)} class='redirect'>{$t(item.text)}</a>
@@ -32,13 +33,16 @@
 
 <style global lang='scss'>
   .footer-entry-wrapper {
+    .entry-col {
+      flex: 1;
+    }
     h4 {
       margin: 0;
       color: #333;
     }
 
     ul li {
-      margin-top: 14px;
+      margin-top: 20px;
     }
 
     .redirect {
