@@ -1,7 +1,7 @@
 import 'reset-css';
 
-// Import our custom CSS
-import '../../assets/style.scss';
+// ui lib style
+import "@brewer/beerui/assets/beer.css";
 
-// Import all of Bootstrap's JS
-// import * as bootstrap from 'bootstrap'
+// Import our custom CSS
+import '../../assets/style/index.scss';

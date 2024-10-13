@@ -1,0 +1,25 @@
+.btn-outline-dark {
+  transition: all 0.3s linear;
+  border: 1px solid var(--outline-dark);
+
+  &,
+  &:active,
+  &:focus {
+    background-color: transparent;
+    border-color: var(--outline-dark);
+  }
+
+  span {
+    color: var(--outline-dark);
+    font-size: 14px;
+  }
+
+  &:hover {
+    background-color: var(--outline-dark);
+    color: var(--white);
+
+    span {
+      color: var(--white);
+    }
+  }
+}

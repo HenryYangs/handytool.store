@@ -6,16 +6,16 @@
   export let onFavorite = (id) => {};
 </script>
 
-<section class='wrapper' style={style}>
+<section class='tool-card-list-wrapper' style={style}>
   {#each list as tool}
     <ToolCard tool={tool} onFavorite={() => onFavorite(tool.id)} />
   {/each}
 </section>
 
-<style>
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-}
+<style global lang='scss'>
+  .tool-card-list-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 </style>

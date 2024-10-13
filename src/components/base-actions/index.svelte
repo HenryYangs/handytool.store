@@ -1,9 +1,11 @@
 <script>
+  import BeButton from '@brewer/beerui/be-button';
   import Clipboard from 'clipboard';
   import { onMount } from 'svelte';
   import event from '../../utils/event';
   import { EVENTS } from '../../constant/events';
   import { t } from 'svelte-i18n';
+  import { ALERT_STATUS } from '../../constant/status';
 
   export let noClear = false;
   export let onClear = () => {};
@@ -21,38 +23,38 @@
   onMount(() => {
     if (noCopy) return;
 
-    const clipboard = new Clipboard(`#copy-${idAddon}`, {
+    const clipboard = new Clipboard(`.copy-${idAddon}`, {
       text: () => {
         return copyValue
       }
     });
 
     clipboard.on('success', () => {
-      event.emit(EVENTS.TOOLTIP, {
+      event.emit(EVENTS.ALERT, {
         show: true,
+        status: ALERT_STATUS.SUCCESS,
         message: 'Copy Success!'
       });
     });
 
     clipboard.on('error', () => {
-      event.emit(EVENTS.TOOLTIP, {
+      event.emit(EVENTS.ALERT, {
         show: true,
+        status: ALERT_STATUS.ERROR,
         message: 'Copy Error!'
       });
     });
   })
 </script>
 
-<div>
+<div class='base-actions-wrapper'>
   {#if noClear === false}
-    <button class='btn btn-outline-dark btn-sm' on:click={onClear}>{$t('Clear')}</button>
+    <BeButton class='btn-outline-dark' type='default' size='small' on:click={onClear}>{$t('Clear')}</BeButton>
   {/if}
   
   {#if noCopy === false}
-    <button id={`copy-${idAddon}`} class='btn btn-outline-dark btn-sm' on:click={onCopy}>{$t('Copy')}</button>
+    <BeButton class={`btn-outline-dark copy-${idAddon}`} type='default' size='small' on:click={onCopy}>{$t('Copy')}</BeButton>
   {/if}
 
   <slot name='extra-action'></slot>
 </div>
-
-<style></style>

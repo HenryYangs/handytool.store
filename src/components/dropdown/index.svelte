@@ -1,6 +1,6 @@
 <script>
-  import { onMount } from 'svelte';
-  import { Dropdown } from 'bootstrap';
+  import clickOutside from '../../utils/click-outside';
+  import BeButton from '@brewer/beerui/be-button';
 
   export let id;
   export let triggerText = '';
@@ -11,37 +11,42 @@
   export let iconCategory = '';
   export let iconName = '';
 
-  onMount(() => {
-    setTimeout(() => {
-      const dropdown = document.querySelector(`#${id}`);
+  const idDropdown = `${id}_dropdown`;
 
-      dropdown && new Dropdown(dropdown);
-    }, 100);
-  });
+  $: showDropdownList = false;
+  $: if (showDropdownList) {
+    clickOutside(document.getElementById(idDropdown), () => {
+      showDropdownList = false;
+    })
+  }
+
+  const onTriggerClick = () => {
+    showDropdownList = !showDropdownList;
+  }
 </script>
 
-<div class='dropdown'>
+<div class='dropdown-wrapper'>
   {#if btnTrigger}
-    <button
-      id={id}
-      class='btn btn-secondary dropdown-toggle dropdown-trigger'
-      type='button'
-      data-bs-toggle='dropdown'
-      aria-expanded='false'
+    <BeButton
+      circle
+      type='primary'
+      nativeType='button'
       style={triggerStyle}
+      on:click={onTriggerClick}
     >
       {triggerText}
-    </button>
+    </BeButton>
   {:else if iconTrigger}
     <i
-      class={`iconfont-${iconCategory} icon-${iconCategory}-${iconName} dropdown-trigger icon-trigger`}
+      class={`iconfont-${iconCategory} icon-${iconCategory}-${iconName}`}
       style={triggerStyle}
-      data-bs-toggle='dropdown'
-      aria-expanded='false'>
+      aria-expanded='false'
+      on:click={onTriggerClick}
+    >
     </i>
   {/if}
 
-  <ul class='dropdown-menu'>
+  <ul class='dropdown-menu' style={`display: ${showDropdownList ? 'block' : 'none'}`} id={idDropdown}>
     {#each dropdownList as item}
       <li>
         <a
@@ -55,8 +60,36 @@
   </ul>
 </div>
 
-<style>
-.icon-trigger {
-  cursor: pointer;
-}
+<style global lang='scss'>
+  .dropdown-wrapper {
+    position: relative;
+
+    .icon-trigger {
+      cursor: pointer;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      left: 50%;
+      min-width: 100px;
+      transform: translateX(-50%);
+      background-color: var(--white);
+      box-shadow: 0 5px 10px rgba(61, 82, 160, 0.1);;
+    
+      li {
+        padding: 10px 15px;
+        cursor: pointer;
+        transition: all .2s linear;
+        text-align: center;
+    
+        &:hover {
+          background-color: rgba(120, 120, 120, 0.1);
+        }
+      }
+    
+      .dropdown-item {
+        color: var(--theme-secondary-dark-color);
+      }
+    }
+  }
 </style>

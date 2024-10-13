@@ -20,7 +20,7 @@
 
 <button
   id={id}
-  class='wrapper'
+  class='share-item-wrapper'
   style={[`
     border-color: ${color};
     background-color: ${backgroundColor};
@@ -38,8 +38,8 @@
   <slot />
 </button>
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.share-item-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,5 +50,6 @@
   border-radius: 5px;
   transition: all .3s ease;
   background-color: transparent;
+  cursor: pointer;
 }
 </style>

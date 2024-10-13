@@ -37,6 +37,7 @@ export default {
   borderWidth: '边框宽度',
   backgroundColor: '背景颜色',
   textColor: '文案颜色',
+  unitTextColor: '单位文案颜色',
   borderColor: '边框颜色',
   nameColor: '标题颜色',
   lastUnitColor: '末位单位颜色',

@@ -10,7 +10,7 @@
   const basePlaygroundStyle = 'width: calc(50% - 10px)';
 </script>
 
-<section class='wrapper' style={style}>
+<section class='playground-transfer-wrapper' style={style}>
   <PlaygroundArea
     bind:value={leftValue}
     btnText={leftConfig.btnText}
@@ -44,8 +44,8 @@
   </PlaygroundArea>
 </section>
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.playground-transfer-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: start;

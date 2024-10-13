@@ -1,11 +1,12 @@
 <script>
+  import BeInput  from '@brewer/beerui/be-input';
+  import Dropdown from '../dropdown/index.svelte';
   import logo from '../../assets/images/logo.png';
   import { ROUTER } from '../../constant/router';
   import { processUrl } from '../../utils/url';
   import { HEADER_ENTRIES } from './config';
   import ExecuteBtn from '../execute-btn/index.svelte';
   import '../../assets/icon/header/iconfont.css';
-  import Dropdown from '../dropdown/index.svelte';
   import http from '../../utils/http';
   import { STORAGE_I18N_KEY, STORAGE_LOGIN_INFO } from '../../constant/storage';
   import { parseJSON } from '../../utils/object';
@@ -30,12 +31,16 @@
     location.href = `${location.protocol}//${location.host}/tool/all?q=${searchValue}`;
   };
 
-  const onSearchKeyPress = (event) => {
+  const onSearchHandler = (event) => {
     if(event.keyCode == 13) { // enter
-      onSearch();
-      event.preventDefault();
+      onFormSubmit(event);
     }
   };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    onSearch();
+  }
 
   const onAuthBtnClick = () => {
     event.emit(EVENTS.AUTH_SHOW);
@@ -70,57 +75,42 @@
     }
   });
 
-  const onEnglish = () => {
-    localStorage.setItem(STORAGE_I18N_KEY, LOCALE_EN);
-    location.reload();
-  };
-
-  const onChinese = () =>{
-    localStorage.setItem(STORAGE_I18N_KEY, LOCALE_CN);
-    location.reload();
-  };
-
   const getLocaleEntryStyle = (target) => {
     return locale === target ? 'color: #3D52A0; font-weight: bold' : '';
+  };
+
+  const onLocaleChange = (newLocale) => {
+    if (newLocale === locale) return;
+
+    localStorage.setItem(STORAGE_I18N_KEY, newLocale);
+    location.reload();
   }
 </script>
 
 <svelte:window bind:scrollY={y} />
-<header class={`header sticky-top ${y ? 'sticky' : ''}`}>
-  <div class='container-fluid container-biz'>
-    <div class='row align-items-center'>
-      <div class='logo col-2'>
-        <a href={ROUTER.HOME} class='d-flex align-items-center'>
-          <img src={logo} alt='logo' class='logo-icon' />
-          <h5 class='logo-text'>HandyTool</h5>
-        </a>
-      </div>
-      <div class='entries col-5 align-items-center'>
-        <ul class='d-flex align-items-center justify-content-start entries-list'>
-          {#each HEADER_ENTRIES as entry}
-            <li>
-              <a
-                href={processUrl(entry.isWIP, entry.redirectUrl)}
-                class={`entry-link ${location.pathname === entry.redirectUrl ? 'entry-current' : ''}`}
-              >
-                <i class={`iconfont-header icon-header-${entry.icon} entry-item-inner`}></i>
-                <span class='entry-item-inner'>{$t(entry.text)}</span>
-              </a>
-            </li>
-          {/each}
-        </ul>
-      </div>
+<header class={`header-wrapper layout-center sticky-top ${y ? 'sticky' : ''}`}>
+  <div class='container-biz layout-start-center'>
+    <a href={ROUTER.HOME} class='layout-start-center home'>
+      <img src={logo} alt='logo' class='logo-icon' />
+      <h5 class='logo-text'>HandyTool</h5>
+    </a>
 
-      <div class='extra col-5 d-flex justify-content-end align-items-center'>
-        <!-- <button class='extra-icon'>
-          <i class='iconfont-header icon-header-light'></i>
-        </button>
+    <ul class='layout-start-center entries-list'>
+      {#each HEADER_ENTRIES as entry}
+        <li>
+          <a
+            href={processUrl(entry.isWIP, entry.redirectUrl)}
+            class={`entry-link ${location.pathname === entry.redirectUrl ? 'entry-current' : ''}`}
+          >
+            <i class={`iconfont-header icon-header-${entry.icon} entry-item-inner`}></i>
+            <span class='entry-item-inner'>{$t(entry.text)}</span>
+          </a>
+        </li>
+      {/each}
+    </ul>
 
-        <button class='extra-icon'>
-          <i class='iconfont-header icon-header-share'></i>
-        </button> -->
-
-        <Dropdown
+    <div class='extra layout-end-center'>
+      <Dropdown
           btnTrigger={false}
           iconTrigger
           id='translate'
@@ -130,152 +120,110 @@
           dropdownList={[
             {
               text: 'English',
-              onClick: onEnglish,
+              onClick: () => onLocaleChange(LOCALE_EN),
               style: getLocaleEntryStyle(LOCALE_EN),
             },
             {
               text: '中文',
-              onClick: onChinese,
+              onClick: () => onLocaleChange(LOCALE_CN),
               style: getLocaleEntryStyle(LOCALE_CN),
             }
           ]}
         />
 
-        <div class='vertical-split'></div>
-
-        <form class='search-form'>
-          <input class='form-control input-search' placeholder={$t('Search')} bind:value={searchValue} on:keypress={onSearchKeyPress} />
-
-          <button class='button btn-search' type='button' on:click={onSearch}>
-            <i class='iconfont-common icon-common-search'></i>
-          </button>
-        </form>
-
-        {#if isLogin}
-          <Dropdown
-            id='userInfo'
-            triggerText={username}
-            triggerStyle=''
-            dropdownList={[
-              {
-                text: $t('Logout'),
-                onClick: onLogout,
-              }
-            ]}
-          />
-        {:else}
-          <ExecuteBtn text={$t('Login')} onConfirm={onAuthBtnClick} />
-        {/if}
+      <div>
+        <BeInput
+          bind:value={searchValue}
+          placeholder={$t('Search')}
+          suffixIcon='be-icon-search'
+          on:keypress={onSearchHandler}
+        />
       </div>
+
+      {#if isLogin}
+        <Dropdown
+          id='userInfo'
+          triggerText={username}
+          triggerStyle=''
+          dropdownList={[
+            {
+              text: $t('Logout'),
+              onClick: onLogout,
+            }
+          ]}
+        />
+      {:else}
+        <ExecuteBtn text={$t('Login')} onConfirm={onAuthBtnClick} />
+      {/if}
     </div>
   </div>
 </header>
 
-<style>
-.header {
-  padding: 16px 0;
-  background-color: var(--white);
-}
+<style global lang='scss'>
+  .header-wrapper {
+    padding: 16px 0;
+    background-color: var(--white);
 
-.sticky {
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .1);
-}
+    &.sticky {
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .1);
+    }
 
-.logo-icon {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
-}
+    .home {
+      flex: 1;
+    }
 
-.logo-text {
-  color: #333;
-  font-weight: bold;
-  letter-spacing: 2px;
-  font-style: italic;
-}
+    .extra {
+      flex: 2;
+    }
 
-.entries-list {
-  height: 100%;
-}
+    .extra > * {
+        margin: 0 5px;
+      }
 
-.entries-list li + li {
-  margin-left: 20px;
-}
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
 
-.entry-link.entry-current .entry-item-inner,
-.entry-link:hover .entry-item-inner {
-  color: rgb(61, 82, 160, 1);
-}
+    .logo-text {
+      color: #333;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-style: italic;
+    }
 
-.entry-item-inner {
-  color: rgb(61, 82, 160, .6);
-  font-size: 20px;
-  font-weight: 500;
-  transition: all .3s linear;
-}
+    .entries-list {
+      flex: 2;
+    }
 
-.extra *:not(:last-child) {
-  margin-right: 10px;
-}
+    .entries-list li + li {
+      margin-left: 20px;
+    }
 
-.vertical-split {
-  height: 20px;
-  border-right: 1px solid var(--theme-secondary-dark-color);
-}
+    .entry-link.entry-current .entry-item-inner,
+    .entry-link:hover .entry-item-inner {
+      color: rgb(61, 82, 160, 1);
+    }
 
-.extra-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  border: 1px solid var(--theme-secondary-dark-color);
-  background-color: transparent;
-  transition: all .3s linear;
-}
+    .entry-item-inner {
+      color: rgb(61, 82, 160, .6);
+      font-size: 20px;
+      font-weight: 500;
+      transition: all .3s linear;
+    }
 
-.extra-icon:hover {
-  background-color: var(--theme-secondary-dark-color);
-}
-
-.extra-icon:hover i {
-  color: var(--white);
-}
-
-.extra-icon i {
-  font-size: 20px;
-  color: var(--theme-secondary-dark-color);
-}
-
-.search-form {
-  position: relative;
-}
-
-.input-search {
-  height: 40px;
-  padding-left: 40px;
-  background-color: var(--theme-main-light-color);
-  border: none;
-  font-size: 10px;
-}
-
-.btn-search {
-  position: absolute;
-  top: 0;
-  left: 3px;
-  height: 40px;
-  border: none;
-  background-color: transparent;
-  font-size: 10px;
-}
-
-@supports ((position:-webkit-sticky) or (position:sticky)) {
-  .sticky-top {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: var(--sticky-layer);
+    .be-input__inner {
+      padding-left: 8px;
+    }
   }
-}
+
+  @supports ((position:-webkit-sticky) or (position:sticky)) {
+    .sticky-top {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: var(--sticky-layer);
+    }
+  }
 </style>

@@ -1,4 +1,5 @@
  <script>
+  import BeAlert from '@brewer/beerui/be-alert';
   import { onMount } from 'svelte';
   import event from '../../../utils/event';
   import { EVENTS } from '../../../constant/events';
@@ -48,23 +49,19 @@
     event.on(EVENTS.ALERT, onAlert);
 
     return () => {
-      event.off(EVENTS, onAlert);
+      event.off(EVENTS.ALERT, onAlert);
     }
   })
 </script>
 
 {#if isShow}
-  <div class={`alert alert-${type} ${hasCloseBtn ? 'alert-dismissible' : ''} fade wrapper`} role='alert'>
-    <div>{$t(msg)}</div>
-
-    {#if hasCloseBtn}
-      <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close' on:click={close}></button>
-    {/if}
+  <div class='alert-wrapper'>
+    <BeAlert title={$t(msg)} type={type} center closable={hasCloseBtn} on:close={close} />
   </div>
 {/if}
 
-<style>
-.wrapper {
+<style global>
+.alert-wrapper {
   position: fixed;
   top: 20px;
   left: 50%;

@@ -8,11 +8,11 @@
 </script>
 
 {#await localResult}
-  <div class='loading-wrapper'>
+  <div class='layout-loading-wrapper'>
     <Loading />
   </div>
 {:then}
-  <div class='wrapper'>
+  <div class='layout-wrapper'>
     <Header></Header>
 
     <!-- make sure the page can fill page -->
@@ -31,14 +31,14 @@
 error {error}
 {/await}
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.layout-wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-.loading-wrapper {
+.layout-loading-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;

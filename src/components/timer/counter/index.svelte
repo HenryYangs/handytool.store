@@ -1,4 +1,9 @@
 <script>
+  import { BeForm, BeFormItem } from '@brewer/beerui/be-form';
+  import BeDatePicker from '@brewer/beerui/be-date-picker';
+  import { BeSelect, BeOption } from '@brewer/beerui/be-select';
+  import BeInput from '@brewer/beerui/be-input';
+  import { BeCheckboxGroup, BeCheckbox } from '@brewer/beerui/be-checkbox';
   import StaticDigitalClock from '../../../components/timer/static-digital-version/index.svelte';
   import ColorPalette from '../../../components/color-palette/index.svelte';
   import { HOUR_LIST, MINUTE_SECOND_LIST, TIMER_UNIT_LIST, TIMER_UNIT_MAP } from '../../../constant/timer';
@@ -24,6 +29,7 @@
   $: bgColor = '#ffffff';
   $: nameColor = '#333333';
   $: textColor = '#333333';
+  $: unitTextColor = '#333333';
   $: lastUnitColor = '#ff0000';
   $: borderColor =  '#adbbda';
 
@@ -35,10 +41,21 @@
 
     const unitsLength = units.length;
 
-    units.forEach((unit, index) => {
+    const tmp = [...units].sort((prev, next) => {
+      const prevIdx = TIMER_UNIT_LIST.findIndex(item => item === prev);
+      const nextIdx = TIMER_UNIT_LIST.findIndex(item => item === next);
+
+      if (prevIdx > nextIdx) return 1;
+      if (prevIdx < nextIdx) return -1;
+      return 0;
+    });
+
+    tmp.forEach((unit, index) => {
       unitsMap[unit] = {
         isLast: index === unitsLength - 1,
-        value: 0
+        value: 0,
+        color: textColor,
+        subTextColor: unitTextColor,
       };
     });
 
@@ -82,17 +99,17 @@
     });
   }
 
-  const onDateChange = (e) => {
-    onDateTimeChange({ date: e.target.value });
+  const onDateChange = (event) => {
+    onDateTimeChange({ date: event.detail });
   };
-  const onHourChange = (e) => {
-    onDateTimeChange({ hour: e.target.value });
+  const onHourChange = (event) => {
+    onDateTimeChange({ hour: event.detail });
   };
-  const onMinuteChange = (e) => {
-    onDateTimeChange({ minute: e.target.value });
+  const onMinuteChange = (event) => {
+    onDateTimeChange({ minute: event.detail });
   };
-  const onSecondChange = (e) => {
-    onDateTimeChange({ second: e.target.value });
+  const onSecondChange = (event) => {
+    onDateTimeChange({ second: event.detail });
   };
   const onNameChange = (value) => {
     name = value;
@@ -106,6 +123,9 @@
   };
   const onTextColorChange = (e) => {
     textColor = e.target.value;
+  };
+  const onUnitTextColorChange = (e) => {
+    unitTextColor = e.target.value;
   };
   const onLastUnitColorChange = (e) => {
     lastUnitColor = e.target.value;
@@ -121,7 +141,7 @@
   });
 </script>
 
-<div class='tool-panel wrapper'>
+<div class='tool-panel timer-wrapper'>
   <section class='timer-area' style={`border-width: ${borderWidth}px; background-color: ${bgColor}; border-color: ${borderColor}`}>
     <header class='header'>
       <h2 style={`color: ${nameColor}`}>{name}</h2>
@@ -130,92 +150,76 @@
     <StaticDigitalClock config={unitsMap} lastUnitColor={lastUnitColor} showSubText={showUnitName} />
   </section>
 
-  <section class='timer-controller'>
-    <div class='timer-settings-col timer-settings-left'>
-      <div class='timer-settings-row date-wrapper'>
-        <label for='date' class='form-label'>{$t('Date')}:</label>
-        <input type='date' class='form-control' id='date' bind:value={selectorDate} on:change={onDateChange}>
-      </div>
+  <BeForm labelPosition='top' class='timer-controller'>
+    <div class='timer-settings-col'>
+      <BeFormItem label={`${$t('Date')}:`}>
+        <BeDatePicker bind:value={selectorDate} clearable={false} selectMode="date" on:change={onDateChange} />
+      </BeFormItem>
 
       <div class='timer-settings-row time-wrapper'>
-        <div class='time-item-wrapper hour-wrapper'>
-          <label for='hour' class='form-label'>{$t('Hour')}:</label>
-          <select class='form-control' id='hour' bind:value={selectorHour} on:change={onHourChange}>
+        <BeFormItem label={`${$t('Hour')}:`} class='time-item-wrapper'>
+          <BeSelect id='hour' bind:value={selectorHour} on:change={onHourChange}>
             {#each HOUR_LIST as hour}
-              <option>{hour}</option>
+              <BeOption label={hour} value={hour} />
             {/each}
-          </select>
-        </div>
+          </BeSelect>
+        </BeFormItem>
 
-        <div class='time-item-wrapper minute-wrapper'>
-          <label for='minute' class='form-label'>{$t('Minute')}:</label>
-          <select class='form-control' id='minute' bind:value={selectorMinute} on:change={onMinuteChange}>
+        <BeFormItem label={`${$t('Minute')}:`} class='time-item-wrapper'>
+          <BeSelect id='minute' bind:value={selectorMinute} on:change={onMinuteChange}>
             {#each MINUTE_SECOND_LIST as minute}
-              <option>{minute}</option>
+              <BeOption label={minute} value={minute} />
             {/each}
-          </select>
-        </div>
+          </BeSelect>
+        </BeFormItem>
 
-        <div class='time-item-wrapper second-wrapper'>
-          <label for='second' class='form-label'>{$t('Second')}:</label>
-          <select class='form-control' id='second' bind:value={selectorSecond} on:change={onSecondChange}>
+        <BeFormItem label={`${$t('Second')}:`} class='time-item-wrapper'>
+          <BeSelect id='second' bind:value={selectorSecond} on:change={onSecondChange}>
             {#each MINUTE_SECOND_LIST as second}
-              <option>{second}</option>
+              <BeOption label={second} value={second} />
             {/each}
-          </select>
-        </div>
+          </BeSelect>
+        </BeFormItem>
       </div>
 
-      <div class='timer-settings-row name-wrapper'>
-        <label for='name' class='form-label'>{$t('timerName')}:</label>
-        <input type='text' class='form-control' id='name' bind:value={name} on:change={onNameChange}>
-      </div>
+      <BeFormItem label={`${$t('timerName')}:`}>
+        <BeInput type='text' id='name' bind:value={name} on:change={onNameChange} />
+      </BeFormItem>
     </div>
 
-    <div class='timer-settings-col timer-settings-center'>
-      <div class='timer-settings-row unit-wrapper'>
-        <label for='units' class='form-label'>{$t('Units')}:</label>
-
-        <div class='unit-list-wrapper'>
+    <div class='timer-settings-col'>
+      <BeFormItem label={`${$t('Units')}:`}>
+        <BeCheckboxGroup bind:checked={units}>
           {#each TIMER_UNIT_LIST.filter(unit => unit !== TIMER_UNIT_MAP.MILLISECOND) as unit}
-            <div class='form-check'>
-              <input class='form-check-input' type='checkbox' id={`unit_${unit}`} bind:group={units} value={unit}>
-              <label class='form-check-label' for={`unit_${unit}`}>
-                {$t(unit)}
-              </label>
-            </div>
+            <BeCheckbox label={unit} id={`unit_${unit}`} style='width: 25%'>{$t(unit)}</BeCheckbox>
           {/each}
-        </div>
-      </div>
+        </BeCheckboxGroup>
+      </BeFormItem>
 
-      <div class='timer-settings-row'>
-        <input class='form-check-input' type='checkbox' id='showUnitName' bind:checked={showUnitName}>
-        <label class='form-check-label' for='showUnitName'>
-          {$t('showUnitNames')}
-        </label>
-      </div>
+      <BeFormItem>
+        <BeCheckbox bind:checked={showUnitName} id='showUnitName'>{$t('showUnitNames')}</BeCheckbox>
+      </BeFormItem>
 
-      <div class='timer-settings-row'>
-        <label for='borderWidth' class='form-label'>{$t('borderWidth')}:</label>
-        <input type='number' class='form-control' id='borderWidth' min='0' bind:value={borderWidth}>
-      </div>
+      <BeFormItem label={`${$t('borderWidth')}:`}>
+        <BeInput type='number' min='0' bind:value={borderWidth} />
+      </BeFormItem>
     </div>
-
-    <div class='timer-settings-col timer-settings-right'>
+  
+    <div class='timer-settings-col'>
       <ColorPalette
         id='bgColor'
         label={$t('backgroundColor')}
         bgColor={bgColor}
         onChange={onBgColorChange}
       />
-
+  
       <ColorPalette
         id='nameColor'
         label={$t('nameColor')}
         bgColor={nameColor}
         onChange={onNameColorChange}
       />
-
+  
       <ColorPalette
         id='textColor'
         label={$t('textColor')}
@@ -224,12 +228,19 @@
       />
 
       <ColorPalette
+        id='unitTextColor'
+        label={$t('unitTextColor')}
+        bgColor={unitTextColor}
+        onChange={onUnitTextColorChange}
+      />
+  
+      <ColorPalette
         id='lastUnitColor'
         label={$t('lastUnitColor')}
         bgColor={lastUnitColor}
         onChange={onLastUnitColorChange}
       />
-
+  
       <ColorPalette
         id='borderColor'
         label={$t('borderColor')}
@@ -237,63 +248,71 @@
         onChange={onBorderColorChange}
       />
     </div>
-  </section>
+  </BeForm>
 </div>
 
-<style>
-.timer-area {
-  padding: 15px;
-  border: 1px solid rgba(173, 187, 218, 0.3);
-  background-color: var(--white);
-}
+<style global lang='scss'>
+  .timer-wrapper {
+    .timer-area {
+      padding: 15px;
+      border: 1px solid rgba(173, 187, 218, 0.3);
+      background-color: var(--white);
+    }
+    
+    .timer-area header h2 {
+      text-align: center;
+      font-size: 40px;
+    }
+    
+    .header {
+      margin-bottom: 30px;
+    }
+    
+    .timer-controller {
+      display: flex;
+      align-items: flex-start;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid rgba(173, 187, 218, 0.3);
+    }
+    
+    .time-wrapper {
+      display: flex;
+    }
+    
+    .timer-settings-row {
+      margin-top: 15px;
+    }
+    
+    .time-item-wrapper {
+      flex: 1;
+    }
+    
+    .time-item-wrapper + .time-item-wrapper {
+      margin-left: 10px;
+    }
+    
+    .timer-settings-col {
+      flex: 1;
+    }
+    
+    .timer-settings-col + .timer-settings-col {
+      margin-left: 30px;
+    }
+    
+    .unit-list-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .unit-list-wrapper > * {
+      width: 25%;
+    }
 
-.timer-area header h2 {
-  text-align: center;
-  font-size: 40px;
-}
-
-.header {
-  margin-bottom: 30px;
-}
-
-.timer-controller {
-  display: flex;
-  align-items: flex-start;
-  padding-top: 30px;
-  margin-top: 30px;
-  border-top: 1px solid rgba(173, 187, 218, 0.3);
-}
-
-.time-wrapper {
-  display: flex;
-}
-
-.timer-settings-row {
-  margin-top: 15px;
-}
-
-.time-item-wrapper {
-  flex: 1;
-}
-
-.time-item-wrapper + .time-item-wrapper {
-  margin-left: 10px;
-}
-
-.timer-settings-col {
-  flex: 1;
-}
-
-.timer-settings-col + .timer-settings-col {
-  margin-left: 30px;
-}
-
-.unit-list-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.unit-list-wrapper > * {
-  width: 25%;
-}
+    .be-form-item__label {
+      line-height: 1;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
 </style>

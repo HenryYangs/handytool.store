@@ -1,4 +1,5 @@
 <script>
+  import { BeTable, BeTableColumn } from '@brewer/beerui/be-table';
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import StaticDigitalClock from '../../../../components/timer/static-digital-version/index.svelte';
@@ -59,8 +60,13 @@
           [TIMER_UNIT_MAP.MILLISECOND]: chronograph[TIMER_UNIT_MAP.MILLISECOND].value,
         },
         total,
-      })
+      });
     }
+
+    result = result.map((item, index) => ({
+      ...item,
+      index
+    }))
   }
 
   const onLeftBtnClick = () => {
@@ -134,7 +140,23 @@
       </div>
 
       {#if result.length}
-        <table class='table table-bordered result-table'>
+        <BeTable data={result} border class='result-table'>
+          <BeTableColumn prop="tableSlot" name='tableSlot1' label={$t('No')} />
+          <BeTableColumn prop="tableSlot" name='tableSlot2' label={$t('Lap')} />
+          <BeTableColumn prop="tableSlot" name='tableSlot3' label={$t('totalTime')} />
+          <div slot="tableSlot1" let:prop={row}>
+            {row.index}
+          </div>
+
+          <div slot="tableSlot2" let:prop={row}>
+            {`${row.lap[TIMER_UNIT_MAP.MINUTE]}:${row.lap[TIMER_UNIT_MAP.SECOND]}:${row.lap[TIMER_UNIT_MAP.MILLISECOND]}`}
+          </div>
+
+          <div slot="tableSlot3" let:prop={row}>
+            {`${row.total[TIMER_UNIT_MAP.MINUTE]}:${row.total[TIMER_UNIT_MAP.SECOND]}:${row.total[TIMER_UNIT_MAP.MILLISECOND]}`}
+          </div>
+        </BeTable>
+        <!-- <table class='table table-bordered result-table'>
           <thead class='table-light'>
             <tr>
               <th>{$t('No')}.</th>
@@ -151,13 +173,13 @@
               </tr>
             {/each}
           </tbody>
-        </table>
+        </table> -->
       {/if}
     </div>
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .wrapper {
   display: flex;
   flex-direction: column;

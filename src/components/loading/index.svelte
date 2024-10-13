@@ -4,7 +4,7 @@
 
 <i class='iconfont-common icon-common-loading icon-loading' style={size ? `font-size: ${size}px` : ''}></i>
 
-<style>
+<style global lang='scss'>
 .icon-loading {
   display: inline-block;
   animation: loading 1.5s ease-in-out infinite;

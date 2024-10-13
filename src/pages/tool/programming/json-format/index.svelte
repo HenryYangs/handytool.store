@@ -1,4 +1,5 @@
 <script>
+  import { BeSelect, BeOption } from '@brewer/beerui/be-select';
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundArea from '../../../../components/playground-area/index.svelte';
@@ -38,16 +39,15 @@
       actionConfig={{ onClear }}
     >
       <div slot='header-extra'>
-        <select
-          class='form-select form-select-sm'
-          aria-label='Select Indent'
+        <BeSelect
+          size='mini'
           placeholder='Select Indent'
           bind:value={indent}
         >
           {#each INDENT as indent}
-            <option value={indent.value}>{indent.label}</option>
+            <BeOption value={indent.value} label={indent.label} />
           {/each}
-        </select>
+        </BeSelect>
       </div>
     </PlaygroundArea>
 

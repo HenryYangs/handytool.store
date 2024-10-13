@@ -22,48 +22,45 @@
   });
 </script>
 
-<footer>
-  <div class='container-fluid container-biz'>
-    <div class='row align-items-start'>
-      <Entry
-        title={$t('Navigate')}
-        className='col-2'
-        list={CONF_NAVIGATE}
-      />
+<footer class='footer-wrapper'>
+  <div class='container-biz entry-wrapper layout-start'>
+    <Entry
+      title={$t('Navigate')}
+      style='width: 15%'
+      list={CONF_NAVIGATE}
+    />
 
-      <Entry
-        title={$t('Tools')}
-        className='col-10'
-        list={toolList}
-      />
-    </div>
+    <Entry
+      title={$t('Tools')}
+      style='width: 85%'
+      list={toolList}
+    />
   </div>
 
   <div class='footer'>
-    <div class='container-fluid container-biz'>
-      <div class='row justify-content-between align-items-center'>
-        <div class='col'></div>
-
-        <div class='col copyright'>© 2024 {location.hostname}. All rights reserved</div>
-      </div>
-    </div>
+    <div class='container-biz copyright'>© 2024 {location.hostname}. All rights reserved</div>
   </div>
 </footer>
 
-<style>
-footer {
-  margin-top: 35px;
-  color: var(--theme-secondary-dark-color);
-}
+<style global lang='scss'>
+  .footer-wrapper {
+    margin-top: 35px;
+    color: var(--theme-secondary-dark-color);
 
-.footer {
-  padding: 20px 0;
-  margin-top: 80px;
-  background-color: rgb(112, 145, 230, .3);
-  color: #333;
-}
-
-.copyright {
-  text-align: end;
-}
+    .entry-wrapper  {
+      margin: auto;
+    }
+    
+    .footer {
+      padding: 20px 0;
+      margin-top: 80px;
+      background-color: rgb(112, 145, 230, .3);
+      color: #333;
+    }
+    
+    .copyright {
+      margin: auto;
+      text-align: end;
+    }
+  }
 </style>

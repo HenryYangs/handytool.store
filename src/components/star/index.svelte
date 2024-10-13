@@ -22,28 +22,28 @@
   };
 </script>
 
-<span class='wrapper' on:click={onClickHandler} style={style}>
+<span class='star-wrapper' on:click={onClickHandler} style={style}>
   <i
     class={`iconfont-common icon-common-heart${isStar ? '-fill' : ''} ${isStar ? 'icon-heart-fill' : 'icon-heart'}`}
     style={`font-size: ${size}px; ${starStyle}`}
   ></i>
 </span>
 
-<style>
-.wrapper {
-  cursor: pointer;
-}
+<style global lang='scss'>
+  .star-wrapper {
+    cursor: pointer;
 
-.icon-heart {
-  opacity: 0.8;
-  transition: all .3s linear;
-}
-
-.icon-heart:hover {
-  opacity: 1;
-}
-
-.icon-heart-fill {
-  color: red;
-}
+    .icon-heart {
+      opacity: 0.8;
+      transition: all .3s linear;
+    }
+    
+    .icon-heart:hover {
+      opacity: 1;
+    }
+    
+    .icon-heart-fill {
+      color: red;
+    }
+  }
 </style>

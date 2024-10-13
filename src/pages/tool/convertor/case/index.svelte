@@ -28,5 +28,5 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 </style>

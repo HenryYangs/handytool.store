@@ -1,4 +1,6 @@
 <script>
+  import BeInput from '@brewer/beerui/be-input';
+  import BeTextarea from '@brewer/beerui/be-textarea';
   import ExecuteBtn from '../execute-btn/index.svelte';
 
   export let btnText = 'Transfer';
@@ -15,8 +17,8 @@
   }
 </script>
 
-<section class='tool-panel' style={style}>
-  <div class='header'>
+<section class='base-playground-wrapper tool-panel' style={style}>
+  <div class='base-playground_header'>
     <slot name='header-main' class='d-flex' />
 
     <slot name='header-extra' />
@@ -24,17 +26,9 @@
 
   <div class='input-group textarea-wrapper'>
     {#if input}
-      <input
-        class='form-control'
-        aria-label='input area'
-        bind:value={value}
-      />
+      <BeInput bind:value />
     {:else}
-      <textarea
-        class='form-control common-textarea'
-        aria-label='input area'
-        bind:value={value}
-      ></textarea>
+      <BeTextarea bind:value></BeTextarea>
     {/if}
   </div>
 
@@ -43,15 +37,17 @@
   {/if}
 </section>
 
-<style>
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.textarea-wrapper {
-  margin-bottom: 10px;
-}
+<style global lang='scss'>
+  .base-playground-wrapper {
+    .base-playground_header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .textarea-wrapper {
+      margin-bottom: 10px;
+    }
+  }
 </style>

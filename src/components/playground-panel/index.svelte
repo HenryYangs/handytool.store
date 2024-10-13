@@ -1,5 +1,7 @@
 <script>
   import { t } from 'svelte-i18n';
+  import BeTextarea from '@brewer/beerui/be-textarea';
+  import BeButton from '@brewer/beerui/be-button';
 
   export let value;
   export let actions = [];
@@ -21,54 +23,55 @@
   }
 </script>
 
-<div class='tool-panel'>
+<div class='tool-panel playground-panel-wrapper'>
   <slot name='header' />
 
-  <div class='input-group'>
-    <textarea
-      class='form-control common-textarea'
-      aria-label='playground panel textarea'
+  <div class=''>
+    <BeTextarea
       bind:value
-    ></textarea>
+    ></BeTextarea>
   </div>
 
   <div class='actions'>
     {#each actionRow as row}
       <div class='action-row'>
         {#each actions.slice(row * countInRow, row * countInRow + countInRow) as action}
-          <button
-            class={`btn ${activeId === action.text ? 'btn-dark' : 'btn-outline-dark'} action-item`}
+          <BeButton
+            type='default'
+            class='btn-outline-dark action-item'
             on:click={() => onAction(action)}
           >
             {$t(action.text)}
-          </button>
+          </BeButton>
         {/each}
       </div>
     {/each}
   </div>
 </div>
 
-<style>
-.actions {
-  margin-top: 20px;
-}
-
-.action-row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.action-row + .action-row {
-  margin-top: 10px;
-}
-
-.action-item {
-  width: calc((100% - 60px) / 7);
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.action-item + .action-item {
-  margin-left: 10px;
-}
+<style global lang='scss'>
+  .playground-panel-wrapper {
+    .actions {
+      margin-top: 20px;
+    }
+    
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .action-row + .action-row {
+      margin-top: 10px;
+    }
+    
+    .action-item {
+      width: calc((100% - 60px) / 7);
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    
+    .action-item + .action-item {
+      margin-left: 10px;
+    }
+  }
 </style>

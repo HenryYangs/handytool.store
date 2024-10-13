@@ -1,4 +1,5 @@
 <script>
+  import { BeCheckbox } from '@brewer/beerui/be-checkbox';
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import PlaygroundTransfer from '../../../../components/playground-transfer/index.svelte';
@@ -12,21 +13,21 @@
   $: showHashTag = false;
   $: addRGBPrefix = false;
 
-  $: if (showHashTag) {
-    leftValue = leftValue.startsWith('#') ? leftValue : `#${leftValue}`;
-  }
-  
-  $: if (!showHashTag) {
-    leftValue = leftValue.replace('#', '');
-  }
+  const onShowHashTagChange = ({ detail: { checked } }) => {
+    if (checked) {
+      leftValue = leftValue.startsWith('#') ? leftValue : `#${leftValue}`;
+    } else {
+      leftValue = leftValue.replace('#', '');
+    }
+  };
 
-  $: if (addRGBPrefix) {
-    rightValue = rightValue.startsWith('rgb') ? rightValue : `rgb(${rightValue})`;
-  }
-
-  $: if (!addRGBPrefix) {
-    if (rightValue.startsWith('rgb')) {
-      rightValue = rightValue.match(/^rgb\((.*)\)$/)[1];
+  const onRGBPrefixChange = ({ detail: { checked } }) => {
+    if (checked) {
+      rightValue = rightValue.startsWith('rgb') ? rightValue : `rgb(${rightValue})`;
+    } else {
+      if (rightValue.startsWith('rgb')) {
+        rightValue = rightValue.match(/^rgb\((.*)\)$/)[1];
+      }
     }
   }
 
@@ -34,13 +35,21 @@
     rightValue = colorHexToRgb(leftValue);
   };
   const onClearLeft = () => {
-    leftValue = '';
+    if (showHashTag) {
+      leftValue = '#';
+    } else {
+      leftValue = '';
+    }
   };
   const onConvertRight = () => {
     leftValue = colorRgbToHex(rightValue);
   };
   const onClearRight = () => {
-    rightValue = '';
+    if (addRGBPrefix) {
+      rightValue = 'rgb()';
+    } else {
+      rightValue = '';
+    }
   };
 </script>
 
@@ -67,12 +76,7 @@
     >
       <svelte:fragment slot='left-header-extra'>
         <div class='slot-wrapper'>
-          <div class='form-check'>
-            <input class='form-check-input' type='checkbox' bind:checked={showHashTag} id='showHashTag'>
-            <label class='form-check-label' for='showHashTag'>
-              {$t('Show Hash Tag')}
-            </label>
-          </div>
+          <BeCheckbox bind:checked={showHashTag} id='showHashTag' on:change={onShowHashTagChange}>{$t('Show Hash Tag')}</BeCheckbox>
 
           <ColorRect color={`${showHashTag ? '' : '#'}${leftValue}`} />
         </div>
@@ -80,12 +84,7 @@
 
       <svelte:fragment slot='right-header-extra'>
         <div class='slot-wrapper'>
-          <div class='form-check'>
-            <input class='form-check-input' type='checkbox' bind:checked={addRGBPrefix} id='addRGBPrefix'>
-            <label class='form-check-label' for='addRGBPrefix'>
-              {$t('Add RGB Prefix')}
-            </label>
-          </div>
+          <BeCheckbox bind:checked={addRGBPrefix} id='addRGBPrefix' on:change={onRGBPrefixChange}>{$t('Add RGB Prefix')}</BeCheckbox>
 
           <ColorRect color={`${addRGBPrefix ? rightValue : `rgb(${rightValue})`}`} />
         </div>
@@ -94,7 +93,7 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .slot-wrapper {
   display: flex;
   justify-content: flex-end;

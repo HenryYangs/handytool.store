@@ -1,0 +1,29 @@
+.layout-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.layout-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.layout-start-center {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.layout-end-center {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.layout-center-start {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}

@@ -5,6 +5,7 @@
   import { EVENTS } from '../../constant/events';
   import event from '../../utils/event';
   import '../../assets/icon/actions/iconfont.css';
+  import { ALERT_STATUS } from '../../constant/status';
 
   export let name = '';
   export let style = '';
@@ -64,22 +65,24 @@
     });
 
     clipboard.on('success', () => {
-      event.emit(EVENTS.TOOLTIP, {
+      event.emit(EVENTS.ALERT, {
         show: true,
+        status: ALERT_STATUS.SUCCESS,
         message: 'Copy Success!'
       });
     });
 
     clipboard.on('error', () => {
-      event.emit(EVENTS.TOOLTIP, {
+      event.emit(EVENTS.ALERT, {
         show: true,
+        status: ALERT_STATUS.ERROR,
         message: 'Copy Error!'
       });
     });
   });
 </script>
 
-<div class='wrapper' style={style}>
+<div class='share-wrapper' style={style}>
   <ShareItem
     url={`http://twitter.com/share?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(name)}+${encodeURIComponent('|')}+Handytool${encodeURIComponent('🔧')}+${encodeURIComponent('@handytool_store')}&hashtags=${encodeURIComponent('handytool')}`}
     color='#000'
@@ -217,8 +220,8 @@
   </ShareItem>
 </div>
 
-<style>
-.wrapper {
+<style global lang='scss'>
+.share-wrapper {
   display: flex;
   justify-content: flex-start;
   align-items: center;

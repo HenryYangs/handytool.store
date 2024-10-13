@@ -68,7 +68,7 @@
   </ToolLayout>
 </Layout>
 
-<style>
+<style global lang='scss'>
 .part-wrapper {
   display: flex;
   justify-content: center;
