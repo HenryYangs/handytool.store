@@ -1,6 +1,6 @@
 <script>
   import clickOutside from '../../utils/click-outside';
-  import BeButton from '@brewer/beerui/be-button';
+  import ExecuteBtn from '../execute-btn/index.svelte';
 
   export let id;
   export let triggerText = '';
@@ -27,15 +27,12 @@
 
 <div class='dropdown-wrapper'>
   {#if btnTrigger}
-    <BeButton
-      circle
-      type='primary'
-      nativeType='button'
+    <ExecuteBtn
+      text={triggerText}
       style={triggerStyle}
-      on:click={onTriggerClick}
-    >
-      {triggerText}
-    </BeButton>
+      onConfirm={onTriggerClick}
+      buttonProps={{ size: 'small' }}
+    />
   {:else if iconTrigger}
     <i
       class={`iconfont-${iconCategory} icon-${iconCategory}-${iconName}`}
