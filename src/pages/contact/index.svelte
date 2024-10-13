@@ -1,35 +1,37 @@
 <script>
   import Layout from '../../components/layout/index.svelte';
   import mailbox from '../../assets/images/mailbox.png'
+  import { BeForm, BeFormItem } from '@brewer/beerui/be-form';
+  import BeInput from '@brewer/beerui/be-input';
+  import BeTextarea from '@brewer/beerui/be-textarea';
+  import BeButton from '@brewer/beerui/be-button';
 </script>
 
 <Layout>
-  <main class='wrapper common-background'>
-    <div class='container-biz inner-wrapper'>
+  <main class='contact-wrapper common-background layout-center'>
+    <div class='container-biz layout-center'>
       <div class='contact-item'>
-        <form id='contact'>
+        <BeForm labelPosition='top' class='contact-form'>
           <div class='contact-row'>
-            <div class='contact-name-wrapper'>
-              <label for='name' class='form-label'>Name</label>
-              <input id='name' class='form-control contact-name' type='text' placeholder='Your Name' />
-            </div>
-            <div class='contact-email-wrapper'>
-              <label for='email' class='form-label'>Email</label>
-              <input id='email' class='form-control contact-email' type='text' placeholder='example@mail.com' />
-            </div>
+            <BeFormItem label='Name' class='contact-name-wrapper'>
+              <BeInput id='name' class='contact-name' type='text' placeholder='Your Name' />
+            </BeFormItem>
+
+            <BeFormItem label='Email' class='contact-email-wrapper'>
+              <BeInput id='email' class='contact-name' type='email' placeholder='example@mail.com' />
+            </BeFormItem>
           </div>
 
           <div class='contact-row'>
-            <div class='contact-comment-wrapper'>
-              <label for='comments' class='form-label'>Comments</label>
-              <textarea id='comments' class='form-control contact-comments' placeholder='Your Thoughts' />
-            </div>
+            <BeFormItem label='Comments' class='contact-comment-wrapper'>
+              <BeTextarea id='comments' class='contact-comments' placeholder='Your Thoughts'></BeTextarea>
+            </BeFormItem>
           </div>
 
           <div class='contact-row'>
-            <button class='btn-send' type='button'>Send</button>
+            <BeButton class='btn-send' type='button'>Send</BeButton>
           </div>
-        </form>
+        </BeForm>
       </div>
 
       <div class='contact-item contact-right'>
@@ -42,66 +44,65 @@
 </Layout>
 
 <style global lang='scss'>
-.wrapper {
+.contact-wrapper {
   height: 100%;
-}
 
-.inner-wrapper {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
+  .inner-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .contact-item {
+    flex: 1;
+  }
 
-.contact-item {
-  flex: 1;
-}
-
-.contact-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-
-.contact-name-wrapper,
-.contact-email-wrapper {
-  width: calc(50% - 20px);
-}
-
-.contact-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 50px 0;
-}
-
-.contact-comment-wrapper {
-  width: 100%;
-}
-
-.contact-comments {
-  height: 150px;
-  resize: none;
-}
-
-.btn-send {
-  width: 80px;
-  height: 40px;
-  border: none;
-  border-radius: 20px;
-  color: var(--white);
-  background-color: var(--theme-main-color);
-}
-
-.btn-send:hover {
-  background-color: var(--theme-secondary-color);
-}
-
-.mini-title {
-  color: var(--theme-main-color);
-}
-
-.contact-img {
-  margin-top: 30px;
+  .contact-form {
+    width: 100%;
+  }
+  
+  .contact-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .contact-name-wrapper,
+  .contact-email-wrapper {
+    width: calc(50% - 20px);
+  }
+  
+  .contact-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 50px 0;
+  }
+  
+  .contact-comment-wrapper {
+    width: 100%;
+  }
+  
+  .btn-send {
+    width: 80px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    color: var(--white);
+    background-color: var(--theme-main-color);
+  }
+  
+  .btn-send:hover {
+    background-color: var(--theme-secondary-color);
+  }
+  
+  .mini-title {
+    color: var(--theme-main-color);
+  }
+  
+  .contact-img {
+    margin-top: 30px;
+  }
 }
 </style>
