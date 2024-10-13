@@ -38,7 +38,7 @@
         {#each actions.slice(row * countInRow, row * countInRow + countInRow) as action}
           <BeButton
             type='default'
-            class='action-item'
+            class='btn-outline-dark action-item'
             on:click={() => onAction(action)}
           >
             {$t(action.text)}
@@ -68,31 +68,6 @@
       width: calc((100% - 60px) / 7);
       padding-left: 5px;
       padding-right: 5px;
-      background-color: transparent;
-      border-color: var(--outline-dark);
-
-      span {
-        color: var(--outline-dark);
-      }
-
-      &:focus {
-        background-color: transparent;
-        border-color: var(--outline-dark);
-
-        span {
-          color: var(--outline-dark);
-        }
-      }
-
-      &:hover,
-      &:active {
-        background-color: var(--outline-dark);
-        border-color: var(--outline-dark);
-
-        span {
-          color: var(--white);
-        }
-      }
     }
     
     .action-item + .action-item {

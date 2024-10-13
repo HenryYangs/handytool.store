@@ -1,4 +1,6 @@
 <script>
+  import BeInput from '@brewer/beerui/be-input';
+  import BeButton from '@brewer/beerui/be-button';
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import StaticDigitalClock from '../../../../components/timer/static-digital-version/index.svelte';
@@ -113,7 +115,7 @@
     id='alarm'
     category={CATEGORY.TIMER}
   >
-    <div class='tool-panel'>
+    <div class='tool-panel alarm-wrapper'>
       <StaticDigitalClock
         config={config}
       />
@@ -130,19 +132,19 @@
 
       <div class='setting-wrapper'>
         <div class='setting-inner-wrapper'>
-          <div class='setting-hour input-group-sm'>
-            <label class='form-label' for='hour'>{$t('Hour')}</label>
-            <input class='form-control' type='number' id='hour' min='0' bind:value={hour} on:change={onHourChange} />
+          <div class='setting-hour'>
+            <p class='unit-label'>{$t('Hour')}</p>
+            <BeInput type='number' id='hour' min='0' bind:value={hour} />
           </div>
   
-          <div class='setting-minute input-group-sm'>
-            <label class='form-label' for='minute'>{$t('Minute')}</label>
-            <input class='form-control' type='number' id='minute' min='0' bind:value={minute} on:change={onMinuteChange} />
+          <div class='setting-minute'>
+            <p class='unit-label'>{$t('Minute')}</p>
+            <BeInput type='number' id='minute' min='0' bind:value={minute} />
           </div>
   
-          <div class='setting-second input-group-sm'>
-            <label class='form-label' for='second'>{$t('Second')}</label>
-            <input class='form-control' type='number' id='second' min='0' bind:value={second} on:change={onSecondChange} />
+          <div class='setting-second'>
+            <p class='unit-label'>{$t('Second')}</p>
+            <BeInput type='number' id='second' min='0' bind:value={second} />
           </div>
         </div>
 
@@ -154,11 +156,12 @@
 
         <div class='pre-programmed-list'>
           {#each ALARM_PRO_PROGRAMMED_LIST as alarm}
-            <button
-              class='btn btn-outline-dark btn-sm alarm-item'
+            <BeButton
+              size='mini'
+              class='btn-outline-dark alarm-item'
               disabled={isDuration}
               on:click={() => onPreProgrammedClick(alarm)}
-            >{alarm.text}</button>
+            >{alarm.text}</BeButton>
           {/each}
         </div>
       </div>
@@ -167,40 +170,46 @@
 </Layout>
 
 <style global lang='scss'>
-.action-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
+  .alarm-wrapper {
+    .action-wrapper {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    
+    .setting-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .setting-inner-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .setting-inner-wrapper > * {
+      width: 100px;
+      margin: 0 10px;
+    }
+    
+    .pre-programmed {
+      margin-top: 20px;
+    }
+    
+    .pre-programmed-list {
+      margin-top: 10px;
+    }
+    
+    .alarm-item {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
 
-.setting-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.setting-inner-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.setting-inner-wrapper > * {
-  width: 100px;
-  margin: 0 10px;
-}
-
-.pre-programmed {
-  margin-top: 20px;
-}
-
-.pre-programmed-list {
-  margin-top: 10px;
-}
-
-.alarm-item {
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
+    .unit-label {
+      margin-bottom: 10px;
+    }
+  }
 </style>

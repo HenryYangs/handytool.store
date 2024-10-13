@@ -1,4 +1,5 @@
 <script>
+  import { t } from 'svelte-i18n';
   import { ROUTER } from '../../constant/router';
 
   export let title;
@@ -7,15 +8,15 @@
   export let imageStyle = '';
 </script>
 
-<div class='common-background exception-wrapper'>
+<div class='common-background exception-wrapper layout-center'>
   <div class='container-biz inner-wrapper'>
     <div class='not-found-main'>
-      <h1>{title}</h1>
+      <h1>{@html title}</h1>
       <p class='description'>{description}</p>
-      <a href={ROUTER.HOME} class='btn btn-outline-dark back-to-home'>BACK TO HOMEPAGE</a>
+      <a href={ROUTER.HOME} class='btn-outline-dark back-to-home'>{$t('BACK TO HOMEPAGE')}</a>
     </div>
 
-    <div class='image-wrapper d-flex justify-content-center align-items-center'>
+    <div class='image-wrapper layout-center'>
       <img src={image} alt='exception' class='image-exception' style={imageStyle} />
     </div>
   </div>
@@ -52,6 +53,7 @@
 
   .description {
     margin-top: 10px;
+    line-height: 1.5;
   }
 
   .back-to-home {
@@ -61,6 +63,8 @@
     padding: 0;
     border-radius: 0;
     line-height: 50px;
+    color: var(--btn-outline-dark);
+    text-align: center;
   }
 }
 </style>

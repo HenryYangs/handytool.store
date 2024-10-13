@@ -1,5 +1,6 @@
 import auth from './auth';
 import common from './common';
+import exception from './exception';
 import favorite from './favorite';
 import home from './home';
 import sitemap from './sitemap';
@@ -12,4 +13,5 @@ export default {
   ...home,
   ...favorite,
   ...tool,
+  ...exception,
 };

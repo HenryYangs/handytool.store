@@ -1,4 +1,7 @@
 <script>
+  import BeButton from '@brewer/beerui/be-button';
+  import BeInput from '@brewer/beerui/be-input';
+  import { BeTable, BeTableColumn } from '@brewer/beerui/be-table';
   import Layout from '../../../../components/layout/index.svelte';
   import ToolLayout from '../../../../components/tool-layout/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
@@ -70,104 +73,91 @@
     id='timestamp'
     category={CATEGORY.TIMER}
   >
-    <section class='tool-panel'>
-      <div class='tool-container timestamp'>
-        <div class='tool-header'>
-          <h6>{$t('Timestamp')}:</h6>
-          <button class='btn btn-outline-dark btn-sm' on:click={getCurTimestamp}>{$t('currentTimestamp')}</button>
+    <div class='timestamp-wrapper'>
+      <section class='tool-panel'>
+        <div class='tool-container timestamp'>
+          <div class='tool-header'>
+            <h6>{$t('Timestamp')}:</h6>
+            <BeButton class='btn-outline-dark' type='default' size='mini' on:click={getCurTimestamp}>{$t('currentTimestamp')}</BeButton>
+          </div>
+
+          <BeInput class='input-timestamp' type='number' bind:value={timestamp} />
         </div>
 
-        <input class='form-control input-timestamp' type='number' bind:value={timestamp} />
-      </div>
+        <div class='tool-container datetime'>
+          <div class='tool-header'>
+            <h6>{$t('Date')} & {$t('Time')}:</h6>
+            <BeButton class='btn-outline-dark' type='default' size='mini' on:click={getCurDateTime}>{$t('currentTime')}</BeButton>
+          </div>
 
-      <div class='tool-container datetime'>
-        <div class='tool-header'>
-          <h6>{$t('Date')} & {$t('Time')}:</h6>
-          <button class='btn btn-outline-dark btn-sm' on:click={getCurDateTime}>{$t('currentTime')}</button>
+          <div class='date-time-wrapper'>
+              <BeInput class='input-date-time_year' type='number' placeholder='YYYY' bind:value={year} />
+              <span class='separator'>-</span>
+              <BeInput class='input-date-time_month' type='number' placeholder='MM' bind:value={month} />
+              <span class='separator'>-</span>
+              <BeInput class='input-date-time_date' type='number' placeholder='DD' bind:value={date} />
+              <span class='separator'></span>
+              <BeInput class='input-date-time_hour' type='number' placeholder='HH' bind:value={hour} />
+              <span class='separator'>:</span>
+              <BeInput class='input-date-time_minute' type='number' placeholder='mm' bind:value={minute} />
+              <span class='separator'>:</span>
+              <BeInput class='input-date-time_second' type='number' placeholder='ss' bind:value={second} />
+          </div>
         </div>
-
-         <div class='date-time-wrapper'>
-            <input class='form-control input-date-time_year' type='number' placeholder='YYYY' bind:value={year} />
-            <span class='separator'>-</span>
-            <input class='form-control input-date-time_month' type='number' placeholder='MM' bind:value={month} />
-            <span class='separator'>-</span>
-            <input class='form-control input-date-time_date' type='number' placeholder='DD' bind:value={date} />
-            <span class='separator'></span>
-            <input class='form-control input-date-time_hour' type='number' placeholder='HH' bind:value={hour} />
-            <span class='separator'>:</span>
-            <input class='form-control input-date-time_minute' type='number' placeholder='mm' bind:value={minute} />
-            <span class='separator'>:</span>
-            <input class='form-control input-date-time_second' type='number' placeholder='ss' bind:value={second} />
-         </div>
-      </div>
-      
-      <ExecuteBtn text={$t('Convert')} onConfirm={onConfirm} />
-    </section>
-
-    {#if result.length}
-      <section class='tool-panel result-panel'>
-        <h6>{$t('Results')}:</h6>
-
-        <table class='table table-bordered result-table'>
-          <thead class='table-light'>
-            <tr>
-              <th>{$t('covertBefore')}</th>
-              <th>{$t('convertAfter')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {#each result as item}
-              <tr>
-                <td class={item.isHistory ? 'history-item' : ''}>{item.before}</td>
-                <td class={item.isHistory ? 'history-item' : ''}>{item.after}</td>
-              </tr>
-            {/each}
-          </tbody>
-        </table>
+        
+        <ExecuteBtn text={$t('Convert')} onConfirm={onConfirm} />
       </section>
-    {/if}
+
+      {#if result.length}
+        <section class='tool-panel result-panel'>
+          <h6>{$t('Results')}:</h6>
+
+          <BeTable data={result} border>
+            <BeTableColumn prop="before" label={$t('convertBefore')} />
+            <BeTableColumn prop="after" label={$t('convertAfter')} />
+          </BeTable>
+        </section>
+      {/if}
+    </div>
   </ToolLayout>
 </Layout>
 
 <style global lang='scss'>
-.tool-container {
-  margin-bottom: 10px;
-}
+  .timestamp-wrapper {
+    .tool-container {
+      margin-bottom: 10px;
+    }
+    
+    .tool-header,
+    .date-time-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    
+    .tool-header h6 {
+      margin-right: 10px;
+    }
+    
+    .input-timestamp,
+    .date-time-wrapper {
+      margin-top: 10px;
+    }
+    
+    .separator {
+      margin: 0 5px;
+    }
+    
+    .result-panel {
+      margin-top: 20px;
+    }
 
-.tool-header,
-.date-time-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+    th {
+      text-align: center;
+    }
 
-.tool-header h6 {
-  margin-right: 10px;
-}
-
-.input-timestamp,
-.date-time-wrapper {
-  margin-top: 10px;
-}
-
-.separator {
-  margin: 0 5px;
-}
-
-.result-panel {
-  margin-top: 20px;
-}
-
-.result-table {
-  width: 100%;
-  margin-top: 10px;
-}
-
-th {
-  text-align: center;
-}
-
-.history-item {
-  background-color: #ccc;
-}
+    .be-table__row:not(:first-child) {
+      background-color: #ccc;
+    }
+  }
 </style>
