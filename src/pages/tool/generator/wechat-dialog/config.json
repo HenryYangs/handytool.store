@@ -1,0 +1,17 @@
+{
+  "title": "WeChat Dialog | Handytool.store",
+  "meta": [
+    {
+      "name": "keywords",
+      "content": "wechat, wechat dialog, private message, group message"
+    },
+    {
+      "name": "description",
+      "content": "simulate chat UI of wechat"
+    },
+    {
+      "property": "og:url",
+      "content": "http://www.handytool.store/tool/generator/wechat-dialog"
+    }
+  ]
+}

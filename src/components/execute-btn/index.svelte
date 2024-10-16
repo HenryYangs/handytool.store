@@ -15,7 +15,7 @@
 
 <div class={['execute-btn-wrapper', className].join(' ')} style={style}>
   <BeButton
-    class={['action-btn', btnClassName].join(' ')}
+    class={[buttonProps.type ? '' : 'action-btn', btnClassName].join(' ')}
     type='button'
     disabled={disabled}
     style={btnStyle}

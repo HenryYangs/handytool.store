@@ -1,3 +1,4 @@
+import { getNumArray } from '../../utils/array';
 import { prezero } from '../../utils/number';
 
 export const MS_OF_ONE_SECOND = 1000;
@@ -21,5 +22,12 @@ export const TIMER_UNIT_MAP = {
 
 export const TIMER_UNIT_LIST = Object.values(TIMER_UNIT_MAP);
 
-export const HOUR_LIST = new Array(24).fill(1).map((_, idx) => prezero(idx));
-export const MINUTE_SECOND_LIST = new Array(60).fill(1).map((_, idx) => prezero(idx));
+export const WEEK_LIST = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+export const DAY_HALF_LIST = ['AM', 'PM'];
+export const HOUR_LIST = getNumArray(0, 23, { prezero: true });
+export const MINUTE_SECOND_LIST = getNumArray(0, 59, { prezero: true });
+
+export const CURRENT_YEAR = new Date().getFullYear();
+export const CURRENT_MONTH = new Date().getMonth() + 1;
+export const CURRENT_DAY = new Date().getDate();
+export const TODAY = `${CURRENT_YEAR}-${prezero(CURRENT_MONTH)}-${prezero(CURRENT_DAY)}`;

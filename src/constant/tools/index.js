@@ -1,4 +1,5 @@
 export const CATEGORY = {
+  GENERATOR: 'generator',
   CONVERTOR: 'convertor',
   PROGRAMMING: 'programming',
   CODEC: 'codec',

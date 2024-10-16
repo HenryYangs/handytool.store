@@ -1,0 +1,25 @@
+@import './mixin';
+
+.layout-center {
+  @include layout-center;
+}
+
+.layout-start {
+  @include layout-start;
+}
+
+.layout-start-center {
+  @include layout-start-center;
+}
+
+.layout-end-center {
+  @include layout-end-center;
+}
+
+.layout-center-start {
+  @include layout-center-start;
+}
+
+.layout-start-end {
+  @include layout-start-end;
+}

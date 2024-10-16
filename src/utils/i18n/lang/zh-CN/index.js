@@ -4,6 +4,7 @@ import exception from './exception';
 import favorite from './favorite';
 import home from './home';
 import sitemap from './sitemap';
+import time from './time';
 import tool from './tool';
 
 export default {
@@ -14,4 +15,5 @@ export default {
   ...favorite,
   ...tool,
   ...exception,
+  ...time,
 };
