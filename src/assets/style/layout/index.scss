@@ -23,3 +23,11 @@
 .layout-start-end {
   @include layout-start-end;
 }
+
+.layout-between-center {
+  @include layout-between-center;
+}
+
+.layout-between-end {
+  @include layout-between-end;
+}

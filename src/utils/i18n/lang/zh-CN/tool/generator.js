@@ -45,5 +45,10 @@ export default {
   'Delete User': '删除用户',
   'Add User': '添加用户',
   'Clear Dialog': '清空对话',
+
+  'Poor': '差',
+  'Fair': '一般',
+  'Good': '好',
+  'Strong': '强',
 };
 

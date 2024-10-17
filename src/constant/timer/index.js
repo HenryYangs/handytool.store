@@ -31,3 +31,6 @@ export const CURRENT_YEAR = new Date().getFullYear();
 export const CURRENT_MONTH = new Date().getMonth() + 1;
 export const CURRENT_DAY = new Date().getDate();
 export const TODAY = `${CURRENT_YEAR}-${prezero(CURRENT_MONTH)}-${prezero(CURRENT_DAY)}`;
+
+export const DEFAULT_TIME_HOUR = '09';
+export const DEFAULT_TIME_MINUTE = '00';

@@ -4,9 +4,9 @@
   import BeTextarea from '@brewer/beerui/be-textarea';
   import BeIcon from '@brewer/beerui/be-icon';
   import { t } from 'svelte-i18n';
-  import { ICON_EMOJI } from '../../../../../assets/icon/base64';
   import BeUpload from '@brewer/beerui/be-upload';
   import ExecuteBtn from '../../../../../components/execute-btn/index.svelte';
+  import ICON_EMOJI from '../../../../../assets/images/common/emoji.png';
 
   export let avatar = '';
   export let userName = '';

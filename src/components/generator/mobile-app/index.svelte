@@ -3,9 +3,13 @@
   import BeTabPane from '@brewer/beerui/be-tabs/BeTabPane.svelte';
   import PhoneAppearance from '../mobile-app/phone-appearance/index.svelte';
   import { t } from 'svelte-i18n';
+  import { PHONE } from '../../../constant/phone';
+  import SimulatorIos from '../../simulator/ios/index.svelte';
+  import SimulatorAndroid from '../../simulator/android/index.svelte';
 
   export let tabs = [];
   export let tabContents = {}; // New prop to hold tab contents
+  export let phone = PHONE.IOS;
 
   $: tabList = [
     {
@@ -20,7 +24,7 @@
   };
 </script>
 
-<main class='content mobile-app-wrapper'>
+<main class='mobile-app-wrapper layout-start'>
   <section class='tool-panel generator-part body-left'>
     <BeTabs bind:active items={tabList} on:tabClick={tabClick}>
       <BeTabPane key='phone-appearance' active={active} label={$t('Phone Appearance')}>
@@ -37,16 +41,26 @@
     </BeTabs>
   </section>
 
-  <section class='generator-part body-right'>r</section>
+  <section class='generator-part body-right'>
+    <svelte:component this={phone === PHONE.IOS ? SimulatorIos : SimulatorAndroid} className='simulator-wrapper' />
+  </section>
 </main>
 
 <style lang='scss' global>
-  .mobile-app-wrapper {
-    display: flex;
-    justify-content: space-between;
-   
+  .mobile-app-wrapper {   
     .generator-part {
       width: calc(50% - 10px);
+    }
+
+    .body-right {
+      position: relative;
+    }
+
+    .simulator-wrapper {
+      // position: absolute;
+      // top: 0;
+      // left: 50%;
+      // bottom: 0;
     }
 
     .be-form {
