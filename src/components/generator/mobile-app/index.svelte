@@ -42,7 +42,13 @@
   </section>
 
   <section class='generator-part body-right'>
-    <svelte:component this={phone === PHONE.IOS ? SimulatorIos : SimulatorAndroid} className='simulator-wrapper' />
+    <svelte:component
+      this={phone === PHONE.IOS ? SimulatorIos : SimulatorAndroid} className='simulator-wrapper'
+    >
+      <svelte:fragment slot='content'>
+        <slot name='content'></slot>
+      </svelte:fragment>
+    </svelte:component>
   </section>
 </main>
 

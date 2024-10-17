@@ -6,6 +6,7 @@
   import BeDatePicker from '@brewer/beerui/be-date-picker';
   import ExecuteBtn from '../../../../../components/execute-btn/index.svelte';
   import DialogUser from '../user/index.svelte';
+  import BeSwitch from '@brewer/beerui/be-switch';
 
   const DATE_LIST = [{ label: $t('Yesterday'), value: -1 }].concat(WEEK_LIST.map((date, index) => ({ label: $t(date), value: index + 1})));
   const DAY_HALF = DAY_HALF_LIST.map((item, index) => ({ label: $t(item), value: index + 1 }));
@@ -21,6 +22,7 @@
     second: 0
   };
 
+  $: showMemberName = false;
   $: userList = [{}, {}];
 
   const onConfirmAdd = () => {
@@ -67,6 +69,10 @@
     </div>
 
     <ExecuteBtn text={$t('Add')} onConfirm={onConfirmAdd} className='msg-time-btn' buttonProps={{ size: 'mini' }} />
+  </BeFormItem>
+
+  <BeFormItem label={$t('Show Member Name')}>
+    <BeSwitch bind:checked={showMemberName} />
   </BeFormItem>
 
   {#each userList as user}

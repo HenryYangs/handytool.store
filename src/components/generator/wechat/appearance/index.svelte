@@ -4,43 +4,56 @@
   import BeUpload from '@brewer/beerui/be-upload';
   import BeIcon from '@brewer/beerui/be-icon';
   import { t } from 'svelte-i18n';
-  import { CHAT_TYPE_LIST, CHAT_TYPE_MAP } from './config';
+  import { CHAT_TYPE_LIST, CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../constant/phone';
   import BeInput from '@brewer/beerui/be-input';
-  import BeSwitch from '@brewer/beerui/be-switch';
   import BeButton from '@brewer/beerui/be-button';
+  import event from '../../../../utils/event';
+  import { EVENTS } from '../../../../constant/events';
+  import { DEFAULT_VALUE } from '../../../../constant/common/number';
 
-  $: chatType = CHAT_TYPE_LIST[0];
-  $: chatTitle = '';
-  $: memberCount = '0';
-  $: unreadMsgCount = '0';
-  $: showMemberName = false;
+  $: chatType = CHAT_TYPE_MAP.Single;
+  $: chatTitle = $t(DEFAULT_CHAT_TITLE);
+  $: memberCount = String(GROUP_CHAT_MIN_MEMBER_COUNT);
+  $: unreadMsgCount = String(DEFAULT_VALUE);
+
+  const handleChatTitleChange = (e) => {
+    event.emit(EVENTS.PHONE.CHAT_TITLE_CHANGE, e.target.value);
+  };
+
+  const handleChatTypeChange = (e) => {
+    event.emit(EVENTS.PHONE.CHAT_TYPE_CHANGE, e.detail);
+  };
+
+  const handleMemberCountChange = (e) => {
+    event.emit(EVENTS.PHONE.MEMBER_COUNT_CHANGE, e.target.value);
+  };
+
+  const handleUnreadMsgCountChange = (e) => {
+    event.emit(EVENTS.PHONE.UNREAD_COUNT, e.target.value);
+  };
 </script>
 
 <BeForm labelWidth='100px'>
   <BeFormItem label={$t('Chat Type')}>
-    <BeSelect bind:value={chatType} size='mini'>
+    <BeSelect bind:value={chatType} size='mini' on:change={handleChatTypeChange}>
       {#each CHAT_TYPE_LIST as type}
-        <BeOption value={type} label={$t(type)} />
+        <BeOption value={type.value} label={$t(type.label)} />
       {/each}
     </BeSelect>
   </BeFormItem>
 
   <BeFormItem label={$t('Chat Title')}>
-    <BeInput bind:value={chatTitle} size='mini' />
+    <BeInput bind:value={chatTitle} size='mini' on:change={handleChatTitleChange} />
   </BeFormItem>
 
-  {#if chatType === CHAT_TYPE_MAP.GROUP}
+  {#if chatType === CHAT_TYPE_MAP.Group}
     <BeFormItem label={$t('Member Count')}>
-      <BeInput bind:value={memberCount} type='number' min='0' size='mini' />
+      <BeInput bind:value={memberCount} type='number' min='3' size='mini' on:change={handleMemberCountChange} />
     </BeFormItem>
   {/if}
 
   <BeFormItem label={$t('Unread Msg Count')}>
-    <BeInput bind:value={unreadMsgCount} type='number' min='0' size='mini' />
-  </BeFormItem>
-
-  <BeFormItem label={$t('Show Member Name')}>
-    <BeSwitch bind:checked={showMemberName} />
+    <BeInput bind:value={unreadMsgCount} type='number' min='0' size='mini' on:change={handleUnreadMsgCountChange} />
   </BeFormItem>
 
   <BeFormItem label={$t('Chat Background')}>

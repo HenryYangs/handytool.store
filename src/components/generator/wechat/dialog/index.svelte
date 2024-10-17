@@ -3,6 +3,8 @@
   import MobileAppGenerator from '../../mobile-app/index.svelte';
   import WechatAppearance from '../appearance/index.svelte';
   import ContentForm from './content-form/index.svelte';
+  import WechatHeader from '../header/index.svelte';
+  import WechatFooter from './footer/index.svelte';
 </script>
 
 <MobileAppGenerator
@@ -20,8 +22,25 @@
     'app-appearance': WechatAppearance,
     content: ContentForm
   }}
-></MobileAppGenerator>
+>
+  <div slot='content' class='wechat-dialog-wrapper'>
+    <WechatHeader />
 
-<style>
+    <div class='wechat-content'></div>
 
+    <WechatFooter />
+  </div>
+</MobileAppGenerator>
+
+<style lang='scss' global>
+  .wechat-dialog-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #E6E6E6;
+
+    .wechat-content {
+      flex: 1;
+    }
+  }
 </style>

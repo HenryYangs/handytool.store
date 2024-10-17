@@ -1,6 +1,5 @@
 export default {
-  'Generator Tools': '生成器工具',
-  'Free Generator Tools': '免费的生成器工具集',
+  'WeChat Dialog': '微信对话生成器',
 
   'Phone Appearance': '手机外观设置',
   'App Appearance': '应用外观设置',
@@ -17,8 +16,8 @@ export default {
   'Battery Percentage': '电池百分比',
 
   'Chat Type': '聊天模式',
-  single: '单聊',
-  group: '群聊',
+  Single: '单聊',
+  Group: '群聊',
   'Chat Title': '聊天标题',
   'Member Count': '成员数量',
   'Unread Msg Count': '未读消息数量',
@@ -50,5 +49,4 @@ export default {
   'Fair': '一般',
   'Good': '好',
   'Strong': '强',
-};
-
+}

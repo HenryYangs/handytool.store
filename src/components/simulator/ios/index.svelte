@@ -4,7 +4,7 @@
 
   import { EVENTS } from '../../../constant/events';
   import { useEventListener } from '../../../utils/hooks/useEventListener';
-  import { BATTERY_STATUS_MAP, CARRIER_LIST, DEFAULT_BATTERY_PERCENTAGE, SIGNAL_STRENGTH_IOS, SIGNAL_STRENGTH_IOS_LIST, SIGNAL_TYPE_MAP } from '../../../constant/phone';
+  import { BATTERY_STATUS_MAP, CARRIER_LIST, DEFAULT_BATTERY_PERCENTAGE, SIGNAL_STRENGTH_IOS, SIGNAL_TYPE_MAP } from '../../../constant/phone';
   import ICON_PHONE_DIRECTION_IOS from '../../../assets/images/phone/direction-lock.png';
   import ICON_BATTERY from '../../../assets/images/phone/icon-battery.png';
   import ICON_BATTERY_CHARGING from '../../../assets/images/phone/icon-battery-charging.png';
@@ -146,7 +146,7 @@
     font-size: 20px;
 
     .simulator-ios-header {
-      height: 30px;
+      height: 50px;
       padding: 0 12px;
       background-color: var(--simulator-ios-background-color);
 
@@ -161,7 +161,7 @@
     }
 
     .time {
-      line-height: 30px;
+      line-height: 50px;
       text-align: center;
     }
 
@@ -183,6 +183,10 @@
         border-radius: 2px;
         transition: all 0.1s linear;
       }
+    }
+
+    .simulator-ios-content {
+      height: 100%;
     }
   }
 </style>
