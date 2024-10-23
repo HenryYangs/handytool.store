@@ -7,14 +7,86 @@
   import BeUpload from '@brewer/beerui/be-upload';
   import ExecuteBtn from '../../../../../components/execute-btn/index.svelte';
   import ICON_EMOJI from '../../../../../assets/images/common/emoji.png';
+  import { fileToBase64 } from '../../../../../utils/base64';
 
   export let avatar = '';
   export let userName = '';
   export let chatContent = '';
   export let redPacketTitle = '';
+  export let redPacketGiver = '';
   export let transferAmount = '';
-  export let voiceMsgTime = '10';
+  export let voiceMsgTime = '';
   export let imageMessage = '';
+
+  export let onUpdate = (key, value) => {};
+  export let onDeleteUser = () => {};
+
+  const beforeUploadAvatar = async (file) => {
+    avatar = await fileToBase64(file.raw);
+    onUpdate('avatar', avatar);
+  };
+
+  const beforeUploadImageMsg = async (file) => {
+    imageMessage = await fileToBase64(file.raw);
+    onUpdate('imageMessage', imageMessage);
+  };
+
+  const addTextMsg = () => {
+    if (chatContent) {
+      onUpdate('chatContent', chatContent);
+    } else {
+      alert($t('Please enter chat content'));
+    }
+  };
+  const addImageMsg = () => {
+    if (imageMessage) {
+      onUpdate('imageMessage', imageMessage);
+    } else {
+      alert($t('Please upload image'));
+    }
+  };
+  const addVoiceMsg = () => {
+    if (voiceMsgTime || Number(voiceMsgTime) > 0) {
+      onUpdate('voiceMsgTime', voiceMsgTime);
+    } else {
+      alert($t('Please enter voice message time'));
+    }
+  };
+  const addGiveRedPacket = () => {
+    if (!redPacketTitle) {
+      alert($t('Please enter red packet title'));
+      return;
+    }
+
+    onUpdate('redPacketTitle', redPacketTitle);
+  };
+  const addReceiveRedPacket = () => {
+    if (redPacketGiver) {
+      onUpdate('redPacketGiver', redPacketGiver);
+    } else {
+      alert($t('Please enter red packet giver'));
+    }
+  };
+  const addTransfer = () => {
+    if (transferAmount) {
+      onUpdate('transferAmount', transferAmount);
+    } else {
+      alert($t('Please enter transfer amount'));
+    }
+  };
+  const addReceiveTransfer = () => {
+    if (transferAmount) {
+      onUpdate('transferAmount', transferAmount);
+    } else {
+      alert($t('Please enter transfer amount'));
+    }
+  };
+  const setAsMe = () => {
+    // TODO: 设置为当前用户
+  };
+  const deleteUser = () => {
+    onDeleteUser();
+  };
 </script>
 
 <section class='dialog-user-wrapper'>
@@ -22,10 +94,12 @@
     <div class='dialog-user-avatar'>
       <BeUpload
         bind:value={avatar}
+        autoUpload={false}
         style='width: 80px; height: 80px;'
         accept='image/*'
         limit={1}
         listType='picture-card'
+        onChange={beforeUploadAvatar}
       >
         <div class='upload-card avatar-upload-card'>
           <BeIcon name='add' width='40' height='40' />
@@ -39,37 +113,43 @@
       <BeForm labelWidth='120px'>
         <BeFormItem label={$t('User Name')}>
           <div class='layout-start'>
-            <BeInput bind:value={userName} size='mini' />
+            <BeInput bind:value={userName} size='mini' on:input={(e) => onUpdate('userName', e.target.value)} />
             <ExecuteBtn text={$t('Random User Name')} buttonProps={{ size: 'mini' }} className='random-user-name' />
           </div>
         </BeFormItem>
 
         <BeFormItem label={$t('Chat Content')}>
           <div class='layout-start-end'>
-            <BeTextarea bind:value={chatContent} size='mini' class='dialog-user-chat-content' />
+            <BeTextarea bind:value={chatContent} size='mini' class='dialog-user-chat-content' on:input={(e) => onUpdate('chatContent', e.target.value)} />
 
             <img src={ICON_EMOJI} alt='emoji' class='dialog-user-emoji' />
           </div>
         </BeFormItem>
 
         <BeFormItem label={$t('Red Packet Title')}>
-          <BeInput bind:value={redPacketTitle} size='mini' />
+          <BeInput bind:value={redPacketTitle} size='mini' on:input={(e) => onUpdate('redPacketTitle', e.target.value)} />
+        </BeFormItem>
+
+        <BeFormItem label={$t('Red Packet Giver')}>
+          <BeInput bind:value={redPacketGiver} size='mini' on:input={(e) => onUpdate('redPacketGiver', e.target.value)} />
         </BeFormItem>
 
         <BeFormItem label={$t('Transfer/Receive Amount')}>
-          <BeInput bind:value={transferAmount} size='mini' />
+          <BeInput bind:value={transferAmount} type='number' size='mini' on:input={(e) => onUpdate('transferAmount', e.target.value)} />
         </BeFormItem>
 
         <BeFormItem label={$t('Voice Msg Time')}>
-          <BeInput bind:value={voiceMsgTime} type='number' min='0' max='60' size='mini' />
+          <BeInput bind:value={voiceMsgTime} type='number' min='0' max='60' size='mini' on:input={(e) => onUpdate('voiceMsgTime', e.target.value)} />
         </BeFormItem>
 
         <BeFormItem label={$t('Image Message')}>
           <BeUpload
             bind:value={imageMessage}
+            autoUpload={false}
             accept='image/*'
             limit={1}
             listType='picture-card'
+            onChange={beforeUploadImageMsg}
           >
             <div class='upload-card'><BeIcon name='add' width='40' height='40' /></div>
           </BeUpload>
@@ -79,15 +159,15 @@
   </div>
 
   <div class='dialog-user-action layout-start'>
-    <ExecuteBtn text={$t('Add Text Msg')} buttonProps={{ size: 'mini', type: 'default' }} />
-    <ExecuteBtn text={$t('Add Image Msg')} buttonProps={{ size: 'mini', type: 'primary' }} />
-    <ExecuteBtn text={$t('Add Voice Msg')} buttonProps={{ size: 'mini', type: 'success' }} />
-    <ExecuteBtn text={$t('Add Give Red Packet')} buttonProps={{ size: 'mini', type: 'danger' }} />
-    <ExecuteBtn text={$t('Add Receive Red Packet')} buttonProps={{ size: 'mini', type: 'danger' }} />
-    <ExecuteBtn text={$t('Add Transfer')} buttonProps={{ size: 'mini', type: 'warning' }} />
-    <ExecuteBtn text={$t('Add Receive Transfer')} buttonProps={{ size: 'mini', type: 'warning' }} />
-    <ExecuteBtn text={$t('Set As Me')} buttonProps={{ size: 'mini', type: 'success' }} />
-    <ExecuteBtn text={$t('Delete User')} buttonProps={{ size: 'mini', type: 'danger' }} />
+    <ExecuteBtn text={$t('Add Text Msg')} buttonProps={{ size: 'mini', type: 'default' }} onConfirm={addTextMsg} />
+    <ExecuteBtn text={$t('Add Image Msg')} buttonProps={{ size: 'mini', type: 'primary' }} onConfirm={addImageMsg} />
+    <ExecuteBtn text={$t('Add Voice Msg')} buttonProps={{ size: 'mini', type: 'success' }} onConfirm={addVoiceMsg} />
+    <ExecuteBtn text={$t('Add Give Red Packet')} buttonProps={{ size: 'mini', type: 'danger' }} onConfirm={addGiveRedPacket} />
+    <ExecuteBtn text={$t('Add Receive Red Packet')} buttonProps={{ size: 'mini', type: 'danger' }} onConfirm={addReceiveRedPacket} />
+    <ExecuteBtn text={$t('Add Transfer')} buttonProps={{ size: 'mini', type: 'warning' }} onConfirm={addTransfer} />
+    <ExecuteBtn text={$t('Add Receive Transfer')} buttonProps={{ size: 'mini', type: 'warning' }} onConfirm={addReceiveTransfer} />
+    <ExecuteBtn text={$t('Set As Me')} buttonProps={{ size: 'mini', type: 'success' }} onConfirm={setAsMe} />
+    <ExecuteBtn text={$t('Delete User')} buttonProps={{ size: 'mini', type: 'danger' }} onConfirm={deleteUser} />
   </div>
 </section>
 
@@ -102,8 +182,13 @@
       height: 80px !important;
     }
 
+    .be-upload-list {
+      position: absolute;
+    }
+
     .dialog-user-avatar {
-      .be-upload--picture-card {
+      .be-upload--picture-card,
+      .be-upload-list__item {
         width: 80px;
         height: 80px;
       }

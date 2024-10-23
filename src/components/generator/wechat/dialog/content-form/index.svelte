@@ -5,9 +5,25 @@
   import ExecuteBtn from '../../../../execute-btn/index.svelte';
   import DialogUser from '../user/index.svelte';
   import BeSwitch from '@brewer/beerui/be-switch';
-
+  import { nanoid } from 'nanoid';
   $: showMemberName = false;
-  $: userList = [{}, {}];
+  $: userList = [{
+    id: nanoid(),
+  }, {
+    id: nanoid(),
+  }];
+
+  const deleteUser = (id) => {
+    userList = userList.filter((user) => user.id !== id);
+  };
+
+  const onUpdate = (index, key, value) => {
+    console.log(index, key, value);
+    const tmp = [...userList];
+    tmp[index][key] = value;
+    userList = tmp;
+    console.log(userList)
+  };
 </script>
 
 <BeForm labelWidth='100px' class='content-form-wrapper'>
@@ -19,8 +35,11 @@
     <BeSwitch bind:checked={showMemberName} />
   </BeFormItem>
 
-  {#each userList as user}
-    <DialogUser />
+  {#each userList as user, index (user.id)}
+    <DialogUser
+      onDeleteUser={() => deleteUser(user.id)}
+      onUpdate={(...newUser) => onUpdate(index, ...newUser)}
+    />
   {/each}
 
   <div class='content-form-action layout-start'>

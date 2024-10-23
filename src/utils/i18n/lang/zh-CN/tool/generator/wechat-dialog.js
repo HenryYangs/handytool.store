@@ -28,6 +28,7 @@ export default {
   'User Name': '用户名',
   'Chat Content': '聊天内容',
   'Red Packet Title': '红包祝福语',
+  'Red Packet Giver': '红包发送人',
   'Transfer/Receive Amount': '转账/收款金额',
   'Voice Msg Time': '语音消息时长',
   'Image Message': '图片消息',
@@ -51,5 +52,12 @@ export default {
   'Strong': '强',
 
   deleteMsgTitle: '删除消息',
-  deleteMsgTips: '确定要删除这条消息吗？'
+  deleteMsgTips: '确定要删除这条消息吗？',
+
+  'Please enter chat content': '请输入聊天内容',
+  'Please upload image': '请上传图片',
+  'Please enter voice message time': '请输入语音消息时长',
+  'Please enter red packet title': '请输入红包祝福语',
+  'Please enter transfer amount': '请输入转账金额',
+  'Please enter red packet giver': '请输入红包发送人'
 }
