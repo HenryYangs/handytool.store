@@ -37,10 +37,10 @@
     unreadCount = value;
   }
 
-  useEventListener(EVENTS.PHONE.CHAT_TITLE_CHANGE, handleChatTitleChange);
-  useEventListener(EVENTS.PHONE.MEMBER_COUNT_CHANGE, handleMemberCountChange);
-  useEventListener(EVENTS.PHONE.CHAT_TYPE_CHANGE, handleChatTypeChange);
-  useEventListener(EVENTS.PHONE.UNREAD_COUNT, handleUnreadCountChange);
+  useEventListener(EVENTS.APP.WECHAT.DIALOG.CHAT_TITLE_CHANGE, handleChatTitleChange);
+  useEventListener(EVENTS.APP.WECHAT.DIALOG.MEMBER_COUNT_CHANGE, handleMemberCountChange);
+  useEventListener(EVENTS.APP.WECHAT.DIALOG.CHAT_TYPE_CHANGE, handleChatTypeChange);
+  useEventListener(EVENTS.APP.WECHAT.DIALOG.UNREAD_COUNT, handleUnreadCountChange);
 </script>
 
 <div class='wechat-header-wrapper layout-center'>

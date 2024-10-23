@@ -5,6 +5,7 @@
   import ContentForm from './content-form/index.svelte';
   import WechatHeader from '../header/index.svelte';
   import WechatFooter from './footer/index.svelte';
+  import Message from './message/index.svelte';
 </script>
 
 <MobileAppGenerator
@@ -26,7 +27,9 @@
   <div slot='content' class='wechat-dialog-wrapper'>
     <WechatHeader />
 
-    <div class='wechat-content'></div>
+    <div class='wechat-content'>
+      <Message />
+    </div>
 
     <WechatFooter />
   </div>
@@ -41,6 +44,7 @@
 
     .wechat-content {
       flex: 1;
+      overflow: scroll;
     }
   }
 </style>

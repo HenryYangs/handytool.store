@@ -17,19 +17,19 @@
   $: unreadMsgCount = String(DEFAULT_VALUE);
 
   const handleChatTitleChange = (e) => {
-    event.emit(EVENTS.PHONE.CHAT_TITLE_CHANGE, e.target.value);
+    event.emit(EVENTS.APP.WECHAT.DIALOG.CHAT_TITLE_CHANGE, e.target.value);
   };
 
   const handleChatTypeChange = (e) => {
-    event.emit(EVENTS.PHONE.CHAT_TYPE_CHANGE, e.detail);
+    event.emit(EVENTS.APP.WECHAT.DIALOG.CHAT_TYPE_CHANGE, e.detail);
   };
 
   const handleMemberCountChange = (e) => {
-    event.emit(EVENTS.PHONE.MEMBER_COUNT_CHANGE, e.target.value);
+    event.emit(EVENTS.APP.WECHAT.DIALOG.MEMBER_COUNT_CHANGE, e.target.value);
   };
 
   const handleUnreadMsgCountChange = (e) => {
-    event.emit(EVENTS.PHONE.UNREAD_COUNT, e.target.value);
+    event.emit(EVENTS.APP.WECHAT.DIALOG.UNREAD_COUNT, e.target.value);
   };
 </script>
 

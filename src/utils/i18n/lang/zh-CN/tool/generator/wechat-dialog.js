@@ -49,4 +49,7 @@ export default {
   'Fair': '一般',
   'Good': '好',
   'Strong': '强',
+
+  deleteMsgTitle: '删除消息',
+  deleteMsgTips: '确定要删除这条消息吗？'
 }

@@ -1,5 +1,7 @@
+import dayjs from 'dayjs';
 import { MS_OF_ONE_DAY, MS_OF_ONE_HOUR, MS_OF_ONE_MINUTE, MS_OF_ONE_MONTH, MS_OF_ONE_SECOND, MS_OF_ONE_WEEK, MS_OF_ONE_YEAR, TIMER_UNIT_MAP } from '../../constant/timer';
 import { cancelLoop, loop } from '../browser';
+import { getNumArray, transformNumArrayToArrayOptions } from '../array';
 
 export const calcDiffTime = (diff, ...units) => {
   let year = 0;
@@ -110,4 +112,12 @@ export const onUpdateClock = ({ targetTimestamp, units, callback, timeType }) =>
   if (isContinue !== false) {
     loop(() => onUpdateClock({ targetTimestamp, units, callback, timeType }));
   }
+};
+
+export const getMonthDays = (year, month) => {
+  return dayjs(`${year}-${month}-01`).endOf('month').date();
+};
+
+export const getMonthDaysOptions = (year, month) => {
+  return transformNumArrayToArrayOptions(getNumArray(1, getMonthDays(year, month), { prezero: true }));
 };

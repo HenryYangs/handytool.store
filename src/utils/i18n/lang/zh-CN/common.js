@@ -13,4 +13,9 @@ export default {
   None: '无',
   'Drag to upload': '将文件拖到此处，或<em>点击上传</em>',
   Add: '添加',
+
+  Confirm: '确定',
+  Cancel: '取消',
+
+  'Please select': '请选择'
 }
