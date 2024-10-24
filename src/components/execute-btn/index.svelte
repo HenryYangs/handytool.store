@@ -10,24 +10,27 @@
   export let btnStyle = '';
   export let className = '';
   export let btnClassName = '';
-  export let buttonProps = {};
+  export let buttonProps = {}
 </script>
 
 <div class={['execute-btn-wrapper', className].join(' ')} style={style}>
-  <BeButton
-    class={[buttonProps.type ? '' : 'action-btn', btnClassName].join(' ')}
-    type='button'
-    disabled={disabled}
-    style={btnStyle}
-    on:click={onConfirm}
-    {...buttonProps}
-  >
-    {#if loading}
-      <Loading />
-    {/if}
+  {#key buttonProps.type}
+    <BeButton
+      class={[buttonProps.type ? '' : 'action-btn', btnClassName].join(' ')}
+      nativeType='button'
+      disabled={disabled}
+      style={btnStyle}
+      on:click={onConfirm}
+      type={buttonProps.type}
+      size={buttonProps.size}
+    >
+      {#if loading}
+        <Loading />
+      {/if}
 
-    {@html text}
-  </BeButton>
+      {@html text}
+    </BeButton>
+  {/key}
 </div>
 
 <style global lang='scss'>

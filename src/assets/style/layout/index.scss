@@ -31,3 +31,11 @@
 .layout-between-end {
   @include layout-between-end;
 }
+
+.layout-end-start {
+  @include layout-end-start;
+}
+
+.layout-start {
+  @include layout-start;
+}

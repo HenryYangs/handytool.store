@@ -11,6 +11,7 @@
   import { OPERATION_TYPE } from '../../../../../../constant/common/operation';
   import { getMonthDaysOptions } from '../../../../../../utils/timer';
   import ExecuteBtn from '../../../../../execute-btn/index.svelte';
+  import { WECHAT_DIALOG_MESSAGE_TYPE } from '../../../../../../constant/app/wechat/dialog';
 
   const lang = getLang();
   const isCN = lang === LOCALE_CN;
@@ -73,7 +74,7 @@
     event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
       operate: OPERATION_TYPE.ADD,
       msg: {
-        type: 'time',
+        type: WECHAT_DIALOG_MESSAGE_TYPE.TIME,
         time: result,
       },
     });

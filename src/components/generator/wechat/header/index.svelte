@@ -64,7 +64,7 @@
 <style lang='scss' global>
   .wechat-header-wrapper {
     height: 80px;
-    padding: 0 20px;
+    padding: 0 40px;
     background-color: var(--simulator-ios-background-color);
     font-size: 40px;
     border-bottom: 1px solid #D0D0D0;

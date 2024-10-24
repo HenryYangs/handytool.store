@@ -8,6 +8,10 @@
   import ExecuteBtn from '../../../../../components/execute-btn/index.svelte';
   import ICON_EMOJI from '../../../../../assets/images/common/emoji.png';
   import { fileToBase64 } from '../../../../../utils/base64';
+  import event from '../../../../../utils/event';
+  import { EVENTS } from '../../../../../constant/events';
+  import { WECHAT_DIALOG_MESSAGE_TYPE } from '../../../../../constant/app/wechat/dialog';
+  import { OPERATION_TYPE } from '../../../../../constant/common/operation';
 
   export let avatar = '';
   export let userName = '';
@@ -17,6 +21,7 @@
   export let transferAmount = '';
   export let voiceMsgTime = '';
   export let imageMessage = '';
+  export let isMe = false;
 
   export let onUpdate = (key, value) => {};
   export let onDeleteUser = () => {};
@@ -33,56 +38,86 @@
 
   const addTextMsg = () => {
     if (chatContent) {
-      onUpdate('chatContent', chatContent);
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+        msg: {
+          type: WECHAT_DIALOG_MESSAGE_TYPE.TEXT,
+          content: chatContent,
+          isMe,
+          avatar,
+          userName,
+        },
+        operate: OPERATION_TYPE.ADD,
+      });
     } else {
       alert($t('Please enter chat content'));
     }
   };
   const addImageMsg = () => {
     if (imageMessage) {
-      onUpdate('imageMessage', imageMessage);
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+        type: WECHAT_DIALOG_MESSAGE_TYPE.IMAGE,
+        image: imageMessage
+      });
     } else {
       alert($t('Please upload image'));
     }
   };
   const addVoiceMsg = () => {
     if (voiceMsgTime || Number(voiceMsgTime) > 0) {
-      onUpdate('voiceMsgTime', voiceMsgTime);
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+        type: WECHAT_DIALOG_MESSAGE_TYPE.VOICE,
+        voice: voiceMsgTime
+      });
     } else {
       alert($t('Please enter voice message time'));
     }
   };
   const addGiveRedPacket = () => {
-    if (!redPacketTitle) {
+    if (redPacketTitle) {
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+        type: WECHAT_DIALOG_MESSAGE_TYPE.SEND_RED_PACKET,
+        redPacket: redPacketTitle,
+      });
+    } else {
       alert($t('Please enter red packet title'));
-      return;
     }
-
-    onUpdate('redPacketTitle', redPacketTitle);
   };
   const addReceiveRedPacket = () => {
     if (redPacketGiver) {
-      onUpdate('redPacketGiver', redPacketGiver);
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+        type: WECHAT_DIALOG_MESSAGE_TYPE.RECEIVE_RED_PACKET,
+        redPacketGiver: redPacketGiver,
+      });
     } else {
       alert($t('Please enter red packet giver'));
     }
   };
   const addTransfer = () => {
     if (transferAmount) {
-      onUpdate('transferAmount', transferAmount);
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+        type: WECHAT_DIALOG_MESSAGE_TYPE.SEND_TRANSFER,
+        transfer: transferAmount,
+      });
     } else {
       alert($t('Please enter transfer amount'));
     }
   };
   const addReceiveTransfer = () => {
     if (transferAmount) {
-      onUpdate('transferAmount', transferAmount);
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+        type: WECHAT_DIALOG_MESSAGE_TYPE.RECEIVE_TRANSFER,
+        transfer: transferAmount,
+      });
     } else {
       alert($t('Please enter transfer amount'));
     }
   };
   const setAsMe = () => {
-    // TODO: 设置为当前用户
+    if (isMe) {
+      return;
+    }
+
+    onUpdate('isMe', true);
   };
   const deleteUser = () => {
     onDeleteUser();
@@ -166,7 +201,7 @@
     <ExecuteBtn text={$t('Add Receive Red Packet')} buttonProps={{ size: 'mini', type: 'danger' }} onConfirm={addReceiveRedPacket} />
     <ExecuteBtn text={$t('Add Transfer')} buttonProps={{ size: 'mini', type: 'warning' }} onConfirm={addTransfer} />
     <ExecuteBtn text={$t('Add Receive Transfer')} buttonProps={{ size: 'mini', type: 'warning' }} onConfirm={addReceiveTransfer} />
-    <ExecuteBtn text={$t('Set As Me')} buttonProps={{ size: 'mini', type: 'success' }} onConfirm={setAsMe} />
+    <ExecuteBtn text={$t('Set As Me')} buttonProps={{ size: 'mini', type: isMe ? 'success' : '' }} onConfirm={setAsMe} />
     <ExecuteBtn text={$t('Delete User')} buttonProps={{ size: 'mini', type: 'danger' }} onConfirm={deleteUser} />
   </div>
 </section>

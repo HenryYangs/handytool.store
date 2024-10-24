@@ -1,11 +1,14 @@
 <script>
   import Time from './components/time/index.svelte';
+  import Text from './components/text/index.svelte';
   import { EVENTS } from '../../../../../constant/events';
   import { useEventListener } from '../../../../../utils/hooks/useEventListener';
   import { OPERATION_TYPE } from '../../../../../constant/common/operation';
+  import { WECHAT_DIALOG_MESSAGE_TYPE } from '../../../../../constant/app/wechat/dialog';
 
   const messageMap = {
-    time: Time,
+    [WECHAT_DIALOG_MESSAGE_TYPE.TIME]: Time,
+    [WECHAT_DIALOG_MESSAGE_TYPE.TEXT]: Text,
   };
 
   $: msgList = [];
@@ -23,7 +26,7 @@
     }
   };
 
-  const onDelete = (msg, index) => {
+  const onDelete = (index) => {
     const copy = [...msgList];
     
     copy.splice(index, 1);
@@ -35,12 +38,14 @@
 
 <div class='wechat-message-wrapper'>
   {#each msgList as msg, index}
-    <svelte:component this={messageMap[msg.type]} {...msg} onDelete={() => onDelete(msg, index)} />
+    <svelte:component this={messageMap[msg.type]} {...msg} onDelete={() => onDelete(index)} />
   {/each}
 </div>
 
 <style lang='scss' global>
   .wechat-message-wrapper {
+    padding: 0 40px;
+
     & > * {
       margin-top: 20px;
     }

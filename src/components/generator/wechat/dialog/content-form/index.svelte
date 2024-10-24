@@ -9,8 +9,10 @@
   $: showMemberName = false;
   $: userList = [{
     id: nanoid(),
+    isMe: true,
   }, {
     id: nanoid(),
+    isMe: false,
   }];
 
   const deleteUser = (id) => {
@@ -18,11 +20,18 @@
   };
 
   const onUpdate = (index, key, value) => {
-    console.log(index, key, value);
-    const tmp = [...userList];
-    tmp[index][key] = value;
+    let tmp = [...userList];
+
+    if (key === 'isMe') {
+      tmp = tmp.map((user, idx) => ({
+        ...user,
+        isMe: index === idx ? value : false,
+      }));
+    } else {
+      tmp[index][key] = value;
+    }
+
     userList = tmp;
-    console.log(userList)
   };
 </script>
 
@@ -37,6 +46,7 @@
 
   {#each userList as user, index (user.id)}
     <DialogUser
+      {...user}
       onDeleteUser={() => deleteUser(user.id)}
       onUpdate={(...newUser) => onUpdate(index, ...newUser)}
     />

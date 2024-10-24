@@ -45,3 +45,15 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+
+@mixin layout-end-start {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+@mixin layout-start-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
