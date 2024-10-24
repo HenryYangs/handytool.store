@@ -3,7 +3,7 @@
   import BeIcon from '@brewer/beerui/be-icon';
 
   import { EVENTS } from '../../../constant/events';
-  import { useEventListener } from '../../../utils/hooks/useEventListener';
+  import { useEventListener } from '../../../utils/hooks/use-event-listener';
   import { BATTERY_STATUS_MAP, CARRIER_LIST, DEFAULT_BATTERY_PERCENTAGE, SIGNAL_STRENGTH_IOS, SIGNAL_TYPE_MAP } from '../../../constant/phone';
   import ICON_PHONE_DIRECTION_IOS from '../../../assets/images/phone/direction-lock.png';
   import ICON_BATTERY from '../../../assets/images/phone/icon-battery.png';

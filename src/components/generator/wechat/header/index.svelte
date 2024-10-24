@@ -1,6 +1,6 @@
 <script>
   import BeIcon from '@brewer/beerui/be-icon';
-  import { useEventListener } from '../../../../utils/hooks/useEventListener';
+  import { useEventListener } from '../../../../utils/hooks/use-event-listener';
   import { EVENTS } from '../../../../constant/events';
   import { DEFAULT_VALUE } from '../../../../constant/common/number';
   import { CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../constant/phone';

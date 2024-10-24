@@ -3,7 +3,7 @@
   import Text from './components/text/index.svelte';
   import Image from './components/image/index.svelte';
   import { EVENTS } from '../../../../../constant/events';
-  import { useEventListener } from '../../../../../utils/hooks/useEventListener';
+  import { useEventListener } from '../../../../../utils/hooks/use-event-listener';
   import { OPERATION_TYPE } from '../../../../../constant/common/operation';
   import { WECHAT_DIALOG_MESSAGE_TYPE } from '../../../../../constant/app/wechat/dialog';
 
