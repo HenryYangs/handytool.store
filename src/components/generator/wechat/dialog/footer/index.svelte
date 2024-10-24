@@ -1,5 +1,5 @@
 <script>
-  import TEXT_BOTTOM from '../../../../../assets/images/phone/bottom-text.png';
+  import TEXT_BOTTOM from '../../../../../assets/images/app/wechat/dialog/bottom-text.png';
 </script>
 
 <div class='wechat-footer-wrapper'>

@@ -7,6 +7,7 @@
   export let content = '';
   export let userName = '';
   export let avatar = '';
+  export let onDelete = () => {};
 
   $: showUserName = false;
 
@@ -15,18 +16,32 @@
   };
 
   useEventListener(EVENTS.APP.WECHAT.DIALOG.SHOW_USER_NAME, onShowUserName);
-
-  const onDelete = () => {
-
-  };
 </script>
 
-<div class={`wechat-message-text-wrapper layout-${isMe ? 'end-' : ''}start`}>
-  <Delete onDelete={onDelete} />
+<div class='wechat-message-text-wrapper layout-end-start' style={`${isMe ? '' : 'flex-direction: row-reverse;'}`}>
+  <div class='message-main'>
+    {#if !isMe && showUserName}
+      <p class='message-username'>{userName}</p>
+    {/if}
 
-  <div class='message-wrapper layout-start-center'>
-    <em class='message'>{content}</em>
-    <i class='iconfont-tools icon-tools-triangle-right icon-msg-arrow'></i>
+    <div class='message-body layout-end-start' style={`${isMe ? '' : 'flex-direction: row-reverse;'}`}>
+      <Delete onDelete={onDelete} />
+    
+      <div class='message-wrapper layout-start-center'>
+        <em
+          class='message'
+          style={`background-color: var(${isMe ? '--wechat-dialog-my-msg-background' : '--wechat-dialog-other-msg-background'})`}
+        >{content}</em>
+        <i
+          class='iconfont-tools icon-tools-triangle-right icon-msg-arrow'
+          style={`
+            color: var(${isMe ? '--wechat-dialog-my-msg-background' : '--wechat-dialog-other-msg-background'});
+            ${isMe ? 'right: -14px;' : 'left: -14px;'}
+            ${isMe ? '' : 'transform: rotate(180deg);'}
+          `}
+        ></i>
+      </div>
+    </div>
   </div>
 
   <img class='avatar' src={avatar} alt={userName} />
@@ -36,13 +51,22 @@
   @import '../../../../../../../assets/style/app/wechat/index.scss';
 
   .wechat-message-text-wrapper {
+    .message-main {
+      max-width: 65%;
+    }
+
     .message-wrapper {
       position: relative;
-      max-width: 65%;
       min-height: 80px;
       margin: 0 20px;
     }
 
+    .message-username {
+      margin-bottom: 10px;
+      padding-left: 20px;
+      color: #888;
+      font-size: 22px;
+    }
     .message {
       padding: 20px;
       font-size: 28px;
@@ -50,16 +74,13 @@
       word-wrap: break-word;
       word-break: break-all;
       border-radius: 10px;
-      background-color: var(--wechat-dialog-my-msg-background);
       line-height: 1.2;
     }
 
     .icon-msg-arrow {
       position: absolute;
-      right: -14px;
       top: 22px;
       font-size: 20px;
-      color: var(--wechat-dialog-my-msg-background);
     }
 
     .avatar {

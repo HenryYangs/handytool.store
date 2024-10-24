@@ -6,6 +6,9 @@
   import DialogUser from '../user/index.svelte';
   import BeSwitch from '@brewer/beerui/be-switch';
   import { nanoid } from 'nanoid';
+  import { EVENTS } from '../../../../../constant/events';
+  import event from '../../../../../utils/event';
+
   $: showMemberName = false;
   $: userList = [{
     id: nanoid(),
@@ -33,6 +36,10 @@
 
     userList = tmp;
   };
+
+  const onShowMemberName = (e) => {
+    event.emit(EVENTS.APP.WECHAT.DIALOG.SHOW_USER_NAME, e.detail);
+  };
 </script>
 
 <BeForm labelWidth='100px' class='content-form-wrapper'>
@@ -41,7 +48,7 @@
   </BeFormItem>
 
   <BeFormItem label={$t('Show Member Name')}>
-    <BeSwitch bind:checked={showMemberName} />
+    <BeSwitch bind:checked={showMemberName} on:change={onShowMemberName} />
   </BeFormItem>
 
   {#each userList as user, index (user.id)}
