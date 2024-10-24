@@ -1,6 +1,7 @@
 <script>
   import Time from './components/time/index.svelte';
   import Text from './components/text/index.svelte';
+  import Image from './components/image/index.svelte';
   import { EVENTS } from '../../../../../constant/events';
   import { useEventListener } from '../../../../../utils/hooks/useEventListener';
   import { OPERATION_TYPE } from '../../../../../constant/common/operation';
@@ -9,6 +10,7 @@
   const messageMap = {
     [WECHAT_DIALOG_MESSAGE_TYPE.TIME]: Time,
     [WECHAT_DIALOG_MESSAGE_TYPE.TEXT]: Text,
+    [WECHAT_DIALOG_MESSAGE_TYPE.IMAGE]: Image,
   };
 
   $: msgList = [];
@@ -47,7 +49,7 @@
     padding: 0 40px;
 
     & > * {
-      margin-top: 20px;
+      margin-top: 30px;
     }
   }
 </style>

@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: #E6E6E6;
+    background-color: #EBEBEB;
 
     .wechat-content {
       flex: 1;

@@ -36,28 +36,34 @@
     onUpdate('imageMessage', imageMessage);
   };
 
+  const getMessage = (props) => {
+    return {
+      msg: {
+        ...props,
+        isMe,
+        avatar,
+        userName,
+      },
+      operate: OPERATION_TYPE.ADD,
+    };
+  };
+
   const addTextMsg = () => {
     if (chatContent) {
-      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
-        msg: {
-          type: WECHAT_DIALOG_MESSAGE_TYPE.TEXT,
-          content: chatContent,
-          isMe,
-          avatar,
-          userName,
-        },
-        operate: OPERATION_TYPE.ADD,
-      });
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
+        type: WECHAT_DIALOG_MESSAGE_TYPE.TEXT,
+        content: chatContent,
+      }));
     } else {
       alert($t('Please enter chat content'));
     }
   };
   const addImageMsg = () => {
     if (imageMessage) {
-      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.IMAGE,
-        image: imageMessage
-      });
+        image: imageMessage,
+      }));
     } else {
       alert($t('Please upload image'));
     }
