@@ -63,4 +63,7 @@ export default {
 
   'Red Packet Wishes': '恭喜发财，大吉大利！',
   'Wechat Red Packet': '微信红包',
+
+  clearDialogTitle: '确定清空对话？',
+  clearDialogContent: '所有对话内容都会被删除，并且无法恢复！'
 }

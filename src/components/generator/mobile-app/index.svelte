@@ -60,13 +60,14 @@
 
     .body-right {
       position: relative;
+      min-height: 750px;
     }
 
     .simulator-wrapper {
-      // position: absolute;
-      // top: 0;
-      // left: 50%;
-      // bottom: 0;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) scale(0.5);
     }
 
     .be-form {

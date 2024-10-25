@@ -7,4 +7,7 @@ export default {
 
   'Red Packet Wishes': 'Best wishes!',
   'Wechat Red Packet': 'Red Packet',
+
+  clearDialogTitle: 'Are you sure to clear dialog?',
+  clearDialogText: 'All dialog record will be delete and CAN\'T be recovered!',
 };

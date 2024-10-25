@@ -32,6 +32,8 @@
       case OPERATION_TYPE.UPDATE:
         // msgList.push(msg);
         break;
+      case OPERATION_TYPE.CLEAR:
+        msgList = [];
       default:
         break;
     }

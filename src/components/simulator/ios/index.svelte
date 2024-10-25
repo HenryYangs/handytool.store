@@ -89,9 +89,7 @@
   useEventListener(EVENTS.PHONE.SHOW_BATTERY_PERCENTAGE_CHANGE, handleShowBatteryPercentageChange);
 </script>
 
-<div class={['simulator-ios-wrapper', className].join(' ')}
-  style={`transform: scale(0.5) ${styleTransform}`}
->
+<div class={['simulator-ios-wrapper', className].join(' ')}>
   <div class='simulator-ios-header layout-between-end'>
     <div class='layout-start-center'>
       <SignalBar strength={signalStrength} />
