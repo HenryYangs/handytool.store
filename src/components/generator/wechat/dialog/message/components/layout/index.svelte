@@ -6,6 +6,7 @@
   export let userName = '';
   export let avatar = '';
   export let className = '';
+  export let msgStyle = '';
   export let onDelete = () => {};
 
   const showUserName = useWechatDialogShowUserName();
@@ -20,7 +21,7 @@
     <div class='layout-end-start' style={`${isMe ? '' : 'flex-direction: row-reverse;'}`}>
       <Delete onDelete={onDelete} />
     
-      <div class='message-wrapper layout-start-center'>
+      <div class='message-wrapper layout-start-center' style={msgStyle}>
         <slot name='message' />
       </div>
     </div>
@@ -48,12 +49,6 @@
       padding-left: 20px;
       color: #888;
       font-size: 22px;
-    }
-
-    .icon-msg-arrow {
-      position: absolute;
-      top: 22px;
-      font-size: 20px;
     }
 
     .avatar {

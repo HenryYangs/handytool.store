@@ -70,10 +70,10 @@
   };
   const addVoiceMsg = () => {
     if (voiceMsgTime || Number(voiceMsgTime) > 0) {
-      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.VOICE,
-        voice: voiceMsgTime
-      });
+        voice: voiceMsgTime,
+      }));
     } else {
       alert($t('Please enter voice message time'));
     }

@@ -1,5 +1,6 @@
 <script>
   import LayoutMessage from '../layout/index.svelte';
+  import Arrow from '../arrow/index.svelte';
 </script>
 
 <LayoutMessage
@@ -11,14 +12,8 @@
       class='message'
       style={`background-color: var(${$$props.isMe ? '--wechat-dialog-my-msg-background' : '--wechat-dialog-other-msg-background'})`}
     >{$$props.content}</em>
-    <i
-      class='iconfont-tools icon-tools-triangle-right icon-msg-arrow'
-      style={`
-        color: var(${$$props.isMe ? '--wechat-dialog-my-msg-background' : '--wechat-dialog-other-msg-background'});
-        ${$$props.isMe ? 'right: -14px;' : 'left: -14px;'}
-        ${$$props.isMe ? '' : 'transform: rotate(180deg);'}
-      `}
-    ></i>
+    
+    <Arrow isMe={$$props.isMe} />
   </svelte:fragment>
 </LayoutMessage>
 
