@@ -33,7 +33,7 @@
     .wechat-message-delete {
       display: block;
       background-color: red;
-      color: #fff;
+      color: var(--white);
       border-radius: 50%;
       font-size: 30px;
     }

@@ -31,8 +31,6 @@
 </div>
 
 <style lang='scss' global>
-  @import '../../../../../../../assets/style/app/wechat/index.scss';
-
   .wechat-message-layout-wrapper {
     .message-main {
       max-width: 65%;

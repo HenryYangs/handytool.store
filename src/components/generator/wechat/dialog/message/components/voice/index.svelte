@@ -25,7 +25,7 @@
     <div
       class='voice-message-wrapper layout-end-center'
       style={`
-        background-color: var(${$$props.isMe ? '--wechat-dialog-my-msg-background' : '--wechat-dialog-other-msg-background'});
+        background-color: var(${$$props.isMe ? '--wechat-dialog-my-msg-background' : '--white'});
         ${$$props.isMe ? '' : 'flex-direction: row-reverse;'}
       `}>
       <span>{$$props.voice}''</span>

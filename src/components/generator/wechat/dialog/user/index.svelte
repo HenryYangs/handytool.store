@@ -92,7 +92,7 @@
     if (redPacketGiver) {
       event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.RECEIVE_RED_PACKET,
-        redPacketGiver: redPacketGiver,
+        redPacketGiver,
       }));
     } else {
       alert($t('Please enter red packet giver'));

@@ -1,7 +1,7 @@
 <script>
   export let isMe = false;
   export let colorIsMe = '--wechat-dialog-my-msg-background';
-  export let colorOther = '--wechat-dialog-other-msg-background';
+  export let colorOther = '--white';
   export let size = 20;
   export let offset = -11;
 </script>

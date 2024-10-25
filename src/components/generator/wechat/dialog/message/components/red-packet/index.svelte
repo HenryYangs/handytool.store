@@ -22,8 +22,8 @@
 
     <Arrow
       isMe={$$props.isMe}
-      colorIsMe='--wechat-dialog-red-packet-upper'
-      colorOther='--wechat-dialog-red-packet-upper'
+      colorIsMe='--wechat-dialog-red-packet-main'
+      colorOther='--wechat-dialog-red-packet-main'
       size={30}
       offset={-21}
     />
@@ -32,7 +32,7 @@
 
 <style lang='scss' global>
   @import '../../../../../../../assets/style/mixin/ui.scss';
-  @import '../../../../../../../assets/style/app/wechat/index.scss';
+  @import '../../../../../../../assets/style/variables/app/wechat/index.scss';
 
   .wechat-message-red-packet {
     position: relative;
@@ -48,7 +48,7 @@
       padding: 0 30px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
-      background-color: var(--wechat-dialog-red-packet-upper);
+      background-color: var(--wechat-dialog-red-packet-main);
     }
 
     .red-packet-lower {
@@ -68,7 +68,7 @@
       flex: 1;
       margin-left: 20px;
       font-size: 30px;
-      color: #fff;
+      color: var(--white);
       line-height: 1.2;
 
       @include text-overflow;

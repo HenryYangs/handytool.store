@@ -10,7 +10,7 @@
   <svelte:fragment slot='message'>
     <em
       class='message'
-      style={`background-color: var(${$$props.isMe ? '--wechat-dialog-my-msg-background' : '--wechat-dialog-other-msg-background'})`}
+      style={`background-color: var(${$$props.isMe ? '--wechat-dialog-my-msg-background' : '--white'})`}
     >{$$props.content}</em>
     
     <Arrow isMe={$$props.isMe} />
