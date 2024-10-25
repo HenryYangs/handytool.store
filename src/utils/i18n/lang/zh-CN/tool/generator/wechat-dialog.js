@@ -59,5 +59,8 @@ export default {
   'Please enter voice message time': '请输入语音消息时长',
   'Please enter red packet title': '请输入红包祝福语',
   'Please enter transfer amount': '请输入转账金额',
-  'Please enter red packet giver': '请输入红包发送人'
+  'Please enter red packet giver': '请输入红包发送人',
+
+  'Red Packet Wishes': '恭喜发财，大吉大利！',
+  'Wechat Red Packet': '微信红包',
 }

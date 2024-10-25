@@ -23,7 +23,7 @@
 </script>
 
 <div class={['wechat-message-delete-wrapper', className].join(' ')} on:click={onDeleteHandler}>
-  <BeIcon name='close-circle' class='wechat-message-delete' />
+  <BeIcon name='close' class='wechat-message-delete' />
 </div>
 
 <style lang='scss' global>

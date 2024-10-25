@@ -3,5 +3,8 @@ export default {
   group: 'Group Message',
 
   deleteMsgTitle: 'Delete Message',
-  deleteMsgTips: 'Are you sure you want to delete this message?'
+  deleteMsgTips: 'Are you sure you want to delete this message?',
+
+  'Red Packet Wishes': 'Best wishes!',
+  'Wechat Red Packet': 'Red Packet',
 };

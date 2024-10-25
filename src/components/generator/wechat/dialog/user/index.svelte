@@ -16,7 +16,7 @@
   export let avatar = '';
   export let userName = '';
   export let chatContent = '';
-  export let redPacketTitle = '';
+  export let redPacketTitle = $t('Red Packet Wishes');
   export let redPacketGiver = '';
   export let transferAmount = '';
   export let voiceMsgTime = '';
@@ -80,40 +80,40 @@
   };
   const addGiveRedPacket = () => {
     if (redPacketTitle) {
-      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.SEND_RED_PACKET,
-        redPacket: redPacketTitle,
-      });
+        redPacketTitle,
+      }));
     } else {
       alert($t('Please enter red packet title'));
     }
   };
   const addReceiveRedPacket = () => {
     if (redPacketGiver) {
-      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.RECEIVE_RED_PACKET,
         redPacketGiver: redPacketGiver,
-      });
+      }));
     } else {
       alert($t('Please enter red packet giver'));
     }
   };
   const addTransfer = () => {
     if (transferAmount) {
-      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.SEND_TRANSFER,
         transfer: transferAmount,
-      });
+      }));
     } else {
       alert($t('Please enter transfer amount'));
     }
   };
   const addReceiveTransfer = () => {
     if (transferAmount) {
-      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
+      event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.RECEIVE_TRANSFER,
         transfer: transferAmount,
-      });
+      }));
     } else {
       alert($t('Please enter transfer amount'));
     }
