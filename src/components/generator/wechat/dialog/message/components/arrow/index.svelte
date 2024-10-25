@@ -1,7 +1,7 @@
 <script>
   export let isMe = false;
-  export let colorIsMe = '--wechat-dialog-my-msg-background';
-  export let colorOther = '--white';
+  export let colorIsMe = 'var(--wechat-dialog-my-msg-background)';
+  export let colorOther = 'var(--white)';
   export let size = 20;
   export let offset = -11;
 </script>
@@ -9,7 +9,7 @@
 <i
   class='iconfont-tools icon-tools-triangle-right wechat-dialog-icon-msg-arrow'
   style={`
-    color: var(${isMe ? colorIsMe : colorOther});
+    color: ${isMe ? colorIsMe : colorOther};
     ${isMe ? `right: ${offset}px;` : `left: ${offset}px;`}
     ${isMe ? '' : 'transform: rotate(180deg);'}
     font-size: ${size}px;

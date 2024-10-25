@@ -14,7 +14,7 @@
 
 <div class={['wechat-message-layout-wrapper layout-end-start', className].join(' ')} style={`${isMe ? '' : 'flex-direction: row-reverse;'}`}>
   <div class='message-main'>
-    {#if !isMe && $showUserName}
+    {#if !isMe && $showUserName && userName}
       <p class='message-username'>{userName}</p>
     {/if}
 

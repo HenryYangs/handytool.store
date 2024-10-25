@@ -102,7 +102,7 @@
     if (transferAmount) {
       event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.SEND_TRANSFER,
-        transfer: transferAmount,
+        transferAmount,
       }));
     } else {
       alert($t('Please enter transfer amount'));
@@ -112,7 +112,7 @@
     if (transferAmount) {
       event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, getMessage({
         type: WECHAT_DIALOG_MESSAGE_TYPE.RECEIVE_TRANSFER,
-        transfer: transferAmount,
+        transferAmount,
       }));
     } else {
       alert($t('Please enter transfer amount'));
