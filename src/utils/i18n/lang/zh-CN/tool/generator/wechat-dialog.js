@@ -23,7 +23,6 @@ export default {
   'Unread Msg Count': '未读消息数量',
   'Show Member Name': '显示成员昵称',
   'Chat Background': '聊天背景',
-  'Remove Background': '移除背景',
   'Message Time': '添加聊天时间',
   'User Name': '用户名',
   'Chat Content': '聊天内容',
@@ -65,5 +64,8 @@ export default {
   'Wechat Red Packet': '微信红包',
 
   clearDialogTitle: '确定清空对话？',
-  clearDialogContent: '所有对话内容都会被删除，并且无法恢复！'
+  clearDialogContent: '所有对话内容都会被删除，并且无法恢复！',
+
+  receiveRedPacketIsMe: `你领取了{giver}的<span class="highlight">红包</span>`,
+  receiveRedPacketIsOther: `{giver}领取了你的<span class="highlight">红包</span>`,
 }

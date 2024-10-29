@@ -51,7 +51,7 @@
     }
 
     .icon-voice {
-      margin: 0 10px;
+      margin: 0 5px;
       font-size: 12px;
     }
   }

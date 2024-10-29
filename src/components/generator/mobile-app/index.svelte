@@ -37,9 +37,9 @@
 
       {#each tabs as item}
         <BeTabPane key={item.label} active={active} {...item}>
-          {#if item.key === active}
+          <div style='display: {item.key === active ? 'block' : 'none'}'>
             <svelte:component this={tabContents[item.key]} />
-          {/if}
+          </div>
         </BeTabPane>
       {/each}
     </BeTabs>

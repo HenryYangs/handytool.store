@@ -10,11 +10,13 @@
   import event from '../../../../utils/event';
   import { EVENTS } from '../../../../constant/events';
   import { DEFAULT_VALUE } from '../../../../constant/common/number';
+  import { fileToBase64 } from '../../../../utils/base64';
 
   $: chatType = CHAT_TYPE_MAP.Single;
   $: chatTitle = $t(DEFAULT_CHAT_TITLE);
   $: memberCount = String(GROUP_CHAT_MIN_MEMBER_COUNT);
   $: unreadMsgCount = String(DEFAULT_VALUE);
+  $: bgImage = '';
 
   const handleChatTitleChange = (e) => {
     event.emit(EVENTS.APP.WECHAT.DIALOG.CHAT_TITLE_CHANGE, e.target.value);
@@ -31,9 +33,19 @@
   const handleUnreadMsgCountChange = (e) => {
     event.emit(EVENTS.APP.WECHAT.DIALOG.UNREAD_COUNT, e.target.value);
   };
+
+  const handleBgImageChange = async (e) => {
+    const result = await fileToBase64(e.raw);
+
+    event.emit(EVENTS.APP.WECHAT.DIALOG.BG_IMAGE, `url(${result})`);
+  };
+
+  const handleBgImageRemove = () => {
+    event.emit(EVENTS.APP.WECHAT.DIALOG.BG_IMAGE, '');
+  }
 </script>
 
-<BeForm labelWidth='100px'>
+<BeForm labelWidth='100px' class='wechat-appearance-wrapper'>
   <BeFormItem label={$t('Chat Type')}>
     <BeSelect bind:value={chatType} size='mini' on:change={handleChatTypeChange}>
       {#each CHAT_TYPE_LIST as type}
@@ -58,28 +70,25 @@
 
   <BeFormItem label={$t('Chat Background')}>
     <BeUpload
-      action=''
-      drag
-      multiple
-      limit={3}
-      accept='.pdf,.doc,.docx'
-      fileList={[]}
-      beforeUpload={() => {}}
+      bind:value={bgImage}
+      autoUpload={false}
+      limit={1}
+      accept='image/*'
+      listType='picture-card'
+      onChange={handleBgImageChange}
+      onRemove={handleBgImageRemove}
     >
-      <div class='upload-card__drag'>
-        <div class='upload-card__icon'>
-          <BeIcon name='upload' width='40' height='40' />
-        </div>
-        <div class='be-upload__text'>{@html $t('Drag to upload')}</div>
+      <div class='upload-card'>
+        <BeIcon name='add' width='40' height='40' />
       </div>
     </BeUpload>
-  </BeFormItem>
-
-  <BeFormItem label=' '>
-    <BeButton type='danger'>{$t('Remove Background')}</BeButton>
   </BeFormItem>
 </BeForm>
 
 <style lang='scss' global>
-
+  .wechat-appearance-wrapper {
+    .be-upload-list {
+      position: absolute;
+    }
+  }
 </style>

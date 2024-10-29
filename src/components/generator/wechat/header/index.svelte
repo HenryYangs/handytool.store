@@ -35,7 +35,7 @@
 
   const handleUnreadCountChange = (value) => {
     unreadCount = value;
-  }
+  };
 
   useEventListener(EVENTS.APP.WECHAT.DIALOG.CHAT_TITLE_CHANGE, handleChatTitleChange);
   useEventListener(EVENTS.APP.WECHAT.DIALOG.MEMBER_COUNT_CHANGE, handleMemberCountChange);

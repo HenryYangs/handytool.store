@@ -9,6 +9,7 @@
   import { DEVICE_RATIO_IOS } from '../../../../constant/phone/device-ratio';
   import event from '../../../../utils/event';
   import { EVENTS } from '../../../../constant/events';
+  import ClearDialog from './clear-dialog/index.svelte';
 
   const simulatorId = 'wechatDialog';
   // TODO accept dynamic phone resolution
@@ -37,8 +38,10 @@
   className='wechat-dialog-wrapper'
   simulatorId={simulatorId}
 >
-  <div slot='action' class='action-bar'>
+  <div slot='action' class='action-bar layout-start-center'>
     <ExecuteBtn text={$t('Generate Image')} buttonProps={{ size: 'mini', type: 'success' }} onConfirm={generateImage} />
+
+    <ClearDialog />
   </div>
 
   <svelte:fragment slot='content'>
@@ -54,7 +57,11 @@
       margin-bottom: 20px;
 
       & > * {
-        width: 120px;
+        max-width: 120px;
+
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
       }
     }
   }

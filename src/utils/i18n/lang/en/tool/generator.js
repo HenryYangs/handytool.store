@@ -8,6 +8,9 @@ export default {
   'Red Packet Wishes': 'Best wishes!',
   'Wechat Red Packet': 'Red Packet',
 
-  clearDialogTitle: 'Are you sure to clear dialog?',
-  clearDialogText: 'All dialog record will be delete and CAN\'T be recovered!',
+  clearDialogTitle: 'Clear dialog?',
+  clearDialogContent: 'All dialog record will be delete and CAN\'T be recovered!',
+
+  receiveRedPacketIsMe: `Received <span class="highlight">Red Packet</span> from {giver}`,
+  receiveRedPacketIsOther: `{giver} received your <span class="highlight">Red Packet</span>`,
 };

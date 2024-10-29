@@ -1,13 +1,24 @@
 <script>
+  import { EVENTS } from '../../../../../constant/events';
+  import { useEventListener } from '../../../../../utils/hooks/use-event-listener';
     import WechatHeader from '../../header/index.svelte';
     import WechatFooter from '../footer/index.svelte';
     import Message from '../message/index.svelte';
+
+    $: bgImage = '';
+
+    const handleBgImageChange = (value) => {
+      console.log('value', value)
+      bgImage = value;
+    };
+
+    useEventListener(EVENTS.APP.WECHAT.DIALOG.BG_IMAGE, handleBgImageChange);
 </script>
 
 <div class='wechat-dialog-layout'>
   <WechatHeader />
 
-  <div class='wechat-content'>
+  <div class='wechat-content' style={`background-image: ${bgImage}`}>
     <Message />
   </div>
 
@@ -24,6 +35,8 @@
     .wechat-content {
       flex: 1;
       overflow: scroll;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
     }
   }
 </style>

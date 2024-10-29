@@ -1,12 +1,13 @@
 <script>
+  import { t } from 'svelte-i18n';
   import IconRedPacket from '../../../../../../../../assets/images/app/wechat/dialog/red-packet.png';
 
   $: content = '';
   $: (() => {
     if ($$props.isMe) {
-      content = `你领取了${$$props.redPacketGiver}的<span class='highlight'>红包</span>`;
+      content = $t('receiveRedPacketIsMe', { values:  { giver: $$props.redPacketGiver } });
     } else {
-      content = `${$$props.redPacketGiver}领取了你的<span class='highlight'>红包</span>`;
+      content = $t('receiveRedPacketIsOther', { values:  { giver: $$props.redPacketGiver } });
     }
   })();
 </script>

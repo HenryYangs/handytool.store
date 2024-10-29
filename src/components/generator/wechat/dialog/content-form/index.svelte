@@ -8,8 +8,7 @@
   import { nanoid } from 'nanoid';
   import { EVENTS } from '../../../../../constant/events';
   import event from '../../../../../utils/event';
-  import { messageBox } from '@brewer/beerui';
-  import { OPERATION_TYPE } from '../../../../../constant/common/operation';
+  import ClearDialog from '../clear-dialog/index.svelte';
 
   $: showMemberName = false;
   $: userList = [{
@@ -53,23 +52,6 @@
 
     userList = tmp;
   };
-
-  const clearDialog = () => {
-    messageBox({
-      type: 'warning',
-      title: $t('clearDialogTitle'),
-      message: $t('clearDialogContent'),
-      buttons: [
-				{ text: $t('Cancel'), customClass: 'be-button be-button--default', cb: ctx => ctx.close() },
-				{ text: $t('Confirm'), type: 'button', customClass: 'be-button be-button--normal be-button--primary', cb: ctx => {
-          event.emit(EVENTS.APP.WECHAT.DIALOG.UPDATE_MESSAGE, {
-            operate: OPERATION_TYPE.CLEAR,
-          })
-          ctx.close();
-        } },
-			],
-    })
-  }
 </script>
 
 <BeForm labelWidth='100px' class='content-form-wrapper'>
@@ -91,7 +73,7 @@
 
   <div class='content-form-action layout-start'>
     <ExecuteBtn text={$t('Add User')} buttonProps={{ size: 'mini', type: 'success' }} onConfirm={addUser} />
-    <ExecuteBtn text={$t('Clear Dialog')} buttonProps={{ size: 'mini', type: 'danger' }} onConfirm={clearDialog} />
+    <ClearDialog />
   </div>
 </BeForm>
 
