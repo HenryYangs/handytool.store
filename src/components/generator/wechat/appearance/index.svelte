@@ -4,7 +4,7 @@
   import BeUpload from '@brewer/beerui/be-upload';
   import BeIcon from '@brewer/beerui/be-icon';
   import { t } from 'svelte-i18n';
-  import { CHAT_TYPE_LIST, CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../constant/phone';
+  import { CHAT_TYPE_LIST, CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../constant/app/wechat/dialog';
   import BeInput from '@brewer/beerui/be-input';
   import BeButton from '@brewer/beerui/be-button';
   import event from '../../../../utils/event';

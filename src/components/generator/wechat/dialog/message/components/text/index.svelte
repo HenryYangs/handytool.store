@@ -20,12 +20,12 @@
 <style lang='scss' global>
   .wechat-message-text-wrapper {
     .message {
-      padding: 20px;
-      font-size: 28px;
+      padding: 10px;
+      font-size: 14px;
       font-weight: normal;
       word-wrap: break-word;
       word-break: break-all;
-      border-radius: 10px;
+      border-radius: 5px;
       line-height: 1.2;
     }
   }

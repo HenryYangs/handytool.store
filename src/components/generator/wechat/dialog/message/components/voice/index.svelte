@@ -2,14 +2,14 @@
   import LayoutMessage from '../layout/index.svelte';
   import Arrow from '../arrow/index.svelte';
   const getMsgStyle = () => {
-    let calcWidth = ($$props.voice / 60) * 400;
+    let calcWidth = ($$props.voice / 60) * 200;
 
-    if (calcWidth < 120) {
-      calcWidth = 120;
+    if (calcWidth < 60) {
+      calcWidth = 60;
     }
 
-    if (calcWidth > 400) {
-      calcWidth = 400;
+    if (calcWidth > 200) {
+      calcWidth = 200;
     }
 
     return `width: ${calcWidth}px`;
@@ -45,14 +45,14 @@
   .wechat-message-voice-wrapper {
     .voice-message-wrapper {
       width: 100%;
-      padding: 20px;
-      font-size: 25px;
-      border-radius: 10px;
+      padding: 10px;
+      font-size: 12px;
+      border-radius: 5px;
     }
 
     .icon-voice {
       margin: 0 10px;
-      font-size: 25px;
+      font-size: 12px;
     }
   }
 </style>

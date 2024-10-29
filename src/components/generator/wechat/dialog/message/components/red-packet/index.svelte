@@ -31,8 +31,8 @@
     position: relative;
 
     .icon-red-packet {
-      width: 52.5px;
-      height: 60px;
+      width: 26.25px;
+      height: 30px;
     }
   }
 </style>

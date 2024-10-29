@@ -7,4 +7,9 @@
 </div>
 
 <style lang='scss' global>
+  .wechat-footer-wrapper {
+    img {
+      width: 100%;
+    }
+  }
 </style>

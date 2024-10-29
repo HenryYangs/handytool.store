@@ -34,7 +34,6 @@ export const CARRIER_LIST = (() => {
 })();
 
 export const SIGNAL_TYPE_MAP = {
-  None: 'None',
   WIFI: 'WIFI',
   '5G': '5G',
   '4G': '4G',
@@ -49,14 +48,3 @@ export const BATTERY_STATUS_MAP = {
   Charging: 'Charging',
 };
 export const BATTERY_STATUS_LIST = transformObjectToArrayOptions(BATTERY_STATUS_MAP);
-
-export const CHAT_TYPE_MAP = {
-  Single: 'single',
-  Group: 'group',
-};
-
-export const CHAT_TYPE_LIST = transformObjectToArrayOptions(CHAT_TYPE_MAP);
-
-export const GROUP_CHAT_MIN_MEMBER_COUNT = 3;
-
-export const DEFAULT_CHAT_TITLE = 'WeChat Dialog';

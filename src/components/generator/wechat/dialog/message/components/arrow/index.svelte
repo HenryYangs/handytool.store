@@ -2,8 +2,8 @@
   export let isMe = false;
   export let colorIsMe = 'var(--wechat-dialog-my-msg-background)';
   export let colorOther = 'var(--white)';
-  export let size = 20;
-  export let offset = -11;
+  export let size = 10;
+  export let offset = -7;
 </script>
 
 <i
@@ -19,6 +19,6 @@
 <style lang='scss' global>
   .wechat-dialog-icon-msg-arrow {
     position: absolute;
-    top: 22px;
+    top: 11px;
   }
 </style>

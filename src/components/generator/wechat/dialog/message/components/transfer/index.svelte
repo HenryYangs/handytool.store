@@ -26,8 +26,8 @@
       </svelte:fragment>
 
       <svelte:fragment slot='title'>
-        <h2>￥{formatTransferAmount($$props.transferAmount)}</h2>
-        <h4 class='transaction-sub-title'>{isSendTransfer ? '已被领取' : '已收款'}</h4>
+        <p>￥{formatTransferAmount($$props.transferAmount)}</p>
+        <p class='transaction-sub-title'>{isSendTransfer ? '已被领取' : '已收款'}</p>
       </svelte:fragment>
     </Transaction>
   </svelte:fragment>
@@ -38,12 +38,14 @@
     position: relative;
 
     .icon-transfer-check {
-      font-size: 80px;
+      font-size: 40px;
       color: var(--white);
     }
 
     .transaction-sub-title {
+      margin-top: 5px;
       color: #fff5eb;
+      font-size: 12px;
     }
   }
 </style>

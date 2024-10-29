@@ -73,7 +73,7 @@
 </script>
 
 <BeForm labelWidth='100px' class='content-form-wrapper'>
-  <BeFormItem label={$t('Add Msg Time')}>
+  <BeFormItem label={$t('Message Time')}>
     <Time />
   </BeFormItem>
 

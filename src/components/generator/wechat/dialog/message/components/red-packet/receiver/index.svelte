@@ -26,13 +26,13 @@
     }
 
     .icon-red-packet {
-      width: 26.25px;
-      height: 30px;
+      width: 13.125px;
+      height: 15px;
     }
 
     .receiver-text {
-      margin-left: 10px;
-      font-size: 24px;
+      margin-left: 5px;
+      font-size: 12px;
       color: #a5a5a5;
     }
 

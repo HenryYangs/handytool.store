@@ -15,13 +15,12 @@
   .wechat-message-time-wrapper {
     position: relative;
     height: 20px;
-    font-size: 24px;
+    font-size: 12px;
     color: #a5a5a5;
 
     .wechat-message-time-delete {
       position: absolute;
-      left: 20px;
-      top: 0;
+      left: 0;
     }
   }
 </style>

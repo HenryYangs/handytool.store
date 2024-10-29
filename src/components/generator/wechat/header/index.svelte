@@ -3,7 +3,7 @@
   import { useEventListener } from '../../../../utils/hooks/use-event-listener';
   import { EVENTS } from '../../../../constant/events';
   import { DEFAULT_VALUE } from '../../../../constant/common/number';
-  import { CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../constant/phone';
+  import { CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../constant/app/wechat/dialog';
   import { t } from 'svelte-i18n';
 
   $: isGroupChat = false;
@@ -63,10 +63,10 @@
 
 <style lang='scss' global>
   .wechat-header-wrapper {
-    height: 80px;
-    padding: 0 40px;
+    height: 40px;
+    padding: 0 10px;
     background-color: var(--simulator-ios-background-color);
-    font-size: 40px;
+    font-size: 20px;
     border-bottom: 1px solid #D0D0D0;
 
     & > * {
@@ -76,17 +76,17 @@
     .wechat-unread-count {
       background-color: #cdcdcd;
       border-radius: 50%;
-      padding: 10px;
-      font-size: 22px;
+      padding: 5px;
+      font-size: 11px;
       text-align: center;
-      min-width: 40px;
-      min-height: 40px;
+      min-width: 20px;
+      min-height: 20px;
     }
 
     .wechat-header-center {
       flex: 4;
       text-align: center;
-      font-size: 34px;
+      font-size: 17px;
     }
 
     .wechat-header-right {

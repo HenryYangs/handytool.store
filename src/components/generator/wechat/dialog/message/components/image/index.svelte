@@ -21,17 +21,19 @@
   .wechat-message-image-wrapper {
     .message-container {
       position: absolute;
+      width: 104px;
+      height: 104px;
     }
 
     .message-image-wrapper {
       position: relative;
-      width: 204px;
-      height: 204px;
+      width: 102px;
+      height: 102px;
     }
 
     .message-image {
-      width: 208px;
-      height: 208px;
+      width: 104px;
+      height: 104px;
     }
   }
 </style>

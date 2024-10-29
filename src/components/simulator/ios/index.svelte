@@ -9,10 +9,12 @@
   import ICON_BATTERY from '../../../assets/images/phone/icon-battery.png';
   import ICON_BATTERY_CHARGING from '../../../assets/images/phone/icon-battery-charging.png';
   import { DEFAULT_TIME_HOUR, DEFAULT_TIME_MINUTE } from '../../../constant/timer';
+  import { DEVICE_RATIO_IOS } from '../../../constant/phone/device-ratio';
 
   export let className = '';
-  export let styleTransform = '';
+  export let id = '';
 
+  $: phoneModel = DEVICE_RATIO_IOS.IPHONE_8;
   $: signalStrength = Number(SIGNAL_STRENGTH_IOS.Good);
   $: carrier = CARRIER_LIST[0];
   $: signalType = SIGNAL_TYPE_MAP.WIFI;
@@ -27,10 +29,10 @@
 
   // battery real width and color is relied on charging status
   $: if (isCharging) {
-    batteryWidth = 74 - (74 - 26) * (batteryPercentage / 100);
+    batteryWidth = 37 - (37 - 13) * (batteryPercentage / 100);
     batteryColor = '#4cd964';
   } else {
-    batteryWidth = 49 - (49 - 8) * (batteryPercentage / 100);
+    batteryWidth = 24.5 - (24.5 - 4) * (batteryPercentage / 100);
     batteryColor = '#000';
 
     if (batteryPercentage <= 20) {
@@ -41,6 +43,10 @@
       }
     }
   }
+
+  const handleDeviceRatioChange = (value) => {
+    phoneModel = value;
+  };
 
   const handleSignalStrengthChange = (strength) => {
     signalStrength = Number(strength);
@@ -78,6 +84,7 @@
     showBatteryPercentage = show;
   };
 
+  useEventListener(EVENTS.PHONE.DEVICE_RATIO_CHANGE, handleDeviceRatioChange);
   useEventListener(EVENTS.PHONE.SIGNAL_STRENGTH_CHANGE_IOS, handleSignalStrengthChange);
   useEventListener(EVENTS.PHONE.CARRIER_CHANGE, handleCarrierChange);
   useEventListener(EVENTS.PHONE.SIGNAL_TYPE_CHANGE, handleSignalTypeChange);
@@ -89,20 +96,22 @@
   useEventListener(EVENTS.PHONE.SHOW_BATTERY_PERCENTAGE_CHANGE, handleShowBatteryPercentageChange);
 </script>
 
-<div class={['simulator-ios-wrapper', className].join(' ')}>
+<div
+  class={['simulator-ios-wrapper', className].join(' ')}
+  id={id}
+  style={`width: ${phoneModel.width}px; height: ${phoneModel.height}px`}
+>
   <div class='simulator-ios-header layout-between-end'>
     <div class='layout-start-center'>
       <SignalBar strength={signalStrength} />
   
-      <span>{carrier}</span>
+      <span class='carrier'>{carrier}</span>
 
-      <div class='signal-type'>
-        {#if signalType === 'WIFI'}
-          <BeIcon name='wifi' />
-        {:else}
-          <span>{signalType}</span>
-        {/if}
-      </div>
+      {#if signalType === 'WIFI'}
+        <BeIcon name='wifi' />
+      {:else}
+        <span>{signalType}</span>
+      {/if}
     </div>
 
     <div class='time'>{timeHour}:{timeMinute}</div>
@@ -116,11 +125,11 @@
         <span>{batteryPercentage}%</span>
       {/if}
 
-      <div class='battery-wrapper'>
+      <div class='battery-wrapper layout-center'>
         {#if isCharging}
-          <img src={ICON_BATTERY_CHARGING} alt='battery-charging' />
+          <img src={ICON_BATTERY_CHARGING} alt='battery-charging' class='is-charging' />
         {:else}
-          <img src={ICON_BATTERY} alt='battery' />
+          <img src={ICON_BATTERY} alt='battery' class='is-normal' />
         {/if}
 
         <div class='battery-percentage' style='right: {batteryWidth}px; background-color: {batteryColor};'></div>
@@ -137,46 +146,52 @@
 
 <style lang='scss' global>
   .simulator-ios-wrapper {
-    width: 750px;
-    height: 1334px;
     transform-origin: top center;
     background-color: var(--white);
-    font-size: 20px;
+    font-size: 12px;
 
     .simulator-ios-header {
-      height: 50px;
+      height: 25px;
       padding: 0 12px;
       background-color: var(--simulator-ios-background-color);
 
       & > * {
         flex: 1;
-        height:  100%;
+        height: 100%;
       }
     }
 
-    .signal-type {
-      margin-left: 10px;
+    .carrier {
+      margin: 0 5px;
     }
 
     .time {
-      line-height: 50px;
+      line-height: 25px;
       text-align: center;
     }
 
     .top-right-wrapper {
       & > *:not(:first-child) {
-        margin-left: 10px;
+        margin-left: 5px;
       }
     }
 
     .battery-wrapper {
       position: relative;
 
+      .is-charging {
+        width: 38.5px;
+      }
+
+      .is-normal {
+        width: 26px;
+      }
+
       .battery-percentage {
         position: absolute;
-        top: 3.5px;
-        bottom: 5px;
-        left: 3.5px;
+        top: 2px;
+        bottom: 1px;
+        left: 2px;
         background-color: #000;
         border-radius: 2px;
         transition: all 0.1s linear;
@@ -184,7 +199,7 @@
     }
 
     .simulator-ios-content {
-      height: 100%;
+      height: calc(100% - 25px);
     }
   }
 </style>

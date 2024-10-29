@@ -57,10 +57,10 @@
 
 <style lang='scss' global>
   .wechat-message-wrapper {
-    padding: 0 40px;
+    padding: 0 20px;
 
     & > * {
-      margin-top: 30px;
+      margin-top: 15px;
     }
   }
 </style>

@@ -38,21 +38,21 @@
 
     .message-wrapper {
       position: relative;
-      min-height: 80px;
-      margin: 0 20px;
+      min-height: 40px;
+      margin: 0 10px;
     }
 
     .message-username {
-      margin-bottom: 10px;
-      padding-left: 20px;
+      margin-bottom: 5px;
+      padding-left: 10px;
       color: #888;
-      font-size: 22px;
+      font-size: 11px;
     }
 
     .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
     }
   }
 </style>

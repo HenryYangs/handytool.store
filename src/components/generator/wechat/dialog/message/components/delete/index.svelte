@@ -35,7 +35,7 @@
       background-color: red;
       color: var(--white);
       border-radius: 50%;
-      font-size: 30px;
+      font-size: 12px;
     }
   }
 </style>

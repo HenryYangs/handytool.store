@@ -12,8 +12,8 @@
   .signal-bar {
     display: flex;
     align-items: flex-end;
-    width: 33px;
-    height: 20px;
+    width: 16px;
+    height: 10px;
     gap: 2px;
   }
 

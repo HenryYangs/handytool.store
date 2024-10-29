@@ -10,6 +10,8 @@
   export let tabs = [];
   export let tabContents = {}; // New prop to hold tab contents
   export let phone = PHONE.IOS;
+  export let className = '';
+  export let simulatorId = '';
 
   $: tabList = [
     {
@@ -24,8 +26,10 @@
   };
 </script>
 
-<main class='mobile-app-wrapper layout-start'>
+<main class={['mobile-app-wrapper layout-start', className].join(' ')}>
   <section class='tool-panel generator-part body-left'>
+    <slot name='action'></slot>
+
     <BeTabs bind:active items={tabList} on:tabClick={tabClick}>
       <BeTabPane key='phone-appearance' active={active} label={$t('Phone Appearance')}>
         <PhoneAppearance />
@@ -44,6 +48,7 @@
   <section class='generator-part body-right'>
     <svelte:component
       this={phone === PHONE.IOS ? SimulatorIos : SimulatorAndroid} className='simulator-wrapper'
+      id={simulatorId}
     >
       <svelte:fragment slot='content'>
         <slot name='content'></slot>
@@ -67,7 +72,7 @@
       position: absolute;
       top: 0;
       left: 50%;
-      transform: translateX(-50%) scale(0.5);
+      transform: translateX(-50%);
     }
 
     .be-form {

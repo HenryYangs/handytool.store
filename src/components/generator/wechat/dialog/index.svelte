@@ -1,11 +1,22 @@
 <script>
   import { t } from 'svelte-i18n';
+  import Preview from './preview/index.svelte';
   import MobileAppGenerator from '../../mobile-app/index.svelte';
   import WechatAppearance from '../appearance/index.svelte';
   import ContentForm from './content-form/index.svelte';
-  import WechatHeader from '../header/index.svelte';
-  import WechatFooter from './footer/index.svelte';
-  import Message from './message/index.svelte';
+  import WechatDialogLayout from './layout/index.svelte';
+  import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
+  import { DEVICE_RATIO_IOS } from '../../../../constant/phone/device-ratio';
+  import event from '../../../../utils/event';
+  import { EVENTS } from '../../../../constant/events';
+
+  const simulatorId = 'wechatDialog';
+  // TODO accept dynamic phone resolution
+  const deviceRatio = DEVICE_RATIO_IOS.IPHONE_8;
+
+  const generateImage = () => {
+    event.emit(EVENTS.APP.WECHAT.DIALOG.PREVIEW);
+  };
 </script>
 
 <MobileAppGenerator
@@ -23,28 +34,34 @@
     'app-appearance': WechatAppearance,
     content: ContentForm
   }}
+  className='wechat-dialog-wrapper'
+  simulatorId={simulatorId}
 >
-  <div slot='content' class='wechat-dialog-wrapper'>
-    <WechatHeader />
-
-    <div class='wechat-content'>
-      <Message />
-    </div>
-
-    <WechatFooter />
+  <div slot='action' class='action-bar'>
+    <ExecuteBtn text={$t('Generate Image')} buttonProps={{ size: 'mini', type: 'success' }} onConfirm={generateImage} />
   </div>
+
+  <svelte:fragment slot='content'>
+    <WechatDialogLayout />
+  </svelte:fragment>
 </MobileAppGenerator>
+
+<Preview targetId={simulatorId} deviceRatio={deviceRatio} />
 
 <style lang='scss' global>
   .wechat-dialog-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: #EBEBEB;
+    .action-bar {
+      margin-bottom: 20px;
 
-    .wechat-content {
-      flex: 1;
-      overflow: scroll;
+      & > * {
+        width: 120px;
+      }
+    }
+  }
+
+  .hide-node {
+    .wechat-message-delete-wrapper {
+      display: none;
     }
   }
 </style>

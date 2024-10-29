@@ -12,6 +12,7 @@
   import { EVENTS } from '../../../../../constant/events';
   import { WECHAT_DIALOG_MESSAGE_TYPE } from '../../../../../constant/app/wechat/dialog';
   import { OPERATION_TYPE } from '../../../../../constant/common/operation';
+  import { nanoid } from 'nanoid';
 
   export let avatar = '';
   export let userName = '';
@@ -128,75 +129,79 @@
   const deleteUser = () => {
     onDeleteUser();
   };
+
+  const randomUserName = () => {
+    onUpdate('userName', nanoid(8));
+  };
 </script>
 
 <section class='dialog-user-wrapper'>
   <div class='dialog-user-info-wrapper layout-start'>
-    <div class='dialog-user-avatar'>
-      <BeUpload
-        bind:value={avatar}
-        autoUpload={false}
-        style='width: 80px; height: 80px;'
-        accept='image/*'
-        limit={1}
-        listType='picture-card'
-        onChange={beforeUploadAvatar}
-      >
-        <div class='upload-card avatar-upload-card'>
-          <BeIcon name='add' width='40' height='40' />
-        </div>
-      </BeUpload>
-
-      <ExecuteBtn text={$t('Random Avatar')} buttonProps={{ size: 'mini' }} className='random-avatar' />
-    </div>
-
-    <div class='dialog-user-info'>
-      <BeForm labelWidth='120px'>
-        <BeFormItem label={$t('User Name')}>
-          <div class='layout-start'>
-            <BeInput bind:value={userName} size='mini' on:input={(e) => onUpdate('userName', e.target.value)} />
-            <ExecuteBtn text={$t('Random User Name')} buttonProps={{ size: 'mini' }} className='random-user-name' />
-          </div>
-        </BeFormItem>
-
-        <BeFormItem label={$t('Chat Content')}>
-          <div class='layout-start-end'>
-            <BeTextarea bind:value={chatContent} size='mini' class='dialog-user-chat-content' on:input={(e) => onUpdate('chatContent', e.target.value)} />
-
-            <img src={ICON_EMOJI} alt='emoji' class='dialog-user-emoji' />
-          </div>
-        </BeFormItem>
-
-        <BeFormItem label={$t('Red Packet Title')}>
-          <BeInput bind:value={redPacketTitle} size='mini' on:input={(e) => onUpdate('redPacketTitle', e.target.value)} />
-        </BeFormItem>
-
-        <BeFormItem label={$t('Red Packet Giver')}>
-          <BeInput bind:value={redPacketGiver} size='mini' on:input={(e) => onUpdate('redPacketGiver', e.target.value)} />
-        </BeFormItem>
-
-        <BeFormItem label={$t('Transfer/Receive Amount')}>
-          <BeInput bind:value={transferAmount} type='number' size='mini' on:input={(e) => onUpdate('transferAmount', e.target.value)} />
-        </BeFormItem>
-
-        <BeFormItem label={$t('Voice Msg Time')}>
-          <BeInput bind:value={voiceMsgTime} type='number' min='0' max='60' size='mini' on:input={(e) => onUpdate('voiceMsgTime', e.target.value)} />
-        </BeFormItem>
-
-        <BeFormItem label={$t('Image Message')}>
+    <BeForm labelWidth='120px' class='dialog-user-info'>
+      <BeFormItem label={$t('Avatar')}>
+        <div class='dialog-user-avatar'>
           <BeUpload
-            bind:value={imageMessage}
+            bind:value={avatar}
             autoUpload={false}
+            style='width: 80px; height: 80px;'
             accept='image/*'
             limit={1}
             listType='picture-card'
-            onChange={beforeUploadImageMsg}
+            onChange={beforeUploadAvatar}
           >
-            <div class='upload-card'><BeIcon name='add' width='40' height='40' /></div>
+            <div class='upload-card avatar-upload-card'>
+              <BeIcon name='add' width='40' height='40' />
+            </div>
           </BeUpload>
-        </BeFormItem>
-      </BeForm>
-    </div>
+
+          <ExecuteBtn text={$t('Random Avatar')} buttonProps={{ size: 'mini' }} className='random-avatar' btnStyle='width: 120px;' />
+        </div>
+      </BeFormItem>
+
+      <BeFormItem label={$t('User Name')}>
+        <div class='layout-start'>
+          <BeInput bind:value={userName} size='mini' on:input={(e) => onUpdate('userName', e.target.value)} />
+          <ExecuteBtn text={$t('Random User Name')} buttonProps={{ size: 'mini' }} className='random-user-name' onConfirm={randomUserName} />
+        </div>
+      </BeFormItem>
+
+      <BeFormItem label={$t('Chat Content')}>
+        <div class='layout-start-end'>
+          <BeTextarea bind:value={chatContent} size='mini' class='dialog-user-chat-content' on:input={(e) => onUpdate('chatContent', e.target.value)} />
+
+          <img src={ICON_EMOJI} alt='emoji' class='dialog-user-emoji' />
+        </div>
+      </BeFormItem>
+
+      <BeFormItem label={$t('Red Packet Title')}>
+        <BeInput bind:value={redPacketTitle} size='mini' on:input={(e) => onUpdate('redPacketTitle', e.target.value)} />
+      </BeFormItem>
+
+      <BeFormItem label={$t('Red Packet Giver')}>
+        <BeInput bind:value={redPacketGiver} size='mini' on:input={(e) => onUpdate('redPacketGiver', e.target.value)} />
+      </BeFormItem>
+
+      <BeFormItem label={$t('Transfer/Receive Amount')}>
+        <BeInput bind:value={transferAmount} type='number' size='mini' on:input={(e) => onUpdate('transferAmount', e.target.value)} />
+      </BeFormItem>
+
+      <BeFormItem label={$t('Voice Msg Time')}>
+        <BeInput bind:value={voiceMsgTime} type='number' min='0' max='60' size='mini' on:input={(e) => onUpdate('voiceMsgTime', e.target.value)} />
+      </BeFormItem>
+
+      <BeFormItem label={$t('Image Message')}>
+        <BeUpload
+          bind:value={imageMessage}
+          autoUpload={false}
+          accept='image/*'
+          limit={1}
+          listType='picture-card'
+          onChange={beforeUploadImageMsg}
+        >
+          <div class='upload-card'><BeIcon name='add' width='40' height='40' /></div>
+        </BeUpload>
+      </BeFormItem>
+    </BeForm>
   </div>
 
   <div class='dialog-user-action layout-start'>
@@ -217,7 +222,7 @@
     padding: 20px 0 10px;
     border-top: 1px solid var(--theme-main-light-color);
 
-    .dialog-user-avatar,
+    // .dialog-user-avatar,
     .avatar-upload-card {
       width: 80px !important;
       height: 80px !important;

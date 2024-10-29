@@ -24,7 +24,7 @@ export default {
   'Show Member Name': '显示成员昵称',
   'Chat Background': '聊天背景',
   'Remove Background': '移除背景',
-  'Add Msg Time': '添加聊天时间',
+  'Message Time': '添加聊天时间',
   'User Name': '用户名',
   'Chat Content': '聊天内容',
   'Red Packet Title': '红包祝福语',

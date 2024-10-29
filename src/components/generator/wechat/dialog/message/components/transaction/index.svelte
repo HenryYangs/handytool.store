@@ -8,8 +8,8 @@
   export let subBackgroundColor = '';
   export let arrowColorIsMe = '';
   export let arrowColorOther = '';
-  export let arrowSize = 30;
-  export let arrowOffset = -21;
+  export let arrowSize = 15;
+  export let arrowOffset = -10;
 </script>
 
 <div class='transaction-wrapper'>
@@ -47,37 +47,36 @@
   @import '../../../../../../../assets/style/variables/app/wechat/index.scss';
 
   .transaction-wrapper {
-    width: 440px;
-    height: 176px;
+    width: 220px;
+    height: 88px;
 
     .transaction-upper {
       width: 100%;
-      height: 128px;
-      padding: 0 30px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      height: 64px;
+      padding: 0 15px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
 
     .transaction-lower {
       width: 100%;
-      height: 48px;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
+      height: 24px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
     }
 
     .transaction-msg {
       flex: 1;
-      margin-left: 20px;
-      font-size: 30px;
+      margin-left: 10px;
+      font-size: 15px;
       color: var(--white);
-      line-height: 1.2;
 
       @include text-overflow;
     }
 
     .transaction-lower-text {
-      padding-left: 20px;
-      font-size: 24px;
+      padding-left: 10px;
+      font-size: 12px;
       color: #a5a5a5;
     }
   }

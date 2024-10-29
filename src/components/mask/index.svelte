@@ -1,14 +1,18 @@
 <script>
+  export let id = '';
+  export let className = '';
+  export let style = '';
   export let onClose = () => {};
 
+  const realId = id || 'mask';
   const onCloseHandler = (event) => {
-    if (event.target.getAttribute('id') === 'mask') {
+    if (event.target.getAttribute('id') === realId) {
       onClose();
     }
   };
 </script>
 
-<div class='mask-wrapper' on:click={onCloseHandler} id='mask'>
+<div class={['mask-wrapper', className].join(' ')} on:click={onCloseHandler} id={realId} style={style}>
   <slot />
 </div>
 
