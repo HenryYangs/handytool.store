@@ -68,4 +68,6 @@ export default {
 
   receiveRedPacketIsMe: `你领取了{giver}的<span class="highlight">红包</span>`,
   receiveRedPacketIsOther: `{giver}领取了你的<span class="highlight">红包</span>`,
+
+  previewTips: '鼠标点击右键，直接保存图片'
 }

@@ -118,7 +118,7 @@
 
     <div class='layout-end-center top-right-wrapper'>
       {#if showPhoneDirection}
-        <img src={ICON_PHONE_DIRECTION_IOS} alt='phone-direction' />
+        <img src={ICON_PHONE_DIRECTION_IOS} alt='direction-lock' class='direction-lock' />
       {/if}
 
       {#if showBatteryPercentage}
@@ -200,6 +200,11 @@
 
     .simulator-ios-content {
       height: calc(100% - 25px);
+    }
+
+    .direction-lock {
+      width: 12px;
+      height: 12px;
     }
   }
 </style>

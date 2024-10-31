@@ -13,4 +13,6 @@ export default {
 
   receiveRedPacketIsMe: `Received <span class="highlight">Red Packet</span> from {giver}`,
   receiveRedPacketIsOther: `{giver} received your <span class="highlight">Red Packet</span>`,
+
+  previewTips: 'Right click, and save image directly'
 };
