@@ -1,5 +1,6 @@
 import codec from './codec';
 import convertor from './convertor';
+import generator from './generator';
 import programming from './programming';
 import timer from './timer';
 import validator from './validator';
@@ -9,6 +10,8 @@ export default {
   'All Free Tools': '所有免费工具集合',
   allSingleTool: '所有{tool}',
 
+  Generator: '生成器',
+  generator: '生成器',
   Convert: '转换',
   convertor: '转换',
   Programming: '编程',
@@ -35,4 +38,5 @@ export default {
   ...codec,
   ...validator,
   ...timer,
+  ...generator
 }

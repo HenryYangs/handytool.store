@@ -1,0 +1,18 @@
+:root {
+  --white: #FFFFFF;
+  --title-color: #333333; // rgb(51,51,51)
+  --theme-main-color: #3D52A0; // rgb(61, 82, 160)
+  --theme-secondary-color: #7091E6; // rgb(112,145,230)
+  --theme-main-dark-color: #8697C4; // rgb(134,151,196)
+  --theme-secondary-dark-color: #ADBBDA; // rgb(173,187,218)
+  --theme-main-light-color: #EDE8F5; // rgb(237,232,245)
+
+  --simulator-ios-background-color: #E9E9E9; // rgb(233, 233, 233)
+
+  --outline-dark: #212529;
+  
+  --alert-layer: 1000000;
+  --mask-layer: 100000;
+  --sticky-layer: 10000;
+  --layer: 1;
+}

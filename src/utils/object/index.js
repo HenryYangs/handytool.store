@@ -19,3 +19,11 @@ export const queryStringify = (obj) => {
 
   return arr.join('&');
 };
+
+// Convert object to array, each element is { label: key, value: value }
+export const transformObjectToArrayOptions = (obj) => {
+  return Object.entries(obj).map(([key, value]) => ({
+    label: key,
+    value,
+  }));
+};

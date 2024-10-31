@@ -1,4 +1,5 @@
 import convertor from './convertor';
+import generator from './generator';
 import timer from './timer';
 import validator from './validator';
 
@@ -17,4 +18,5 @@ export default {
   ...convertor,
   ...validator,
   ...timer,
+  ...generator,
 }
