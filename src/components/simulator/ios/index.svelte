@@ -101,7 +101,7 @@
   id={id}
   style={`width: ${phoneModel.width}px; height: ${phoneModel.height}px`}
 >
-  <div class='simulator-ios-header layout-between-end'>
+  <div class='simulator-header simulator-ios-header layout-between-end'>
     <div class='layout-start-center'>
       <SignalBar strength={signalStrength} />
   

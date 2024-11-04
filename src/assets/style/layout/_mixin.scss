@@ -57,3 +57,22 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+// flex column
+@mixin layout-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin layout-col-start-center {
+  @include layout-col;
+
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin layout-col-end-center {
+  @include layout-col;
+  justify-content: flex-end;
+  align-items: center;
+}

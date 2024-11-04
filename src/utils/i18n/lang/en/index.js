@@ -1,5 +1,6 @@
 import auth from './auth';
 import common from './common';
+import currency from './currency';
 import exception from './exception';
 import favorite from './favorite';
 import home from './home';
@@ -12,4 +13,5 @@ export default {
   ...tool,
   ...exception,
   ...common,
+  ...currency
 }

@@ -1,4 +1,4 @@
-import wechatDialog from './wechat-dialog';
+import wechat from './wechat';
 
 export default {
   'Generator Tools': '生成器工具',
@@ -6,5 +6,5 @@ export default {
 
   'Generate Image': '生成图片',
 
-  ...wechatDialog,
+  ...wechat,
 };
