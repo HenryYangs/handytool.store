@@ -4,12 +4,12 @@
   import BeUpload from '@brewer/beerui/be-upload';
   import BeIcon from '@brewer/beerui/be-icon';
   import { t } from 'svelte-i18n';
-  import { CHAT_TYPE_LIST, CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../constant/app/wechat/dialog';
+  import { CHAT_TYPE_LIST, CHAT_TYPE_MAP, DEFAULT_CHAT_TITLE, GROUP_CHAT_MIN_MEMBER_COUNT } from '../../../../../constant/app/wechat/dialog';
   import BeInput from '@brewer/beerui/be-input';
-  import event from '../../../../utils/event';
-  import { EVENTS } from '../../../../constant/events';
-  import { DEFAULT_VALUE } from '../../../../constant/common/number';
-  import { fileToBase64 } from '../../../../utils/base64';
+  import event from '../../../../../utils/event';
+  import { EVENTS } from '../../../../../constant/events';
+  import { DEFAULT_VALUE } from '../../../../../constant/common/number';
+  import { fileToBase64 } from '../../../../../utils/base64';
   import { onMount } from 'svelte';
 
   $: chatType = CHAT_TYPE_MAP.Single;

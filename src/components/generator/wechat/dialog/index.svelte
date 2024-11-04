@@ -2,7 +2,7 @@
   import { t } from 'svelte-i18n';
   import Preview from './preview/index.svelte';
   import MobileAppGenerator from '../../mobile-app/index.svelte';
-  import WechatAppearance from '../appearance/index.svelte';
+  import WechatAppearance from './appearance/index.svelte';
   import ContentForm from './content-form/index.svelte';
   import WechatDialogLayout from './layout/index.svelte';
   import ExecuteBtn from '../../../../components/execute-btn/index.svelte';
@@ -24,17 +24,15 @@
   tabs={[
     {
       key: 'app-appearance',
-      label: $t('App Appearance')
+      label: $t('App Appearance'),
+      component: WechatAppearance,
     },
     {
       key: 'content',
-      label: $t('Content')
+      label: $t('Content'),
+      component: ContentForm,
     }
   ]}
-  tabContents={{
-    'app-appearance': WechatAppearance,
-    content: ContentForm
-  }}
   className='wechat-dialog-wrapper'
   simulatorId={simulatorId}
 >

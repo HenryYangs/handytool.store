@@ -35,3 +35,15 @@
 .layout-end-start {
   @include layout-end-start;
 }
+
+.layout-col {
+  @include layout-col;
+}
+
+.layout-col-start-center {
+  @include layout-col-start-center;
+}
+
+.layout-col-end-center {
+  @include layout-col-end-center;
+}

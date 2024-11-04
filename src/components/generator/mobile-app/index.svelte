@@ -8,7 +8,6 @@
   import SimulatorAndroid from '../../simulator/android/index.svelte';
 
   export let tabs = [];
-  export let tabContents = {}; // New prop to hold tab contents
   export let phone = PHONE.IOS;
   export let className = '';
   export let simulatorId = '';
@@ -38,7 +37,7 @@
       {#each tabs as item}
         <BeTabPane key={item.label} active={active} {...item}>
           <div style='display: {item.key === active ? 'block' : 'none'}'>
-            <svelte:component this={tabContents[item.key]} />
+            <svelte:component this={item.component} />
           </div>
         </BeTabPane>
       {/each}
