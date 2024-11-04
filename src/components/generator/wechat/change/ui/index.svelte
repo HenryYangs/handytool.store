@@ -107,7 +107,7 @@
     }
 
     .balance-mark {
-      margin-right: 10px;
+      margin-right: 5px;
       font-size: 30px;
     }
 

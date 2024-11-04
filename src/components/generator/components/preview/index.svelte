@@ -1,14 +1,15 @@
 <script>
   import html2canvas from 'html2canvas';
   import BeAlert from '@brewer/beerui/be-alert';
-  import Mask from '../../../../mask/index.svelte';
-  import { useEventListener } from '../../../../../utils/hooks/use-event-listener';
-  import { EVENTS } from '../../../../../constant/events';
+  import Mask from '../../../mask/index.svelte';
+  import { useEventListener } from '../../../../utils/hooks/use-event-listener';
+  import { EVENTS } from '../../../../constant/events';
   import { loadingSerive } from '@brewer/beerui/utils/loading';
   import { t } from 'svelte-i18n';
 
   export let targetId = '';
   export let deviceRatio = {};
+  export let onBeforeAppend = (node, target) => {};
 
   $: showMask = false;
 
@@ -28,12 +29,11 @@
     const copyNode = target.cloneNode(true);
 
     copyNode.setAttribute('id', 'copyNode');
-    copyNode.classList.add('simulator-generate');
     copyNode.style.width = `${deviceRatio.width}px`;
     copyNode.style.height = `${deviceRatio.height}px`;
 
-    const copyContent = copyNode.querySelector('.wechat-message-wrapper');
-    copyContent.style.marginTop = `-${target.querySelector('.wechat-content').scrollTop}px`;
+    onBeforeAppend(copyNode, target);
+
     document.querySelector('#hideNode').appendChild(copyNode);
     
     const canvas = document.querySelectorAll('#mask canvas');
@@ -67,7 +67,3 @@
     <BeAlert title={$t('previewTips')} type='info' on:close={onMaskClose} />
   </div>
 </Mask>
-
-<style lang='scss' global>
-
-</style>

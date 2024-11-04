@@ -2,15 +2,22 @@
   import BeTabs from '@brewer/beerui/be-tabs';
   import BeTabPane from '@brewer/beerui/be-tabs/BeTabPane.svelte';
   import PhoneAppearance from '../mobile-app/phone-appearance/index.svelte';
+  import Preview from '../components/preview/index.svelte';
   import { t } from 'svelte-i18n';
   import { PHONE } from '../../../constant/phone';
   import SimulatorIos from '../../simulator/ios/index.svelte';
   import SimulatorAndroid from '../../simulator/android/index.svelte';
+  import { DEVICE_RATIO_IOS } from '../../../constant/phone/device-ratio';
 
   export let tabs = [];
   export let phone = PHONE.IOS;
   export let className = '';
   export let simulatorId = '';
+
+  export let onPreviewBeforeAppend = (node, target) => {};
+
+  // TODO accept dynamic phone resolution
+  const deviceRatio = DEVICE_RATIO_IOS.IPHONE_8;
 
   $: tabList = [
     {
@@ -55,6 +62,8 @@
     </svelte:component>
   </section>
 </main>
+
+<Preview targetId={simulatorId} deviceRatio={deviceRatio} onBeforeAppend={onPreviewBeforeAppend}/>
 
 <style lang='scss' global>
   .mobile-app-wrapper {   

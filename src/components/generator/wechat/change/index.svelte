@@ -3,6 +3,7 @@
   import MobileAppGenerator from '../../mobile-app/index.svelte';
   import ContentForm from './content-form/index.svelte';
   import ChangeUI from './ui/index.svelte';
+  import Trigger from '../../components/preview/trigger/index.svelte';
 </script>
 
 <MobileAppGenerator
@@ -14,7 +15,12 @@
     }
   ]}
   className='wechat-change-wrapper'
+  simulatorId='wechatChange'
 >
+  <svelte:fragment slot='action'>
+    <Trigger />
+  </svelte:fragment>
+
   <svelte:fragment slot='content'>
     <ChangeUI />
   </svelte:fragment>
@@ -22,6 +28,12 @@
 
 <style lang='scss' global>
   .wechat-change-wrapper {
+    .simulator-header {
+      background-color: var(--white);
+    }
+  }
+
+  .hide-node {
     .simulator-header {
       background-color: var(--white);
     }
