@@ -2,7 +2,11 @@
   import BeIcon from '@brewer/beerui/be-icon';
   import { useEventListener } from '../../../../../utils/hooks/use-event-listener';
   import { EVENTS } from '../../../../../constant/events';
+  import { t } from 'svelte-i18n';
+  import { getLang } from '../../../../../utils/i18n';
+  import { LOCALE_CN } from '../../../../../constant/i18n';
 
+  const isCN = getLang() === LOCALE_CN;
   $: balance = '0';
 
   const onBalanceUpdate = (value) => {
@@ -29,27 +33,29 @@
     <div class='back-icon'>
       <BeIcon name='chevron-left' />
     </div>
-    <div class='title'>零钱明细</div>
+    <div class='title'>{$t('Change Detail')}</div>
   </header>
 
   <main class='layout-col-start-center content'>
     <i class='iconfont-tools icon-tools-change coin-icon'></i>
-    <div class='balance-title'>我的零钱</div>
+    <div class='balance-title'>{$t('My Change')}</div>
     <div class='layout-start balance-amount'>
-      <span class='balance-mark'>¥</span>
+      <span class='balance-mark'>{$t('currencySymbol')}</span>
       <span class='balance'>{balance}</span>
     </div>
     
     <div class='rate-info'>
-      转入零钱通，能赚又能花 >
+      {isCN ? '转入零钱通，能赚又能花 >' : ''}
     </div>
 
     <div class='layout-col-end-center action-buttons'>
-      <button class='btn btn-primary'>充值</button>
-      <button class='btn btn-secondary'>提现</button>
+      <button class='btn btn-primary'>{$t('recharge')}</button>
+      <button class='btn btn-secondary'>{$t('withdraw')}</button>
 
-      <span class='qa'>常见问题</span>
-      <span class='tips'>本服务由财付通提供</span>
+      {#if isCN}
+        <span class='qa'>常见问题</span>
+        <span class='tips'>本服务由财付通提供</span>
+      {/if}
     </div>
   </main>
 </div>
