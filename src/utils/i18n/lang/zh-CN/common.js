@@ -19,7 +19,5 @@ export default {
 
   'Please select': '请选择',
 
-  Avatar: '头像',
-  Amount: '金额',
-  Status: '状态'
+  Avatar: '头像'
 }

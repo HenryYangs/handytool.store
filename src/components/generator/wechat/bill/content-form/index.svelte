@@ -106,7 +106,7 @@
     </div>
   </BeFormItem>
 
-  <BeFormItem label={$t('Amount')}>
+  <BeFormItem label='金额'>
     <BeInput type='number' size='mini' bind:value={billAmount} on:input={onAmountChange} />
   </BeFormItem>
 
