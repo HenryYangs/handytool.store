@@ -1,4 +1,5 @@
 import { getRandomBillId } from '../../../utils/app/wechat/bill';
+import { DEFAULT_AVATAR } from '../../icon';
 import { NOW } from '../../timer';
 
 export const BILL_PAGE_TYPE = {
@@ -18,7 +19,7 @@ export const BILL_TYPE_LIST = [
 ];
 
 export const DEFAULT_WECHAT_BILL_CONFIG = {
-  avatar: 'https://via.placeholder.com/60',
+  avatar: DEFAULT_AVATAR,
   amount: 520,
   billStatus: '朋友已收钱',
   billDescription: '购买水果',
