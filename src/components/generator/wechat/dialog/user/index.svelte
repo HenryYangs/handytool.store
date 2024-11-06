@@ -222,7 +222,6 @@
     padding: 20px 0 10px;
     border-top: 1px solid var(--theme-main-light-color);
 
-    // .dialog-user-avatar,
     .avatar-upload-card {
       width: 80px !important;
       height: 80px !important;

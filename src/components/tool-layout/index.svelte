@@ -21,6 +21,13 @@
       url: `/tool-list?scene=tool&id=${category}`,
       method: 'GET',
     }).then(response => {
+      const isValidTool = Boolean(response.filter(tool => tool.id === id).length);
+
+      if (!isValidTool) {
+        location.replace('/404');
+        return;
+      }
+
       toolsList = response;
     });
   });

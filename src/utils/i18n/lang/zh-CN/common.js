@@ -17,5 +17,7 @@ export default {
   Confirm: '确定',
   Cancel: '取消',
 
-  'Please select': '请选择'
+  'Please select': '请选择',
+
+  Avatar: '头像'
 }

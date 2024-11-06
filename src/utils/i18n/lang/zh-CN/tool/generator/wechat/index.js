@@ -3,5 +3,5 @@ import dialog from './dialog';
 
 export default {
   ...change,
-  ...dialog
+  ...dialog,
 }
