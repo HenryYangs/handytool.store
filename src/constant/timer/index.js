@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { getNumArray, transformNumArrayToArrayOptions } from '../../utils/array';
 import { prezero } from '../../utils/number';
 
@@ -38,6 +39,7 @@ export const CURRENT_HALF = new Date().getHours() >= 12 ? 1 : 0;
 export const CURRENT_HOUR = prezero(new Date().getHours());
 export const CURRENT_MINUTE = prezero(new Date().getMinutes());
 export const TODAY = `${CURRENT_YEAR}-${prezero(CURRENT_MONTH)}-${prezero(CURRENT_DATE)}`;
+export const NOW = dayjs().format('YYYY-MM-DD HH:mm:ss');
 
 export const DEFAULT_TIME_HOUR = '09';
 export const DEFAULT_TIME_MINUTE = '00';
