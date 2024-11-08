@@ -19,5 +19,12 @@ export default {
 
   'Please select': '请选择',
 
-  Avatar: '头像'
+  Avatar: '头像',
+
+  Back: '返回',
+  Detail: '明细',
+  FAQ: '常见问题',
+
+  recharge: '充值',
+  Recharge: '充值',
 }

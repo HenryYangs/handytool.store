@@ -1,10 +1,15 @@
 <script>
   export let strength = 0; // 0 to 4
+  export let color = '';
 </script>
 
 <div class='signal-bar'>
   {#each Array(4) as _, i}
-    <div class='bar' class:active={i < strength}></div>
+    <div
+      class='bar'
+      class:active={i < strength}
+      style={`${i < strength ? `background-color: ${color}` : ''}`}
+    ></div>
   {/each}
 </div>
 

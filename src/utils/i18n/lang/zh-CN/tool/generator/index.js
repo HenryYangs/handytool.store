@@ -1,3 +1,4 @@
+import alipay from './alipay';
 import wechat from './wechat';
 
 export default {
@@ -7,4 +8,5 @@ export default {
   'Generate Image': '生成图片',
 
   ...wechat,
+  ...alipay
 };

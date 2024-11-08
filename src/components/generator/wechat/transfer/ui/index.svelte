@@ -4,6 +4,7 @@
   import { useEventListener } from '../../../../../utils/hooks/use-event-listener';
   import { EVENTS } from '../../../../../constant/events';
   import { DEFAULT_TRANSFER_CONFIG } from '../../../../../constant/app/wechat/transfer';
+  import { SVG_WECHAT_LING_QIAN_TONG } from '../../../../../assets/svg/app';
 
   $: amount = DEFAULT_TRANSFER_CONFIG.amount;
   $: transferTime = DEFAULT_TRANSFER_CONFIG.transferTime;
@@ -45,7 +46,7 @@
 
   <div class='layout-start-center money-plus'>
     <div class='layout-center icon'>
-      <svg viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' width='25' height='25'><path d='M452.6 172.2h109l107.7 145H339.8zM259 172.2h144l-112.2 145H98.6zM280.8 374.8H81.1l416.2 548.7zM763.5 172.2h-144l112.4 145H924zM741.8 374.8h199.8L525.2 923.5zM339.8 374.8h329.5L525.2 923.5h-27.9z' fill='#F2B000'></path></svg>
+      {@html SVG_WECHAT_LING_QIAN_TONG}
     </div>
 
     <div class='info'>

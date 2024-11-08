@@ -5,14 +5,20 @@
   import { EVENTS } from '../../../constant/events';
   import { useEventListener } from '../../../utils/hooks/use-event-listener';
   import { BATTERY_STATUS_MAP, CARRIER_LIST, DEFAULT_BATTERY_PERCENTAGE, SIGNAL_STRENGTH_IOS, SIGNAL_TYPE_MAP } from '../../../constant/phone';
-  import ICON_PHONE_DIRECTION_IOS from '../../../assets/images/phone/direction-lock.png';
   import ICON_BATTERY from '../../../assets/images/phone/icon-battery.png';
   import ICON_BATTERY_CHARGING from '../../../assets/images/phone/icon-battery-charging.png';
+  import ICON_BATTERY_WHITE from '../../../assets/images/phone/icon-battery-white.png';
   import { DEFAULT_TIME_HOUR, DEFAULT_TIME_MINUTE } from '../../../constant/timer';
   import { DEVICE_RATIO_IOS } from '../../../constant/phone/device-ratio';
+  import { SVG_DIRECTION_LOCK } from '../../../assets/svg/phone';
 
   export let className = '';
   export let id = '';
+  export let headerBgColor = '';
+  export let headerContentColor = '';
+  export let useWhiteBattery = false;
+
+  const headerItemColor = headerContentColor || 'reset'
 
   $: phoneModel = DEVICE_RATIO_IOS.IPHONE_8;
   $: signalStrength = Number(SIGNAL_STRENGTH_IOS.Good);
@@ -99,40 +105,46 @@
 <div
   class={['simulator-ios-wrapper', className].join(' ')}
   id={id}
-  style={`width: ${phoneModel.width}px; height: ${phoneModel.height}px`}
+  style={`width: ${phoneModel.width}px; height: ${phoneModel.height}px;`}
 >
-  <div class='simulator-header simulator-ios-header layout-between-end'>
+  <div
+    class='simulator-header simulator-ios-header layout-between-end'
+    style={headerBgColor ? `background-color: ${headerBgColor}` : ''}
+  >
     <div class='layout-start-center'>
-      <SignalBar strength={signalStrength} />
+      <SignalBar strength={signalStrength} color={headerContentColor} />
   
-      <span class='carrier'>{carrier}</span>
+      <span class='carrier' style={`color: ${headerItemColor}`}>{carrier}</span>
 
       {#if signalType === 'WIFI'}
-        <BeIcon name='wifi' />
+        <BeIcon name='wifi' color={headerContentColor || ''} />
       {:else}
-        <span>{signalType}</span>
+        <span style={`color: ${headerItemColor}`}>{signalType}</span>
       {/if}
     </div>
 
-    <div class='time'>{timeHour}:{timeMinute}</div>
+    <div class='time' style={`color: ${headerItemColor}`}>{timeHour}:{timeMinute}</div>
 
     <div class='layout-end-center top-right-wrapper'>
       {#if showPhoneDirection}
-        <img src={ICON_PHONE_DIRECTION_IOS} alt='direction-lock' class='direction-lock' />
+        <span class='direction-lock'>{@html headerContentColor ? SVG_DIRECTION_LOCK.replace(/(fill=")(#[a-z0-9]*)(")/g, `$1${headerContentColor}$3`) : SVG_DIRECTION_LOCK}</span>
       {/if}
 
       {#if showBatteryPercentage}
-        <span>{batteryPercentage}%</span>
+        <span style={`color: ${headerItemColor}`}>{batteryPercentage}%</span>
       {/if}
 
       <div class='battery-wrapper layout-center'>
         {#if isCharging}
           <img src={ICON_BATTERY_CHARGING} alt='battery-charging' class='is-charging' />
         {:else}
-          <img src={ICON_BATTERY} alt='battery' class='is-normal' />
+          <img src={useWhiteBattery ? ICON_BATTERY_WHITE : ICON_BATTERY} alt='battery' class='is-normal' />
         {/if}
 
-        <div class='battery-percentage' style='right: {batteryWidth}px; background-color: {batteryColor};'></div>
+        <div
+          class='battery-percentage'
+          style='right: {batteryWidth}px; background-color: {isCharging ? batteryColor : (headerContentColor || batteryColor)};'>
+        </div>
       </div>
     </div>
   </div>
@@ -149,6 +161,7 @@
     transform-origin: top center;
     background-color: var(--white);
     font-size: 12px;
+    border: 1px solid #ccc;
 
     .simulator-ios-header {
       height: 25px;
@@ -205,6 +218,7 @@
     .direction-lock {
       width: 12px;
       height: 12px;
+      color: #000;
     }
   }
 </style>

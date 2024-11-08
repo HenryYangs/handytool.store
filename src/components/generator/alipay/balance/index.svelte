@@ -1,9 +1,9 @@
 <script>
   import { t } from 'svelte-i18n';
   import MobileAppGenerator from '../../mobile-app/index.svelte';
-  import ContentForm from './content-form/index.svelte';
   import Trigger from '../../components/preview/trigger/index.svelte';
-  import TransferUI from './ui/index.svelte';
+  import BalanceUI from './ui/index.svelte';
+  import ContentForm from './content-form/index.svelte';
 </script>
 
 <MobileAppGenerator
@@ -14,15 +14,17 @@
       component: ContentForm,
     }
   ]}
-  className='wechat-transfer-wrapper'
-  simulatorId='wechatTransfer'
-  simulatorHeaderBgColor='var(--white)'
+  className='alipay-balance-wrapper'
+  simulatorId='alipayBalance'
+  simulatorHeaderBgColor='var(--alipay-main-color)'
+  simulatorHeaderContentColor='var(--white)'
+  simulatorHeaderWhiteBattery
 >
   <svelte:fragment slot='action'>
     <Trigger />
   </svelte:fragment>
 
   <svelte:fragment slot='content'>
-    <TransferUI />
+    <BalanceUI />
   </svelte:fragment>
 </MobileAppGenerator>

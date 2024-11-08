@@ -76,3 +76,10 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+@mixin layout-col-between-center {
+  @include layout-col;
+
+  justify-content: space-between;
+  align-items: center;
+}

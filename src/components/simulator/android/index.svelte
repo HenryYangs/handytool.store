@@ -1,6 +1,9 @@
 <script>
   export let className = '';
   export let id = '';
+  export let headerContentColor = '';
+  export let useWhiteBattery = false;
+  export let headerBgColor = '';
 </script>
 
 <div class={['simulator-android-wrapper', className].join(' ')} id={id}>

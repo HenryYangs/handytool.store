@@ -13,6 +13,9 @@
   export let phone = PHONE.IOS;
   export let className = '';
   export let simulatorId = '';
+  export let simulatorHeaderBgColor = '';
+  export let simulatorHeaderContentColor = '';
+  export let simulatorHeaderWhiteBattery = false;
 
   export let onPreviewBeforeAppend = (node, target) => {};
 
@@ -53,8 +56,12 @@
 
   <section class='generator-part body-right'>
     <svelte:component
-      this={phone === PHONE.IOS ? SimulatorIos : SimulatorAndroid} className='simulator-wrapper'
+      this={phone === PHONE.IOS ? SimulatorIos : SimulatorAndroid}
+      className='simulator-wrapper'
       id={simulatorId}
+      headerContentColor={simulatorHeaderContentColor}
+      useWhiteBattery={simulatorHeaderWhiteBattery}
+      headerBgColor={simulatorHeaderBgColor}
     >
       <svelte:fragment slot='content'>
         <slot name='content'></slot>

@@ -16,6 +16,7 @@
   ]}
   className='wechat-change-wrapper'
   simulatorId='wechatChange'
+  simulatorHeaderBgColor='var(--white)'
 >
   <svelte:fragment slot='action'>
     <Trigger />
@@ -25,17 +26,3 @@
     <ChangeUI />
   </svelte:fragment>
 </MobileAppGenerator>
-
-<style lang='scss' global>
-  .wechat-change-wrapper {
-    .simulator-header {
-      background-color: var(--white);
-    }
-  }
-
-  .hide-node {
-    .simulator-header {
-      background-color: var(--white);
-    }
-  }
-</style>
