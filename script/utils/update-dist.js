@@ -1,4 +1,4 @@
-import { readdir, rename, readFile, writeFile } from 'node:fs/promises';
+import { readdir, rename, readFile, writeFile, copyFile } from 'node:fs/promises';
 import * as cheerio from 'cheerio';
 import { parseJSON } from '../../src/utils/object/index.js';
 
@@ -16,6 +16,24 @@ async function getConfig(path) {
   } catch {}
 
   return config;
+}
+
+async function copyCloudflareFiles() {
+  try {
+    // 复制 _headers 文件
+    await copyFile('./_headers', './dist/_headers');
+    console.log('✓ Copied _headers to dist/');
+  } catch (error) {
+    console.log('⚠ _headers file not found, skipping...');
+  }
+
+  try {
+    // 复制 _redirects 文件
+    await copyFile('./_redirects', './dist/_redirects');
+    console.log('✓ Copied _redirects to dist/');
+  } catch (error) {
+    console.log('⚠ _redirects file not found, skipping...');
+  }
 }
 
 async function updateDistFile() {
@@ -87,7 +105,10 @@ async function updateDistFile() {
       oldFilePath,
       oldFilePath.replace(/index\.prod\.html/, 'index.html')
     );
-  })
+  });
+
+  // 复制 Cloudflare 配置文件
+  await copyCloudflareFiles();
 }
 
 updateDistFile();

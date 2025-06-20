@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build && yarn update-dist",
     "preview": "vite preview",
-    "update-dist": "node script/utils/update-dist.js"
+    "update-dist": "node script/utils/update-dist.js",
+    "deploy": "yarn build && wrangler pages deploy dist",
+    "deploy:preview": "yarn build && wrangler pages deploy dist --branch=preview"
   },
   "devDependencies": {
     "@brewer/beerui": "^1.1.17",
