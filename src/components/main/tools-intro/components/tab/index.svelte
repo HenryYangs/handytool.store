@@ -1,4 +1,6 @@
 <script>
+  import { t } from 'svelte-i18n';
+
   export let list;
   export let tabIdx = 0;
   export let onTabClick;
@@ -13,7 +15,7 @@
         <button
           class={`tab-item ${tab.id === curTabIdx ? 'active' : ''}`}
           on:click={() => { onTabClick && onTabClick(index) }}
-        >{tab.text}</button>
+        >{$t(tab.text)}</button>
       {/each}
     </div>
   </div>

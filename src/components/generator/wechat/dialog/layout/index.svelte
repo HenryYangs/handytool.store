@@ -8,7 +8,6 @@
     $: bgImage = '';
 
     const handleBgImageChange = (value) => {
-      console.log('value', value)
       bgImage = value;
     };
 

@@ -2,6 +2,21 @@ export default {
   'Timer Tools': '时间工具',
   'Free Timer Tools': '免费的时间相关的工具集',
 
+  'Count Timer': '计时器',
+  countTimerDesc: '创建你的计时器工具',
+
+  'Online Clock': '在线时钟',
+  onlineClockDesc: '展示当前时间的时钟',
+
+  TimeStamp: '时间戳转换',
+  timeStampDesc: '时间戳和日期时间之间的转换',
+
+  Chronograph: '秒表',
+  chronographDesc: '以毫秒为单位的计时器',
+
+  'Alarm Clock': '闹钟',
+  alarmClockDesc: '创建你的在线闹钟',
+
   Countdown: '倒计时',
   countdown: '倒计时',
   CountTimer: '计时器',

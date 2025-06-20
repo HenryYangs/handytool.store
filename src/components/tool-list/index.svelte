@@ -2,8 +2,9 @@
   import { onMount } from 'svelte';
   import TitleDesc from '../title-desc/index.svelte';
   import ToolCardList from '../tool-card-list/index.svelte';
-  import http from '../../utils/http';
+  // import http from '../../utils/http';
   import { t } from 'svelte-i18n';
+  import { ALL_TOOLS } from '../../config/tools';
 
   export let id = '';
   export let title = '';
@@ -17,7 +18,11 @@
     const lowerCase = searchValue.toLowerCase();
 
     renderList = list.filter(item => {
-      return item.text.toLowerCase().includes(lowerCase) || item.category.toLowerCase().includes(lowerCase);
+      return (
+        item.text.toLowerCase().includes(lowerCase) || // 英文名
+        item.category.toLowerCase().includes(lowerCase) || // 分类
+        $t(item.text).toLowerCase().includes(lowerCase) // 中文名
+      );
     });
   };
   const onSearchKeyPress = (event) => {
@@ -27,35 +32,32 @@
     }
   };
 
-  const onFavorite = (id) => {
-    renderList = renderList.map(item => ({
-      ...item,
-      favorite: item.id === id ? !item.favorite : item.favorite,
-    }));
-    list = list.map(item => ({
-      ...item,
-      favorite: item.id === id ? !item.favorite : item.favorite,
-    }));
-  }
+  // const onFavorite = (id) => {
+  //   renderList = renderList.map(item => ({
+  //     ...item,
+  //     favorite: item.id === id ? !item.favorite : item.favorite,
+  //   }));
+  //   list = list.map(item => ({
+  //     ...item,
+  //     favorite: item.id === id ? !item.favorite : item.favorite,
+  //   }));
+  // }
 
   onMount(() => {
-    http({
-      url: `/tool-list?scene=list&id=${id}`,
-      method: 'GET',
-    }).then(response => {
-      renderList = response;
-      list = response;
+    const toolList = id === 'all' ? ALL_TOOLS : ALL_TOOLS.filter(item => item.categoryId === id);
+
+    renderList = toolList;
+    list = toolList;
 
       // process search in url after api request response
       const query = location.search.replace('?', '').split('&').find(item => item.startsWith('q='));
-  
+
       if (query) {
         const [, value] = query.split('=');
   
-        searchValue = value;
+        searchValue = decodeURIComponent(value);
         onSearch();
       }
-    });
   });
 </script>
 
@@ -74,8 +76,8 @@
     <ToolCardList
       style='margin-top: 50px;'
       list={renderList}
-      onFavorite={onFavorite}
     />
+      <!-- onFavorite={onFavorite} -->
   </div>
 </main>
 

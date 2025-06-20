@@ -1,0 +1,70 @@
+import { LOCALE_CN } from '../locale';
+import { CATEGORY, COLOR, THEME } from './base';
+
+const TOOL_GENERATOR_ID = {
+  WECHAT_DIALOG: 'wechat-dialog',
+  WECHAT_CHANGE: 'wechat-change',
+  WECHAT_BILL: 'wechat-bill',
+  WECHAT_TRANSFER: 'wechat-transfer',
+  ALIPAY_BALANCE: 'alipay-balance',
+};
+
+export const GENERATOR = [
+  {
+    id: TOOL_GENERATOR_ID.WECHAT_DIALOG,
+    text: 'WeChat Dialog',
+    category: CATEGORY.GENERATOR,
+    categoryId: CATEGORY.GENERATOR,
+    icon: 'wechat',
+    color: COLOR.GREEN,
+    iconTheme: THEME.GREEN,
+    description: 'wechatDialogDesc',
+    hasIllegalWarning: true,
+  },
+  {
+    id: TOOL_GENERATOR_ID.WECHAT_CHANGE,
+    text: 'WeChat Change',
+    category: CATEGORY.GENERATOR,
+    categoryId: CATEGORY.GENERATOR,
+    icon: 'change',
+    color: COLOR.BLUE,
+    iconTheme: THEME.BLUE,
+    description: 'wechatChangeDesc',
+    hasIllegalWarning: true,
+  },
+  {
+    id: TOOL_GENERATOR_ID.WECHAT_BILL,
+    text: 'WeChat Bill',
+    category: CATEGORY.GENERATOR,
+    categoryId: CATEGORY.GENERATOR,
+    icon: 'bill',
+    color: COLOR.PURPLE,
+    iconTheme: THEME.PURPLE,
+    description: 'wechatBillDesc',
+    hasIllegalWarning: true,
+    language: LOCALE_CN,
+  },
+  {
+    id: TOOL_GENERATOR_ID.WECHAT_TRANSFER,
+    text: 'WeChat Transfer',
+    category: CATEGORY.GENERATOR,
+    categoryId: CATEGORY.GENERATOR,
+    icon: 'transfer',
+    color: COLOR.RED,
+    iconTheme: THEME.RED,
+    description: 'wechatTransferDesc',
+    hasIllegalWarning: true,
+    language: LOCALE_CN,
+  },
+  {
+    id: TOOL_GENERATOR_ID.ALIPAY_BALANCE,
+    text: 'AliPay Balance',
+    category: CATEGORY.GENERATOR,
+    categoryId: CATEGORY.GENERATOR,
+    icon: 'change',
+    color: COLOR.WATHET,
+    iconTheme: THEME.WATHET,
+    description: 'alipayBalanceDesc',
+    hasIllegalWarning: true,
+  },
+];

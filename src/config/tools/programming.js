@@ -1,0 +1,73 @@
+import { CATEGORY, COLOR, THEME } from './base';
+
+const TOOL_PROGRAMMING_ID = {
+  CSS_COMPRESSION: 'css-compression',
+  CSS_FORMAT: 'css-format',
+  JSON_COMPRESSION: 'json-compression',
+  JSON_FORMAT: 'json-format',
+  SQL_COMPRESSION: 'sql-compression',
+  SQL_FORMAT: 'sql-format',
+};
+
+export const PROGRAMMING = [
+  {
+    id: TOOL_PROGRAMMING_ID.CSS_COMPRESSION,
+    text: 'CSS Compression',
+    category: CATEGORY.PROGRAMMING,
+    categoryId: CATEGORY.PROGRAMMING,
+    icon: 'css',
+    color: COLOR.ORANGE,
+    iconTheme: THEME.ORANGE,
+    description: 'cssCompressionDesc',
+  },
+  {
+    id: TOOL_PROGRAMMING_ID.CSS_FORMAT,
+    text: 'CSS Formatter',
+    category: CATEGORY.PROGRAMMING,
+    categoryId: CATEGORY.PROGRAMMING,
+    icon: 'css',
+    color: COLOR.RED,
+    iconTheme: THEME.RED,
+    description: 'cssFormatterDesc',
+  },
+  {
+    id: TOOL_PROGRAMMING_ID.JSON_COMPRESSION,
+    text: 'JSON Compression',
+    category: CATEGORY.PROGRAMMING,
+    categoryId: CATEGORY.PROGRAMMING,
+    icon: 'json',
+    color: COLOR.PURPLE,
+    iconTheme: THEME.PURPLE,
+    description: 'jsonCompressionDesc',
+  },
+  {
+    id: TOOL_PROGRAMMING_ID.JSON_FORMAT,
+    text: 'JSON Formatter',
+    category: CATEGORY.PROGRAMMING,
+    categoryId: CATEGORY.PROGRAMMING,
+    icon: 'json',
+    color: COLOR.GREEN,
+    iconTheme: THEME.GREEN,
+    description: 'jsonFormatterDesc',
+  },
+  {
+    id: TOOL_PROGRAMMING_ID.SQL_COMPRESSION,
+    text: 'SQL Compression',
+    category: CATEGORY.PROGRAMMING,
+    categoryId: CATEGORY.PROGRAMMING,
+    icon: 'sql',
+    color: COLOR.WATHET,
+    iconTheme: THEME.WATHET,
+    description: 'sqlCompressionDesc',
+  },
+  {
+    id: TOOL_PROGRAMMING_ID.SQL_FORMAT,
+    text: 'SQL Formatter',
+    category: CATEGORY.PROGRAMMING,
+    categoryId: CATEGORY.PROGRAMMING,
+    icon: 'sql',
+    color: COLOR.YELLOW,
+    iconTheme: THEME.YELLOW,
+    description: 'sqlFormatterDesc',
+  },
+];

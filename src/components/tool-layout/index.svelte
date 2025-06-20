@@ -2,55 +2,57 @@
   import { getCurrentTool } from '../../utils/tool';
   import ToolCard from '../tool-card/index.svelte';
   import TitleDesc from '../title-desc/index.svelte';
-  import { onMount } from 'svelte';
-  import http from '../../utils/http';
+  // import { onMount } from 'svelte';
+  // import http from '../../utils/http';
   import { t } from 'svelte-i18n';
   import Share from '../share/index.svelte';
+  import { ALL_TOOLS } from '../../config/tools';
 
   export let id;
-  export let category;
+  // export let category;
   export let maxOtherCount = 8;
 
   let toolsList = [];
   $: otherTools = toolsList.filter(item => item.id !== id).slice(0, maxOtherCount);
 
-  $: tool = getCurrentTool(toolsList, id);
+  $: tool = getCurrentTool(ALL_TOOLS, id);
 
-  onMount(() => {
-    http({
-      url: `/tool-list?scene=tool&id=${category}`,
-      method: 'GET',
-    }).then(response => {
-      const isValidTool = Boolean(response.filter(tool => tool.id === id).length);
+  // onMount(() => {
+  //   http({
+  //     url: `/tool-list?scene=tool&id=${category}`,
+  //     method: 'GET',
+  //   }).then(response => {
+  //     const isValidTool = Boolean(response.filter(tool => tool.id === id).length);
 
-      if (!isValidTool) {
-        location.replace('/404');
-        return;
-      }
+  //     if (!isValidTool) {
+  //       location.replace('/404');
+  //       return;
+  //     }
 
-      toolsList = response;
-    });
-  });
+  //     toolsList = response;
+  //   });
+  // });
 
-  const onFavorite = (toolId) => {
-    toolsList = toolsList.map(tool => {
-      return {
-        ...tool,
-        favorite: tool.id === toolId ? !tool.favorite : tool.favorite,
-      };
-    });
-  };
+  // const onFavorite = (toolId) => {
+  //   toolsList = toolsList.map(tool => {
+  //     return {
+  //       ...tool,
+  //       favorite: tool.id === toolId ? !tool.favorite : tool.favorite,
+  //     };
+  //   });
+  // };
 </script>
 
 <main class='tool-layout-wrapper layout-center common-background'>
   <div class='container-biz'>
     <TitleDesc
-      title={tool.text}
-      description={tool.description}
-      isFavorite={tool.favorite}
+      title={$t(tool.text)}
+      description={$t(tool.description)}
       id={id}
-      onFavorite={() => onFavorite(id)}
-    />
+      showStar={false}
+      />
+      <!-- isFavorite={tool.favorite} -->
+      <!-- onFavorite={() => onFavorite(id)} -->
 
     <div class='content'>
       <slot />
@@ -68,8 +70,8 @@
             <ToolCard
               tool={tool}
               innerStyle='box-shadow: 3px 10px 40px rgba(24, 29, 32, 0.05)'
-              onFavorite={() => onFavorite(tool.id)}
             />
+              <!-- onFavorite={() => onFavorite(tool.id)} -->
           {/each}
         </div>
       </div>

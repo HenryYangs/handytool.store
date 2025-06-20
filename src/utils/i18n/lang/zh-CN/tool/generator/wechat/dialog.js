@@ -1,18 +1,19 @@
 export default {
   'WeChat Dialog': '微信对话生成器',
+  wechatDialogDesc: '模拟生成微信对话框',
 
   'Phone Appearance': '手机外观设置',
   'App Appearance': '应用外观设置',
   Content: '内容设置',
 
   'Signal Strength': '信号强度',
-  'Carrier': '运营商',
+  Carrier: '运营商',
   'Signal Type': '信号类型',
   'Direction Lock': '方向锁定',
   'Battery Level': '电池电量',
   'Battery Status': '电池状态',
-  'Normal': '正常',
-  'Charging': '充电中',
+  Normal: '正常',
+  Charging: '充电中',
   'Battery Percentage': '电池百分比',
 
   'Chat Type': '聊天模式',
@@ -45,10 +46,10 @@ export default {
   'Add User': '添加用户',
   'Clear Dialog': '清空对话',
 
-  'Poor': '差',
-  'Fair': '一般',
-  'Good': '好',
-  'Strong': '强',
+  Poor: '差',
+  Fair: '一般',
+  Good: '好',
+  Strong: '强',
 
   deleteMsgTitle: '删除消息',
   deleteMsgTips: '确定要删除这条消息吗？',
@@ -66,8 +67,8 @@ export default {
   clearDialogTitle: '确定清空对话？',
   clearDialogContent: '所有对话内容都会被删除，并且无法恢复！',
 
-  receiveRedPacketIsMe: `你领取了{giver}的<span class="highlight">红包</span>`,
-  receiveRedPacketIsOther: `{giver}领取了你的<span class="highlight">红包</span>`,
+  receiveRedPacketIsMe: `你领取了{giver}的<span class='highlight'>红包</span>`,
+  receiveRedPacketIsOther: `{giver}领取了你的<span class='highlight'>红包</span>`,
 
-  previewTips: '鼠标点击右键，直接保存图片'
-}
+  previewTips: '鼠标点击右键，直接保存图片',
+};

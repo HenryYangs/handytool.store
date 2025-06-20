@@ -7,9 +7,9 @@
 
   $: toolList = [];
 
-  const onFavorite = (id) => {
-    toolList = toolList.filter(tool => tool.id !== id);
-  };
+  // const onFavorite = (id) => {
+  //   toolList = toolList.filter(tool => tool.id !== id);
+  // };
 
   onMount(() => {
     http({
@@ -30,8 +30,8 @@
         <ToolCardList
           style='margin-top: 30px;'
           list={toolList}
-          onFavorite={onFavorite}
         />
+          <!-- onFavorite={onFavorite} -->
       {:else}
         <p class='text-center'>{$t('emptyFavoriteTips')}</p>
       {/if}

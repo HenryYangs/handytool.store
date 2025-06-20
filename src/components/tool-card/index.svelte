@@ -1,16 +1,17 @@
 <script>
+  import { t } from 'svelte-i18n';
   import { stringCaseTransform } from '../../utils/string/transform';
   import { processToolUrl } from '../../utils/url';
-  import Star from '../star/index.svelte';
+  // import Star from '../star/index.svelte';
 
   export let tool;
   export let innerStyle = '';
-  export let onFavorite = () => {};
+  // export let onFavorite = () => {};
 
-  const onStarClick = (event) => {
-    onFavorite();
-    event.preventDefault();
-  }
+  // const onStarClick = (event) => {
+  //   onFavorite();
+  //   event.preventDefault();
+  // }
 </script>
 
 <div class='tool-card-wrapper'>
@@ -26,17 +27,19 @@
 
         <div class='tool-card_main'>
           <div class='tool-card_title-wrapper'>
-            <h6 class='tool-card_title'>{tool.text}</h6>
+            <h6 class='tool-card_title'>{$t(tool.text)}</h6>
 
-            <Star
+            <!-- <Star
               id={tool.id}
               isStar={tool.favorite}
               size={14}
               onClick={onStarClick}
-            />
+            /> -->
           </div>
 
-          <p class='tool-card_category' style:color={tool.color}>{stringCaseTransform(tool.category)}</p>
+          <p class='tool-card_category' style:color={tool.color}>
+            {$t(stringCaseTransform(tool.category))}
+          </p>
         </div>
       </div>
     </div>

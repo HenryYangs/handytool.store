@@ -5,20 +5,25 @@
   import http from '../../utils/http';
   import { processToolUrl } from '../../utils/url';
   import { t } from 'svelte-i18n';
+  import { ALL_TOOLS, PURE_TOOLS } from '../../config/tools';
 
   $: toolList = [];
 
   onMount(() => {
-    http({
-      url: '/footer',
-      method: 'GET',
-    })
-    .then(response => {
-      toolList = response.map((item) => ({
-        text: item.text,
-        url: processToolUrl(item),
-      }));
-    })
+    // http({
+    //   url: '/footer',
+    //   method: 'GET',
+    // })
+    // .then(response => {
+    //   toolList = response.map((item) => ({
+    //     text: item.text,
+    //     url: processToolUrl(item),
+    //   }));
+    // })
+    toolList = ALL_TOOLS.slice(0, 20).map((item) => ({
+      text: item.text,
+      url: processToolUrl(item),
+    }));
   });
 </script>
 

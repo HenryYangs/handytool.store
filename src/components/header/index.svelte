@@ -3,16 +3,16 @@
   import Dropdown from '../dropdown/index.svelte';
   import logo from '../../assets/images/logo.png';
   import { ROUTER } from '../../constant/router';
-  import { processUrl } from '../../utils/url';
-  import { HEADER_ENTRIES } from './config';
-  import ExecuteBtn from '../execute-btn/index.svelte';
+  // import { processUrl } from '../../utils/url';
+  // import { HEADER_ENTRIES } from './config';
+  // import ExecuteBtn from '../execute-btn/index.svelte';
   import '../../assets/icon/header/iconfont.css';
-  import http from '../../utils/http';
+  // import http from '../../utils/http';
   import { STORAGE_I18N_KEY, STORAGE_LOGIN_INFO } from '../../constant/storage';
   import { parseJSON } from '../../utils/object';
-  import { onMount } from 'svelte';
-  import event from '../../utils/event';
-  import { EVENTS } from '../../constant/events';
+  // import { onMount } from 'svelte';
+  // import event from '../../utils/event';
+  // import { EVENTS } from '../../constant/events';
   import { t } from 'svelte-i18n';
   import { getLang } from '../../utils/i18n';
   import { LOCALE_CN, LOCALE_EN } from '../../constant/i18n';
@@ -20,15 +20,15 @@
   let y;
 
   $: searchValue = '';
-  $: isLogin = false;
-  $: userInfo = (() => {
-    return parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO));
-  })();
-  $: username = '';
+  // $: isLogin = false;
+  // $: userInfo = (() => {
+  //   return parseJSON(localStorage.getItem(STORAGE_LOGIN_INFO));
+  // })();
+  // $: username = '';
   $: locale = getLang();
 
   const onSearch = () => {
-    location.href = `${location.protocol}//${location.host}/tool/all?q=${searchValue}`;
+    location.href = `${location.protocol}//${location.host}/tool/all?q=${encodeURIComponent(searchValue)}`;
   };
 
   const onSearchHandler = (event) => {
@@ -42,38 +42,38 @@
     onSearch();
   }
 
-  const onAuthBtnClick = () => {
-    event.emit(EVENTS.AUTH_SHOW);
-  };
+  // const onAuthBtnClick = () => {
+  //   event.emit(EVENTS.AUTH_SHOW);
+  // };
 
-  const onLogout = () => {
-    http({
-      url: '/logout',
-      method: 'POST',
-    }).then(() => {
-      localStorage.removeItem(STORAGE_LOGIN_INFO);
-      location.href = '/';
-    });
-  };
+  // const onLogout = () => {
+  //   http({
+  //     url: '/logout',
+  //     method: 'POST',
+  //   }).then(() => {
+  //     localStorage.removeItem(STORAGE_LOGIN_INFO);
+  //     location.href = '/';
+  //   });
+  // };
 
-  onMount(() => {
-    if (userInfo && userInfo.token) {
-      http({
-        url: '/validate-token',
-        method: 'GET'
-      }, {
-        showErrorToast: false
-      })
-        .then(() => {
-          username = userInfo.username;
-          isLogin = true;
-        })
-        .catch(() => {
-          isLogin = false;
-          localStorage.removeItem(STORAGE_LOGIN_INFO);
-        });
-    }
-  });
+  // onMount(() => {
+  //   if (userInfo && userInfo.token) {
+  //     http({
+  //       url: '/validate-token',
+  //       method: 'GET'
+  //     }, {
+  //       showErrorToast: false
+  //     })
+  //       .then(() => {
+  //         username = userInfo.username;
+  //         isLogin = true;
+  //       })
+  //       .catch(() => {
+  //         isLogin = false;
+  //         localStorage.removeItem(STORAGE_LOGIN_INFO);
+  //       });
+  //   }
+  // });
 
   const getLocaleEntryStyle = (target) => {
     return locale === target ? 'color: #3D52A0; font-weight: bold' : '';
@@ -95,7 +95,7 @@
       <h5 class='logo-text'>HandyTool</h5>
     </a>
 
-    <ul class='layout-start-center entries-list'>
+    <!-- <ul class='layout-start-center entries-list'>
       {#each HEADER_ENTRIES as entry}
         <li>
           <a
@@ -107,7 +107,7 @@
           </a>
         </li>
       {/each}
-    </ul>
+    </ul> -->
 
     <div class='extra layout-end-center'>
       <Dropdown
@@ -140,7 +140,7 @@
         />
       </div>
 
-      {#if isLogin}
+      <!-- {#if isLogin}
         <Dropdown
           id='userInfo'
           triggerText={username}
@@ -154,7 +154,7 @@
         />
       {:else}
         <ExecuteBtn text={$t('Login')} onConfirm={onAuthBtnClick} />
-      {/if}
+      {/if} -->
     </div>
   </div>
 </header>

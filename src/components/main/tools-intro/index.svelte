@@ -4,13 +4,14 @@
   import { processUrl } from '../../../utils/url';
   import Tab from './components/tab/index.svelte';
   import ToolCardList from '../../tool-card-list/index.svelte';
-  import http from '../../../utils/http';
+  // import http from '../../../utils/http';
   import { t } from 'svelte-i18n';
+  import { FULL_TOOLS } from '../../../config/tools';
 
   let tabIdx = 0;
   $: tabList = [];
   $: curTabItem = tabList[tabIdx] || { id: '' };
-  $: allBtnText = curTabItem.id === 'all' ? $t('All Tools') : $t('allSingleTool', { values: { tool: curTabItem.text } });
+  $: allBtnText = curTabItem.id === 'all' ? $t('All Tools') : $t('allSingleTool', { values: { tool: $t(curTabItem.text) } });
 
   const TAB_KEY = 'handyTool_home_tab';
 
@@ -22,26 +23,28 @@
     localStorage.setItem(TAB_KEY, String(index));
   }
 
-  const onFavorite = (id) => {
-    tabList[tabIdx].list = tabList[tabIdx].list.map(item => ({
-      ...item,
-      favorite: item.id === id ? !item.favorite : item.favorite,
-    }))
-  };
+  // const onFavorite = (id) => {
+  //   tabList[tabIdx].list = tabList[tabIdx].list.map(item => ({
+  //     ...item,
+  //     favorite: item.id === id ? !item.favorite : item.favorite,
+  //   }))
+  // };
 
   onMount(() => {
-    http({
-      url: '/tool-list',
-      method: 'GET'
-    }).then(response => {
-      tabList = response;
+    tabList = FULL_TOOLS;
+
+    // http({
+    //   url: '/tool-list',
+    //   method: 'GET'
+    // }).then(response => {
+    //   tabList = response;
 
       const cache = Number(localStorage.getItem(TAB_KEY));
 
       if (!cache && cache !== 0) return;
 
       onTabClick(cache);
-    });
+    // });
 
     return () => {
       localStorage.removeItem(TAB_KEY);
@@ -64,8 +67,8 @@
         <ToolCardList
           style='margin-top: 30px;'
           list={tabList[tabIdx].list}
-          onFavorite={onFavorite}
         />
+          <!-- onFavorite={onFavorite} -->
       {/if}
       
       <div class='footer-btn layout-center'>

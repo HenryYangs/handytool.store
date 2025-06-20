@@ -3,12 +3,13 @@
 
   export let list = [];
   export let style = '';
-  export let onFavorite = (id) => {};
+  // export let onFavorite = (id) => {};
 </script>
 
 <section class='tool-card-list-wrapper' style={style}>
   {#each list as tool}
-    <ToolCard tool={tool} onFavorite={() => onFavorite(tool.id)} />
+    <ToolCard tool={tool} />
+    <!-- onFavorite={() => onFavorite(tool.id)} -->
   {/each}
 </section>
 
