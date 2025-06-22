@@ -26,6 +26,18 @@ jobs:
     - name: Build project
       run: yarn build
 
+    - name: Verify Cloudflare API Token
+      run: |
+        if [ -z "${{ secrets.CLOUDFLARE_API_TOKEN }}" ]; then
+          echo "❌ CLOUDFLARE_API_TOKEN is not set"
+          exit 1
+        fi
+        if [ -z "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+          echo "❌ CLOUDFLARE_ACCOUNT_ID is not set"
+          exit 1
+        fi
+        echo "✅ Cloudflare credentials are set"
+
     - name: Deploy to Cloudflare Pages
       uses: cloudflare/pages-action@v1
       with:
@@ -33,4 +45,5 @@ jobs:
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         projectName: handytool-store
         directory: dist
-        gitHubToken: ${{ secrets.GITHUB_TOKEN }} 
+        gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        wranglerVersion: '3' 
