@@ -34,6 +34,14 @@ async function copyCloudflareFiles() {
   } catch (error) {
     console.log('⚠ _redirects file not found, skipping...');
   }
+
+  try {
+    // 复制 ads.txt 文件
+    await copyFile('./ads.txt', './dist/ads.txt');
+    console.log('✓ Copied ads.txt to dist/');
+  } catch (error) {
+    console.log('⚠ ads.txt file not found, skipping...');
+  }
 }
 
 async function updateDistFile() {
@@ -71,8 +79,7 @@ async function updateDistFile() {
         </script>
 
         <!-- Google Ads -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5995522298673773"
-     crossorigin="anonymous"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7586609252833770" crossorigin="anonymous"></script>
       `
     );
 
