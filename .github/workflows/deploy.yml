@@ -9,6 +9,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
     
     steps:
     - name: Checkout
@@ -45,5 +48,4 @@ jobs:
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         projectName: handytool-store
         directory: dist
-        gitHubToken: ${{ secrets.GITHUB_TOKEN }}
         wranglerVersion: '3' 
