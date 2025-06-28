@@ -1,11 +1,11 @@
 {
-  "name": "vite-project",
+  "name": "handytool-store",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && yarn update-dist",
+    "build": "rimraf dist && vite build && yarn update-dist",
     "preview": "vite preview",
     "update-dist": "node script/utils/update-dist.js",
     "deploy": "yarn build && npx wrangler pages deploy dist",
@@ -16,6 +16,7 @@
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
     "cheerio": "^1.0.0",
     "connect-history-api-fallback": "^2.0.0",
+    "rimraf": "^6.0.1",
     "sass": "^1.79.4",
     "svelte": "4.2.19",
     "svelte-preprocess": "^6.0.3",
