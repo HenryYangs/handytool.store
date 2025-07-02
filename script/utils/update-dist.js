@@ -44,6 +44,14 @@ async function copyCloudflareFiles() {
   }
 
   try {
+    // 复制 sw.txt 文件
+    await copyFile('./sw.js', './dist/sw.txt');
+    console.log('✓ Copied sw.js to dist/');
+  } catch (error) {
+    console.log('⚠ sw.js file not found, skipping...');
+  }
+
+  try {
     // 复制 index.html 文件
     await copyFile('./public/index.html', './dist/index.html');
     console.log('✓ Copied index.html to dist/');
